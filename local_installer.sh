@@ -508,7 +508,7 @@ fi
 ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
   echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
-  echo "already in runcommand.sh" > /tmp/exists
+  echo "already in runcommand-onstart.sh" > /tmp/exists
 
 else
 
@@ -538,12 +538,20 @@ fi
 EOF1234
 sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
 fi
-#need to add fi here 
 
-#the code belive this line needs to breed one like the code above.
-
-sed -i '/pkill -STOP mpg123/d' $RUNONSTART
+filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep mpg123 |wc -l`
+if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
+fi
+
+
+ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep omxplayer |wc -l`
+if [[ ${ifexist3} > 0 ]]; then
+  echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
+  echo "already in runcommand-onend.sh" > /tmp/exists
+
+else
+
 cat <<\EOF12345 > "/tmp/templist3"
 #! /bin/bash
 # /etc/init.d/start-sound
