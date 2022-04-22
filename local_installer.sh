@@ -534,6 +534,7 @@ fi
 ### End VideoLoading Screens Function
 EOF1234
 sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+fi
 
 cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
