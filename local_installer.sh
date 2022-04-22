@@ -544,7 +544,6 @@ if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
 fi
 
-
 ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep omxplayer |wc -l`
 if [[ ${ifexist3} > 0 ]]; then
   echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
