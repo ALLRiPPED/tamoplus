@@ -385,7 +385,6 @@ else
 fi
 
 echo "Setting up Splash, Exit, and Game Launching Screens"
-cp "$HOME/tamoplus/BGM Folder Diabled.mp3" $INSTALL_DIR
 
 gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
 unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "TAMO+ Screens Extraction Complete"
