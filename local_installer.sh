@@ -249,6 +249,15 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 else
 	cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus 2>/dev/null         
 fi
+
+# Create or make backup of autostart.sh.
+if [ ! -f /opt/retropie/configs/all/autostart.sh ]; then
+	echo '' > /opt/retropie/configs/all/autostart.sh
+	sudo chmod +x /opt/retropie/configs/all/autostart.sh
+else
+	cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus 2>/dev/null         
+fi
+
 # Getting Themes
 echo "Downloading the files needed and installing the script + utilities"
 if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
@@ -438,7 +447,6 @@ if [[ ${ifexist3489} > 0 ]]; then
   echo "already in autostart.sh" > /tmp/exists
   sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
 else
-cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus
 cat <<\EOF12389 > "/tmp/templist-marquee"
 isdual=`tvservice -l |grep "2 attached device" |wc -l`
 if [[ $isdual == "1" ]]; then
@@ -463,7 +471,6 @@ else
 
 		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tamo+ Version! $(tput sgr0)"
 		sleep 3      
-		cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus
 		sed -i '/^while pgrep omxplayer/d' $AUTOSTART
 		sed -i '/^#while pgrep omxplayer/d' $AUTOSTART
 		sed -i '/^(sleep 10; mpg123/d' $AUTOSTART
@@ -480,7 +487,6 @@ EOF123
 else
    echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMO+! $(tput sgr0)"
    sleep 3    
-   cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus
 cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
@@ -506,7 +512,6 @@ if [[ ${ifexist2} > 0 ]]; then
 
 else
 
-cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.tamoplus
 cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -537,7 +542,6 @@ fi
 
 #the code belive this line needs to breed one like the code above.
 
-cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
 cat <<\EOF12345 > "/tmp/templist3"
