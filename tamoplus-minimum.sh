@@ -396,7 +396,7 @@ function download_screens() {
         [[ -z "$choice" ]] && break
         case "$choice" in
             U)  #update install script to get new theme listings
-                git clone --branch v1.20 https://github.com/ALLRiPPED/tamoplus.git
+                git clone --depth=1 https://github.com/ALLRiPPED/tamoplus.git
                 cd tamoplus
                 sudo chmod +x local_installer.sh
                 ./local_installer.sh
@@ -1295,7 +1295,7 @@ sleep 1
 
 update_tamo() {
 if [ -d "$INSTALL_DIR" ]; then sudo rm -f -r $INSTALL_DIR; fi
-git clone --branch v1.20 https://github.com/ALLRiPPED/tamoplus.git
+git clone --depth=1 https://github.com/ALLRiPPED/tamoplus.git
 cd tamoplus
 sudo chmod +x local_installer.sh
 ./local_installer.sh
