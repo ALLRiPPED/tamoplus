@@ -521,7 +521,6 @@ if [[ $enablevideolaunch == "true" ]]; then
  ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
  ifsystem="$videoloadingscreens/$1.mp4"
  default="$videoloadingscreens/default.mp4"
-
  # If condition to check filename with -f switch, f means regular file
  if [[ -f $ifgame ]]; then
     omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
@@ -535,6 +534,9 @@ fi
 EOF1234
 sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
 fi
+#need to add fi here 
+
+#the code belive this line needs to breed one like the code above.
 
 cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
@@ -542,7 +544,6 @@ sed -i '/pkill -CONT mpg123/d' $RUNONEND
 cat <<\EOF12345 > "/tmp/templist3"
 #! /bin/bash
 # /etc/init.d/start-sound
-
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 EOF12345
 sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
