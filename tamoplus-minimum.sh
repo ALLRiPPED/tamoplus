@@ -459,8 +459,8 @@ $INSTALL_DIR/scripts/hurstythemes.sh
 
 else
 
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f  -r $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
+if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
 
 wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh
 chmod +x "install.sh"

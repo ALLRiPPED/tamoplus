@@ -159,7 +159,44 @@ exit
 }
 
 prep_work() {
+echo "Please Note If On A supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added Into Tamo Plus"
+sleep 3
+
+if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
+
+#Supreme ES Edits
+if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/visualtools  ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
+
+#Supreme Attract mode Edits
+if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
+if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
+if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
+if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
+   
+cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
+#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
+Controller tools;/ Controller Tools;@;;;;;;;;;0;;;;;
+Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
+Retropie tools;/ Retropie Tools;@;;;;;;;;;0;;;;;
+tamoplus;Tamo Plus;Settings;;;;;;;;;;;;;;
+displayutility;Display Utility;Settings;;;;;;;;;;;;;;
+basicinfo;Retropie Basic Infos;Settings;;;;;;;;;;;;;;
+favorites;Favorites Utility;Settings;;;;;;;;;;;;;;
+fixmybuild;Fix My Build;Settings;;;;;;;;;;;;;;
+frontendselector;Front End Selector;Settings;;;;;;;;;;;;;;
+attract-systems-detection;Attract Systems Detection;Settings;;;;;;;;;;;;;;
+#systemsnapswitch;Systems snaps switch;Settings;;;;;;;;;;;;;;
+raspiconfig;Raspi Config;Settings;;;;;;;;;;;;;;
+rpsetup;Retropie Setup;Settings;;;;;;;;;;;;;;
+reboot;Reboot;Settings;;;;;;;;;;;;;;
+shutdown;Shutdown;Settings;;;;;;;;;;;;;;
+EOF152935
+sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
+fi
+
 echo "Installing Needed Packages"
+sleep 3
 sudo apt-get update -y
 if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PYGAME_PKG; else
 	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
