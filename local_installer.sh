@@ -169,6 +169,7 @@ if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/Re
 if [ -d /home/pi/RetroPie/retropiemenu/visualtools  ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
 
 #Supreme Attract mode Edits
+if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
 if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
 if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
 if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
