@@ -6,10 +6,10 @@ And no before you ask, the default theme, Carbon, does not count you have to ins
 And then the es_settings.cfg will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y`
 ## One Line Install
-     curl -sSL https://git.io/JDfjg | bash
+     curl -sSL shorturl.at/egnrJ | bash
 or
 
-	 wget -O - https://git.io/JDfjg | bash
+	 wget -O - shorturl.at/egnrJ | bash
 If you would like to manually install this script:
 
      sudo apt-get update
