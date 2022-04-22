@@ -438,7 +438,7 @@ if [[ ${ifexist3489} > 0 ]]; then
   echo "already in autostart.sh" > /tmp/exists
   sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
 else
-cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.bkp
+cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus
 cat <<\EOF12389 > "/tmp/templist-marquee"
 isdual=`tvservice -l |grep "2 attached device" |wc -l`
 if [[ $isdual == "1" ]]; then
@@ -496,7 +496,6 @@ fi
 filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
 if [[ ${filefound2} > 0 ]]; then
 sed -i '/pkill -STOP mpg123/d' $RUNONSTART
-sed -i '/pkill -CONT mpg123/d' $RUNONEND
 fi
 
 
