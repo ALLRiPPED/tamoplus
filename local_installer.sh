@@ -72,6 +72,7 @@ install_tamoplus_minimal() {
 minimum=1
 clear
 prep_work
+echo "Prep Work All Done. Downloading Music"
 download_thememusic
 echo "Music All Done. Final Setup Commencing"
 setup
@@ -83,6 +84,7 @@ install_tamoplus_1(){
 minimum=0
 clear
 prep_work
+echo "Prep Work All Done. Downloading Music"
 download_thememusic
 download_bgmusic
 echo "Music All Done. Final Setup Commencing"
@@ -95,6 +97,7 @@ install_tamoplus_2(){
 minimum=0
 clear
 prep_work
+echo "Prep Work All Done. Downloading Music"
 download_thememusic
 download_bgmusic
 download_custommusic
@@ -163,7 +166,7 @@ if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 #Supreme ES Edits
 if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
-if [ -d /home/pi/RetroPie/retropiemenu/visualtools  ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
 
 #Supreme Attract mode Edits
 if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
@@ -244,23 +247,6 @@ if [ ! -f /opt/retropie/configs/all/autostart.sh ]; then
 else
 	cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus 2>/dev/null         
 fi
-
-# Getting Themes
-echo "Downloading the files needed and installing the script + utilities"
-if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"; fi
-if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"; fi
-if [ ! -d  "$THEMES_DIR/carbonite" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"; fi
-if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"; fi
-if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
-if [ ! -d  "$THEMES_DIR/pistolero" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
-if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
 
 if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
 	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
@@ -343,8 +329,24 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 fi
-
-echo "Prep Work All Done. Downloading Music"
+}
+download_themes() {
+# Getting Themes
+echo "Downloading the files needed and installing the script + utilities"
+if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"; fi
+if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"; fi
+if [ ! -d  "$THEMES_DIR/carbonite" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"; fi
+if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"; fi
+if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
+if [ ! -d  "$THEMES_DIR/pistolero" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
+if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
 }
 
 setup() {
