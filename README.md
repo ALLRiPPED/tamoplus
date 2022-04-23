@@ -6,10 +6,10 @@ And no before you ask, the default theme, Carbon, does not count you have to ins
 And then the es_settings.cfg will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y`
 ## One Line Install
-     curl -sSL https://shorturl.at/jCPV2 | bash
+     curl -sSL https://t.ly/5Oqi | bash
 or
 
-	 wget -O - https://shorturl.at/jCPV2 | bash
+	 wget -O - https://t.ly/5Oqi | bash
 If you would like to manually install this script:
 
      git clone https://github.com/ALLRiPPED/tamoplus.git
