@@ -174,7 +174,7 @@ else
 fi
 }
 
-download_bgmusic{
+download_bgmusic() {
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tamoplus/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
@@ -186,7 +186,7 @@ if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 fi
 }
 
-download_custommusic{
+download_custommusic() {
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
 	if [ -f "$HOME/tamoplus/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $HOME/tamoplus/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
