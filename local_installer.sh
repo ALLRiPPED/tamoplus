@@ -159,7 +159,7 @@ gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/
 unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "TAMO+ Screens Extraction Complete"
 }
 
-download_thememusic{
+download_thememusic() {
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
