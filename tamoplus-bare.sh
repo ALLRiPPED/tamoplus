@@ -770,7 +770,7 @@ stats_check
 disable_music_dir() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-DEF_DIR='"~/tamoplus"'
+DEF_DIR='"/home/pi/tamoplus"'
 export DEF_DIR
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${DEF_DIR}|g" $SCRIPT_LOC
 bgm_check
@@ -980,7 +980,7 @@ if [ $CUR_VPOS = "0" ]; then
 else
 	vpos="\Z3Bottom\Zn"
 fi
-if grep -q 'musicdir = "~/tamoplus"' "$SCRIPT_LOC"; then
+if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then
 	ms=$disable
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')

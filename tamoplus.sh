@@ -791,7 +791,7 @@ stats_check
 
 enable_devils() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/devils"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/devils"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"devilchromey\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -817,7 +817,7 @@ exit
 
 enable_pistolero() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/pistolero"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pistolero\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -843,7 +843,7 @@ exit
 
 enable_pleasure() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/pleasureparadise"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pleasureparadise\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -869,7 +869,7 @@ exit
 
 enable_halloween() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/halloween"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/halloween"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"halloweenspecial\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -895,7 +895,7 @@ exit
 
 enable_stranger() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/strangerthings"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"strangerstuff\""
 STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -921,7 +921,7 @@ exit
 
 enable_xmas() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/xmas"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/xmas"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"merryxmas\""
 XMA_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -947,7 +947,7 @@ exit
 
 enable_carbonite() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/tamoplus"'
+NEW_PLY='"/home/pi/tamoplus"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
@@ -997,7 +997,7 @@ stats_check
 enable_arcade() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/arcade"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/arcade"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1007,7 +1007,7 @@ stats_check
 enable_custom() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/custom"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/custom"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1017,7 +1017,7 @@ stats_check
 enable_nt() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/nt"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/nt"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1027,7 +1027,7 @@ stats_check
 enable_st() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/st"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/st"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1037,7 +1037,7 @@ stats_check
 enable_uvf() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/uvf"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/uvf"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1047,7 +1047,7 @@ stats_check
 enable_venom() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-NEW_PLY='"~/RetroPie/roms/music/venom"'
+NEW_PLY='"/home/pi/RetroPie/roms/music/venom"'
 export NEW_PLY
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 bgm_check
@@ -1056,7 +1056,7 @@ stats_check
 disable_music_dir() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
-DEF_DIR='"~/tamoplus"'
+DEF_DIR='"/home/pi/tamoplus"'
 export DEF_DIR
 sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${DEF_DIR}|g" $SCRIPT_LOC
 bgm_check
@@ -1288,31 +1288,31 @@ if [ $CUR_VPOS = "0" ]; then
 else
 	vpos="\Z3Bottom\Zn"
 fi
-if grep -q 'musicdir = "~/tamoplus"' "$SCRIPT_LOC"; then
+if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then
 	ms=$disable
-elif grep -q 'musicdir = "~/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then
 	ms="\Z3Halloween\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then
 	ms="\Z3Christmas\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then
 	ms="\Z3Retro-Devils\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
 	ms="\Z3StrangerThings\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then
 	ms="\Z3Arcade\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then
 	ms="\Z3Custom\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/st"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/st"' "$SCRIPT_LOC"; then
 	ms="\Z3Supreme Team\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/nt"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/nt"' "$SCRIPT_LOC"; then
 	ms="\Z3Nostalgia\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/uvf"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/uvf"' "$SCRIPT_LOC"; then
 	ms="\Z3Ultimate Vs Fighter\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/venom"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/venom"' "$SCRIPT_LOC"; then
 	ms="\Z3Venom\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
 	ms="\Z3Pistolero\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then
 	ms="\Z3Pleasure Paradise\Zn"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
