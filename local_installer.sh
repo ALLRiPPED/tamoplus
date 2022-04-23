@@ -94,7 +94,7 @@ rebootq
 exit
 }
 
-install_tamoplus_1(){
+install_tamoplus_1() {
 minimum=0
 clear
 prep_work
@@ -110,7 +110,7 @@ rebootq
 exit
 }
 
-install_tamoplus_2(){
+install_tamoplus_2() {
 minimum=0
 clear
 prep_work
