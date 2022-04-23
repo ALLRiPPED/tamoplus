@@ -380,6 +380,26 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="UIMode_passkey" value="uuddlrlrba" />
 EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
+
+#Added Supreme Marquee and Script
+cd $HOME
+git clone https://github.com/SupremePi/PieMarquee2.git
+chmod 777 $HOME/PieMarquee2
+
+sudo apt-get update
+sudo apt-get install omxplayer libjpeg8 imagemagick -y
+
+sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
+mkdir /opt/retropie/configs/all/PieMarquee2/
+cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
+
+if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $TAMPO_DIR/scripts/; fi
+sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
+
+chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
+chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
+sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+
 fi
 }
 
@@ -437,28 +457,8 @@ EOF18293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 fi
 
-#Added Supreme Marquee and Script
-cd $HOME
-git clone https://github.com/SupremePi/PieMarquee2.git
-chmod 777 $HOME/PieMarquee2
-
-sudo apt-get update
-sudo apt-get install omxplayer libjpeg8 imagemagick -y
-
-sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
-mkdir /opt/retropie/configs/all/PieMarquee2/
-cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
-
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $TAMPO_DIR/scripts/; fi
-sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
-
-chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
-chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
-sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
-
 #Do Auto Start Edits for marquee#
 ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
-
 if [[ ${ifexist3489} > 0 ]]; then
   echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
   echo "already in autostart.sh" > /tmp/exists
@@ -473,6 +473,11 @@ fi
 EOF12389
 sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
 fi
+
+# Auto Start Edits for TAMO+
+filefound21=`cat /opt/retropie/configs/all//autostart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
 filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tamoplus |wc -l`
 if [[ ${filefound11} > 0 ]]; then
@@ -515,20 +520,28 @@ EOF123
 		clear
 	fi
 fi
-                                
+
+# Runcommand On Start Edits for TAMO+
+filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONSTART; fi
+
+filefound4=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
+if [[ ${filefound4} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
+
 filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
-if [[ ${filefound2} > 0 ]]; then
-sed -i '/pkill -STOP mpg123/d' $RUNONSTART
-fi
+if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 
-
-ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
+ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
-  echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
-  echo "already in runcommand-onstart.sh" > /tmp/exists
+	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
+	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
+	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
+	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 
 else
 
+echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
 cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -554,14 +567,21 @@ fi
 ### End VideoLoading Screens Function
 EOF1234
 sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
 fi
 
-filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep mpg123 |wc -l`
+# Runcommand On End Edits for TAMO+
+filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONEND; fi
+
+filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
+sed -i '/#pkill -CONT mpg123/d' $RUNONEND
 fi
 
-ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep omxplayer |wc -l`
+ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --vol 250 --amp 250 -b" |wc -l`
 if [[ ${ifexist3} > 0 ]]; then
   echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
   echo "already in runcommand-onend.sh" > /tmp/exists
@@ -613,42 +633,10 @@ else
 	rm -f /tmp/temp.xml
 fi
 
-#Added Supreme Marquee and Script
-cd $HOME
-git clone https://github.com/SupremePi/PieMarquee2.git
-chmod 777 $HOME/PieMarquee2
-
-sudo apt-get update -y
-sudo apt-get install omxplayer libjpeg8 imagemagick -y
-
-sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
-mkdir /opt/retropie/configs/all/PieMarquee2/
-cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
-
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $TAMPO_DIR/scripts/; fi
-sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
-
-chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
-chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
-sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
-
-#Do Auto Start Edits for marquee#
-ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
-
-if [[ ${ifexist3489} > 0 ]]; then
-  echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
-  echo "already in autostart.sh" > /tmp/exists
-  sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
-else
-cat <<\EOF12389 > "/tmp/templist-marquee"
-isdual=`tvservice -l |grep "2 attached device" |wc -l`
-if [[ $isdual == "1" ]]; then
-fbset -fb /dev/fb0 -g 1920 1080 1920 1080 16
-/usr/bin/python /opt/retropie/configs/all/PieMarquee2/PieMarquee2.py &
-fi
-EOF12389
-sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
-fi
+# Auto Start Edits for TAMO+
+filefound21=`cat /opt/retropie/configs/all//autostart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
 filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tamoplus |wc -l`
 if [[ ${filefound11} > 0 ]]; then
@@ -685,26 +673,30 @@ cat <<\EOF123 > "/tmp/templist"
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		sed -i -e '$apgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
-
 		echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 		sleep 3
 		clear
 	fi
 fi
                                 
+# Runcommand On Start Edits for TAMO+
+filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONSTART; fi
+
 filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
-if [[ ${filefound2} > 0 ]]; then
-sed -i '/pkill -STOP mpg123/d' $RUNONSTART
-fi
+if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 
-
-ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
+ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
-  echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
-  echo "already in runcommand-onstart.sh" > /tmp/exists
+	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
+	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
+	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
+	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 
 else
 
+echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
 cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -730,14 +722,21 @@ fi
 ### End VideoLoading Screens Function
 EOF1234
 sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
 fi
 
-filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep mpg123 |wc -l`
+# Runcommand On End Edits for TAMO+
+filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONEND; fi
+
+filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
+sed -i '/#pkill -CONT mpg123/d' $RUNONEND
 fi
 
-ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep omxplayer |wc -l`
+ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --vol 250 --amp 250 -b" |wc -l`
 if [[ ${ifexist3} > 0 ]]; then
   echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
   echo "already in runcommand-onend.sh" > /tmp/exists
