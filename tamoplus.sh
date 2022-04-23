@@ -32,7 +32,7 @@ stats_check
             1 "Theme Settings" \
             2 "Music Settings" \
             3 "Visual Settings" \
-            4 "Loading meida Settings" \
+            4 "Loading media Settings" \
             5 "Update TAMO+ $ver" \
             6 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
@@ -459,18 +459,19 @@ $INSTALL_DIR/scripts/hurstythemes.sh
 
 else
 
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
+if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
 
-wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh
-chmod +x "install.sh"
-./install.sh
+wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
+chmod +x "$INSTALL_DIR/tmp/install.sh"
+./$INSTALL_DIR/tmp/install.sh
 
 if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
 mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
 $INSTALL_DIR/scripts/hurstythemes.sh
 
+rm -fr "$INSTALL_DIR/tmp"
 fi
 }
 

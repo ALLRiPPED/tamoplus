@@ -1,5 +1,5 @@
 #!/bin/bash
-# TAMO+ Minimal Script
+# TAMO+ Bare Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
 ver="v1.20"
@@ -26,7 +26,7 @@ main_menu() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " MAIN MENU " \
+        choice=$(dialog --colors --backtitle "TAMO+ $ver" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Theme Settings" \
@@ -52,7 +52,7 @@ visual_menu() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Visual Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Visual Menu " \
+        choice=$(dialog --colors --backtitle "Visual Menu - Tamo+ $ver" --title " Visual Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Music Overlay Settings" \
@@ -181,7 +181,7 @@ loading_media() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Loading Media Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading Media Menu " \
+        choice=$(dialog --colors --backtitle "Loading Media Menu - Tamo+ $ver" --title " Loading Media Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Loading Videos Menu" \
@@ -199,17 +199,15 @@ loading_video() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Loading Video Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading video Menu " \
+        choice=$(dialog --colors --backtitle "Loading Video Menu - Tamo+ $ver" --title " Loading video Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Enable/Disable Videoloadingscreens $vls" \
             2 "Set Videoloadingscreens Folder" \
-            3 "Enable/Disable Exit Splash $exs" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) video_screens  ;;
             2) set_video_screens  ;;
-            3) exit_splash  ;;
             *) break ;;
         esac
     done
@@ -219,7 +217,7 @@ loading_screens() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Loading Video Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading video Menu " \
+        choice=$(dialog --colors --backtitle "Loading Video Menu - Tamo+ $ver" --title " Loading video Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Pick Installed launching screens" \
@@ -431,17 +429,15 @@ themesettings() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Theme Settings - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
+        choice=$(dialog --colors --backtitle "Theme Settings - TAMO+ $ver" --title " Theme Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Hursty Themes" \
             2 "RetroPie Themes" \
-            3 "Tamo+ themes" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) hursty_themes ;;
             2) retropie_themes ;;
-            3) tamoplus_themes ;;
             *) break ;;
         esac
     done
@@ -480,39 +476,11 @@ if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f -r $MENU_DIR/esthemes.rp; fi
 sudo ~/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
-tamoplus_themes() {
-stats_check
-    local choice
-    while true; do
-        choice=$(dialog --colors --backtitle "Theme Settings - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
-            --ok-label OK --cancel-label Exit \
-            --menu "Choose An Option Below" 25 85 20 \
-            1 "Enable Carbonite Theme" \
-            2 "Enable Christmas Theme" \
-            3 "Enable Halloween Theme" \
-            4 "Enable Retro-Devils" \
-            5 "Enable Pistolero Theme" \
-            6 "Enable Pleasure Paradise Theme" \
-            7 "Enable Stranger Things Theme" \
-           2>&1 > /dev/tty)
-        case "$choice" in
-            1) enable_carbonite ;;
-            2) enable_xmas ;;
-            3) enable_halloween ;;
-            4) enable_devils ;;
-            5) enable_pistolero ;;
-            6) enable_pleasure ;;
-            7) enable_stranger ;;
-            *) break ;;
-        esac
-    done
-}
-
 musicsettings() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Music Settings - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Music Settings " \
+        choice=$(dialog --colors --backtitle "Music Settings - TAMO+ $ver" --title " Music Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Enable/Disable Background Music $bgms" \
@@ -545,7 +513,7 @@ quick_audio_fixes() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Quick Audio Fixes - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Music Settings " \
+        choice=$(dialog --colors --backtitle "Quick Audio Fixes - TAMO+ $ver" --title " Music Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "No Audio Fix  (Try this First)" \
@@ -641,7 +609,7 @@ overlay_menu() {
 stats_check
 local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Choose OverLay Settings  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Overlay Menu " \
+        choice=$(dialog --colors --backtitle "Choose OverLay Settings" --title " Overlay Menu " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
             1 "Enable/Disable Overlay $ovs" \
@@ -690,7 +658,7 @@ music_select() {
 stats_check
 local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Select Your Music Choice  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
+        choice=$(dialog --colors --backtitle "Select Your Music Choice" --title " Music Selection " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
             1 "Change Music Folder" \
@@ -717,7 +685,7 @@ stats_check
   while [ -z $SELECTION ]; do
     [[ "${CUR_DIR}" ]] && CUR_DIR="${CUR_DIR}"/
     local cmd=(dialog --colors \
-      --backtitle "$BACKTITLE | Current Folder: $CUR_DIR  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_DIR" \
       --title "$TITLE" \
       --menu "Choose a music directory" 20 70 20 )
     local iterator=1
@@ -777,189 +745,6 @@ bgm_check
 stats_check
 }
 
-enable_devils() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/devils"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"devilchromey\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"~/RetroPie/videoloadingscreens/retrodevils"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"~/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_pistolero() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/pistolero"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"pistolero\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"~/RetroPie/videoloadingscreens/pistolero"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"~/RetroPie/splashscreens/PistoleroExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pistolero Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_pleasure() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/pleasureparadise"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"pleasureparadise\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"~/RetroPie/videoloadingscreens/pleasureparadise"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"~/RetroPie/splashscreens/PleasureParadiseExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pleasure Paradise Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_halloween() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/halloween"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"halloweenspecial\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"~/RetroPie/videoloadingscreens/halloween"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"~/RetroPie/splashscreens/HalloweenExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_stranger() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/strangerthings"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"strangerstuff\""
-STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWS_LOD='"~/RetroPie/videoloadingscreens/strangerpi"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWS_EXS='"~/RetroPie/splashscreens/StrangerExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWS_EXS ]] && [[ $CUR_REXS == $NEWS_EXS ]]; then echo "Stranger Things Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWS_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWS_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_xmas() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/RetroPie/roms/music/xmas"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"merryxmas\""
-XMA_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWX_LOD='"~/RetroPie/videoloadingscreens/xmas"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWX_EXS='"~/RetroPie/splashscreens/XmasExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWX_EXS ]] && [[ $CUR_REXS == $NEWX_EXS ]]; then echo "Christmas Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWX_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWX_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
-enable_carbonite() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"~/tamoplus"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"carbonite\""
-NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWN_LOD='"~/RetroPie/videoloadingscreens/jarvis"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWD_EXS="~/RetroPie/splashscreens/JarvisExit.mp4"
-if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $NOR_LOD == $NEWN_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${NOR_LOD}|videoloadingscreens=${NEWN_LOD}|g" $RUNONSTART; fi
-if [ -f $HOME/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
-else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWD_EXS ]] && [[ $CUR_REXS == $NEWD_EXS ]]; then echo "Christmas Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWD_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWD_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
-}
-
 enable_music() {
 if [ -f "$INSTALL_DIR"/DisableMusic ]; then
 	sudo rm -f "$INSTALL_DIR"/DisableMusic
@@ -992,28 +777,6 @@ bgm_check
 stats_check
 }
 
-exit_splash() {
-if [ -f "$SPL_DIR/HalloweenExitOff.mp4" ] && [ -f "$SPL_DIR/JarvisExitOff.mp4" ] && [ -f "$SPL_DIR/XmasExitOff.mp4" ] && [ -f "$SPL_DIR/StrangerExitOff.mp4" ]
-then
-	sudo mv -f $SPL_DIR/HalloweenExitOff.mp4 $SPL_DIR/HalloweenExit.mp4
-	sudo mv -f $SPL_DIR/JarvisExitOff.mp4 $SPL_DIR/JarvisExit.mp4
-	sudo mv -f $SPL_DIR/PisteleroExitOff.mp4 $SPL_DIR/PisteleroExit.mp4
-	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
-	sudo mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $SPL_DIR/RetroDevilReaperExit.mp4
-	sudo mv -f $SPL_DIR/StrangerExitOff.mp4 $SPL_DIR/StrangerExit.mp4
-	sudo mv -f $SPL_DIR/XmasExitOff.mp4 $SPL_DIR/XmasExit.mp4
-else
-	sudo mv -f $SPL_DIR/HalloweenExit.mp4 $SPL_DIR/HalloweenExitOff.mp4
-	sudo mv -f $SPL_DIR/JarvisExit.mp4 $SPL_DIR/JarvisExitOff.mp4
-	sudo mv -f $SPL_DIR/PisteleroExit.mp4 $SPL_DIR/PisteleroExitOff.mp4
-	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
-	sudo mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $SPL_DIR/RetroDevilReaperExitOff.mp4
-	sudo mv -f $SPL_DIR/StrangerExit.mp4 $SPL_DIR/StrangerExitOff.mp4
-	sudo mv -f $SPL_DIR/XmasExit.mp4 $SPL_DIR/XmasExitOff.mp4
-fi
-stats_check
-}
-
 video_screens() {
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then sed -i -E 's|enablevideolaunch="true"|enablevideolaunch="false"|g' $RUNONSTART
 else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONSTART; fi
@@ -1033,7 +796,7 @@ stats_check
   while [ -z $SELECTION ]; do
     [[ "${CUR_LOD}" ]] && CUR_LOD="${CUR_LOD}"/
     local cmd=(dialog --colors \
-      --backtitle "$BACKTITLE | Current Folder: $CUR_LOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_LOD" \
       --title "$TITLE" \
       --menu "Choose a Videoloadingscreens directory" 20 70 20 )
     local iterator=1
@@ -1219,44 +982,13 @@ else
 fi
 if grep -q 'musicdir = "~/tamoplus"' "$SCRIPT_LOC"; then
 	ms=$disable
-elif grep -q 'musicdir = "~/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then
-	ms="\Z3Halloween\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then
-	ms="\Z3Christmas\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then
-	ms="\Z3Retro-Devils\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
-	ms="\Z3StrangerThings\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
-	ms="\Z3Pistolero\Zn"
-elif grep -q 'musicdir = "~/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then
-	ms="\Z3Pleasure Paradise\Zn"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 	export CUR_PLY
 	ms="\Z3$(basename $CUR_PLY | tr -d '"')\Zn"
 fi
-THEME=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-if [[ $THEME == value=\"strangerstuff\" ]]; then
-	ts="\Z3Stranger Things\Zn"
-elif [[ $THEME == value=\"halloweenspecial\" ]]; then
-	ts="\Z3Halloween\Zn"
-elif [[ $THEME == value=\"merryxmas\" ]]; then
-	ts="\Z3Christmas\Zn"
-elif [[ $THEME == value=\"devilchromey\" ]]; then
-	ts="\Z3Retro-Devils\Zn"
-elif [[ $THEME == value=\"carbonite\" ]]; then
-	ts="\Z3Carbonite\Zn"
-elif [[ $THEME == value=\"pleasureparadise\" ]]; then
-	ts="\Z3Pleasure Paradise\Zn"
-elif [[ $THEME == value=\"pistolero\" ]]; then
-	ts="\Z3Pistolero\Zn"
-else
-	ts="\Z3$(basename $THEME | tr -d '"')\Zn"
-fi
 vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
 vol="\Z3$vol%\Zn"
-if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then exs=$disable; else exs=$enable; fi
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=$enable; else vls=$disable; fi
 width=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o '[0-9][0-9][0-9]\+x' | tr -d 'x')
 height=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o 'x[0-9][0-9][0-9]\+' | tr -d 'x')
@@ -1325,7 +1057,7 @@ DISCLAIMER="${DISCLAIMER}then set it to desired postition, the overlay is compat
 DISCLAIMER="${DISCLAIMER}\n"
 DISCLAIMER="${DISCLAIMER}https://github.com/ALLRiPPED/tamoplus\n"
 DISCLAIMER="${DISCLAIMER}https://github.com/SupremePi/tamoplus\n"
-dialog --colors --backtitle "TAMO+ Control Script $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" \
+dialog --colors --backtitle "TAMO+ Control Script $ver" \
 --title "DISCLAIMER" \
 --msgbox "${DISCLAIMER}" 35 110
 }

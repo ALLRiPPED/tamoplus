@@ -55,12 +55,12 @@ main_menu() {
         choice=$(dialog --backtitle "TAMO+ Install Script $ver" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            01 "Minimal Install No Extra Music" \
-            02 "Install without Custom Music" \
-            03 "Full Install All Music" \
+            01 "Minimal Install Themesets But No Extra Music" \
+            02 "Install Themesets without Custom Music" \
+            03 "Full Install All Themesets And Music" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) install_tamoplus ;;
+            01) install_tamoplus_minimal ;;
             02) install_tamoplus_1 ;;
             03) install_tamoplus_2 ;;
              *) break ;;
@@ -68,7 +68,7 @@ main_menu() {
     done
 }
 
-install_tamoplus() {
+install_tamoplus_minimal() {
 minimum=1
 clear
 prep_work
@@ -159,9 +159,18 @@ exit
 }
 
 prep_work() {
-echo "Please Note If On A supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added Into Tamo Plus"
+echo "Please Note If On A supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added By Tamo Plus"
 sleep 3
 
+echo "Installing Needed Packages"
+sleep 3
+sudo apt-get update -y
+if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PYGAME_PKG; else
+	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
+	exit
+fi
+sudo apt-get install -y $PSUTIL_PKG # to generate overlays
+sudo pip install requests gdown
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 #Supreme ES Edits
@@ -196,15 +205,6 @@ EOF152935
 sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
 fi
 
-echo "Installing Needed Packages"
-sleep 3
-sudo apt-get update -y
-if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PYGAME_PKG; else
-	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
-	exit
-fi
-sudo apt-get install -y $PSUTIL_PKG # to generate overlays
-sudo pip install requests gdown
 cd ~
 
 ##### Disable ODROID BGM script if it exists
@@ -233,7 +233,6 @@ sudo systemctl daemon-reload > /dev/null 2>&1
 ##### Remove other stray BGMs
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
 if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
-
 
 # Create both empty runcommand files if not already exist or make backup.
 if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
@@ -363,7 +362,7 @@ echo "Prep Work All Done. Downloading Music"
 setup() {
 echo "Music All Done. Final Setup Commencing"
 echo "Add menu options for BGM Overlay Controls"
-cp $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
+cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
 if [ -f "$STMENU_DIR/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR/tamoplus.sh; fi
 if [ -d "$STMENU_DIR" ]; then RP_MENU=$STMENU_DIR; else RP_MENU=$MENU_DIR; fi
