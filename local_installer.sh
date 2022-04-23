@@ -55,27 +55,41 @@ main_menu() {
         choice=$(dialog --backtitle "TAMO+ Install Script $ver" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            01 "Minimal Install Themesets But No Extra Music" \
-            02 "Install Themesets without Custom Music" \
-            03 "Full Install All Themesets And Music" \
+            01 "Bare Install No Themes or Music Just Tools" \
+            02 "Minimal Install Themesets But No Extra Music" \
+            03 "Install Themesets without Custom Music" \
+            04 "Full Install All Themesets And Music" \
             2>&1 > /dev/tty)
         case "$choice" in
-            01) install_tamoplus_minimal ;;
-            02) install_tamoplus_1 ;;
-            03) install_tamoplus_2 ;;
+            01) install_tamoplus_bare ;;
+            02) install_tamoplus_minimal ;;
+            03) install_tamoplus_1 ;;
+            04) install_tamoplus_2 ;;
              *) break ;;
         esac
     done
+}
+
+install_tamoplus_bare() {
+clear
+prep_work
+setup_bare
+install_ending
+rebootq
+exit
 }
 
 install_tamoplus_minimal() {
 minimum=1
 clear
 prep_work
+download_themes
 echo "Prep Work All Done. Downloading Music"
 download_thememusic
 echo "Music All Done. Final Setup Commencing"
-setup
+download_videos
+setup_normal
+install_ending
 rebootq
 exit
 }
@@ -84,11 +98,14 @@ install_tamoplus_1(){
 minimum=0
 clear
 prep_work
+download_themes
 echo "Prep Work All Done. Downloading Music"
 download_thememusic
 download_bgmusic
 echo "Music All Done. Final Setup Commencing"
-setup
+download_videos
+setup_normal
+install_ending
 rebootq
 exit
 }
@@ -97,14 +114,49 @@ install_tamoplus_2(){
 minimum=0
 clear
 prep_work
+download_themes
 echo "Prep Work All Done. Downloading Music"
 download_thememusic
 download_bgmusic
 download_custommusic
 echo "Music All Done. Final Setup Commencing"
-setup
+download_videos
+setup_normal
+install_ending
 rebootq
 exit
+}
+
+download_themes() {
+# Downloading Themes
+echo "Downloading the files needed and installing the script + utilities"
+if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
+else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git pull; fi
+if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
+else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git pull; fi
+if [ ! -d  "$THEMES_DIR/carbonite" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
+else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git pull; fi
+if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
+else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git pull; fi
+if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
+else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git pull; fi
+if [ ! -d  "$THEMES_DIR/pistolero" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
+else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git pull; fi
+if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"
+else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git pull; fi
+}
+
+download_videos() {
+echo "Setting up Splash, Exit, and Game Launching Screens"
+gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
+unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "TAMO+ Screens Extraction Complete"
 }
 
 download_thememusic{
@@ -330,26 +382,8 @@ EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 fi
 }
-download_themes() {
-# Getting Themes
-echo "Downloading the files needed and installing the script + utilities"
-if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"; fi
-if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"; fi
-if [ ! -d  "$THEMES_DIR/carbonite" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"; fi
-if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"; fi
-if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"; fi
-if [ ! -d  "$THEMES_DIR/pistolero" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"; fi
-if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"; fi
-}
 
-setup() {
+setup_normal() {
 echo "Add menu options for BGM Overlay Controls"
 cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
@@ -380,11 +414,6 @@ else
 	cat /tmp/temp.xml > $MENU_DIR/gamelist.xml
 	rm -f /tmp/temp.xml
 fi
-
-echo "Setting up Splash, Exit, and Game Launching Screens"
-
-gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
-unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "TAMO+ Screens Extraction Complete"
 
 if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
 mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
@@ -556,6 +585,171 @@ NEW_THM="value=\"carbonite\""
 if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" /etc/splashscreen.list
 cd $HOME
+}
+
+setup_bare() {
+echo "Add menu options for BGM Overlay Controls"
+cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
+if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
+if [ -f "$STMENU_DIR/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR/tamoplus.sh; fi
+if [ -d "$STMENU_DIR" ]; then RP_MENU=$STMENU_DIR; else RP_MENU=$MENU_DIR; fi
+sudo chmod +x $HOME/tamoplus/tamoplus-bare.sh
+sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-bare.sh
+cp tamoplus-bare.sh $RP_MENU/tamoplus.sh
+
+if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
+if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
+if [ -d "$STMENU_DIR" ]; then
+CONTENT1="\t<game>\n\t\t<path>./visualtools/tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ stands for Theme and Music Overlay Plus, more. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
+C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
+else
+CONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ stands for Theme and Music Overlay Plus, more. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
+C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
+fi
+if grep -q tamoplus.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
+else
+	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > /tmp/temp.xml
+	cat /tmp/temp.xml > $MENU_DIR/gamelist.xml
+	rm -f /tmp/temp.xml
+fi
+
+#Added Supreme Marquee and Script
+cd $HOME
+git clone https://github.com/SupremePi/PieMarquee2.git
+chmod 777 $HOME/PieMarquee2
+
+sudo apt-get update -y
+sudo apt-get install omxplayer libjpeg8 imagemagick -y
+
+sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
+mkdir /opt/retropie/configs/all/PieMarquee2/
+cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
+
+if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $TAMPO_DIR/scripts/; fi
+sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
+
+chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
+chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
+sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+
+#Do Auto Start Edits for marquee#
+ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
+
+if [[ ${ifexist3489} > 0 ]]; then
+  echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
+  echo "already in autostart.sh" > /tmp/exists
+  sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
+else
+cat <<\EOF12389 > "/tmp/templist-marquee"
+isdual=`tvservice -l |grep "2 attached device" |wc -l`
+if [[ $isdual == "1" ]]; then
+fbset -fb /dev/fb0 -g 1920 1080 1920 1080 16
+/usr/bin/python /opt/retropie/configs/all/PieMarquee2/PieMarquee2.py &
+fi
+EOF12389
+sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
+fi
+
+filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tamoplus |wc -l`
+if [[ ${filefound11} > 0 ]]; then
+
+   echo -e "$(tput setaf 2)Tamo+ Script Already Found in Auto Start But Will Now Enable! $(tput sgr0)"
+   echo "already in autostart.sh" > /tmp/exists
+   (nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+
+else
+
+	filefound88=`cat /opt/retropie/configs/all/autostart.sh |grep mpg123 |wc -l`
+	if [[ ${filefound88} > 0 ]]; then
+
+		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tamo+ Version! $(tput sgr0)"
+		sleep 3      
+		sed -i '/^while pgrep omxplayer/d' $AUTOSTART
+		sed -i '/^#while pgrep omxplayer/d' $AUTOSTART
+		sed -i '/^(sleep 10; mpg123/d' $AUTOSTART
+		sed -i '/^#(sleep 10; mpg123/d' $AUTOSTART
+
+cat <<\EOF123 > "/tmp/templist"
+(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+EOF123
+   sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
+   sed -i -e '$apgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
+   echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+   sleep 3
+   clear
+else
+   echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMO+! $(tput sgr0)"
+   sleep 3    
+cat <<\EOF123 > "/tmp/templist"
+(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+EOF123
+		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
+		sed -i -e '$apgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
+
+		echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+		sleep 3
+		clear
+	fi
+fi
+                                
+filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
+if [[ ${filefound2} > 0 ]]; then
+sed -i '/pkill -STOP mpg123/d' $RUNONSTART
+fi
+
+
+ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
+if [[ ${ifexist2} > 0 ]]; then
+  echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand But Will Now Enable! $(tput sgr0)"
+  echo "already in runcommand-onstart.sh" > /tmp/exists
+
+else
+
+cat <<\EOF1234 > "/tmp/templist2"
+#!/bin/sh
+### Begin VideoLoading Screens Function
+enablevideolaunch="true"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+if [[ $enablevideolaunch == "true" ]]; then
+ # Extract file name from called ROM
+ gname="$(basename "$3")"
+ # build path to file and remove extension from ROM to add mp4 extension
+ # $HOME variable will help users that are not stick to raspberry ;)
+ ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
+ ifsystem="$videoloadingscreens/$1.mp4"
+ default="$videoloadingscreens/default.mp4"
+ # If condition to check filename with -f switch, f means regular file
+ if [[ -f $ifgame ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
+ elif [[ -f $ifsystem ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+ elif [[ -f $default ]]; then
+    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
+ fi
+fi
+### End VideoLoading Screens Function
+EOF1234
+sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+fi
+
+filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep mpg123 |wc -l`
+if [[ ${filefound3} > 0 ]]; then
+sed -i '/pkill -CONT mpg123/d' $RUNONEND
+fi
+
+ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep omxplayer |wc -l`
+if [[ ${ifexist3} > 0 ]]; then
+  echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
+  echo "already in runcommand-onend.sh" > /tmp/exists
+fi
+
+echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+sleep 3
+clear
+cd $HOME
+}
+
+install_ending() {
 ##### Explain stuff to the user
 ending=""
 ending="${ending}TAMO+ and is now installed.\n"
