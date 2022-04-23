@@ -64,7 +64,7 @@ stats_check
             7 "Game Media Removal Utility" \
             8 "RetroPie splashscreen Utility" \
             9 "Skyscraper Utility" \
-            10 "Simple Genesis & MegaDrive Swap" \
+           10 "Simple Genesis & MegaDrive Swap" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_menu ;;
@@ -76,7 +76,7 @@ stats_check
             7) remove_media ;;
             8) retropie_splashscreen ;;
             9) skyscraper_utility ;;
-            10) sega_swap ;;
+           10) sega_swap ;;
             *) break ;;
         esac
     done
