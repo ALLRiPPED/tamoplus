@@ -72,16 +72,8 @@ install_tamoplus_minimal() {
 minimum=1
 clear
 prep_work
-if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
-then echo "Theme Music Found!"
-else
-        if [ -f "$HOME/tamoplus/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie
-		echo "Theme Music Extracting Complete"
-	 else
-		echo "Extracting Theme Music"
-		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tamoplus/thememusic.zip
-		unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"; fi
-fi
+download_thememusic
+echo "Music All Done. Final Setup Commencing"
 setup
 rebootq
 exit
@@ -91,26 +83,9 @@ install_tamoplus_1(){
 minimum=0
 clear
 prep_work
-if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ] && [ -f "$MUSIC_DIR/pistolero/Terminator 2 Theme.mp3" ]
-then echo "Theme Music Found!"
-else
-	if [ -f "$HOME/tamoplus/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie
-		echo "Theme Music Extracting Complete"
-	else
-		echo "Extracting Theme Music"
-		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tamoplus/thememusic.zip
-		unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"
-	fi
-fi
-if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
-	if [ -f "$HOME/tamoplus/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie
-		echo "BGM Music Extraction Complete"
-	else
-		echo "Extracting BGM Music"
-		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tamoplus/bgm.zip
-		unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"
-	fi
-fi
+download_thememusic
+download_bgmusic
+echo "Music All Done. Final Setup Commencing"
 setup
 rebootq
 exit
@@ -120,6 +95,16 @@ install_tamoplus_2(){
 minimum=0
 clear
 prep_work
+download_thememusic
+download_bgmusic
+download_custommusic
+echo "Music All Done. Final Setup Commencing"
+setup
+rebootq
+exit
+}
+
+download_thememusic{
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
@@ -132,6 +117,9 @@ else
 	fi
 
 fi
+}
+
+download_bgmusic{
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tamoplus/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
@@ -141,6 +129,9 @@ if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 		unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"
 	fi
 fi
+}
+
+download_custommusic{
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
 	if [ -f "$HOME/tamoplus/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $HOME/tamoplus/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
@@ -153,9 +144,6 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 		echo "CustomBGM Music Extraction Complete"
 	fi
 fi
-setup
-rebootq
-exit
 }
 
 prep_work() {
@@ -360,7 +348,6 @@ echo "Prep Work All Done. Downloading Music"
 }
 
 setup() {
-echo "Music All Done. Final Setup Commencing"
 echo "Add menu options for BGM Overlay Controls"
 cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
