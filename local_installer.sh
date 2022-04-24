@@ -155,8 +155,18 @@ else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git 
 
 download_videos() {
 echo "Setting up Splash, Exit, and Game Launching Screens"
-gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
-unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "TAMO+ Screens Extraction Complete"
+if [ -f "$HOME/RetroPie/CharlieBrown.mp4" ] && [ -f "$HOME/RetroPie/Halloween.mp4" ] && [ -f "$HOME/RetroPie/JarvisSplash.mp4" ] && [ -f "$HOME/RetroPie/ThanksForPlaying.mp4" ]
+then echo "Splash, Exit, and Game Launching Screens Found!"
+else
+	if [ -f "$HOME/tamoplus/tamoplus-screens.zip" ]; then echo "Extracting Splash, Exit, and Game Launching Screens"; unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie
+		echo "Splash, Exit, and Game Launching Screens Extracting Complete"
+	else
+		echo "Downloading Splash, Exit, and Game Launching Screens"
+		gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
+		echo "Downloading Complete, Now Extracting Splash, Exit, and Game Launching Screens"
+		unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "Splash, Exit, and Game Launching Screens Extracting Complete"
+	fi
+fi
 }
 
 download_thememusic() {
@@ -166,11 +176,11 @@ else
 	if [ -f "$HOME/tamoplus/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie
 		echo "Theme Music Extracting Complete"
 	else
-		echo "Extracting Theme Music"
+		echo "Downloading Theme Music"
 		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tamoplus/thememusic.zip
-		unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extraction Complete"
+		echo "Downloading Complete, Now Extracting Theme Music"
+		unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extracting Complete"
 	fi
-
 fi
 }
 
@@ -179,9 +189,10 @@ if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
 	if [ -f "$HOME/tamoplus/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
 	else
-		echo "Extracting BGM Music"
+		echo "Downloading BGM Music"
 		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tamoplus/bgm.zip
-		unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extraction Complete"
+		echo "Downloading Complete, Now Extracting BGM Music"
+		unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extracting Complete"
 	fi
 fi
 }
@@ -192,8 +203,9 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
 		echo "CustomBGM Music Extracting Complete"
 	else
-		echo "Extracting CustomBGM Music"
+		echo "Downloading CustomBGM Music"
 		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tamoplus/custombgm.zip
+		echo "Downloading Complete, Now Extracting CustomBGM Music"
 		unzip -uq $HOME/tamoplus/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
 		echo "CustomBGM Music Extraction Complete"

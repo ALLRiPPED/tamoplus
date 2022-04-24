@@ -65,6 +65,7 @@ stats_check
             8 "RetroPie splashscreen Utility" \
             9 "Skyscraper Utility" \
            10 "Simple Genesis & MegaDrive Swap" \
+           11 "Overscan On/Off Switch" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_menu ;;
@@ -77,6 +78,7 @@ stats_check
             8) retropie_splashscreen ;;
             9) skyscraper_utility ;;
            10) sega_swap ;;
+           11) overscan_switch ;;
             *) break ;;
         esac
     done
@@ -177,6 +179,10 @@ chmod 755 $INSTALL_DIR/scripts/genesis.sh
 $INSTALL_DIR/scripts/genesis.sh
 }
 
+overscan_switch() {
+chmod 755 $INSTALL_DIR/scripts/overscanswitch.sh
+$INSTALL_DIR/scripts/overscanswitch.sh
+}
 loading_media() {
 stats_check
     local choice
