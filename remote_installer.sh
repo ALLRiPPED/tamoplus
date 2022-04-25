@@ -5,13 +5,13 @@
 #############################################
 # Install Themes and Music Overlay Plus
 #############################################
-ver="v1.20"
+ver="v1.25"
 INSTALL_DIR="$HOME/tamoplus"
 cd $HOME
 
 get_tamoplus() {
-if [ -d "$HOME/tamoplus" ]; then
-	cd $HOME/tamoplus
+if [ -d "$INSTALL_DIR" ]; then 
+	cd $INSTALL_DIR
 	git pull
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 1

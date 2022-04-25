@@ -2,7 +2,7 @@
 # TAMO+ Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
-ver="v1.20"
+ver="v1.25"
 SCRIPT_LOC="$HOME/tamoplus/BGM.py"
 INSTALL_DIR="$HOME/tamoplus"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
@@ -87,7 +87,7 @@ stats_check
 bezel_project() {
 if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
 
-#Adds Updated Version to tampo Folder
+#Adds Updated Version to tamoplus Folder
 if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo mv -f $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 
@@ -123,7 +123,7 @@ if [ -f "/home/pi/PieMarquee3/scripts/supreme-marquee-tool.sh" ]; then sudo mv -
 
 if [ -f "$INSTALL_DIR/scripts/supreme-marquee-tool.sh" ]; then 
 
-#Adds Updated Version to tampo Folder
+#Adds Updated Version to tamoplus Folder
 if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $MENU_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $STMENU_VIS_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 
@@ -442,12 +442,12 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Hursty Themes" \
             2 "RetroPie Themes" \
-            3 "Tamo+ themes" \
+            3 "Tamo+ Themesets" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) hursty_themes ;;
             2) retropie_themes ;;
-            3) tamoplus_themes ;;
+            3) tamoplus_themesets ;;
             *) break ;;
         esac
     done
@@ -486,20 +486,21 @@ if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f -r $MENU_DIR/esthemes.rp; fi
 sudo ~/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
-tamoplus_themes() {
+tamoplus_themesets() {
 stats_check
     local choice
     while true; do
         choice=$(dialog --colors --backtitle "Theme Settings - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "Enable Carbonite Theme" \
-            2 "Enable Christmas Theme" \
-            3 "Enable Halloween Theme" \
-            4 "Enable Retro-Devils" \
-            5 "Enable Pistolero Theme" \
-            6 "Enable Pleasure Paradise Theme" \
-            7 "Enable Stranger Things Theme" \
+            1 "Enable Carbonite Themeset" \
+            2 "Enable Christmas Themeset" \
+            3 "Enable Halloween Themeset" \
+            4 "Enable Retro-Devils Themeset" \
+            5 "Enable Pistolero Themeset" \
+            6 "Enable Pleasure Paradise Themeset" \
+            7 "Enable Stranger Things Themeset" \
+            8 "Enable Supreme Ultra Themeset" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) enable_carbonite ;;
@@ -509,6 +510,7 @@ stats_check
             5) enable_pistolero ;;
             6) enable_pleasure ;;
             7) enable_stranger ;;
+            8) enable_supreme ;;
             *) break ;;
         esac
     done
@@ -702,21 +704,19 @@ local choice
             1 "Enable/Disable Arcade Music" \
             2 "Enable/Disable Custom Music" \
             3 "Enable/Disable Nostalgia Music" \
-            4 "Enable/Disable Supreme Team Music" \
-            5 "Enable/Disable Ultimate Vs Fighter Music" \
-            6 "Enable/Disable Venom Music" \
-            7 "Change Music Folder" \
-            8 "Disable Music Folder" \
+            4 "Enable/Disable Ultimate Vs Fighter Music" \
+            5 "Enable/Disable Venom Music" \
+            6 "Change Music Folder" \
+            7 "Disable Music Folder" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) enable_arcade  ;;
             2) enable_custom  ;;
             3) enable_nt  ;;
-            4) enable_st  ;;
             5) enable_uvf  ;;
-            6) enable_venom  ;;
-            7) set_music_dir ;;
-            8) disable_music_dir ;;
+            5) enable_venom  ;;
+            6) set_music_dir ;;
+            7) disable_music_dir ;;
             *) break ;;
         esac
     done
@@ -925,6 +925,32 @@ sudo openvt -c 1 -s -f emulationstation 2>&1
 exit
 }
 
+enable_supreme() {
+CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+NEW_PLY='"/home/pi/RetroPie/roms/music/st"'
+CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+NEW_THM="value=\"Supreme_Space\""
+STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+NEWS_LOD='"~/RetroPie/videoloadingscreens/supreme"'
+CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
+CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
+NEWS_EXS='"~/RetroPie/splashscreens/SupremeExit.mp4"'
+if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
+sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
+echo "Restarting EmulationStaion..."
+pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+sleep 1
+killall emulationstation
+sleep 1
+if [[ $CUR_SEXS == $NEWS_EXS ]] && [[ $CUR_REXS == $NEWS_EXS ]]; then echo "Supreme Ultra Exit Splash already set!"
+else sed -i -E "s|${CUR_SEXS}|${NEWS_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWS_EXS}|g" $EXITSPLR; fi
+sudo openvt -c 1 -s -f emulationstation 2>&1
+exit
+}
+
 enable_xmas() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 NEW_PLY='"/home/pi/RetroPie/roms/music/xmas"'
@@ -1030,16 +1056,6 @@ bgm_check
 stats_check
 }
 
-enable_st() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-export CUR_PLY
-NEW_PLY='"/home/pi/RetroPie/roms/music/st"'
-export NEW_PLY
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
-bgm_check
-stats_check
-}
-
 enable_uvf() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
@@ -1078,6 +1094,7 @@ then
 	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
 	sudo mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $SPL_DIR/RetroDevilReaperExit.mp4
 	sudo mv -f $SPL_DIR/StrangerExitOff.mp4 $SPL_DIR/StrangerExit.mp4
+	sudo mv -f $SPL_DIR/SupremeExitOff.mp4 $SPL_DIR/SupremeExit.mp4
 	sudo mv -f $SPL_DIR/XmasExitOff.mp4 $SPL_DIR/XmasExit.mp4
 else
 	sudo mv -f $SPL_DIR/HalloweenExit.mp4 $SPL_DIR/HalloweenExitOff.mp4
@@ -1086,6 +1103,7 @@ else
 	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
 	sudo mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $SPL_DIR/RetroDevilReaperExitOff.mp4
 	sudo mv -f $SPL_DIR/StrangerExit.mp4 $SPL_DIR/StrangerExitOff.mp4
+	sudo mv -f $SPL_DIR/SupremeExit.mp4 $SPL_DIR/SupremeExitOff.mp4
 	sudo mv -f $SPL_DIR/XmasExit.mp4 $SPL_DIR/XmasExitOff.mp4
 fi
 stats_check
@@ -1294,52 +1312,33 @@ if [ $CUR_VPOS = "0" ]; then
 else
 	vpos="\Z3Bottom\Zn"
 fi
-if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then
-	ms=$disable
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then
-	ms="\Z3Halloween\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then
-	ms="\Z3Christmas\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then
-	ms="\Z3Retro-Devils\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then
-	ms="\Z3StrangerThings\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then
-	ms="\Z3Arcade\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then
-	ms="\Z3Custom\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/st"' "$SCRIPT_LOC"; then
-	ms="\Z3Supreme Team\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/nt"' "$SCRIPT_LOC"; then
-	ms="\Z3Nostalgia\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/uvf"' "$SCRIPT_LOC"; then
-	ms="\Z3Ultimate Vs Fighter\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/venom"' "$SCRIPT_LOC"; then
-	ms="\Z3Venom\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then
-	ms="\Z3Pistolero\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then
-	ms="\Z3Pleasure Paradise\Zn"
+if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then ms=$disable
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then ms="\Z3Halloween\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then ms="\Z3Christmas\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then ms="\Z3Retro-Devils\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then ms="\Z3Pistolero\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then ms="\Z3Pleasure Paradise\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then ms="\Z3StrangerThings\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/st"' "$SCRIPT_LOC"; then ms="\Z3Supreme Ultra\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then ms="\Z3Custom\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then ms="\Z3Arcade\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/nt"' "$SCRIPT_LOC"; then ms="\Z3Nostalgia\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/uvf"' "$SCRIPT_LOC"; then ms="\Z3Ultimate Vs Fighter\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/venom"' "$SCRIPT_LOC"; then ms="\Z3Venom\Zn"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 	export CUR_PLY
 	ms="\Z3$(basename $CUR_PLY | tr -d '"')\Zn"
 fi
 THEME=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-if [[ $THEME == value=\"strangerstuff\" ]]; then
-	ts="\Z3Stranger Things\Zn"
-elif [[ $THEME == value=\"halloweenspecial\" ]]; then
-	ts="\Z3Halloween\Zn"
-elif [[ $THEME == value=\"merryxmas\" ]]; then
-	ts="\Z3Christmas\Zn"
-elif [[ $THEME == value=\"devilchromey\" ]]; then
-	ts="\Z3Retro-Devils\Zn"
-elif [[ $THEME == value=\"carbonite\" ]]; then
-	ts="\Z3Carbonite\Zn"
-elif [[ $THEME == value=\"pleasureparadise\" ]]; then
-	ts="\Z3Pleasure Paradise\Zn"
-elif [[ $THEME == value=\"pistolero\" ]]; then
-	ts="\Z3Pistolero\Zn"
+if [[ $THEME == value=\"strangerstuff\" ]]; then ts="\Z3Stranger Things\Zn"
+elif [[ $THEME == value=\"halloweenspecial\" ]]; then ts="\Z3Halloween\Zn"
+elif [[ $THEME == value=\"merryxmas\" ]]; then ts="\Z3Christmas\Zn"
+elif [[ $THEME == value=\"devilchromey\" ]]; then ts="\Z3Retro-Devils\Zn"
+elif [[ $THEME == value=\"carbonite\" ]]; then ts="\Z3Carbonite\Zn"
+elif [[ $THEME == value=\"pleasureparadise\" ]]; then ts="\Z3Pleasure Paradise\Zn"
+elif [[ $THEME == value=\"pistolero\" ]]; then ts="\Z3Pistolero\Zn"
+elif [[ $THEME == value=\"Supreme_Space\" ]]; then ts="\Z3Supreme Ultra\Zn"
 else
 	ts="\Z3$(basename $THEME | tr -d '"')\Zn"
 fi

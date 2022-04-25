@@ -2,7 +2,7 @@
 # TAMO+ Bare Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
-ver="v1.20"
+ver="v1.25"
 SCRIPT_LOC="$HOME/tamoplus/BGM.py"
 INSTALL_DIR="$HOME/tamoplus"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
@@ -82,7 +82,7 @@ stats_check
 bezel_project() {
 if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
 
-#Adds Updated Version to tampo Folder
+#Adds Updated Version to tamoplus Folder
 if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo mv -f $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 
@@ -118,7 +118,7 @@ if [ -f "/home/pi/PieMarquee3/scripts/supreme-marquee-tool.sh" ]; then sudo mv -
 
 if [ -f "$INSTALL_DIR/scripts/supreme-marquee-tool.sh" ]; then 
 
-#Adds Updated Version to tampo Folder
+#Adds Updated Version to tamoplus Folder
 if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $MENU_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $STMENU_VIS_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 
@@ -981,8 +981,8 @@ if [ $CUR_VPOS = "0" ]; then
 else
 	vpos="\Z3Bottom\Zn"
 fi
-if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then
-	ms=$disable
+if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then ms=$disable
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then ms="\Z3Custom\Zn"
 else
 	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 	export CUR_PLY

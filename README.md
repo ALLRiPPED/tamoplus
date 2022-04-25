@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.20 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.25 (formally known as TAMPO)
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -31,7 +31,7 @@ This is open source and free for anyone to use, just drop me a little credit is 
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
 ## Preview
-[![](https://github.com/ALLRiPPED/tamoplus/raw/main/tamoplus.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
+[![](https://i.imgur.com/VQhOSaS.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Future Plans
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
@@ -83,4 +83,5 @@ Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 Version 1.00 - thepitster<br>
 Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
 Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
-Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts. Also added Supreme Team themeset.<br>
+Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
+Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
