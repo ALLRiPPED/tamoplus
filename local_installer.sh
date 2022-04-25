@@ -74,7 +74,7 @@ install_tamoplus_bare() {
 minimum=2
 clear
 prep_work
-setup_bare
+setup
 install_ending
 rebootq
 exit
@@ -89,7 +89,7 @@ echo "Prep Work All Done. Downloading Music"
 download_thememusic
 echo "Music All Done. Final Setup Commencing"
 download_videos
-setup_normal
+setup
 install_ending
 rebootq
 exit
@@ -105,7 +105,7 @@ download_thememusic
 download_bgmusic
 echo "Music All Done. Final Setup Commencing"
 download_videos
-setup_normal
+setup
 install_ending
 rebootq
 exit
@@ -122,7 +122,7 @@ download_bgmusic
 download_custommusic
 echo "Music All Done. Final Setup Commencing"
 download_videos
-setup_normal
+setup
 install_ending
 rebootq
 exit
@@ -427,7 +427,7 @@ sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 fi
 }
 
-setup_normal() {
+setup() {
 echo "Add menu options for BGM Overlay Controls"
 cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
