@@ -437,10 +437,12 @@ if [ "$minimum" = "1" ]; then
 	sudo chmod +x $HOME/tamoplus/tamoplus-minimum.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-minimum.sh
 	cp tamoplus-minimum.sh $RP_MENU/tamoplus.sh
+	mkdir /home/pi/RetroPie/roms/music/custom
 elif [ "$minimum" = "2" ]; then
 	sudo chmod +x $HOME/tamoplus/tamoplus-bare.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-bare.sh
 	cp tamoplus-bare.sh $RP_MENU/tamoplus.sh
+	mkdir /home/pi/RetroPie/roms/music/custom
 else
 	sudo chmod +x $HOME/tamoplus/tamoplus.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus.sh

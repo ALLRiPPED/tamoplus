@@ -529,7 +529,7 @@ stats_check
             4 "Volume Control $vol" \
             5 "Music Start Delay In Seconds $msd" \
             6 "Retropie Audio Settings" \
-            7 "Quick No Audio Fixs" \
+            7 "Quick No Audio Fixes" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) enable_music ;;
