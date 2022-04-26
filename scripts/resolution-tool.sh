@@ -72,8 +72,7 @@ function main_menu() {
        27:ALL " - Disable Any CEA/DMT HDMI or STDTV Setting Applied " \
 	               - "" \
             - "*** OVERSCAN SELECTION ***" \
-            28 "Enable Overscan" \
-            29 "Disable Overscan" \
+            28 "Enable/Disable Overscan" \
             2>&1 > /dev/tty)
 			
         case "$choice" in
@@ -109,8 +108,7 @@ function main_menu() {
        25:STR) enable_sdtvr 2 ;;
        26:STR) enable_sdtvr 3 ;;
        27:ALL) disable_vrALL ;;
-	   28) enable_overscan  ;;
-       29) disable_overscan  ;;
+	   28) overscan_menu  ;;
 	        -) none ;;
             *) break ;;
         esac
@@ -333,22 +331,38 @@ function disable_vrALL() {
 	sudo reboot
 }
 
-function enable_overscan() {
-	dialog --infobox "...Removing..." 3 20 ; sleep 2
-	echo "Your Retropie is about to reboot so that the settings take effect!"
-sleep 3
-sudo perl -p -i -e 's/disable_overscan=1/#disable_overscan=1/g' /boot/config.txt
-sudo reboot
 
+function overscan_menu() {
+# check for other overscan settings
+if grep -q '#disable_overscan=0' "/boot/config.txt"; then sudo perl -p -i -e 's/#disable_overscan=0/#disable_overscan=1/g' /boot/config.txt
+elif grep -q 'disable_overscan=0' "/boot/config.txt"; then sudo perl -p -i -e 's/disable_overscan=0/#disable_overscan=1/g' /boot/config.txt; fi
+if grep -q '#disable_overscan=1' "/boot/config.txt"; then ovscn="Enabled"; ovscn2="Disable"; else ovscn="Disabled"; ovscn2="Enable"; fi
+
+    local choice
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Overscan is now $ovscn, What would you like to $ovscn2 it?" 25 75 20 \
+            1 "$ovscn2 Overscan " \
+            2>&1 > /dev/tty)
+
+        case "$choice" in
+            1) overscan_toggle ;;
+            *) break ;;
+        esac
+    done
 }
 
-function disable_overscan() {
-	dialog --infobox "...Applying..." 3 20 ; sleep 2
-	echo "Your Retropie is about to reboot so that the settings take effect!"
-sleep 3
-sudo perl -p -i -e 's/#disable_overscan=1/disable_overscan=1/g' /boot/config.txt
-sudo reboot
+overscan_toggle() {
+# check for normal overscan settings
+if grep -q '#disable_overscan=1' "/boot/config.txt"; then sudo perl -p -i -e 's/#disable_overscan=1/disable_overscan=1/g' /boot/config.txt
+dialog --infobox "...Removing..." 3 20; sleep 2
+elif grep -q '#disable_overscan=1' "/boot/config.txt"; then sudo perl -p -i -e 's/disable_overscan=1/#disable_overscan=1/g' /boot/config.txt
+dialog --infobox "...Applying..." 3 20; sleep 2; fi
 
+echo "Your Retropie is about to reboot so that the settings take effect!"
+sleep 3
+sudo reboot
 }
 
 main_menu
