@@ -507,10 +507,6 @@ EOF12389
 fi
 
 # Auto Start Edits for TAMO+
-filefound21=`cat /opt/retropie/configs/all//autostart.sh |grep "/bin/bash" |wc -l`
-if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/exists
-else sed -i '1i #!/bin/bash' $AUTOSTART; fi
-
 filefound11=`cat /opt/retropie/configs/all/autostart.sh |grep tamoplus |wc -l`
 if [[ ${filefound11} > 0 ]]; then
 
@@ -560,11 +556,11 @@ EOF123
 	fi
 fi
 
-# Runcommand On Start Edits for TAMO+
-filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
-if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
-else sed -i '1i #!/bin/bash' $RUNONSTART; fi
+filefound21=`cat /opt/retropie/configs/all//autostart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
+# Runcommand On Start Edits for TAMO+
 if [ "$minimum" -lt "2" ]; then
 	filefound4=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
 	if [[ ${filefound4} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
@@ -610,11 +606,11 @@ sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /t
 echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
 fi
 
-# Runcommand On End Edits for TAMO+
-filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
-if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
-else sed -i '1i #!/bin/bash' $RUNONEND; fi
+filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 
+# Runcommand On End Edits for TAMO+
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
@@ -645,6 +641,10 @@ if [ "$minimum" -lt "2" ]; then
 	if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" /etc/splashscreen.list
 fi
+
+filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONEND; fi
 cd $HOME
 }
 
