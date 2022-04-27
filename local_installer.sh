@@ -282,13 +282,13 @@ if [ -a $HOME/scripts/bgm/start.sc ]; then pkill -STOP mpg123; sudo rm $HOME/scr
 sudo pkill -STOP mpg123 > /dev/null 2>&1
 sudo pkill -KILL mpg123 > /dev/null 2>&1
 ##### Disable Livewire
-if [ ! -f ~/.DisableMusic ]; then touch ~/.DisableMusic; fi
+if [ ! -f $HOME/.DisableMusic ]; then touch $HOME/.DisableMusic; fi
 if [ -f $HOME/RetroPie/retropiemenu/bgm-mute.sh ]; then mv $HOME/RetroPie/retropiemenu/bgm-mute.sh $HOME/RetroPie/retropiemenu/bgm-mute.sh.tamoplus; fi
 ##### Disable BGM Naprosnia
 sudo pkill -STOP audacious > /dev/null 2>&1
 sudo pkill -KILL audacious > /dev/null 2>&1
-if [ -f ~/RetroPie-BGM-Player/bgm_system.sh ]; then bash ~/RetroPie-BGM-Player/bgm_system.sh -setsetting bgm_toggle 0; fi
-if [ -f ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh ]; then mv ~/RetroPie/retropiemenu/RetroPie-BGM-Player ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh.tamoplus 2>/dev/null; fi
+if [ -f $HOME/RetroPie-BGM-Player/bgm_system.sh ]; then bash $HOME/RetroPie-BGM-Player/bgm_system.sh -setsetting bgm_toggle 0; fi
+if [ -f $HOME/RetroPie/retropiemenu/RetroPie-BGM-Player.sh ]; then mv $HOME/RetroPie/retropiemenu/RetroPie-BGM-Player ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh.tamoplus 2>/dev/null; fi
 ##### Disable BGM Rydra
 sudo systemctl stop bgm > /dev/null 2>&1
 sudo systemctl disable bgm > /dev/null 2>&1
@@ -437,12 +437,12 @@ if [ "$minimum" = "1" ]; then
 	sudo chmod +x $HOME/tamoplus/tamoplus-minimum.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-minimum.sh
 	cp tamoplus-minimum.sh $RP_MENU/tamoplus.sh
-	mkdir /home/pi/RetroPie/roms/music/custom
+	mkdir $HOME/RetroPie/roms/music/custom
 elif [ "$minimum" = "2" ]; then
 	sudo chmod +x $HOME/tamoplus/tamoplus-bare.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-bare.sh
 	cp tamoplus-bare.sh $RP_MENU/tamoplus.sh
-	mkdir /home/pi/RetroPie/roms/music/custom
+	mkdir $HOME/RetroPie/roms/music/custom
 else
 	sudo chmod +x $HOME/tamoplus/tamoplus.sh
 	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus.sh
@@ -472,7 +472,7 @@ cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF1293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 	fi
@@ -483,7 +483,7 @@ cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/e
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 	fi
@@ -512,7 +512,6 @@ if [[ ${filefound11} > 0 ]]; then
 
    echo -e "$(tput setaf 2)Tamo+ Script Already Found in Auto Start But Will Now Enable! $(tput sgr0)"
    echo "already in autostart.sh" > /tmp/exists
-   (nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
 
 else
 
@@ -527,7 +526,7 @@ else
 		sed -i '/^#(sleep 10; mpg123/d' $AUTOSTART
 
 cat <<\EOF123 > "/tmp/templist"
-(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python $HOME/tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -542,7 +541,7 @@ EOF123
 		echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMO+! $(tput sgr0)"
 		sleep 3    
 cat <<\EOF123 > "/tmp/templist"
-(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python $HOME/tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -571,7 +570,7 @@ if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
 	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
-	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
+	sed -i '6i videoloadingscreens="$HOME/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
 	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 
@@ -582,7 +581,7 @@ cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
 enablevideolaunch="true"
-videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+videoloadingscreens="$HOME/RetroPie/videoloadingscreens/jarvis"
 if [[ $enablevideolaunch == "true" ]]; then
  # Extract file name from called ROM
  gname="$(basename "$3")"
@@ -626,7 +625,7 @@ else
 cat <<\EOF12345 > "/tmp/templist3"
 #! /bin/bash
 # /etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+sudo omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 EOF12345
 		sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 	fi

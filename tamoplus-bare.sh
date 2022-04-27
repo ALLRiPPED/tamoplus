@@ -159,7 +159,7 @@ $INSTALL_DIR/scripts/remove-media.sh
 
 retropie_splashscreen() {
 if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f -r $MENU_DIR/splashscreen.rp; fi
-sudo ~/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 skyscraper_utility() {
@@ -468,7 +468,7 @@ fi
 
 retropie_themes() {
 if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f -r $MENU_DIR/esthemes.rp; fi
-sudo ~/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 musicsettings() {
@@ -501,7 +501,7 @@ stats_check
 
 retropie_audio_settings() {
 if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f -r $MENU_DIR/audiosettings.rp; fi
-sudo ~/RetroPie-Setup/retropie_packages.sh audiosettings gui
+sudo $HOME/RetroPie-Setup/retropie_packages.sh audiosettings gui
 }
 
 quick_audio_fixes() {
