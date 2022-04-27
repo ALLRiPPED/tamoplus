@@ -164,7 +164,7 @@ $INSTALL_DIR/scripts/remove-media.sh
 
 retropie_splashscreen() {
 if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f -r $MENU_DIR/splashscreen.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 skyscraper_utility() {
@@ -238,10 +238,10 @@ stats_check
 function install_screens() {
 
 FILE=""
-DIR="$HOME/RetroPie/LaunchingScreens"
+DIR="/home/pi/RetroPie/LaunchingScreens"
 	if [ "$(ls -A $DIR)" ]; then
 
-ls $HOME/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
+ls /home/pi/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
 
 let i=0 # define counting variable
 W=() # define working array
@@ -259,8 +259,8 @@ if [ -z $CONFDISP ]; then
 
 else
 
-if [[ ! -d "$HOME/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "$HOME/RetroPie/LaunchingScreens"
+if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
+mkdir -p "/home/pi/RetroPie/LaunchingScreens"
 fi
 
 if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
@@ -273,7 +273,7 @@ fi
 
 if [[ -f "/tmp/displays" ]]; then
 currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
-cp -r $HOME/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
+cp -r /home/pi/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
 else
 echo -e "$(tput setaf 2)No Themes Installed?. $(tput sgr0)"
 sleep 5
@@ -300,8 +300,8 @@ function remove_screens() {
 echo -e "$(tput setaf 2)Removing LaunchingScreens Please Wait. $(tput sgr0)"
 sleep 3
 
-if [[ ! -d "$HOME/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "$HOME/RetroPie/LaunchingScreens"
+if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
+mkdir -p "/home/pi/RetroPie/LaunchingScreens"
 fi
 
 if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
@@ -326,17 +326,17 @@ function install_launching_screens() {
         theme="default"
         repo="default"
     fi
-    rm -rf "$HOME/RetroPie/LaunchingScreens/$theme"
-    mkdir -p "$HOME/RetroPie/LaunchingScreens"
-    git clone "https://github.com/$repo/launchingscreens-$theme.git" "$HOME/RetroPie/LaunchingScreens/$theme"
+    rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
+    mkdir -p "/home/pi/RetroPie/LaunchingScreens"
+    git clone "https://github.com/$repo/launchingscreens-$theme.git" "/home/pi/RetroPie/LaunchingScreens/$theme"
     echo -e "$(tput setaf 2)Done. $(tput sgr0)"
     sleep 3
 }
 
 function uninstall_launching_screens() {
     local theme="$1"
-    if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
-        rm -rf "$HOME/RetroPie/LaunchingScreens/$theme"
+    if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
+        rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
     fi
 }
 
@@ -380,7 +380,7 @@ function download_screens() {
             theme=($theme)
             repo="${theme[0]}"
             theme="${theme[1]}"
-            if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
+            if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
                 status+=("i")
                 options+=("$i" "Update or Uninstall $theme (installed)")
                 installed_themes+=("$theme $repo")
@@ -407,7 +407,7 @@ function download_screens() {
                 repo="${theme[0]}"
                 theme="${theme[1]}"
 #                if [[ "${status[choice]}" == "i" ]]; then
-                if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
+                if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
                     options=(1 "Update $theme" 2 "Uninstall $theme")
                     cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for the launching screens pack" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -477,7 +477,7 @@ fi
 
 retropie_themes() {
 if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f -r $MENU_DIR/esthemes.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 tamoplus_themesets() {
@@ -540,7 +540,7 @@ stats_check
 
 retropie_audio_settings() {
 if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f -r $MENU_DIR/audiosettings.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh audiosettings gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh audiosettings gui
 }
 
 quick_audio_fixes() {
@@ -785,10 +785,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/devils"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"devilchromey\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"$HOME/RetroPie/videoloadingscreens/retrodevils"'
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/retrodevils"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"$HOME/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/RetroDevilReaperExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
@@ -811,10 +811,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pistolero\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"$HOME/RetroPie/videoloadingscreens/pistolero"'
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"$HOME/RetroPie/splashscreens/PistoleroExit.mp4"'
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/PistoleroExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
@@ -837,10 +837,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pleasureparadise\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"$HOME/RetroPie/videoloadingscreens/pleasureparadise"'
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"$HOME/RetroPie/splashscreens/PleasureParadiseExit.mp4"'
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/PleasureParadiseExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
@@ -863,10 +863,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/halloween"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"halloweenspecial\""
 HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"$HOME/RetroPie/videoloadingscreens/halloween"'
+NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/halloween"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"$HOME/RetroPie/splashscreens/HalloweenExit.mp4"'
+NEWH_EXS='"/home/pi/RetroPie/splashscreens/HalloweenExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
@@ -889,10 +889,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"strangerstuff\""
 STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWS_LOD='"$HOME/RetroPie/videoloadingscreens/strangerpi"'
+NEWS_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerpi"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWS_EXS='"$HOME/RetroPie/splashscreens/StrangerExit.mp4"'
+NEWS_EXS='"/home/pi/RetroPie/splashscreens/StrangerExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
@@ -915,10 +915,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/st"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"Supreme_Space\""
 STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWS_LOD='"$HOME/RetroPie/videoloadingscreens/supreme"'
+NEWS_LOD='"/home/pi/RetroPie/videoloadingscreens/supreme"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWS_EXS='"$HOME/RetroPie/splashscreens/SupremeExit.mp4"'
+NEWS_EXS='"/home/pi/RetroPie/splashscreens/SupremeExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
@@ -941,10 +941,10 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/xmas"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"merryxmas\""
 XMA_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWX_LOD='"$HOME/RetroPie/videoloadingscreens/xmas"'
+NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/xmas"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWX_EXS='"$HOME/RetroPie/splashscreens/XmasExit.mp4"'
+NEWX_EXS='"/home/pi/RetroPie/splashscreens/XmasExit.mp4"'
 if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
@@ -967,14 +967,14 @@ NEW_PLY='"/home/pi/tamoplus"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"carbonite\""
 NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWN_LOD='"$HOME/RetroPie/videoloadingscreens/jarvis"'
+NEWN_LOD='"/home/pi/RetroPie/videoloadingscreens/jarvis"'
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWD_EXS="$HOME/RetroPie/splashscreens/JarvisExit.mp4"
+NEWD_EXS="/home/pi/RetroPie/splashscreens/JarvisExit.mp4"
 if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 if [[ $NOR_LOD == $NEWN_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${NOR_LOD}|videoloadingscreens=${NEWN_LOD}|g" $RUNONSTART; fi
-if [ -f $HOME/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
+if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
 else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
 echo "Restarting EmulationStaion..."
 pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
@@ -1200,7 +1200,7 @@ stats_check
 stats_check() {
 enable="\Z2Enabled\Zn"
 disable="\Z1Disabled\Zn"
-if [ -f $HOME/tamoplus/DisableMusic ]; then
+if [ -f /home/pi/tamoplus/DisableMusic ]; then
 	bgms=$disable
 else
 	bgms=$enable
@@ -1328,7 +1328,7 @@ DISCLAIMER="${DISCLAIMER}\n"
 DISCLAIMER="${DISCLAIMER}TAMO+: Themes and Music Overlay Plus Script\n\n"
 DISCLAIMER="${DISCLAIMER}The background music python and control scripts have been installed on this system.\n"
 DISCLAIMER="${DISCLAIMER}This script will play MP3 & OGG files during menu navigation in either Emulation Station or Attract mode.\n"
-DISCLAIMER="${DISCLAIMER}A Few subfolders have been created in the $HOME/RetroPie/roms/music directory with a selection of\n"
+DISCLAIMER="${DISCLAIMER}A Few subfolders have been created in the /home/pi/RetroPie/roms/music directory with a selection of\n"
 DISCLAIMER="${DISCLAIMER}different music from various builds by many good build makers.\n"
 DISCLAIMER="${DISCLAIMER}The themes you can seltect bewteen are \"halloween\" (Halloween), \"xmas\" (Christmas),\n"
 DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things), \"carbonite\" (Default) and \"devilchromey\" (Retro-Devils).\n"

@@ -472,7 +472,7 @@ cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF1293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 	fi
@@ -483,7 +483,7 @@ cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/e
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 	fi
@@ -526,7 +526,7 @@ else
 		sed -i '/^#(sleep 10; mpg123/d' $AUTOSTART
 
 cat <<\EOF123 > "/tmp/templist"
-(nohup python $HOME/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -541,7 +541,7 @@ EOF123
 		echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMO+! $(tput sgr0)"
 		sleep 3    
 cat <<\EOF123 > "/tmp/templist"
-(nohup python $HOME/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -570,7 +570,7 @@ if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
 	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
-	sed -i '6i videoloadingscreens="$HOME/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
+	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
 	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 
@@ -581,7 +581,7 @@ cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
 enablevideolaunch="true"
-videoloadingscreens="$HOME/RetroPie/videoloadingscreens/jarvis"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
 if [[ $enablevideolaunch == "true" ]]; then
  # Extract file name from called ROM
  gname="$(basename "$3")"
@@ -625,7 +625,7 @@ else
 cat <<\EOF12345 > "/tmp/templist3"
 #! /bin/bash
 # /etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b $HOME/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 EOF12345
 		sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 	fi

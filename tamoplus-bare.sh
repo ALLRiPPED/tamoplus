@@ -159,7 +159,7 @@ $INSTALL_DIR/scripts/remove-media.sh
 
 retropie_splashscreen() {
 if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f -r $MENU_DIR/splashscreen.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 skyscraper_utility() {
@@ -231,10 +231,10 @@ stats_check
 function install_screens() {
 
 FILE=""
-DIR="$HOME/RetroPie/LaunchingScreens"
+DIR="/home/pi/RetroPie/LaunchingScreens"
 	if [ "$(ls -A $DIR)" ]; then
 
-ls $HOME/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
+ls /home/pi/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
 
 let i=0 # define counting variable
 W=() # define working array
@@ -252,8 +252,8 @@ if [ -z $CONFDISP ]; then
 
 else
 
-if [[ ! -d "$HOME/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "$HOME/RetroPie/LaunchingScreens"
+if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
+mkdir -p "/home/pi/RetroPie/LaunchingScreens"
 fi
 
 if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
@@ -266,7 +266,7 @@ fi
 
 if [[ -f "/tmp/displays" ]]; then
 currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
-cp -r $HOME/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
+cp -r /home/pi/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
 else
 echo -e "$(tput setaf 2)No Themes Installed?. $(tput sgr0)"
 sleep 5
@@ -293,8 +293,8 @@ function remove_screens() {
 echo -e "$(tput setaf 2)Removing LaunchingScreens Please Wait. $(tput sgr0)"
 sleep 3
 
-if [[ ! -d "$HOME/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "$HOME/RetroPie/LaunchingScreens"
+if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
+mkdir -p "/home/pi/RetroPie/LaunchingScreens"
 fi
 
 if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
@@ -319,17 +319,17 @@ function install_launching_screens() {
         theme="default"
         repo="default"
     fi
-    rm -rf "$HOME/RetroPie/LaunchingScreens/$theme"
-    mkdir -p "$HOME/RetroPie/LaunchingScreens"
-    git clone "https://github.com/$repo/launchingscreens-$theme.git" "$HOME/RetroPie/LaunchingScreens/$theme"
+    rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
+    mkdir -p "/home/pi/RetroPie/LaunchingScreens"
+    git clone "https://github.com/$repo/launchingscreens-$theme.git" "/home/pi/RetroPie/LaunchingScreens/$theme"
     echo -e "$(tput setaf 2)Done. $(tput sgr0)"
     sleep 3
 }
 
 function uninstall_launching_screens() {
     local theme="$1"
-    if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
-        rm -rf "$HOME/RetroPie/LaunchingScreens/$theme"
+    if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
+        rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
     fi
 }
 
@@ -373,7 +373,7 @@ function download_screens() {
             theme=($theme)
             repo="${theme[0]}"
             theme="${theme[1]}"
-            if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
+            if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
                 status+=("i")
                 options+=("$i" "Update or Uninstall $theme (installed)")
                 installed_themes+=("$theme $repo")
@@ -400,7 +400,7 @@ function download_screens() {
                 repo="${theme[0]}"
                 theme="${theme[1]}"
 #                if [[ "${status[choice]}" == "i" ]]; then
-                if [[ -d "$HOME/RetroPie/LaunchingScreens/$theme" ]]; then
+                if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
                     options=(1 "Update $theme" 2 "Uninstall $theme")
                     cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for the launching screens pack" 12 40 06)
                     local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -468,7 +468,7 @@ fi
 
 retropie_themes() {
 if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f -r $MENU_DIR/esthemes.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 musicsettings() {
@@ -501,7 +501,7 @@ stats_check
 
 retropie_audio_settings() {
 if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f -r $MENU_DIR/audiosettings.rp; fi
-sudo $HOME/RetroPie-Setup/retropie_packages.sh audiosettings gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh audiosettings gui
 }
 
 quick_audio_fixes() {
@@ -928,7 +928,7 @@ stats_check
 stats_check() {
 enable="\Z2Enabled\Zn"
 disable="\Z1Disabled\Zn"
-if [ -f $HOME/tamoplus/DisableMusic ]; then
+if [ -f /home/pi/tamoplus/DisableMusic ]; then
 	bgms=$disable
 else
 	bgms=$enable
@@ -1036,7 +1036,7 @@ DISCLAIMER="${DISCLAIMER}\n"
 DISCLAIMER="${DISCLAIMER}TAMO+: Themes and Music Overlay Plus Script\n\n"
 DISCLAIMER="${DISCLAIMER}The background music python and control scripts have been installed on this system.\n"
 DISCLAIMER="${DISCLAIMER}This script will play MP3 & OGG files during menu navigation in either Emulation Station or Attract mode.\n"
-DISCLAIMER="${DISCLAIMER}You can add subfolders to $HOME/RetroPie/roms/music directory for different music selections\n"
+DISCLAIMER="${DISCLAIMER}You can add subfolders to /home/pi/RetroPie/roms/music directory for different music selections\n"
 DISCLAIMER="${DISCLAIMER}Launch a game, the music will stop. Upon exiting out of the game the music will begin playing again.\n"
 DISCLAIMER="${DISCLAIMER}This also lets you turn off certain options for BGM.py such as, Enable/Disable the Overlay, Fadeout effect,\n"
 DISCLAIMER="${DISCLAIMER}Rounded Corners on Overlays, an option to turn the dashes, or hyphens, with a space on both sides\n"
