@@ -31,7 +31,7 @@ This is open source and free for anyone to use, just drop me a little credit is 
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
 ## Preview
-[![](https://i.imgur.com/TYWvWd3.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
+[![](https://i.imgur.com/O8TOyVa.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Future Plans
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
