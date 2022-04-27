@@ -55,7 +55,7 @@ stats_check
         choice=$(dialog --colors --backtitle "Visual Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Visual Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "Music Overlay Settings" \
+            1 "TAMO+ Overlay Settings" \
             2 "Bezel Project" \
             3 "Full Universal Bezel on/off" \
             4 "Supreme Marquee Tool" \
