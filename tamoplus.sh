@@ -184,7 +184,7 @@ stats_check
         choice=$(dialog --colors --backtitle "Loading Media Menu - Tamo+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading Media Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "Loading Videos Menu" \
+            1 "TAMO+ Loading Videos Menu" \
             2 "Loading Screens Menu" \
            2>&1 > /dev/tty)
         case "$choice" in
@@ -436,7 +436,7 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Hursty Themes" \
             2 "RetroPie Themes" \
-            3 "Tamo+ Themesets" \
+            3 "TAMO+ Themesets" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) hursty_themes ;;
