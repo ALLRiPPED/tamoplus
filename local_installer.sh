@@ -567,16 +567,18 @@ fi
 filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc -l`
 if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 
+filefound51=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep BGM_vol_fade.sh |wc -l`
+if [[ ${filefound51} > 0 ]]; then sed -i '/\/home\/pi\/BGM_vol_fade.sh -stop/d' $RUNONSTART; fi
+ifexist21=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep omxplayer |wc -l`
+
 ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
 	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
 	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"' $RUNONSTART
 	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
-
 else
-
-echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
+	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
 cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -601,8 +603,38 @@ if [[ $enablevideolaunch == "true" ]]; then
 fi
 ### End VideoLoading Screens Function
 EOF1234
-sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
-echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
+	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
+fi
+
+if [ ! -s /opt/retropie/configs/all/runcommand-onstart.sh ]; then
+	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
+	cat <<\EOF1234 > "/tmp/templist2"
+#!/bin/sh
+### Begin VideoLoading Screens Function
+enablevideolaunch="true"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+if [[ $enablevideolaunch == "true" ]]; then
+ # Extract file name from called ROM
+ gname="$(basename "$3")"
+ # build path to file and remove extension from ROM to add mp4 extension
+ # $HOME variable will help users that are not stick to raspberry ;)
+ ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
+ ifsystem="$videoloadingscreens/$1.mp4"
+ default="$videoloadingscreens/default.mp4"
+ # If condition to check filename with -f switch, f means regular file
+ if [[ -f $ifgame ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
+ elif [[ -f $ifsystem ]]; then
+    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+ elif [[ -f $default ]]; then
+    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
+ fi
+fi
+### End VideoLoading Screens Function
+EOF1234
+	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
 fi
 
 filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
@@ -614,6 +646,8 @@ filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT
 if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
 sed -i '/#pkill -CONT mpg123/d' $RUNONEND
+sed -i '/#(sleep 2 && /home/pi/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+sed -i '/(sleep 2 && /home/pi/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 fi
 
 ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --vol 250 --amp 250 -b" |wc -l`

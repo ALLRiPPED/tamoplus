@@ -36,24 +36,20 @@ Now if you have any sugesstions or addition please fork the repo and hit me up w
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding the ability to the control script to change overlay and text colors.
-
 ## Color Section
 This is where you will find the info you will need to change the colors of the background and font on the Overlay.<br>
 At the moment I have a color table here with color names that can be typed in to the RPBGMO bash gui, right now they have to be typed in cause getting bash script color is not as easy to code as you would think.
 ### [Table of Color Names](https://allripped.github.io/ImageMagickColors.html)
-
 ## CONFIG SECTION
 Edit these manually to adjust the script to your needs:
 <br>
-startdelay = 0 # Value (in seconds) to delay audio start.  If you have a splash screen with audio and the script is playing music over the top of it, increase this value to delay the script from starting.
-
+startdelay = 0 # Value (in seconds) to delay audio start.  If you have a splash screen with audio and the script is playing music over the top of it, increase this value to delay the script from starting.<br>
 maxvolume = 0.50<br>
 volumefadespeed = 0.02<br>
 restart = True # If true, this will cause the script to fade the music out and -stop- the song rather than pause it.<br>
 startsong = "" # if this is not blank, this is the EXACT, CaSeSeNsAtIvE filename of the song you always want to play first on boot.<br>
 <br>
 ###Overlay Config###
-
 overlay_enable = True # Enable or disable the overlay<br>
 overlay_fade_out = True # Change to "False" to have the overlay remain on the screen until an emulator/application is launched<br>
 overlay_fade_out_time = 5 # Hide the overlay after X seconds<br>
