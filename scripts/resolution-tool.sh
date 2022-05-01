@@ -27,91 +27,91 @@ function main_menu() {
             --ok-label OK --cancel-label Back \
             --menu "Choose your Custom System Ratio Resolution:" 25 75 20 \
             - "*** GENERAL SELECTIONS ***" \
-           V1 " - LIST CONNECTED DISPLAY DEVICES " \
-		   V2 " - SHOW YOUR HDMI STATUS (Resolution etc.) " \
-		   A1 " - SHOW YOUR SUPPORTED AUDIO INFORMATION " \
-		  CEA " - SHOW YOUR SUPPORTED MODES FOR THIS GROUP " \
-		  DMT " - SHOW YOUR SUPPORTED MODES FOR THIS GROUP " \
-			- "" \
-			- "*** HDMI PORT [4:3] SELECTIONS ***" \
-        1:CEA " - VGA     640x480   60Hz   [4:3] " \
+		V1 " - LIST CONNECTED DISPLAY DEVICES " \
+		V2 " - SHOW YOUR HDMI STATUS (Resolution etc.) " \
+		A1 " - SHOW YOUR SUPPORTED AUDIO INFORMATION " \
+		CEA " - SHOW YOUR SUPPORTED MODES FOR THIS GROUP " \
+		DMT " - SHOW YOUR SUPPORTED MODES FOR THIS GROUP " \
+		- "" \
+		- "*** HDMI PORT [4:3] SELECTIONS ***" \
+		1:CEA " - VGA     640x480   60Hz   [4:3] " \
 		2:CEA " - 480p    720x480   60Hz   [4:3] " \
 		3:CEA " - 576p    720x576   50Hz   [4:3] " \
-        4:DMT " - SVGA    800x600   60Hz   [4:3] " \
-        5:DMT " - XGA    1024x768   60Hz   [4:3] " \
+		4:DMT " - SVGA    800x600   60Hz   [4:3] " \
+		5:DMT " - XGA    1024x768   60Hz   [4:3] " \
 		6:DMT " - SXGA   1280x960   60Hz   [4:3] " \
-            - "" \
-            - "*** HDMI PORT [16:9] SELECTIONS ***" \
+		- "" \
+		- "*** HDMI PORT [16:9] SELECTIONS ***" \
 		7:CEA " - 480p    720x480   60Hz  [16:9] " \
 		8:CEA " - 576p    720x576   50Hz  [16:9] " \
 		9:CEA " - 720p   1280x720   60Hz  [16:9] " \
-	   10:CEA " - 720p   1280x720   50Hz  [16:9] " \
-	   11:CEA " - 1080p 1920x1080   60Hz  [16:9] " \
-	   12:CEA " - 1080p 1920x1080   50Hz  [16:9] " \
-	   13:CEA " - 2160p 3840x2160   60Hz  [16:9] " \
-	   14:DMT " - 720p   1280x720   60Hz  [16:9] " \
-       15:DMT " - 1080p 1920x1080   60Hz  [16:9] " \
-	        - "" \
-            - "*** HDMI PORT [x:x] SELECTIONS ***" \
-       16:DMT " - SXGA   1280x1024  60Hz   [5:4] " \
-       17:DMT " - WXGA+  1440x900   60Hz [16:10] " \
-	   18:DMT " - WSXGA+ 1680x1050  60Hz [16:10] " \
-	   19:CEA " - 1080p  1920x1080  60Hz [64:27] " \
-	   20:CEA " - 1080p  1920x1080  50Hz [64:27] " \
-	   21:DMT " - CUSTOM .NOTxSET.  60Hz [xx:xx] " \
-	        - "" \
-            - "*** SDTV - COMPOSITE VIDEO PORT SELECTIONS ***" \
-            - "*** Default values are: NTSC & [4:3] No Change ***" \
-       22:STD " - Composite Video Port Mode   JP NTSC " \
-       23:STD " - Composite Video Port Mode   PAL " \
-       24:STD " - Composite Video Port Mode   Brazil PAL " \
-       25:STR " - Composite Video Port Ratio  [14:9] " \
-       26:STR " - Composite Video Port Ratio  [16:9] " \
-            - "" \
-            - "*** DISABLE HDMI SELECTIONS ***" \
-       27:ALL " - Disable Any CEA/DMT HDMI or STDTV Setting Applied " \
-	               - "" \
-            - "*** OVERSCAN SELECTION ***" \
-            28 "Enable/Disable Overscan" \
-            2>&1 > /dev/tty)
+		10:CEA " - 720p   1280x720   50Hz  [16:9] " \
+		11:CEA " - 1080p 1920x1080   60Hz  [16:9] " \
+		12:CEA " - 1080p 1920x1080   50Hz  [16:9] " \
+		13:CEA " - 2160p 3840x2160   60Hz  [16:9] " \
+		14:DMT " - 720p   1280x720   60Hz  [16:9] " \
+		15:DMT " - 1080p 1920x1080   60Hz  [16:9] " \
+		- "" \
+		- "*** HDMI PORT [x:x] SELECTIONS ***" \
+		16:DMT " - SXGA   1280x1024  60Hz   [5:4] " \
+		17:DMT " - WXGA+  1440x900   60Hz [16:10] " \
+		18:DMT " - WSXGA+ 1680x1050  60Hz [16:10] " \
+		19:CEA " - 1080p  1920x1080  60Hz [64:27] " \
+		20:CEA " - 1080p  1920x1080  50Hz [64:27] " \
+		21:DMT " - CUSTOM .NOTxSET.  60Hz [xx:xx] " \
+		- "" \
+		- "*** SDTV - COMPOSITE VIDEO PORT SELECTIONS ***" \
+		- "*** Default values are: NTSC & [4:3] No Change ***" \
+		22:STD " - Composite Video Port Mode   JP NTSC " \
+		23:STD " - Composite Video Port Mode   PAL " \
+		24:STD " - Composite Video Port Mode   Brazil PAL " \
+		25:STR " - Composite Video Port Ratio  [14:9] " \
+		26:STR " - Composite Video Port Ratio  [16:9] " \
+		- "" \
+		- "*** DISABLE HDMI SELECTIONS ***" \
+		27:ALL " - Disable Any CEA/DMT HDMI or STDTV Setting Applied " \
+		- "" \
+		- "*** OVERSCAN SELECTION ***" \
+		28 "Enable/Disable Overscan" \
+		2>&1 > /dev/tty)
 			
         case "$choice" in
-           V1) list_dvc ;;
-		   V2) hdmi_stat ;;
-		   A1) audio_inf ;;
-		  CEA) sup_cea ;;
-		  DMT) sup_dmt ;;
+		V1) list_dvc ;;
+		V2) hdmi_stat ;;
+		A1) audio_inf ;;
+		CEA) sup_cea ;;
+		DMT) sup_dmt ;;
 		1:CEA) enable_vr 1 ;;
-        2:CEA) enable_vr 2 ;;
+		2:CEA) enable_vr 2 ;;
 		3:CEA) enable_vr 17 ;;
 		4:DMT) enable_vrd 9 ;;
-        5:DMT) enable_vrd 16 ;;
-        6:DMT) enable_vrd 32 ;;
-        7:CEA) enable_vr 3 ;;
+		5:DMT) enable_vrd 16 ;;
+		6:DMT) enable_vrd 32 ;;
+		7:CEA) enable_vr 3 ;;
 		8:CEA) enable_vr 18 ;;
 		9:CEA) enable_vr 4 ;;
-       10:CEA) enable_vr 19 ;;
-       11:CEA) enable_vr 16 ;;
-	   12:CEA) enable_vr 31 ;;
-	   13:CEA) enable_vr 97 ;;
-       14:DMT) enable_vrd 85 ;;
-       15:DMT) enable_vrd 82 ;;
-	   16:DMT) enable_vrd 35 ;;
-	   17:DMT) enable_vrd 47 ;;
-	   18:DMT) enable_vrd 58 ;;
-	   19:CEA) enable_vr 76 ;;
-	   20:CEA) enable_vr 75 ;;
-	   21:DMT) enable_vrdcX 87 ;;
-       22:STD) enable_sdtvm 1 ;;
-       23:STD) enable_sdtvm 2 ;;
-       24:STD) enable_sdtvm 3 ;;
-       25:STR) enable_sdtvr 2 ;;
-       26:STR) enable_sdtvr 3 ;;
-       27:ALL) disable_vrALL ;;
-	   28) overscan_menu  ;;
-	        -) none ;;
-            *) break ;;
-        esac
+		10:CEA) enable_vr 19 ;;
+		11:CEA) enable_vr 16 ;;
+		12:CEA) enable_vr 31 ;;
+		13:CEA) enable_vr 97 ;;
+		14:DMT) enable_vrd 85 ;;
+		15:DMT) enable_vrd 82 ;;
+		16:DMT) enable_vrd 35 ;;
+		17:DMT) enable_vrd 47 ;;
+		18:DMT) enable_vrd 58 ;;
+		19:CEA) enable_vr 76 ;;
+		20:CEA) enable_vr 75 ;;
+		21:DMT) enable_vrdcX 87 ;;
+		22:STD) enable_sdtvm 1 ;;
+		23:STD) enable_sdtvm 2 ;;
+		24:STD) enable_sdtvm 3 ;;
+		25:STR) enable_sdtvr 2 ;;
+		26:STR) enable_sdtvr 3 ;;
+		27:ALL) disable_vrALL ;;
+		28) overscan_menu  ;;
+		-) none ;;
+		*) break ;;
+	esac
     done
 }
 
