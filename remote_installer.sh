@@ -27,6 +27,7 @@ fi
 get_tamoplus() {
 if [ -d "$INSTALL_DIR" ]; then 
 	cd $INSTALL_DIR
+	git reset --hard
 	git pull
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 1

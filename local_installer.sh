@@ -145,28 +145,28 @@ download_themes() {
 echo "Downloading the files needed and installing the script + utilities"
 if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
-else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
-else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/carbonite" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
-else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
-else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
-else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/Supreme_Space" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-Supreme_Space.git" "/opt/retropie/configs/all/emulationstation/themes/Supreme_Space"
-else cd /opt/retropie/configs/all/emulationstation/themes/Supreme_Space; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/Supreme_Space; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/pistolero" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
-else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git pull; git reset --hard; fi
 if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"
-else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git pull; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git pull; git reset --hard; fi
 }
 
 download_videos() {
