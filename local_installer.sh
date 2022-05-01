@@ -69,7 +69,7 @@ main_menu() {
             --menu "Choose An Option Below" 25 85 20 \
             01 "Bare Install No Themes or Music Just Tools" \
             02 "Minimal Install Themesets But No Extra Music" \
-            03 "Install Themesets without Custom Music" \
+            03 "Full Install All Themesets But No Custom Music" \
             04 "Full Install All Themesets And Music" \
             2>&1 > /dev/tty)
         case "$choice" in
@@ -450,28 +450,28 @@ if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
 if [ -f "$STMENU_DIR/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR/tamoplus.sh; fi
 if [ -d "$STMENU_DIR" ]; then RP_MENU=$STMENU_DIR; else RP_MENU=$MENU_DIR; fi
 if [ "$minimum" = "1" ]; then
-	sudo chmod +x $HOME/tamoplus/tamoplus-minimum.sh
-	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-minimum.sh
-	cp tamoplus-minimum.sh $RP_MENU/tamoplus.sh
+	sudo chmod +x $INSTALL_DIR/tamoplus-minimum.sh
+	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-minimum.sh
+	cp $INSTALL_DIR/tamoplus-minimum.sh $RP_MENU/tamoplus.sh
 	mkdir $HOME/RetroPie/roms/music/custom
 elif [ "$minimum" = "2" ]; then
-	sudo chmod +x $HOME/tamoplus/tamoplus-bare.sh
-	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus-bare.sh
-	cp tamoplus-bare.sh $RP_MENU/tamoplus.sh
+	sudo chmod +x $INSTALL_DIR/tamoplus-bare.sh
+	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-bare.sh
+	cp $INSTALL_DIR/tamoplus-bare.sh $RP_MENU/tamoplus.sh
 	mkdir $HOME/RetroPie/roms/music/custom
 else
-	sudo chmod +x $HOME/tamoplus/tamoplus.sh
-	sudo chown $currentuser:$currentuser $HOME/tamoplus/tamoplus.sh
-	cp tamoplus.sh $RP_MENU
+	sudo chmod +x $INSTALL_DIR/tamoplus.sh
+	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus.sh
+	cp $INSTALL_DIR/tamoplus.sh $RP_MENU/tamoplus.sh
 fi
 
 if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
 if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
 if [ -d "$STMENU_DIR" ]; then
-CONTENT1="\t<game>\n\t\t<path>./visualtools/tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ stands for Theme and Music Overlay Plus, more. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
+CONTENT1="\t<game>\n\t\t<path>./visualtools/tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 else
-CONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ stands for Theme and Music Overlay Plus, more. It's a script that changes between themes and their Background Music.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
+CONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 fi
 if grep -q tamoplus.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"

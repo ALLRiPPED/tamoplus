@@ -1,5 +1,5 @@
 #!/bin/bash
-# TAMO+ Script
+# TAMO+ Full Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
 ver="v1.25"
