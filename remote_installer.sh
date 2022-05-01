@@ -7,6 +7,19 @@
 #############################################
 ver="v1.25"
 INSTALL_DIR="$HOME/tamoplus"
+
+if [ ! -d "$HOME/RetroPie" ] && [ ! -d "$HOME/RetroPie-Setup" ]; then
+	errorbox=""
+	errorbox="${errorbox}_______________________________________________________\n\n"
+	errorbox="${errorbox}\n"
+	errorbox="${errorbox}TAMO+ is meant to be installed with use of RetroPie\n"
+	errorbox="${errorbox}Please Install RetroPie first.\n"
+	errorbox="${errorbox}Then try to install TAMO+ Again.\n\n"
+	errorbox="${errorbox}_______________________________________________________\n\n"
+	dialog --backtitle "TAMO+ Install Script $ver" --title "TAMO+ Install Script $ver" --msgbox "${errorbox}" 0 0
+	exit 1
+fi
+
 cd $HOME
 
 get_tamoplus() {
