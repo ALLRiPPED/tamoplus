@@ -313,26 +313,17 @@ sudo systemctl daemon-reload > /dev/null 2>&1
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
 if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
 
-# Create both empty runcommand files if not already exist or make backup.
-if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
-	echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
-	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
-else
+# Make backups runcommand files.
+if [ -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 	cp /opt/retropie/configs/all/runcommand-onstart.sh /opt/retropie/configs/all/runcommand-onstart.sh.tamoplus 2>/dev/null         
 fi
 
-if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
-	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
-	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
-else
+if [  -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus 2>/dev/null         
 fi
 
-# Create or make backup of autostart.sh.
-if [ ! -f /opt/retropie/configs/all/autostart.sh ]; then
-	echo '' > /opt/retropie/configs/all/autostart.sh
-	sudo chmod +x /opt/retropie/configs/all/autostart.sh
-else
+# Make backup of autostart.sh.
+if [ -f /opt/retropie/configs/all/autostart.sh ]; then
 	cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus 2>/dev/null         
 fi
 
@@ -422,9 +413,6 @@ cd $HOME
 git clone https://github.com/SupremePi/PieMarquee2.git
 chmod 777 $HOME/PieMarquee2
 
-sudo apt-get update
-sudo apt-get install omxplayer libjpeg8 imagemagick -y
-
 sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
 mkdir /opt/retropie/configs/all/PieMarquee2/
 cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
@@ -435,7 +423,23 @@ sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementar
 chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
 chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
 sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
-
+	#Do Auto Start Edits for marquee#
+	ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
+	if [[ ${ifexist3489} > 0 ]]; then
+		echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
+		echo "already in autostart.sh" > /tmp/exists
+		sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
+	else
+	cat <<\EOF12389 > "/tmp/templist-marquee"
+#!/bin/bash
+isdual=`tvservice -l |grep "2 attached device" |wc -l`
+if [[ $isdual == "1" ]]; then
+	fbset -fb /dev/fb0 -g 1920 1080 1920 1080 16
+	/usr/bin/python /opt/retropie/configs/all/PieMarquee2/PieMarquee2.py &
+fi
+EOF12389
+		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
+	fi
 fi
 }
 
@@ -499,23 +503,6 @@ omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 
 EOF18293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 	fi
-
-	#Do Auto Start Edits for marquee#
-	ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
-	if [[ ${ifexist3489} > 0 ]]; then
-		echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
-		echo "already in autostart.sh" > /tmp/exists
-		sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
-	else
-cat <<\EOF12389 > "/tmp/templist-marquee"
-isdual=`tvservice -l |grep "2 attached device" |wc -l`
-if [[ $isdual == "1" ]]; then
-fbset -fb /dev/fb0 -g 1920 1080 1920 1080 16
-/usr/bin/python /opt/retropie/configs/all/PieMarquee2/PieMarquee2.py &
-fi
-EOF12389
-		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
-	fi
 fi
 
 # Auto Start Edits for TAMO+
@@ -572,6 +559,36 @@ if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/
 else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
 # Runcommand On Start Edits for TAMO+
+if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
+	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
+	cat <<\EOF1234 > "/tmp/templist2"
+#!/bin/sh
+### Begin VideoLoading Screens Function
+enablevideolaunch="true"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
+if [[ $enablevideolaunch == "true" ]]; then
+	# Extract file name from called ROM
+	gname="$(basename "$3")"
+	# build path to file and remove extension from ROM to add mp4 extension
+	# $HOME variable will help users that are not stick to raspberry ;)
+	ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
+	ifsystem="$videoloadingscreens/$1.mp4"
+	default="$videoloadingscreens/default.mp4"
+	# If condition to check filename with -f switch, f means regular file
+	if [[ -f $ifgame ]]; then
+		omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
+	elif [[ -f $ifsystem ]]; then
+		omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
+	elif [[ -f $default ]]; then
+		omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
+	fi
+fi
+### End VideoLoading Screens Function
+EOF1234
+	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
+fi
+
 if [ "$minimum" -lt "2" ]; then
 	filefound4=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
 	if [[ ${filefound4} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
@@ -602,41 +619,20 @@ if [[ ${ifexist2} > 0 ]]; then
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 fi
 
-if [ ! -s /opt/retropie/configs/all/runcommand-onstart.sh ]; then
-	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
-	cat <<\EOF1234 > "/tmp/templist2"
-#!/bin/sh
-### Begin VideoLoading Screens Function
-enablevideolaunch="true"
-videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/jarvis"
-if [[ $enablevideolaunch == "true" ]]; then
- # Extract file name from called ROM
- gname="$(basename "$3")"
- # build path to file and remove extension from ROM to add mp4 extension
- # $HOME variable will help users that are not stick to raspberry ;)
- ifgame="$videoloadingscreens/$1/${gname%.*}.mp4"
- ifsystem="$videoloadingscreens/$1.mp4"
- default="$videoloadingscreens/default.mp4"
- # If condition to check filename with -f switch, f means regular file
- if [[ -f $ifgame ]]; then
-    omxplayer --vol 250 --amp 250 -b "$ifgame" > /dev/null 2>&1
- elif [[ -f $ifsystem ]]; then
-    omxplayer --vol 250 --amp 250 -b "$ifsystem" > /dev/null 2>&1
- elif [[ -f $default ]]; then
-    omxplayer --vol 250 --amp 250 -b "$default" > /dev/null 2>&1
- fi
-fi
-### End VideoLoading Screens Function
-EOF1234
-	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
-	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
-fi
-
 filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
 if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 
 # Runcommand On End Edits for TAMO+
+if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
+	cat <<\EOF12345 > "/tmp/templist3"
+#! /bin/bash
+# /etc/init.d/start-sound
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+EOF12345
+	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
+fi
+
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
 sed -i '/pkill -CONT mpg123/d' $RUNONEND
@@ -649,16 +645,11 @@ ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --v
 if [[ ${ifexist3} > 0 ]]; then
 	echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
 	echo "already in runcommand-onend.sh" > /tmp/exists
-else
-	if [ "$minimum" -lt "2" ]; then
-cat <<\EOF12345 > "/tmp/templist3"
-#! /bin/bash
-# /etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
-EOF12345
-		sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
-	fi
 fi
+
+filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
+if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
+else sed -i '1i #!/bin/bash' $RUNONEND; fi
 
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 3
@@ -669,10 +660,6 @@ if [ "$minimum" -lt "2" ]; then
 	if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" /etc/splashscreen.list
 fi
-
-filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
-if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
-else sed -i '1i #!/bin/bash' $RUNONEND; fi
 cd $HOME
 }
 
