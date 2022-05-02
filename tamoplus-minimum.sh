@@ -1314,7 +1314,7 @@ sleep 1
 }
 
 update_tamo() {
-bash $INSTALL_DIR/Update.sh
+bash $INSTALL_DIR/scripts/Updater.sh
 exit 1
 }
 
