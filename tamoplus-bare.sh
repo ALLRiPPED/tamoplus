@@ -1022,7 +1022,7 @@ sleep 1
 }
 
 update_tamo() {
-	tamoscriptupdate()
+	tamoscriptupdate() {
 	if grep -q "TAMO+ Full Script" "$MENU_DIR/tamoplus.sh"; then
 		cp -f $INSTALL_DIR/tamoplus.sh $MENU_DIR/tamoplus.sh
 	elif grep -q "TAMO+ Minimal Script" "$MENU_DIR/tamoplus.sh"; then
