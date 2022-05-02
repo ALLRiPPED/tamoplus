@@ -1024,11 +1024,11 @@ sleep 1
 update_tamo() {
 	tamoscriptupdate()
 	if grep -q "TAMO+ Full Script" "$MENU_DIR/tamoplus.sh"; then
-		cp -f $INSTALL_DIR/tammoplus.sh $MENU_DIR/tammoplus.sh
+		cp -f $INSTALL_DIR/tamoplus.sh $MENU_DIR/tamoplus.sh
 	elif grep -q "TAMO+ Minimal Script" "$MENU_DIR/tamoplus.sh"; then
-		cp -f $INSTALL_DIR/tammoplus-minimum.sh $MENU_DIR/tammoplus.sh
+		cp -f $INSTALL_DIR/tamoplus-minimum.sh $MENU_DIR/tamoplus.sh
 	elif grep -q "TAMO+ Bare Script" "$MENU_DIR/tamoplus.sh"; then
-		cp -f $INSTALL_DIR/tammoplus-bare.sh $MENU_DIR/tammoplus.sh
+		cp -f $INSTALL_DIR/tamoplus-bare.sh $MENU_DIR/tamoplus.sh
 	fi
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 1
