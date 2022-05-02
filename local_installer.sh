@@ -13,6 +13,7 @@ MUSIC_DIR="$HOME/RetroPie/roms/music"
 MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
 STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
+SPLASH_DIR="$HOME/RetroPie/splashscreens"
 ES_SETTINGS="/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
@@ -88,7 +89,6 @@ clear
 prep_work
 setup
 install_ending
-rebootq
 exit
 }
 
@@ -103,7 +103,6 @@ echo "Music All Done. Final Setup Commencing"
 download_videos
 setup
 install_ending
-rebootq
 exit
 }
 
@@ -119,7 +118,6 @@ echo "Music All Done. Final Setup Commencing"
 download_videos
 setup
 install_ending
-rebootq
 exit
 }
 
@@ -136,7 +134,6 @@ echo "Music All Done. Final Setup Commencing"
 download_videos
 setup
 install_ending
-rebootq
 exit
 }
 
@@ -179,7 +176,7 @@ else echo "Moving Default Launch Screens to default folder"
 fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 1
-if [ -f "$HOME/RetroPie/CharlieBrown.mp4" ] && [ -f "$HOME/RetroPie/Halloween.mp4" ] && [ -f "$HOME/RetroPie/JarvisSplash.mp4" ] && [ -f "$HOME/RetroPie/ThanksForPlaying.mp4" ]
+if [ -f "$SPLASH_DIR/CharlieBrown.mp4" ] && [ -f "$SPLASH_DIR/Halloween.mp4" ] && [ -f "$SPLASH_DIR/JarvisSplash.mp4" ] && [ -f "$SPLASH_DIR/ThanksForPlaying.mp4" ]
 then echo "Splash, Exit, and Game Launching Screens Found!"
 else
 	if [ -f "$HOME/tamoplus/tamoplus-screens.zip" ]; then echo "Extracting Splash, Exit, and Game Launching Screens"; unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie
@@ -238,8 +235,14 @@ fi
 }
 
 prep_work() {
-echo "Please Note If On A supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added By Tamo Plus"
-sleep 3
+if [ -f /etc/sbu/sbu.sh ]; then
+	echo "Please Note On A Supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
+	echo "You can put them back with Fix My Build in the RetroPie Menu"
+	sleep 3
+else
+	echo "Please Note This Instaler Will Remove The Audio Settings And ES Themes menus that will be added By Tamo Plus"
+	sleep 3
+fi
 
 echo "Installing Needed Packages"
 sleep 3
@@ -250,20 +253,26 @@ if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PY
 fi
 sudo apt-get install -y $PSUTIL_PKG # to generate overlays
 sudo pip install requests gdown
+
+# Normal RetroPie Menu Edits
+if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo mv $MENU_DIR/audiosettings.rp $MENU_DIR/audiosettings.rp.bk; fi
+if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo mv $MENU_DIR/esthemes.rp $MENU_DIR/esthemes.rp.bk; fi
+
+# Supreme ES Edits
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
-#Supreme ES Edits
-if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
-if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
+	# Supreme RetroPie Menu Edits
+	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
+	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
 
-#Supreme Attract mode Edits
-if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
-if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
-if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
-if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
-if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
+	# Supreme Attract mode Edits
+	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
    
-cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
+	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
 Controller tools;/ Controller Tools;@;;;;;;;;;0;;;;;
 Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
@@ -281,37 +290,42 @@ rpsetup;Retropie Setup;Settings;;;;;;;;;;;;;;
 reboot;Reboot;Settings;;;;;;;;;;;;;;
 shutdown;Shutdown;Settings;;;;;;;;;;;;;;
 EOF152935
-sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
+	sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
 fi
 
-cd ~
+cd $HOME
 
-##### Disable ODROID BGM script if it exists
+# Disable ODROID BGM script if it exists
 if [ -a $HOME/scripts/bgm/start.sc ]; then pkill -STOP mpg123; sudo rm $HOME/scripts/bgm/start.sc; fi
 
-##### Code by RapidEdwin08 from IMP https://github.com/RapidEdwin08/imp.git
-##### Disable 0ther BGMs Indiscriminately
+# Code by RapidEdwin08 from IMP https://github.com/RapidEdwin08/imp.git
+# Disable 0ther BGMs Indiscriminately
 sudo pkill -STOP mpg123 > /dev/null 2>&1
 sudo pkill -KILL mpg123 > /dev/null 2>&1
-##### Disable Livewire
+# Disable Livewire
 if [ ! -f $HOME/.DisableMusic ]; then touch $HOME/.DisableMusic; fi
 if [ -f $HOME/RetroPie/retropiemenu/bgm-mute.sh ]; then mv $HOME/RetroPie/retropiemenu/bgm-mute.sh $HOME/RetroPie/retropiemenu/bgm-mute.sh.tamoplus; fi
-##### Disable BGM Naprosnia
+# Disable BGM Naprosnia
 sudo pkill -STOP audacious > /dev/null 2>&1
 sudo pkill -KILL audacious > /dev/null 2>&1
 if [ -f $HOME/RetroPie-BGM-Player/bgm_system.sh ]; then bash $HOME/RetroPie-BGM-Player/bgm_system.sh -setsetting bgm_toggle 0; fi
 if [ -f $HOME/RetroPie/retropiemenu/RetroPie-BGM-Player.sh ]; then mv $HOME/RetroPie/retropiemenu/RetroPie-BGM-Player ~/RetroPie/retropiemenu/RetroPie-BGM-Player.sh.tamoplus 2>/dev/null; fi
-##### Disable BGM Rydra
+# Disable BGM Rydra
 sudo systemctl stop bgm > /dev/null 2>&1
 sudo systemctl disable bgm > /dev/null 2>&1
-##### Disable BGM 0fficialPhilcomm
+# Disable BGM 0fficialPhilcomm
 sudo systemctl stop retropie_music > /dev/null 2>&1
 sudo systemctl disable retropie_music > /dev/null 2>&1
-##### Final daemon-reload after Disable 0ther BGMs
+# Final daemon-reload after Disable 0ther BGMs
 sudo systemctl daemon-reload > /dev/null 2>&1
-##### Remove other stray BGMs
+# Remove other stray BGMs
 if [ -f "$HOME/BGM.py" ]; then rm -f $HOME/BGM.py; fi
 if [ -f "$MUSIC_DIR/BGM.py" ]; then rm -f $MUSIC_DIR/BGM.py; fi
+
+# Make backup of autostart.sh.
+if [ -f /opt/retropie/configs/all/autostart.sh ]; then
+	cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus 2>/dev/null         
+fi
 
 # Make backups runcommand files.
 if [ -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
@@ -322,15 +336,10 @@ if [  -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	cp /opt/retropie/configs/all/runcommand-onend.sh /opt/retropie/configs/all/runcommand-onend.sh.tamoplus 2>/dev/null         
 fi
 
-# Make backup of autostart.sh.
-if [ -f /opt/retropie/configs/all/autostart.sh ]; then
-	cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.tamoplus 2>/dev/null         
-fi
-
 if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
 	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
-		sudo chmod +x ~/tamoplus/pngview
-		sudo cp ~/tamoplus/pngview /usr/local/bin/
+		sudo chmod +x $HOME/tamoplus/pngview
+		sudo cp $HOME/tamoplus/pngview /usr/local/bin/
 	fi
 elif [[ $currentuser == "pigaming" ]]; then
 	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev # Install ODROID stuff
@@ -345,7 +354,7 @@ sudo cp -f $HOME/tamoplus/GROBOLD.ttf /usr/share/fonts/truetype/
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 
-##### Will add Default missing EmulationStation settings
+# Will add Default missing EmulationStation settings
 if [ ! -f  "/opt/retropie/configs/all/emulationstation/es_settings.cfg" ]; then
 cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <?xml version="1.0"?>
@@ -408,7 +417,7 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 
-#Added Supreme Marquee and Script
+# Added Supreme Marquee and Script
 cd $HOME
 git clone https://github.com/SupremePi/PieMarquee2.git
 chmod 777 $HOME/PieMarquee2
@@ -453,12 +462,12 @@ if [ "$minimum" = "1" ]; then
 	sudo chmod +x $INSTALL_DIR/tamoplus-minimum.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-minimum.sh
 	cp $INSTALL_DIR/tamoplus-minimum.sh $RP_MENU/tamoplus.sh
-	mkdir $HOME/RetroPie/roms/music/custom
+	mkdir $MUSIC_DIR/custom
 elif [ "$minimum" = "2" ]; then
 	sudo chmod +x $INSTALL_DIR/tamoplus-bare.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-bare.sh
 	cp $INSTALL_DIR/tamoplus-bare.sh $RP_MENU/tamoplus.sh
-	mkdir $HOME/RetroPie/roms/music/custom
+	mkdir $MUSIC_DIR/custom
 else
 	sudo chmod +x $INSTALL_DIR/tamoplus.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus.sh
@@ -517,7 +526,7 @@ else
 	filefound88=`cat /opt/retropie/configs/all/autostart.sh |grep mpg123 |wc -l`
 	if [[ ${filefound88} > 0 ]]; then
 
-		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It And Installing The Tamo+ Version! $(tput sgr0)"
+		echo -e "$(tput setaf 2)Found An Old Version Of Mpg123 Installed Removing It For Tamo+ Installation $(tput sgr0)"
 		sleep 3      
 		sed -i '/^while pgrep omxplayer/d' $AUTOSTART
 		sed -i '/^#while pgrep omxplayer/d' $AUTOSTART
@@ -664,7 +673,7 @@ cd $HOME
 }
 
 install_ending() {
-##### Explain stuff to the user
+# Explain stuff to the user
 ending=""
 ending="${ending}TAMO+ and is now installed.\n"
 ending="${ending}Run $RP_MENU/tamoplus.sh or navigate to:\n"
@@ -674,6 +683,8 @@ ending="${ending}Thanks for trying out TAMO+\n\n"
 dialog --backtitle "TAMO+ Install Script $ver" \
 	--title "TAMO+ Install Script $ver" \
 	--msgbox "${ending}" 35 110
+
+rebootq
 }
 
 rebootq() {

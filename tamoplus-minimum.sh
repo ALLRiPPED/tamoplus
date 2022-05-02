@@ -1314,11 +1314,32 @@ sleep 1
 }
 
 update_tamo() {
-if [ -d "$INSTALL_DIR" ]; then sudo rm -f -r $INSTALL_DIR; fi
-git clone --depth=1 https://github.com/ALLRiPPED/tamoplus.git
-cd tamoplus
-sudo chmod +x local_installer.sh
-./local_installer.sh
+	tamoscriptupdate()
+	if grep -q "TAMO+ Full Script" "$MENU_DIR/tamoplus.sh"; then
+		cp -f $INSTALL_DIR/tammoplus.sh $MENU_DIR/tammoplus.sh
+	elif grep -q "TAMO+ Minimal Script" "$MENU_DIR/tamoplus.sh"; then
+		cp -f $INSTALL_DIR/tammoplus-minimum.sh $MENU_DIR/tammoplus.sh
+	elif grep -q "TAMO+ Bare Script" "$MENU_DIR/tamoplus.sh"; then
+		cp -f $INSTALL_DIR/tammoplus-bare.sh $MENU_DIR/tammoplus.sh
+	fi
+	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
+	sleep 1
+	}
+
+if [ -d "$INSTALL_DIR" ]; then
+	cd $INSTALL_DIR
+	git reset --hard
+	git pull
+	tamoscriptupdate
+	bash $MENU_DIR/tamoplus.sh
+	exit 1
+else
+	git clone --depth=1 https://github.com/ALLRiPPED/tamoplus.git
+	cd $INSTALL_DIR
+	tamoscriptupdate
+	bash $MENU_DIR/tamoplus.sh
+	exit 1
+fi
 }
 
 disclaim() {
