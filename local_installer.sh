@@ -570,6 +570,8 @@ else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 # Runcommand On Start Edits for TAMO+
 if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
+	echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
 	cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -634,6 +636,8 @@ else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 
 # Runcommand On End Edits for TAMO+
 if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
+	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 	cat <<\EOF12345 > "/tmp/templist3"
 #! /bin/bash
 # /etc/init.d/start-sound
