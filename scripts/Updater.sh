@@ -3,7 +3,7 @@
 # Updated script by Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
 #############################################
-# Install Themes and Music Overlay Plus
+# Update Themes and Music Overlay Plus
 #############################################
 INSTALL_DIR="$HOME/tamoplus"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
