@@ -65,7 +65,7 @@ overlay_background_color = "DimGray"
 # DimGray is default
 overlay_text_color = "Black"
 # Default system font included by default
-overlay_text_font = "/usr/share/fonts/truetype/GROBOLD.ttf"
+overlay_text_font = "GROBOLD"
 # Set to "True" round the corners of the overlay
 overlay_rounded_corners = True
 # Set to "True" to turn all " - " symbols in song title to new line characters. (Mostly for OGST Display)
