@@ -164,7 +164,7 @@ $INSTALL_DIR/scripts/remove-media.sh
 
 retropie_splashscreen() {
 if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f -r $MENU_DIR/splashscreen.rp; fi
-sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
+sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui
 }
 
 skyscraper_utility() {
