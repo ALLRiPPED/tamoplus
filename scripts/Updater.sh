@@ -1,5 +1,5 @@
 #!/bin/bash
-# Updater.sh
+# updater.sh
 # Updated script by Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
 #############################################
