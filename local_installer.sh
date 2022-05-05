@@ -240,7 +240,7 @@ if [ -f /etc/sbu/sbu.sh ]; then
 	echo "You can put them back with Fix My Build in the RetroPie Menu"
 	sleep 3
 else
-	echo "Please Note This Instaler Will Remove The Audio Settings And ES Themes menus that will be added By Tamo Plus"
+	echo "Please Note This Instaler Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
 	sleep 3
 fi
 
@@ -257,7 +257,7 @@ sudo pip install requests gdown
 # Normal RetroPie Menu Edits
 if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo mv $MENU_DIR/audiosettings.rp $MENU_DIR/audiosettings.rp.bk; fi
 if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo mv $MENU_DIR/esthemes.rp $MENU_DIR/esthemes.rp.bk; fi
-
+if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo mv $MENU_DIR/splashscreen.rp $MENU_DIR/splashscreen.rp.bk; fi
 # Supreme ES Edits
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
@@ -707,7 +707,7 @@ rebootq() {
             02) rebootn ;;
             03) rebootld ;;
             04) rebootnd ;;
-            *)  break ;;
+             *) break ;;
         esac
     done
 }
