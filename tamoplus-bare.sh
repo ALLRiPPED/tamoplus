@@ -611,8 +611,8 @@ local choice
             5 "Enable/Disable Overlay Line Separator $ons" \
             6 "Vertical Position: $vpos" \
             7 "Horizontal Position: $hpos" \
-            8 "Font Selection" \
-            9 "Font Color Selection" \
+            8 "Font Selection: $cfont" \
+            9 "Font Color Selection: $ccolor" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_enable ;;
