@@ -1261,7 +1261,7 @@ local choice
     while true; do
         choice=$(dialog --colors --backtitle "Font Selection  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
             --ok-label OK --cancel-label Back \
-            --menu "What action would you like to perform?" 25 85 20 \
+            --menu "Choose Font, Current Font $cfont" 25 85 20 \
             1 "DejaVuSans" \
             2 "DejaVuSansMono" \
             3 "DejaVuSerif" \
@@ -1296,7 +1296,7 @@ local choice
            14) font_change "Pixel" ;;
            15) font_change "Quicksand-Regular" ;;
            16) font_change "TakaoGothic" ;;
-           *) break ;;
+            *) break ;;
         esac
     done
 }
@@ -1359,6 +1359,8 @@ if [ $CUR_VPOS = "0" ]; then
 else
 	vpos="\Z3Bottom\Zn"
 fi
+CURFONT=$(grep "overlay_text_font =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
+cfont="\Z3$CURFONT\Zn"
 if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then ms=$disable
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then ms="\Z3Halloween\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then ms="\Z3Christmas\Zn"
