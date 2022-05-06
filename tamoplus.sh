@@ -2,7 +2,7 @@
 # TAMO+ Full Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
-ver="v1.25"
+ver="v1.30"
 SCRIPT_LOC="$HOME/tamoplus/BGM.py"
 INSTALL_DIR="$HOME/tamoplus"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
@@ -650,6 +650,7 @@ local choice
             5 "Enable/Disable Overlay Line Separator $ons" \
             6 "Vertical Position: $vpos" \
             7 "Horizontal Position: $hpos" \
+            8 "Font Selection" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_enable ;;
@@ -659,6 +660,7 @@ local choice
             5) overlay_replace_newline ;;
             6) overlay_v_pos ;;
             7) overlay_h_pos ;;
+            8) font_selection ;;
             *) break ;;
         esac
     done
@@ -1249,6 +1251,60 @@ if [ $CUR_HPOS = \"0\" ]; then
 else
 	sed -i -E "s/overlay_x_offset = ${CUR_HPOS}/overlay_x_offset = ${NEW_HPOSL}/g" $SCRIPT_LOC
 fi
+bgm_check
+stats_check
+}
+
+font_selection() {
+stats_check
+local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Font Selection  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
+            --ok-label OK --cancel-label Back \
+            --menu "What action would you like to perform?" 25 85 20 \
+            1 "DejaVuSans" \
+            2 "DejaVuSansMono" \
+            3 "DejaVuSerif" \
+            4 "FreeMono" \
+            5 "FreeSans" \
+            6 "FreeSerif" \
+            7 "GROBOLD" \
+            8 "LiberationMono-Regular" \
+            9 "LiberationSans-Regular" \
+           10 "LiberationSerif-Regular" \
+           11 "NotoMono-Regular" \
+           12 "Piboto-Regular" \
+           13 "PibotoCondensed-Regular" \
+           14 "Pixel" \
+           15 "Quicksand-Regular" \
+           16 "TakaoGothic" \
+		   2>&1 > /dev/tty)
+        case "$choice" in
+            1) font_change "DejaVuSans" ;;
+            2) font_change "DejaVuSansMono" ;;
+            3) font_change "DejaVuSerif" ;;
+            5) font_change "FreeMono" ;;
+            5) font_change "FreeSans" ;;
+            6) font_change "FreeSerif" ;;
+            7) font_change "GROBOLD" ;;
+            8) font_change "LiberationMono-Regular" ;;
+            9) font_change "LiberationSans-Regular" ;;
+           10) font_change "LiberationSerif-Regular" ;;
+           11) font_change "NotoMono-Regular" ;;
+           12) font_change "Piboto-Regular" ;;
+           13) font_change "PibotoCondensed-Regular" ;;
+           14) font_change "Pixel" ;;
+           15) font_change "Quicksand-Regular" ;;
+           16) font_change "TakaoGothic" ;;
+           *) break ;;
+        esac
+    done
+}
+
+font_change() {
+CUR_FONT=$(grep "overlay_text_font =" "${SCRIPT_LOC}"|awk '{print $3}')
+export CUR_FONT
+sed -i -E "s/overlay_text_font = ${CUR_FONT}/overlay_text_font = \"${1}\"/g" $SCRIPT_LOC
 bgm_check
 stats_check
 }
