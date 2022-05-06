@@ -612,6 +612,7 @@ local choice
             6 "Vertical Position: $vpos" \
             7 "Horizontal Position: $hpos" \
             8 "Font Selection" \
+            9 "Font Color Selection" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_enable ;;
@@ -622,6 +623,7 @@ local choice
             6) overlay_v_pos ;;
             7) overlay_h_pos ;;
             8) font_selection ;;
+            9) font_color_selection ;;
             *) break ;;
         esac
     done
@@ -928,7 +930,7 @@ font_selection() {
 stats_check
 local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Font Selection  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
+        choice=$(dialog --colors --backtitle "Font Selection  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Font Selection " \
             --ok-label OK --cancel-label Back \
             --menu "Choose Font, Current Font $cfont" 25 85 20 \
             1 "DejaVuSans-Bold" \
@@ -1066,6 +1068,296 @@ bgm_check
 stats_check
 }
 
+font_color_selection() {
+stats_check
+local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Font Color Selection  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Font Color Selection " \
+            --ok-label OK --cancel-label Back \
+            --menu "Choose Color, Current Font Color $ccolor" 25 85 20 \
+           001 "Brown" \
+           002 "RosyBrown" \
+           003 "SaddleBrown" \
+           004 "SandyBrown" \
+           005 "LightCoral" \
+           006 "Firebrick" \
+           007 "Blue" \
+           008 "LightBlue" \
+           009 "MediumBlue" \
+           010 "PowderBlue" \
+           011 "SkyBlue" \
+           012 "LightSkyBlue" \
+           013 "DeepSkyBlue" \
+           014 "NavyBlue" \
+           015 "RoyalBlue" \
+           016 "CadetBlue" \
+           017 "CornflowerBlue" \
+           018 "LightSteelBlue" \
+           019 "DodgerBlue" \
+           020 "AliceBlue" \
+           021 "SteelBlue" \
+           022 "BlueViolet" \
+           023 "DarkSlateBlue" \
+           024 "LightSlateBlue" \
+           025 "MediumSlateBlue" \
+           026 "SlateBlue" \
+           027 "Red" \
+           028 "IndianRed" \
+           029 "DarkRed" \
+           030 "PaleVioletRed" \
+           031 "VioletRed" \
+           032 "MediumVioletRed" \
+           033 "OrangeRed" \
+           034 "Orange" \
+           035 "DarkOrange" \
+           036 "Gray" \
+           037 "DimGray" \
+           038 "SlateGray" \
+           039 "LightSlateGray" \
+           040 "DarkSlateGray" \
+           041 "Maroon" \
+           042 "LightPink" \
+           043 "HotPink" \
+           044 "DeepPink" \
+           045 "Pink" \
+           046 "Purple" \
+           047 "Lavender" \
+           048 "LavenderBlush" \
+           049 "Violet" \
+           050 "DarkViolet" \
+           051 "Orchid" \
+           052 "DarkOrchid" \
+           053 "MediumOrchid" \
+           054 "Thistle" \
+           055 "Plum" \
+           056 "Fuchsia" \
+           057 "Magenta" \
+           058 "DarkMagenta" \
+           059 "Indigo" \
+           060 "MediumPurple" \
+           061 "Turquoise" \
+           062 "PaleTurquoise" \
+           063 "MediumTurquoise" \
+           064 "DarkTurquoise" \
+           065 "Azure" \
+           066 "LightCyan" \
+           067 "DarkCyan" \
+           068 "Teal" \
+           069 "Aqua" \
+           070 "Aquamarine" \
+           071 "MediumAquamarine" \
+           072 "SeaGreen" \
+           073 "LightSeaGreen" \
+           074 "MediumSeaGreen" \
+           075 "DarkSeaGreen" \
+           076 "SpringGreen" \
+           077 "MediumSpringGreen" \
+           078 "MintCream" \
+           079 "ForestGreen" \
+           080 "MediumForestGreen" \
+           081 "honeydew" \
+           082 "PaleGreen" \
+           083 "LightGreen" \
+           084 "DarkGreen" \
+           085 "Lime" \
+           086 "LimeGreen" \
+           087 "LawnGreen" \
+           088 "Chartreuse" \
+           089 "GreenYellow" \
+           090 "Olive" \
+           091 "DarkOliveGreen" \
+           092 "OliveDrab" \
+           093 "Ivory" \
+           094 "LightYellow" \
+           095 "Beige" \
+           096 "LightGoldenrodYellow" \
+           097 "Goldenrod" \
+           098 "LightGoldenrod" \
+           099 "MediumGoldenRod" \
+           100 "DarkGoldenrod" \
+           101 "LemonChiffon" \
+           102 "Yellow" \
+           103 "DarkKhaki" \
+           104 "Khaki" \
+           105 "Gold" \
+           106 "Cornsilk" \
+           107 "FloralWhite" \
+           108 "OldLace" \
+           109 "Wheat" \
+           110 "Moccasin" \
+           111 "PapayaWhip" \
+           112 "NavajoWhite" \
+           113 "BlanchedAlmond" \
+           114 "AntiqueWhite" \
+           115 "Tan" \
+           116 "Bisque" \
+           117 "Burlywood" \
+           118 "Linen" \
+           119 "Peru" \
+           120 "PeachPuff" \
+           121 "Seashell" \
+           122 "Chocolate" \
+           123 "Sienna" \
+           124 "Salmon" \
+           125 "LightSalmon" \
+           126 "DarkSalmon" \
+           127 "Coral" \
+           128 "Tomato" \
+           129 "MistyRose" \
+           130 "Snow" \
+           131 "White" \
+           132 "GhostWhite" \
+           133 "WhiteSmoke" \
+           134 "Black" \
+		   2>&1 > /dev/tty)
+        case "$choice" in
+           001) color_change "brown" ;;
+           002) color_change "RosyBrown" ;;
+           003) color_change "SaddleBrown" ;;
+           004) color_change "SandyBrown" ;;
+           005) color_change "LightCoral" ;;
+           006) color_change "firebrick" ;;
+           007) color_change "blue" ;;
+           008) color_change "LightBlue" ;;
+           009) color_change "MediumBlue" ;;
+           010) color_change "PowderBlue" ;;
+           011) color_change "SkyBlue" ;;
+           012) color_change "LightSkyBlue" ;;
+           013) color_change "DeepSkyBlue" ;;
+           014) color_change "NavyBlue" ;;
+           015) color_change "RoyalBlue" ;;
+           016) color_change "CadetBlue" ;;
+           017) color_change "CornflowerBlue" ;;
+           018) color_change "LightSteelBlue" ;;
+           019) color_change "DodgerBlue" ;;
+           020) color_change "AliceBlu" ;;
+           021) color_change "SteelBlue" ;;
+           022) color_change "BlueViolet" ;;
+           023) color_change "DarkSlateBlue" ;;
+           024) color_change "LightSlateBlue" ;;
+           025) color_change "MediumSlateBlue" ;;
+           026) color_change "SlateBlue" ;;
+           027) color_change "red" ;;
+           028) color_change "IndianRed" ;;
+           029) color_change "DarkRed" ;;
+           030) color_change "PaleVioletRed" ;;
+           031) color_change "VioletRed" ;;
+           032) color_change "MediumVioletRed" ;;
+           033) color_change "OrangeRed" ;;
+           034) color_change "orange" ;;
+           035) color_change "DarkOrange" ;;
+           036) color_change "gray" ;;
+           037) color_change "DimGray" ;;
+           038) color_change "SlateGray" ;;
+           039) color_change "LightSlateGray" ;;
+           040) color_change "DarkSlateGray" ;;
+           041) color_change "maroon" ;;
+           042) color_change "LightPink" ;;
+           043) color_change "HotPink" ;;
+           044) color_change "DeepPink" ;;
+           045) color_change "pink" ;;
+           046) color_change "purple" ;;
+           047) color_change "lavender" ;;
+           048) color_change "LavenderBlush" ;;
+           049) color_change "violet" ;;
+           050) color_change "DarkViolet" ;;
+           051) color_change "orchid" ;;
+           052) color_change "DarkOrchid" ;;
+           053) color_change "MediumOrchid" ;;
+           054) color_change "thistle" ;;
+           055) color_change "plum" ;;
+           056) color_change "fuchsia" ;;
+           057) color_change "magenta" ;;
+           058) color_change "DarkMagenta" ;;
+           059) color_change "indigo" ;;
+           060) color_change "MediumPurple" ;;
+           061) color_change "turquoise" ;;
+           062) color_change "PaleTurquoise" ;;
+           063) color_change "MediumTurquoise" ;;
+           064) color_change "DarkTurquoise" ;;
+           065) color_change "azure" ;;
+           066) color_change "LightCyan" ;;
+           067) color_change "DarkCyan" ;;
+           068) color_change "teal" ;;
+           069) color_change "aqua" ;;
+           070) color_change "aquamarine" ;;
+           071) color_change "MediumAquamarine" ;;
+           072) color_change "SeaGreen" ;;
+           073) color_change "LightSeaGreen" ;;
+           074) color_change "MediumSeaGreen" ;;
+           075) color_change "DarkSeaGreen" ;;
+           076) color_change "SpringGreen" ;;
+           077) color_change "MediumSpringGreen" ;;
+           078) color_change "MintCream" ;;
+           079) color_change "ForestGreen" ;;
+           080) color_change "MediumForestGreen" ;;
+           081) color_change "honeydew" ;;
+           082) color_change "PaleGreen" ;;
+           083) color_change "LightGreen" ;;
+           084) color_change "DarkGreen" ;;
+           085) color_change "lime" ;;
+           086) color_change "LimeGreen" ;;
+           087) color_change "LawnGreen" ;;
+           088) color_change "chartreuse" ;;
+           089) color_change "GreenYellow" ;;
+           090) color_change "olive" ;;
+           091) color_change "DarkOliveGreen" ;;
+           092) color_change "OliveDrab" ;;
+           093) color_change "ivory" ;;
+           094) color_change "LightYellow" ;;
+           095) color_change "beige" ;;
+           096) color_change "LightGoldenrodYellow" ;;
+           097) color_change "goldenrod" ;;
+           098) color_change "LightGoldenrod" ;;
+           099) color_change "MediumGoldenRod" ;;
+           100) color_change "DarkGoldenrod" ;;
+           101) color_change "LemonChiffon" ;;
+           102) color_change "yellow" ;;
+           103) color_change "DarkKhaki" ;;
+           104) color_change "khaki" ;;
+           105) color_change "gold" ;;
+           106) color_change "cornsilk" ;;
+           107) color_change "FloralWhite" ;;
+           108) color_change "OldLace" ;;
+           109) color_change "wheat" ;;
+           110) color_change "moccasin" ;;
+           111) color_change "PapayaWhip" ;;
+           112) color_change "NavajoWhite" ;;
+           113) color_change "BlanchedAlmond" ;;
+           114) color_change "AntiqueWhite" ;;
+           115) color_change "tan" ;;
+           116) color_change "bisque" ;;
+           117) color_change "burlywood" ;;
+           118) color_change "linen" ;;
+           119) color_change "peru" ;;
+           120) color_change "PeachPuff" ;;
+           121) color_change "seashell" ;;
+           122) color_change "chocolate" ;;
+           123) color_change "seashell" ;;
+           124) color_change "salmon" ;;
+           125) color_change "LightSalmon" ;;
+           126) color_change "DarkSalmon" ;;
+           127) color_change "coral" ;;
+           128) color_change "tomato" ;;
+           129) color_change "MistyRose" ;;
+           130) color_change "snow" ;;
+           131) color_change "white" ;;
+           132) color_change "GhostWhite" ;;
+           133) color_change "WhiteSmoke" ;;
+           134) color_change "Black" ;;
+             *) break ;;
+        esac
+    done
+}
+
+color_change() {
+CUR_COLOR=$(grep "overlay_text_color =" "${SCRIPT_LOC}"|awk '{print $3}')
+export CUR_COLOR
+sed -i -E "s/overlay_text_color = ${CUR_COLOR}/overlay_text_color = \"${1}\"/g" $SCRIPT_LOC
+bgm_check
+stats_check
+}
+
 stats_check() {
 enable="\Z2Enabled\Zn"
 disable="\Z1Disabled\Zn"
@@ -1118,6 +1410,8 @@ else
 fi
 CURFONT=$(grep "overlay_text_font =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
 cfont="\Z3$CURFONT\Zn"
+CURCOLOR=$(grep "overlay_text_color =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
+ccolor="\Z3$CURCOLOR\Zn"
 if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then ms=$disable
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then ms="\Z3Custom\Zn"
 else

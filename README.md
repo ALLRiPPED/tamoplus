@@ -81,4 +81,4 @@ Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-D
 Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
 Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
 Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
-Version 1.30 - Added Font Selection to the menu. Only 60 fonts have been coded into script so far to choose from.<br>
+Version 1.30 - Added font and font color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
