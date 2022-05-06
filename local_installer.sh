@@ -351,6 +351,7 @@ fi
 
 cd $HOME/tamoplus/
 sudo cp -f $HOME/tamoplus/GROBOLD.ttf /usr/share/fonts/truetype/
+sudo cp -f $HOME/tamoplus/Pixel.otf /usr/share/fonts/truetype/
 sleep 1
 if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 
