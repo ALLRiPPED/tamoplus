@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.25 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.30 (formally known as TAMPO)
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -35,7 +35,7 @@ Now if you have any sugesstions or addition please fork the repo and hit me up w
 ## Future Plans
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
-#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding the ability to the control script to change overlay and text colors.
+#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding the ability to the control script to change overlay text colors.
 ## Color Section
 This is where you will find the info you will need to change the colors of the background and font on the Overlay.<br>
 At the moment I have a color table here with color names that can be typed in to the RPBGMO bash gui, right now they have to be typed in cause getting bash script color is not as easy to code as you would think.
@@ -81,3 +81,4 @@ Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-D
 Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
 Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
 Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
+Version 1.30 - Added Font Selection to the menu. Only 16 fonts have been coded into scrinpt so far but more to come.<br>
