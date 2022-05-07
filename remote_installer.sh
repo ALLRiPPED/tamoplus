@@ -33,7 +33,7 @@ if [ -d "$INSTALL_DIR" ]; then
 	sleep 1
 else
 	cd $HOME
-	git clone --branch https://github.com/ALLRiPPED/tamoplus.git
+	git clone https://github.com/ALLRiPPED/tamoplus.git
 	echo -e "$(tput setaf 2)TAMO+ Downloaded$(tput setaf 0)"
 	sleep 1
 fi
