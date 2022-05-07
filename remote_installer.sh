@@ -21,7 +21,7 @@ if [ ! -d "$HOME/RetroPie" ] && [ ! -d "$HOME/RetroPie-Setup" ]; then
 	errorbox="${errorbox}Then try to install TAMO+ Again.\n\n"
 	errorbox="${errorbox}_______________________________________________________\n\n"
 	dialog --backtitle "TAMO+ Install Script $ver" --title "TAMO+ Install Script $ver" --msgbox "${errorbox}" 0 0
-	exit 1
+	exit
 fi
 
 get_tamoplus() {
@@ -42,7 +42,7 @@ sudo chmod +x $INSTALL_DIR/local_installer.sh
 echo -e "$(tput setaf 2)Installing TAMO+$(tput setaf 0)"
 sleep 1
 bash "$INSTALL_DIR/local_installer.sh"
-exit 1
+exit
 }
 
 get_tamoplus
