@@ -1036,7 +1036,7 @@ else
 	sudo mv -f $SPL_DIR/HalloweenExit.mp4 $SPL_DIR/HalloweenExitOff.mp4
 	sudo mv -f $SPL_DIR/JarvisExit.mp4 $SPL_DIR/JarvisExitOff.mp4
 	sudo mv -f $SPL_DIR/PisteleroExit.mp4 $SPL_DIR/PisteleroExitOff.mp4
-	sudo mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $SPL_DIR/PleasureParadiseExit.mp4
+	sudo mv -f $SPL_DIR/PleasureParadiseExit.mp4 $SPL_DIR/PleasureParadiseExitOff.mp4
 	sudo mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $SPL_DIR/RetroDevilReaperExitOff.mp4
 	sudo mv -f $SPL_DIR/StrangerExit.mp4 $SPL_DIR/StrangerExitOff.mp4
 	sudo mv -f $SPL_DIR/SupremeExit.mp4 $SPL_DIR/SupremeExitOff.mp4
