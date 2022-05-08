@@ -12,7 +12,9 @@ THEMES_DIR="/opt/retropie/configs/all/emulationstation/themes"
 MUSIC_DIR="$HOME/RetroPie/roms/music"
 MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
-STMENU_DIR="$HOME/RetroPie/retropiemenu/visualtools"
+STMENU_DIR_V="$HOME/RetroPie/retropiemenu/audiotools"
+STMENU_DIR_C="$HOME/RetroPie/retropiemenu/controllertools"
+STMENU_DIR_V="$HOME/RetroPie/retropiemenu/visualtools"
 SPLASH_DIR="$HOME/RetroPie/splashscreens"
 ES_SETTINGS="/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
@@ -457,7 +459,7 @@ setup() {
 echo "Add menu options for BGM Overlay Controls"
 cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
-if [ -f "$STMENU_DIR/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR/tamoplus.sh; fi
+if [ -f "$STMENU_DIR_V/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR_V/tamoplus.sh; fi
 if [ "$minimum" = "1" ]; then
 	sudo chmod +x $INSTALL_DIR/tamoplus-minimum.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-minimum.sh
@@ -686,7 +688,7 @@ install_ending() {
 ending=""
 ending="${ending}TAMO+ and is now installed.\n"
 ending="${ending}Run $MENU_DIR/tamoplus.sh or navigate to:\n"
-if [ -d "$STMENU_DIR" ]; then ending="${ending}Retropie > Visualtools > TAMO+, for more options!\n"; else ending="${ending}Retropie > TAMO+, for more options!\n"; fi
+if [ -d "$STMENU_DIR_V" ]; then ending="${ending}Retropie > Visualtools > TAMO+, for more options!\n"; else ending="${ending}Retropie > TAMO+, for more options!\n"; fi
 ending="${ending}BGM has also been set up to run automatically when the device boots!\n"
 ending="${ending}Thanks for trying out TAMO+\n\n"
 dialog --backtitle "TAMO+ Install Script $ver" \
