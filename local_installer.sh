@@ -603,7 +603,7 @@ filefound2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep mpg123 |wc
 if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 
 filefound51=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep BGM_vol_fade.sh |wc -l`
-if [[ ${filefound51} > 0 ]]; then sed -i '/\/home\/pi\/BGM_vol_fade.sh -stop/d' $RUNONSTART
+if [[ ${filefound51} > 0 ]]; then sed -i '/home\/pi\/BGM_vol_fade.sh -stop/d' $RUNONSTART
 	if grep -q 'omxplayer' "$RUNONSTART"; then
 		sed -i 's/omxplayer "$default" > \/dev\/null 2>\&1/omxplayer "$default" > \/dev\/null 2>\&1\nfi/g' $RUNONSTART; sleep 1
 		sed -i '1i #!/bin/sh' $RUNONSTART
@@ -643,10 +643,20 @@ fi
 
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
-sed -i '/pkill -CONT mpg123/d' $RUNONEND
-sed -i '/#pkill -CONT mpg123/d' $RUNONEND
-sed -i '/#(sleep 2 && /home/pi/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
-sed -i '/(sleep 2 && /home/pi/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sed -i '/pkill -CONT mpg123/d' $RUNONEND
+	sed -i '/#pkill -CONT mpg123/d' $RUNONEND
+	sed -i '/#(sleep 2 && \/home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sed -i '/(sleep 2 && \/home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sed -i '/(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sed -i '/#(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sleep 1
+		cat <<\EOF12345 > "/tmp/templist3"
+#! /bin/bash
+# /etc/init.d/start-sound
+sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+EOF12345
+	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
+
 fi
 
 ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --vol 250 --amp 250 -b" |wc -l`
