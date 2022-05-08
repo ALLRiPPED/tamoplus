@@ -433,14 +433,14 @@ stats_check
         choice=$(dialog --colors --backtitle "Theme Settings - TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Theme Settings " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "Hursty Themes" \
+            1 "TAMO+ Themesets" \
             2 "RetroPie Themes" \
-            3 "TAMO+ Themesets" \
+            3 "Hursty Themes" \
            2>&1 > /dev/tty)
         case "$choice" in
-            1) hursty_themes ;;
+            1) tamoplus_themesets ;;
             2) retropie_themes ;;
-            3) tamoplus_themesets ;;
+            3) hursty_themes ;;
             *) break ;;
         esac
     done
