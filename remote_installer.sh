@@ -29,17 +29,17 @@ if [ -d "$INSTALL_DIR" ]; then
 	cd $INSTALL_DIR
 	git reset --hard
 	git pull
-	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
+	echo -e "$(tput setaf 2)TAMO+ Updated $(tput setaf 0)"
 	sleep 1
 else
 	cd $HOME
 	git clone https://github.com/ALLRiPPED/tamoplus.git
-	echo -e "$(tput setaf 2)TAMO+ Downloaded$(tput setaf 0)"
+	echo -e "$(tput setaf 2)TAMO+ Downloaded $(tput setaf 0)"
 	sleep 1
 fi
 
 sudo chmod +x $INSTALL_DIR/local_installer.sh
-echo -e "$(tput setaf 2)Installing TAMO+$(tput setaf 0)"
+echo -e "$(tput setaf 2)Installing TAMO+ $(tput setaf 0)"
 sleep 1
 cd $HOME/tamoplus
 bash local_installer.sh
