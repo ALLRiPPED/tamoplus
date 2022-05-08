@@ -236,11 +236,11 @@ fi
 
 prep_work() {
 if [ -f /etc/sbu/sbu.sh ]; then
-	echo "Please Note On A Supreme Build This Instaler Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
+	echo "Please Note On A Supreme Build This Installer Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
 	echo "You can put them back with Fix My Build in the RetroPie Menu"
 	sleep 3
 else
-	echo "Please Note This Instaler Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
+	echo "Please Note This Installer Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
 	sleep 3
 fi
 
