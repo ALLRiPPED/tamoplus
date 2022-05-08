@@ -41,7 +41,8 @@ fi
 sudo chmod +x $INSTALL_DIR/local_installer.sh
 echo -e "$(tput setaf 2)Installing TAMO+$(tput setaf 0)"
 sleep 1
-bash "$INSTALL_DIR/local_installer.sh"
+cd $HOME/tamoplus
+bash local_installer.sh
 exit
 }
 
