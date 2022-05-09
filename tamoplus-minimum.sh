@@ -33,7 +33,7 @@ stats_check
             2 "Music Settings" \
             3 "Visual Settings" \
             4 "Loading media Settings" \
-            5 "Update TAMO+ $ver" \
+            5 "Update TAMO+" \
             6 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
