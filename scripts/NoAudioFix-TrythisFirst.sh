@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 quick_audio_fixes() {
 stats_check
     local choice
