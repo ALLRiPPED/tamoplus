@@ -2,7 +2,7 @@
 # TAMO+ Bare Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
-ver="v1.30"
+ver="v1.31"
 SCRIPT_LOC="$HOME/tamoplus/BGM.py"
 INSTALL_DIR="$HOME/tamoplus"
 MENU_DIR="$HOME/RetroPie/retropiemenu"
@@ -28,16 +28,18 @@ stats_check
             2 "Music Settings" \
             3 "Visual Settings" \
             4 "Loading media Settings" \
-            5 "Update TAMO+" \
-            6 "View TAMO+ Disclamer" \
+            5 "Controller Settings" \
+            6 "Update TAMO+" \
+            7 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) themesettings  ;;
             2) musicsettings  ;;
             3) visual_menu  ;;
             4) loading_media  ;;
-            5) update_tamo  ;;
-            6) disclaim  ;;
+            5) controller_menu ;;
+            6) update_tamo  ;;
+            7) disclaim  ;;
             *) break  ;;
         esac
     done
@@ -105,7 +107,6 @@ fi
 }
 
 universal_bezel() {
-chmod 755 $INSTALL_DIR/scripts/bezels.sh
 $INSTALL_DIR/scripts/bezels.sh
 }
 
@@ -143,17 +144,14 @@ fi
 }
 
 resolution_tool() {
-chmod 755 $INSTALL_DIR/scripts/resolution-tool.sh
 $INSTALL_DIR/scripts/resolution-tool.sh
 }
 
 retroarch_tool() {
-chmod 755 $INSTALL_DIR/scripts/retroarch-tool.sh
 $INSTALL_DIR/scripts/retroarch-tool.sh
 }
 
 remove_media() {
-chmod 755 $INSTALL_DIR/scripts/remove-media.sh
 $INSTALL_DIR/scripts/remove-media.sh
 }
 
@@ -162,12 +160,10 @@ sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui
 }
 
 skyscraper_utility() {
-chmod 755 $INSTALL_DIR/scripts/skyscraper.sh
 $INSTALL_DIR/scripts/skyscraper.sh
 }
 
 sega_swap() {
-chmod 755 $INSTALL_DIR/scripts/genesis.sh
 $INSTALL_DIR/scripts/genesis.sh
 }
 
@@ -954,6 +950,56 @@ bash $INSTALL_DIR/scripts/fontcolorpicker.sh
 
 overlay_color_selection() {
 bash $INSTALL_DIR/scripts/overlaycolorpicker.sh
+}
+
+controller_menu() {
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Controller Menu" --title " Controller Menu " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Joystick Selection" \
+            2 "Light Gun Aimtrak" \
+            3 "light Gun Config" \
+            4 "Reset Controllers" \
+            5 "Sinden Basic Menu" \
+            6 "Xinmo Juyao" \
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) joystick_selection ;;
+            2) lightgunaimtrak ;;
+            3) lightgunconf ;;
+            4) resetcontrollers ;;
+            5) sinden-menu ;;
+            6) xinmo-juyao ;;
+            *) break ;;
+        esac
+    done
+}
+
+
+joystick_selection() {
+$INSTALL_DIR/scripts/joystick_selection.sh
+}
+
+lightgunaimtrak() {
+$INSTALL_DIR/scripts/LightGunAimtrak.sh
+}
+
+lightgunconf() {
+$INSTALL_DIR/scripts/LightGunConf.sh
+}
+
+resetcontrollers() {
+$INSTALL_DIR/scripts/resetcontrollers.sh
+}
+
+sinden-menu() {
+$INSTALL_DIR/scripts/sinden-menu.sh
+}
+
+xinmo-juyao() {
+$INSTALL_DIR/scripts/xinmo-juyao.sh
 }
 
 stats_check() {

@@ -5,7 +5,7 @@
 #############################################
 # Install Themes and Music Overlay Plus
 #############################################
-ver="v1.30"
+ver="v1.31"
 INSTALL_DIR="$HOME/tamoplus"
 
 cd $HOME

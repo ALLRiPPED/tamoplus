@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.30 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.31 (formally known as TAMPO)
 ## Install Preparations!
 I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
 that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
@@ -81,3 +81,4 @@ Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](ht
 Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
 Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
 Version 1.30 - Added font, font color, and overlay color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
+Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>

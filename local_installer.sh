@@ -5,7 +5,7 @@
 #############################################
 # Install Themes and Music Overlay Plus
 #############################################
-ver="v1.30"
+ver="v1.31"
 SCRIPT_LOC="$HOME/tamoplus/BGM.py"
 INSTALL_DIR="$HOME/tamoplus"
 THEMES_DIR="/opt/retropie/configs/all/emulationstation/themes"
@@ -237,6 +237,7 @@ fi
 }
 
 prep_work() {
+chmod 755 $INSTALL_DIR/scripts/*.sh
 if [ -f /etc/sbu/sbu.sh ]; then
 	echo "Please Note On A Supreme Build This Installer Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
 	echo "You can put them back with Fix My Build in the RetroPie Menu"
@@ -419,6 +420,10 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="UIMode_passkey" value="uuddlrlrba" />
 EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
+
+if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
+curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
+fi
 
 # Added Supreme Marquee and Script
 cd $HOME
