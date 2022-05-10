@@ -266,6 +266,7 @@ if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	# Supreme RetroPie Menu Edits
 	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
+	if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/controllertools; fi
 	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
 
 	# Supreme Attract mode Edits
