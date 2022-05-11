@@ -2,20 +2,8 @@
 # TAMO+ Bare Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
-ver="v1.31"
-SCRIPT_LOC="$HOME/tamoplus/BGM.py"
-INSTALL_DIR="$HOME/tamoplus"
-MENU_DIR="$HOME/RetroPie/retropiemenu"
-STMENU_VIS_DIR="$HOME/RetroPie/retropiemenu/visualtools"
-MUSIC_DIR="$HOME/RetroPie/roms/music"
-MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-BACKTITLE="TAMO+ Script $ver"
-TITLE="TAMO+ $ver"
-AUTOSTART="/opt/retropie/configs/all/autostart.sh"
-OLDIFS=$IFS
-RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
-VID_LOD_SCR="$HOME/RetroPie/videoloadingscreens"
+currentuser=$(whoami) # Check user
+. /home/$currentuser/tamoplus/scripts/tamo-vars
 
 main_menu() {
 stats_check

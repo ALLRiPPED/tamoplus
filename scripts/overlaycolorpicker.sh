@@ -1,7 +1,7 @@
 #!/bin/bash
 # TAMO+ Overlay Color Selection
-SCRIPT_LOC="$HOME/tamoplus/BGM.py"
-INSTALL_DIR="$HOME/tamoplus"
+currentuser=$(whoami) # Check user
+. /home/$currentuser/tamoplus/scripts/tamo-vars
 
 font_color_selection() {
 stats_check

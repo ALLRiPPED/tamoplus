@@ -5,27 +5,13 @@
 #############################################
 # Install Themes and Music Overlay Plus
 #############################################
-ver="v1.31"
-SCRIPT_LOC="$HOME/tamoplus/BGM.py"
-INSTALL_DIR="$HOME/tamoplus"
-THEMES_DIR="/opt/retropie/configs/all/emulationstation/themes"
-MUSIC_DIR="$HOME/RetroPie/roms/music"
-MUSIC_DIR="${MUSIC_DIR/#~/$HOME}"
-MENU_DIR="$HOME/RetroPie/retropiemenu"
-STMENU_DIR_A="$HOME/RetroPie/retropiemenu/audiotools"
-STMENU_DIR_C="$HOME/RetroPie/retropiemenu/controllertools"
-STMENU_DIR_V="$HOME/RetroPie/retropiemenu/visualtools"
-SPLASH_DIR="$HOME/RetroPie/splashscreens"
-ES_SETTINGS="/opt/retropie/configs/all/emulationstation/es_settings.cfg"
-AUTOSTART="/opt/retropie/configs/all/autostart.sh"
-RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
-RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
+currentuser=$(whoami) # Check user and then stop the script if root later on
+. /home/$currentuser/tamoplus/scripts/tamo-vars
 PYGAME_PKG="python3-pygame"
 PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libjpeg8 libpng12-0 fbi python-pip python3-pip python3-psutil"
 
-cd $HOME
-currentuser=$(whoami) # Check user and then stop the script if root
 if [[ $currentuser == "root" ]]; then echo "DON'T RUN THIS SCRIPT AS ROOT! USE './local_installer.sh' !"; exit; fi
+cd $HOME
 
 if [ ! -d "$HOME/RetroPie" ] && [ ! -d "$HOME/RetroPie-Setup" ]; then
 	errorbox=""

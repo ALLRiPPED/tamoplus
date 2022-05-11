@@ -1,7 +1,7 @@
 #!/bin/bash
 # TAMO+ Font Selection
-SCRIPT_LOC="$HOME/tamoplus/BGM.py"
-INSTALL_DIR="$HOME/tamoplus"
+currentuser=$(whoami) # Check user
+. /home/$currentuser/tamoplus/scripts/tamo-vars
 
 font_selection() {
 stats_check
