@@ -223,7 +223,7 @@ fi
 }
 
 prep_work() {
-chmod 755 $INSTALL_DIR/scripts/*.sh
+chmod 755 $INSTALL_DIR/scripts/*
 if [ -f /etc/sbu/sbu.sh ]; then
 	echo "Please Note On A Supreme Build This Installer Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
 	echo "You can put them back with Fix My Build in the RetroPie Menu"
