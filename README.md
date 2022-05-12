@@ -1,10 +1,19 @@
 ## TAMO+: Themes And Music Overlay Plus v1.31 (formally known as TAMPO)
+This installs all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
+for Halloween and Christmas Holiday themes and Stranger Things Theme plus my own concoction theme set Carbonite, for now, hopefully more to come!<br>
+Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
+And for those using Supreme Ultra builds it removes Audio Settings, Controller Settings, & Visual Settings from the RetroPie Menu.<br>
+All of which can be found from within the TAMO+ script itself.<br>
+This installs a BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete<br>
+merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
+It will do the full shabang, that means when you run tamo+ from your retropie menu and choose a theme it will restart emulationstation, not the pi itself,<br>
+so if you want to see the splashscreen you will have to manually reboot the pi, but you can turn off the exit splashes and the videoloading screens.<br><br>
+This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
+The script has a one line install, so no need to clone a repo (it does all that for you).<br>
+Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
 ## Install Preparations!
-I ran into an issue with this being installed to a fresh vanilla img of RetroPie v4.7.1, it has not generated the nessasary config files<br>
-that this install script is looking for, so make sure you have atleast played one game and installed and set atleast one theme on your retropie.<br>
-And no before you ask, the default theme, Carbon, does not count you have to install atleast a second theme then set it.<br>
-And then the es_settings.cfg will automatically be generated<br>
-plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y`
+This will prep everything needed for TAMO+ to run on your system, hence everything needed will automatically be generated<br>
+plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y` just to make sure you are up-to-date<br>
 ## One Line Install
      curl -sSL https://t.ly/5Oqi | bash
 or
@@ -21,15 +30,6 @@ This will install all the files for the bgm script, themes, music, videoloading 
 This is a script that is similar to Kio Diekin's theme and music script, but mine was made only by me and this is in no way the works he premeries in this video:<br>
 https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 
-This installs all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
-for Halloween and Christmas Holiday themes and Stranger Things Theme plus my own concoction theme set Carbonite, for now, hopefully more to come!<br>
-This also installs the BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete<br>
-merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
-It will do the full shabang, that means when you run tamo+ from your retropie menu and choose a theme it will restart emulationstation, not the pi itself,<br>
-so if you want to see the splashscreen you will have to manually reboot the pi, but you can turn off the exit splashes and the videoloading screens.<br><br>
-This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
-The script has a one line install, so no need to clone a repo (it does all that for you).<br>
-Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
 ## Preview
 [![](https://i.imgur.com/4Z3IDi8.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Future Plans
