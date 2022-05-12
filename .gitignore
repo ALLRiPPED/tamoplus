@@ -1,17 +1,6 @@
-# OS generated files #
+### exempted files ###
 ######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-DisableMusic
-Icon?
-ehthumbs.db
-Thumbs.db
-thememusic.zip
 bgm.zip
 custombgm.zip
-# Generated files
-logs/
-tmp/
+tamoplus-screens.zip
+thememusic.zip
