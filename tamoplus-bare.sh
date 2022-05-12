@@ -990,102 +990,6 @@ xinmo-juyao() {
 $INSTALL_DIR/scripts/xinmo-juyao.sh
 }
 
-stats_check() {
-enable="\Z2Enabled\Zn"
-disable="\Z1Disabled\Zn"
-if [ -f /home/pi/tamoplus/DisableMusic ]; then
-	bgms=$disable
-else
-	bgms=$enable
-fi
-if grep -q "#(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	bgmos=$disable
-elif grep -q "(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	bgmos=$enable
-fi
-if grep -q "overlay_enable = True" "$SCRIPT_LOC"; then
-	ovs=$enable
-else
-	ovs=$disable
-fi
-if grep -q "overlay_fade_out = True" "$SCRIPT_LOC"; then
-	ovf=$enable
-else
-	ovf=$disable
-fi
-overlay_fadeout_time=$(grep "overlay_fade_out_time = " "$SCRIPT_LOC"|awk '{print $3}')
-oft="\Z3$overlay_fadeout_time\Zn"
-msd=$(grep "startdelay = " "$SCRIPT_LOC"|awk '{print $3}')
-msd="\Z3$msd\Zn"
-if grep -q "overlay_rounded_corners = True" "$SCRIPT_LOC"; then
-	ocr=$enable
-else
-	ocr=$disable
-fi
-if grep -q "overlay_replace_newline = True" "$SCRIPT_LOC"; then
-	ons=$enable
-else
-	ons=$disable
-fi
-CUR_HPOS=$(grep "overlay_x_offset =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
-if [ $CUR_HPOS = "0" ]; then
-	hpos="\Z3Left\Zn"
-else
-	hpos="\Z3Right\Zn"
-fi
-CUR_VPOS=$(grep "overlay_y_offset =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
-export CUR_VPOS
-if [ $CUR_VPOS = "0" ]; then
-	vpos="\Z3Top\Zn"
-else
-	vpos="\Z3Bottom\Zn"
-fi
-if grep -q 'musicdir = "/home/pi/tamoplus"' "$SCRIPT_LOC"; then ms=$disable
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then ms="\Z3Custom\Zn"
-else
-	CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-	export CUR_PLY
-	ms="\Z3$(basename $CUR_PLY | tr -d '"')\Zn"
-fi
-vol=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
-vol="\Z3$vol%\Zn"
-if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=$enable; else vls=$disable; fi
-width=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o '[0-9][0-9][0-9]\+x' | tr -d 'x')
-height=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o 'x[0-9][0-9][0-9]\+' | tr -d 'x')
-if [ "${width}" -ge 3800 ] && [ "${height}" -ge 2100 ]; then
-	res="2160p"
-elif [ "${width}" -ge 1900 ] && [ "${height}" -ge 1000 ] && [ "${width}" -le 2100 ] && [ "${height}" -le 3800 ]; then
-	res="1080p"
-elif [ "${width}" -ge 1000 ] && [ "${height}" -ge 600 ] && [ "${width}" -le 1900 ] && [ "${height}" -le 1000 ]; then
-	res="720p"
-elif [ "${height}" -le 599 ]; then
-	res="SD"
-fi
-resolution="\Z3$res\Zn"
-if [ "${width}" -ge 1900 ] && [ "${height}" -ge 1000 ]; then
-	overlay_w_size=600
-	overlay_h_size=32
-elif [ "${width}" -ge 1000 ] && [ "${height}" -ge 600 ] && [ "${width}" -le 1900 ] && [ "${height}" -le 1000 ]; then
-	overlay_w_size=300
-	overlay_h_size=21
-elif [ "${height}" -le 599 ]; then
-	overlay_w_size=150
-	overlay_h_size=15
-fi
-}
-
-bgm_check() {
-if [ -f "$INSTALL_DIR"/DisableMusic ]; then
-	echo "Background Music Disabled!"
-else
-	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-	sleep 1
-	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
-fi
-sleep 1
-}
-
 update_tamo() {
 bash $INSTALL_DIR/scripts/updater.sh
 exit 1
@@ -1117,5 +1021,7 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 --title "DISCLAIMER" \
 --msgbox "${DISCLAIMER}" 35 110
 }
+
+. /home/$currentuser/tamoplus/scripts/tamo-functions
 
 main_menu
