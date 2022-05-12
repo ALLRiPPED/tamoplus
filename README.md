@@ -4,10 +4,8 @@ for Halloween and Christmas Holiday themes and Stranger Things Theme plus my own
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
 And for those using Supreme Ultra builds it removes Audio Settings, Controller Settings, & Visual Settings from the RetroPie Menu.<br>
 All of which can be found from within the TAMO+ script itself.<br>
-This installs a BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete<br>
-merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
-It will do the full shabang, that means when you run tamo+ from your retropie menu and choose a theme it will restart emulationstation, not the pi itself,<br>
-so if you want to see the splashscreen you will have to manually reboot the pi, but you can turn off the exit splashes and the videoloading screens.<br><br>
+This installs a BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
+It will do the full shabang, that means when you run tamo+ from your retropie menu and choose one of the preconfigured themes it will restart emulationstation, not the pi itself, so if you want to see the splashscreen you will have to manually reboot the pi, and you can turn the exit splashes and the videoloading screens on or off.<br><br>
 This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
@@ -35,6 +33,7 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 ## Future Plans
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
 #### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
+#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Ability to change .
 ## Color Section
 This is where you will find the info you will need to change the colors of the background and font on the Overlay.<br>
 At the moment I have a color table here with color names that can be typed in to the RPBGMO bash gui, right now they have to be typed in cause getting bash script color is not as easy to code as you would think.
@@ -76,8 +75,7 @@ Diablos Arcade by the [Retro-Devils](https://github.com/Retro-Devils/Devils-Pi "
 Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 [Dwayne Hurst](https://github.com/retrohursty69 "Dwayne Hurst") for every thing he has done with themes, which some are included in tamo+.<br>
 Version 1.00 - thepitster<br>
-Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils")<br>
-Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>Fixed quite a few script errors and tweaked the install scripts.<br>
+Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils"). Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken"). Fixed quite a few script errors and tweaked the install scripts.<br>
 Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
 Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
 Version 1.30 - Added font, font color, and overlay color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
