@@ -38,7 +38,7 @@ else
 	sleep 1
 fi
 
-sudo chmod +x $INSTALL_DIR/local_installer.sh
+sudo chmod +x $INSTALL_DIR/*.sh
 echo "Installing TAMO+"
 sleep 1
 cd $HOME/tamoplus
