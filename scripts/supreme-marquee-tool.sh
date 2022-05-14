@@ -17,7 +17,7 @@ infobox="${infobox}Wheel midea Folder located in the roms directory of each syst
 infobox="${infobox}Boxart Midea Folder located in the roms directory of each system\n"
 infobox="${infobox}Fix Framebuffer Resolution\n"
 infobox="${infobox}Turn Marquee Script ON/OFF\n"
-infobox="${infobox}Turn Marquee Script ON/OFF Alternative will hide not suppoted systems\n"
+infobox="${infobox}Turn Marquee Script ON/OFF (Supreme Builds) will hide not suppoted systems\n"
 infobox="${infobox}\n"
 infobox="${infobox}If a folder is missing for your choice this script will add it for you\n"
 infobox="${infobox}\n"
@@ -34,25 +34,25 @@ function main_menu() {
         choice=$(dialog --backtitle "$BACKTITLE" --title " MAIN MENU " \
             --ok-label OK --cancel-label Exit \
             --menu "What action would you like to perform?" 25 75 20 \
-			1 "Pull Media from Roms-System-Themed-Marquee folder" \
+	    1 "Pull Media from Roms-System-Themed-Marquee folder" \
             2 "Pull Media from Roms-System-Marquee Folder" \
-			3 "Pull Media from Roms-System-Mixart Folder" \
+	    3 "Pull Media from Roms-System-Mixart Folder" \
             4 "Pull Media from Roms-System-Boxart Folder" \
-			5 "Pull Media from Roms-System-Wheel Folder" \
-			6 "Fix Framebuffer Resolution" \
-			7 "Turn Marquee script on or off" \
-			8 "Turn Marquee script on or off Alternative" \
+	    5 "Pull Media from Roms-System-Wheel Folder" \
+	    6 "Fix Framebuffer Resolution" \
+	    7 "Turn Marquee script on or off" \
+	    8 "Turn Marquee script on or off (Supreme Builds)" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-		    1) system-themed-marquee  ;;
-		    2) system-marquee  ;;
+	    1) system-themed-marquee  ;;
+            2) system-marquee  ;;
             3) system-mixar  ;;
             4) system-boxart  ;;
             5) system-wheel  ;;
             6) fix-framebuffer-resolution  ;;
-			7) marquee-on-off  ;;
-			8) marquee-on-off-alt  ;;
+	    7) marquee-on-off  ;;
+	    8) marquee-on-off-alt  ;;
             *)  break ;;
         esac
     done
@@ -62,6 +62,27 @@ function main_menu() {
 function system-themed-marquee() {
 	dialog --infobox "APPLYING CHANGES NOW." 3 25 ; sleep 6
 	if [ ! -d /home/pi/Piethemed-marquee3 ]; then
+
+# Make backup of original files
+if [ -d /home/pi/PieMarquee2/marquee/custom ]; then
+mv /home/pi/PieMarquee2/marquee/custom /home/pi/PieMarquee2/marquee/custom.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/instruction  ]; then
+mv /home/pi/PieMarquee2/marquee/instruction /home/pi/PieMarquee2/marquee/instruction.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/publisher ]; then
+mv /home/pi/PieMarquee2/marquee/publisher /home/pi/PieMarquee2/marquee/publisher.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/snes ]; then
+mv /home/pi/PieMarquee2/marquee/snes /home/pi/PieMarquee2/marquee/snes.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/system ]; then
+mv /home/pi/PieMarquee2/marquee/system /home/pi/PieMarquee2/marquee/system.bk
+fi
 	
 if [ ! -d /home/pi/RetroPie/roms/3do/themed-marquee ]; then
   mkdir /home/pi/RetroPie/roms/3do >/dev/null 2>&1
@@ -1666,6 +1687,27 @@ fi
 function system-marquee() {
 	dialog --infobox "APPLYING CHANGES NOW." 3 25 ; sleep 6
 	if [ ! -d /home/pi/PieMarquee3 ]; then
+
+# Make backup of original files
+if [ -d /home/pi/PieMarquee2/marquee/custom ]; then
+mv /home/pi/PieMarquee2/marquee/custom /home/pi/PieMarquee2/marquee/custom.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/instruction  ]; then
+mv /home/pi/PieMarquee2/marquee/instruction /home/pi/PieMarquee2/marquee/instruction.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/publisher ]; then
+mv /home/pi/PieMarquee2/marquee/publisher /home/pi/PieMarquee2/marquee/publisher.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/snes ]; then
+mv /home/pi/PieMarquee2/marquee/snes /home/pi/PieMarquee2/marquee/snes.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/system ]; then
+mv /home/pi/PieMarquee2/marquee/system /home/pi/PieMarquee2/marquee/system.bk
+fi
 	
 if [ ! -d /home/pi/RetroPie/roms/3do/marquee ]; then
   mkdir /home/pi/RetroPie/roms/3do >/dev/null 2>&1
@@ -3270,6 +3312,27 @@ fi
 function system-mixar() {
 	dialog --infobox "APPLYING CHANGES NOW" 3 25 ; sleep 6
 	if [ ! -d /home/pi/PieMarquee3 ]; then
+
+# Make backup of original files
+if [ -d /home/pi/PieMarquee2/marquee/custom ]; then
+mv /home/pi/PieMarquee2/marquee/custom /home/pi/PieMarquee2/marquee/custom.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/instruction  ]; then
+mv /home/pi/PieMarquee2/marquee/instruction /home/pi/PieMarquee2/marquee/instruction.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/publisher ]; then
+mv /home/pi/PieMarquee2/marquee/publisher /home/pi/PieMarquee2/marquee/publisher.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/snes ]; then
+mv /home/pi/PieMarquee2/marquee/snes /home/pi/PieMarquee2/marquee/snes.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/system ]; then
+mv /home/pi/PieMarquee2/marquee/system /home/pi/PieMarquee2/marquee/system.bk
+fi
 	
 if [ ! -d /home/pi/RetroPie/roms/3do/mixart ]; then
   mkdir /home/pi/RetroPie/roms/3do >/dev/null 2>&1
@@ -4874,6 +4937,27 @@ fi
 function system-boxart() {
 	dialog --infobox "APPLYING CHANGES NOW" 3 25 ; sleep 6
 	if [ ! -d /home/pi/PieMarquee3 ]; then
+
+# Make backup of original files
+if [ -d /home/pi/PieMarquee2/marquee/custom ]; then
+mv /home/pi/PieMarquee2/marquee/custom /home/pi/PieMarquee2/marquee/custom.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/instruction  ]; then
+mv /home/pi/PieMarquee2/marquee/instruction /home/pi/PieMarquee2/marquee/instruction.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/publisher ]; then
+mv /home/pi/PieMarquee2/marquee/publisher /home/pi/PieMarquee2/marquee/publisher.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/snes ]; then
+mv /home/pi/PieMarquee2/marquee/snes /home/pi/PieMarquee2/marquee/snes.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/system ]; then
+mv /home/pi/PieMarquee2/marquee/system /home/pi/PieMarquee2/marquee/system.bk
+fi
 	
 if [ ! -d /home/pi/RetroPie/roms/3do/boxart ]; then
   mkdir /home/pi/RetroPie/roms/3do >/dev/null 2>&1
@@ -6478,6 +6562,27 @@ fi
 function system-wheel() {
 	dialog --infobox "APPLYING CHANGES NOW" 3 25 ; sleep 6
 	if [ ! -d /home/pi/PieMarquee3 ]; then
+
+# Make backup of original files
+if [ -d /home/pi/PieMarquee2/marquee/custom ]; then
+mv /home/pi/PieMarquee2/marquee/custom /home/pi/PieMarquee2/marquee/custom.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/instruction  ]; then
+mv /home/pi/PieMarquee2/marquee/instruction /home/pi/PieMarquee2/marquee/instruction.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/publisher ]; then
+mv /home/pi/PieMarquee2/marquee/publisher /home/pi/PieMarquee2/marquee/publisher.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/snes ]; then
+mv /home/pi/PieMarquee2/marquee/snes /home/pi/PieMarquee2/marquee/snes.bk
+fi
+
+if [ -d /home/pi/PieMarquee2/marquee/system ]; then
+mv /home/pi/PieMarquee2/marquee/system /home/pi/PieMarquee2/marquee/system.bk
+fi
 	
 if [ ! -d /home/pi/RetroPie/roms/3do/wheel ]; then
   mkdir /home/pi/RetroPie/roms/3do >/dev/null 2>&1
@@ -8118,9 +8223,9 @@ function marquee-on-off-alt() {
     sed -i '/isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\#isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/AM-start.sh
     sed -i '/isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\#isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/Pegasus-start.sh
     echo The marquee script is now off 
-	echo Now all supported systems will dispaly. 
-	echo Now rebooting to save changes.
-	sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_supreme.cfg /etc/emulationstation/es_systems.cfg
+    echo Now all supported systems will dispaly. 
+    echo Now rebooting to save changes.
+    sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_supreme.cfg /etc/emulationstation/es_systems.cfg
     sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_supreme.cfg /opt/retropie/configs/all/emulationstation/es_systems.cfg
 	sleep 4
 	sudo reboot
@@ -8131,9 +8236,9 @@ function marquee-on-off-alt() {
     sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/AM-start.sh
     sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/Pegasus-start.sh    
     echo The marquee script is now on 
-	echo Not supported systems will not dispaly 
-	echo Now rebooting to save changes.
-	sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_retropie.cfg /etc/emulationstation/es_systems.cfg
+    echo Not supported systems will not dispaly.  
+    echo Now rebooting to save changes.
+    sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_retropie.cfg /etc/emulationstation/es_systems.cfg
     sudo cp /home/pi/RetroPie/scripts/.sb-unified/es_cfg/es_retropie.cfg /opt/retropie/configs/all/emulationstation/es_systems.cfg
     sleep 4
 	sudo reboot
