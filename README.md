@@ -12,17 +12,24 @@ Now if you have any sugesstions or addition please fork the repo and hit me up w
 ## Install Preparations!
 This will prep everything needed for TAMO+ to run on your system, hence everything needed will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y` just to make sure you are up-to-date<br>
-## One Line Install
-     curl -sSL https://t.ly/5Oqi | bash
+## One Liner Install
+    curl -sSL https://bit.ly/Install-TAMO | bash
 or
 
-	 wget -O - https://t.ly/5Oqi | bash
+    wget -O - https://bit.ly/Install-TAMO | bash
+## One Liner Install Mirrors
+
+    wget -O - https://t.ly/5Oqi | bash
+or
+
+    curl -sSL https://t.ly/5Oqi | bash
+
 If you would like to manually install this script:
 
-     git clone https://github.com/ALLRiPPED/tamoplus.git
-     cd tamoplus
-     sudo chmod +x local_installer.sh
-     ./local_installer.sh
+    git clone https://github.com/ALLRiPPED/tamoplus.git
+    cd tamoplus
+    sudo chmod +x local_installer.sh
+    ./local_installer.sh
 This will install all the files for the bgm script, themes, music, videoloading and splash screens!<br>
 ## More Information
 This is a script that is similar to Kio Diekin's theme and music script, but mine was made only by me and this is in no way the works he premeries in this video:<br>
