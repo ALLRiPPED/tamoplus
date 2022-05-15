@@ -8,7 +8,7 @@ import random
 import re
 import subprocess # used to grab screen resolution
 
-disablemusic='~/tamoplus/DisableMusic'
+disablemusic='~/.tamoplus/DisableMusic'
 
 ###CONFIG SECTION###
 # Value (in seconds) to delay audio start.  If you have a splash screen with audio and the script is playing music over the top of it, increase this value to delay the script from starting.
@@ -63,7 +63,7 @@ overlay_pngview_location = "/usr/local/bin/pngview"
 # White is default
 overlay_background_color = "DimGray"
 # DimGray is default
-overlay_text_color = "Black"
+overlay_text_color = "LightCoral"
 # Default system font included by default
 overlay_text_font = "GROBOLD"
 # Set to "True" round the corners of the overlay

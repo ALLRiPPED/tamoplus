@@ -5,6 +5,12 @@
 currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
+#Auto Updater
+if grep 'auto_update_flag=1' "$USER_SETTINGS"; then
+bash $INSTALL_DIR/scripts/updater.sh
+exit 1
+fi
+
 main_menu() {
 stats_check
     local choice
@@ -15,9 +21,9 @@ stats_check
             1 "Theme Settings" \
             2 "Music Settings" \
             3 "Visual Settings" \
-            4 "Loading media Settings" \
+            4 "Loading Media Settings" \
             5 "Controller Settings" \
-            6 "Update TAMO+" \
+            6 "User Control Panel" \
             7 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
@@ -26,8 +32,28 @@ stats_check
             3) visual_menu  ;;
             4) loading_media  ;;
             5) controller_menu ;;
-            6) update_tamo  ;;
+            6) user_menu  ;;
             7) disclaim  ;;
+            *) break  ;;
+        esac
+    done
+}
+
+user_menu() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "TAMO+ $ver  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " USER MENU " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Turn On-Off Auto Update $aupstat" \
+            2 "Turn On-Off Keep RetroPie Menus $menstat" \
+            3 "Update TAMO+" \
+            2>&1 > /dev/tty)
+        case "$choice" in
+            1) auto_update  ;;
+            2) retropie_menu  ;;
+            3) $INSTALL_DIR/scripts/updater.sh; exit 1  ;;
             *) break  ;;
         esac
     done
@@ -54,105 +80,17 @@ stats_check
         case "$choice" in
             1) overlay_menu ;;
             2) bezel_project ;;
-            3) universal_bezel ;;
+            3) $INSTALL_DIR/scripts/bezels.sh ;;
             4) supreme_marquee_tool ;;
-            5) resolution_tool ;;
-            6) retroarch_tool ;;
-            7) remove_media ;;
-            8) retropie_splashscreen ;;
-            9) skyscraper_utility ;;
-           10) sega_swap ;;
+            5) $INSTALL_DIR/scripts/resolution-tool.sh ;;
+            6) $INSTALL_DIR/scripts/retroarch-tool.sh ;;
+            7) $INSTALL_DIR/scripts/remove-media.sh ;;
+            8) sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui ;;
+            9) $INSTALL_DIR/scripts/skyscraper.sh ;;
+           10) $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
-}
-
-bezel_project() {
-if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
-
-#Adds Updated Version to tamoplus Folder
-if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo mv -f $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
-
-chmod +x $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
-
-else
-
-if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo rm -f -r $MENU_DIR/bezelproject.sh; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/bezelproject.sh; fi
-
-cd "$INSTALL_DIR/scripts/"
-wget "https://raw.githubusercontent.com/thebezelproject/BezelProject/master/bezelproject.sh"
-chmod +x "bezelproject.sh"
-
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
-
-mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
-
-fi
-}
-
-universal_bezel() {
-$INSTALL_DIR/scripts/bezels.sh
-}
-
-supreme_marquee_tool() {
-#Added step because marquee script reboots on clean install - Checks if the marquee script has been installed.
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
-if [ -f "/home/pi/PieMarquee3/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
-
-if [ -f "$INSTALL_DIR/scripts/supreme-marquee-tool.sh" ]; then 
-
-#Adds Updated Version to tamoplus Folder
-if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $MENU_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo mv -f $STMENU_VIS_DIR/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
-
-chmod +x $INSTALL_DIR/scripts/supreme-marquee-tool.sh
-$INSTALL_DIR/scripts/supreme-marquee-tool.sh
-
-else
-
-if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $MENU_DIR/supreme-marquee-tool.sh; fi
-if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/supreme-marquee-tool.sh; fi
-
-cd /home/pi
-git clone https://github.com/SupremePi/PieMarquee2.git
-cd PieMarquee2
-chmod 755 ./install.sh
-./install.sh
-
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
-
-mv -f $MENU_DIR/supreme-marquee-toolsh $INSTALL_DIR/scripts/supreme-marquee-tool.sh
-$INSTALL_DIR/scripts/supreme-marquee-tool.sh
-
-fi
-}
-
-resolution_tool() {
-$INSTALL_DIR/scripts/resolution-tool.sh
-}
-
-retroarch_tool() {
-$INSTALL_DIR/scripts/retroarch-tool.sh
-}
-
-remove_media() {
-$INSTALL_DIR/scripts/remove-media.sh
-}
-
-retropie_splashscreen() {
-sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui
-}
-
-skyscraper_utility() {
-$INSTALL_DIR/scripts/skyscraper.sh
-}
-
-sega_swap() {
-$INSTALL_DIR/scripts/genesis.sh
 }
 
 loading_media() {
@@ -211,7 +149,7 @@ stats_check
     done
 }
 
-function install_screens() {
+install_screens() {
 
 FILE=""
 DIR="/home/pi/RetroPie/LaunchingScreens"
@@ -272,51 +210,7 @@ then
 fi
 }
 
-function remove_screens() {
-echo -e "$(tput setaf 2)Removing LaunchingScreens Please Wait. $(tput sgr0)"
-sleep 3
-
-if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "/home/pi/RetroPie/LaunchingScreens"
-fi
-
-if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
-rm /opt/retropie/configs/*/launching.png
-fi
-
-echo -e "$(tput setaf 2)Done. $(tput sgr0)"
-sleep 3
-}
-
-###
-# New section for downloading new launching screens from Github
-###
-
-function install_launching_screens() {
-    local theme="$1"
-    local repo="$2"
-    if [[ -z "$repo" ]]; then
-        repo="default"
-    fi
-    if [[ -z "$theme" ]]; then
-        theme="default"
-        repo="default"
-    fi
-    rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
-    mkdir -p "/home/pi/RetroPie/LaunchingScreens"
-    git clone "https://github.com/$repo/launchingscreens-$theme.git" "/home/pi/RetroPie/LaunchingScreens/$theme"
-    echo -e "$(tput setaf 2)Done. $(tput sgr0)"
-    sleep 3
-}
-
-function uninstall_launching_screens() {
-    local theme="$1"
-    if [[ -d "/home/pi/RetroPie/LaunchingScreens/$theme" ]]; then
-        rm -rf "/home/pi/RetroPie/LaunchingScreens/$theme"
-    fi
-}
-
-function download_screens() {
+download_screens() {
     local themes=(
         'dmmarti hurstyblue'
         'dmmarti motionblue'
@@ -415,42 +309,10 @@ stats_check
            2>&1 > /dev/tty)
         case "$choice" in
             1) hursty_themes ;;
-            2) retropie_themes ;;
+            2) sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui ;;
             *) break ;;
         esac
     done
-}
-
-hursty_themes() {
-if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
-
-#Adds Updated Version to tamoplus Folder
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-
-chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
-
-else
-
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
-
-wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
-chmod +x "$INSTALL_DIR/tmp/install.sh"
-./$INSTALL_DIR/tmp/install.sh
-
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
-
-mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
-
-rm -fr "$INSTALL_DIR/tmp"
-fi
-}
-
-retropie_themes() {
-sudo /home/pi/RetroPie-Setup/retropie_packages.sh esthemes gui
 }
 
 musicsettings() {
@@ -466,7 +328,7 @@ stats_check
            2>&1 > /dev/tty)
         case "$choice" in
             1) tamoplus_music ;;
-            2) retropie_audio_settings ;;
+            2) sudo /home/pi/RetroPie-Setup/retropie_packages.sh audiosettings gui ;;
             3) quick_audio_fixes ;;
             *) break ;;
         esac
@@ -497,10 +359,6 @@ stats_check
     done
 }
 
-retropie_audio_settings() {
-sudo /home/pi/RetroPie-Setup/retropie_packages.sh audiosettings gui
-}
-
 quick_audio_fixes() {
 stats_check
     local choice
@@ -519,82 +377,6 @@ stats_check
             *) break  ;;
         esac
     done
-}
-
-no_audio_fix() {
-sudo grep hdmi_force_edid_audio /boot/config.txt > /dev/null 2>&1
-if [ $? -eq 0 ] ; then
-echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you."
-sleep 5
-sudo perl -p -i -e 's/hdmi_force_edid_audio=1/#dtoverlay=lirc-rpi/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_force_hotplug=1/#hdmi_force_hotplug=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_drive=2/#hdmi_drive=2/g' /boot/config.txt
-else
-echo "I have scanned the config file and see that the audio fix is NOT in place."
-sleep 4
-echo "If this fix does not work please run the script again to roll the changes back."
-sleep 10
-echo "I will make the necessary config changes and reboot your Pi"
-sleep 5
-sudo perl -p -i -e 's/#dtoverlay=lirc-rpi/hdmi_force_edid_audio=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_force_hotplug=1/hdmi_force_hotplug=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_drive=2/hdmi_drive=2/g' /boot/config.txt
-sudo reboot
-fi
-}
-
-no_audio_force_720p() {
-sudo grep hdmi_mode=16 /boot/config.txt > /dev/null 2>&1
-if [ $? -eq 0 ] ; then
-echo "It looks like you have tried the Force 1080p script. Please run it again to roll the changes back before running this script."
-sleep 10
-exit
-fi
-sudo grep hdmi_mode=4 /boot/config.txt > /dev/null 2>&1
-if [ $? -eq 0 ] ; then
-echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you."
-sleep 5
-sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_mode=4/#hdmi_mode=1/g' /boot/config.txt
-else
-echo "I have scanned the config file and see that Force 720p is not cofigured."
-sleep 4
-echo "I will make the necessary config changes and reboot your Pi. If this does not fix your issue please run this script again to reverse the changes."
-sleep 5
-sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=4/g' /boot/config.txt
-sudo reboot
-fi
-}
-
-no_audio_force_1080p() {
-sudo grep hdmi_mode=4 /boot/config.txt > /dev/null 2>&1
-if [ $? -eq 0 ] ; then
-echo "It looks like you have tried the Force 720p script. Please run it again to roll the changes back before running this script."
-sleep 10
-exit
-fi
-sudo grep hdmi_mode=16 /boot/config.txt > /dev/null 2>&1
-if [ $? -eq 0 ] ; then
-echo "Looks like we have already tried to force 1080p output. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you. They will take effect after the next reboot"
-sleep 5
-sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_mode=16/#hdmi_mode=1/g' /boot/config.txt
-else
-echo "I have scanned the config file and see that 1080p is not being forced."
-sleep 4
-echo "I will make the necessary config changes and reboot your Pi"
-sleep 5
-sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=16/g' /boot/config.txt
-sudo reboot
-fi
 }
 
 overlay_menu() {
@@ -623,9 +405,9 @@ local choice
             5) overlay_replace_newline ;;
             6) overlay_v_pos ;;
             7) overlay_h_pos ;;
-            8) font_selection ;;
-            9) font_color_selection ;;
-           10) overlay_color_selection ;;
+            8) $INSTALL_DIR/scripts/fontpicker.sh ;;
+            9) $INSTALL_DIR/scripts/fontcolorpicker.sh ;;
+           10) $INSTALL_DIR/scripts/overlaycolorpicker.sh ;;
             *) break ;;
         esac
     done
@@ -743,44 +525,6 @@ bgm_check
 stats_check
 }
 
-enable_music() {
-if [ -f "$INSTALL_DIR"/DisableMusic ]; then
-	sudo rm -f "$INSTALL_DIR"/DisableMusic
-	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
-else
-	touch "$INSTALL_DIR"/DisableMusic
-	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-fi
-sleep 1
-stats_check
-}
-
-enable_musicos() {
-if grep -q "#(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	sudo sed -i 's/\#(nohup python/(nohup python/g' $AUTOSTART
-elif grep -q "(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	sudo sed -i 's/(nohup python/\#(nohup python/g' $AUTOSTART
-fi
-stats_check
-}
-
-disable_music_dir() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-export CUR_PLY
-DEF_DIR='"/home/pi/tamoplus"'
-export DEF_DIR
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${DEF_DIR}|g" $SCRIPT_LOC
-bgm_check
-stats_check
-}
-
-video_screens() {
-if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then sed -i -E 's|enablevideolaunch="true"|enablevideolaunch="false"|g' $RUNONSTART
-else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONSTART; fi
-stats_check
-}
-
 set_video_screens() {
 stats_check
   CUR_LOD=""
@@ -839,26 +583,6 @@ bgm_check
 stats_check
 }
 
-overlay_enable() {
-if grep -q 'overlay_enable = True' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_enable = True/overlay_enable = False/g' $SCRIPT_LOC
-elif grep -q 'overlay_enable = False' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_enable = False/overlay_enable = True/g' $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
-overlay_fade_out() {
-if grep -q 'overlay_fade_out = True' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_fade_out = True/overlay_fade_out = False/g' $SCRIPT_LOC
-elif grep -q 'overlay_fade_out = False' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_fade_out = False/overlay_fade_out = True/g' $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
 overlay_fade_out_time() {
 oldfadeouttime=$(grep "overlay_fade_out_time = " "$SCRIPT_LOC"|awk '{print $3}')
 export oldfadeouttime
@@ -876,70 +600,6 @@ bgm_check
 stats_check
 }
 
-overlay_rounded_corners() {
-if grep -q 'overlay_rounded_corners = True' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_rounded_corners = True/overlay_rounded_corners = False/g' $SCRIPT_LOC
-elif grep -q 'overlay_rounded_corners = False' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_rounded_corners = False/overlay_rounded_corners = True/g' $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
-overlay_replace_newline() {
-if grep -q 'overlay_replace_newline = True' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_replace_newline = True/overlay_replace_newline = False/g' $SCRIPT_LOC
-elif grep -q 'overlay_replace_newline = False' "$SCRIPT_LOC"; then
-	sed -i -E 's/overlay_replace_newline = False/overlay_replace_newline = True/g' $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
-overlay_v_pos() {
-CUR_VPOS=$(grep "overlay_y_offset =" "$SCRIPT_LOC"|awk '{print $3}')
-export CUR_VPOS
-NEW_VPOST='"0"'
-export NEW_VPOST
-NEW_VPOSB=\"$((height-overlay_h_size))\"
-export NEW_VPOSB
-if [ $CUR_VPOS = \"0\" ]; then
-	sed -i -E "s/overlay_y_offset = ${CUR_VPOS}/overlay_y_offset = ${NEW_VPOSB}/g" $SCRIPT_LOC
-else
-	sed -i -E "s/overlay_y_offset = ${CUR_VPOS}/overlay_y_offset = ${NEW_VPOST}/g" $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
-overlay_h_pos() {
-CUR_HPOS=$(grep "overlay_x_offset =" "${SCRIPT_LOC}"|awk '{print $3}')
-export CUR_HPOS
-NEW_HPOSL='"0"'
-export NEW_HPOSL
-NEW_HPOSR=\"$((width-overlay_w_size))\"
-export NEW_HPOSR
-if [ $CUR_HPOS = \"0\" ]; then
-	sed -i -E "s/overlay_x_offset = ${CUR_HPOS}/overlay_x_offset = ${NEW_HPOSR}/g" $SCRIPT_LOC
-else
-	sed -i -E "s/overlay_x_offset = ${CUR_HPOS}/overlay_x_offset = ${NEW_HPOSL}/g" $SCRIPT_LOC
-fi
-bgm_check
-stats_check
-}
-
-font_selection() {
-bash $INSTALL_DIR/scripts/fontpicker.sh
-}
-
-font_color_selection() {
-bash $INSTALL_DIR/scripts/fontcolorpicker.sh
-}
-
-overlay_color_selection() {
-bash $INSTALL_DIR/scripts/overlaycolorpicker.sh
-}
-
 controller_menu() {
     local choice
     while true; do
@@ -954,45 +614,15 @@ controller_menu() {
             6 "Xinmo Juyao" \
            2>&1 > /dev/tty)
         case "$choice" in
-            1) joystick_selection ;;
-            2) lightgunaimtrak ;;
-            3) lightgunconf ;;
-            4) resetcontrollers ;;
-            5) sinden-menu ;;
-            6) xinmo-juyao ;;
+            1) $INSTALL_DIR/scripts/joystick_selection.sh ;;
+            2) $INSTALL_DIR/scripts/LightGunAimtrak.sh ;;
+            3) $INSTALL_DIR/scripts/LightGunConf.sh ;;
+            4) $INSTALL_DIR/scripts/resetcontrollers.sh ;;
+            5) $INSTALL_DIR/scripts/sinden-menu.sh ;;
+            6) $INSTALL_DIR/scripts/xinmo-juyao.sh ;;
             *) break ;;
         esac
     done
-}
-
-
-joystick_selection() {
-$INSTALL_DIR/scripts/joystick_selection.sh
-}
-
-lightgunaimtrak() {
-$INSTALL_DIR/scripts/LightGunAimtrak.sh
-}
-
-lightgunconf() {
-$INSTALL_DIR/scripts/LightGunConf.sh
-}
-
-resetcontrollers() {
-$INSTALL_DIR/scripts/resetcontrollers.sh
-}
-
-sinden-menu() {
-$INSTALL_DIR/scripts/sinden-menu.sh
-}
-
-xinmo-juyao() {
-$INSTALL_DIR/scripts/xinmo-juyao.sh
-}
-
-update_tamo() {
-bash $INSTALL_DIR/scripts/updater.sh
-exit 1
 }
 
 disclaim() {
