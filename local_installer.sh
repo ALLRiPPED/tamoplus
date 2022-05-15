@@ -127,45 +127,46 @@ exit
 
 download_themes() {
 # Downloading Themes
-echo "Downloading the files needed and installing the script + utilities"
-if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
-else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git pull; git reset --hard; fi
-if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
-else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git pull; git reset --hard; fi
+echo "Downloading themes needed for TAMO+"
 if [ ! -d  "$THEMES_DIR/carbonite" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
-else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git pull; git reset --hard; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
+else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git reset --hard; git pull; fi
 if [ ! -d  "$THEMES_DIR/devilchromey" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-devil-chromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
-else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git pull; git reset --hard; fi
-if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
-else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git pull; git reset --hard; fi
-if [ ! -d  "$THEMES_DIR/Supreme_Space" ]; then
-git clone "https://github.com/ALLRiPPED/es-theme-Supreme_Space.git" "/opt/retropie/configs/all/emulationstation/themes/Supreme_Space"
-else cd /opt/retropie/configs/all/emulationstation/themes/Supreme_Space; git pull; git reset --hard; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git reset --hard; git pull; fi
 if [ ! -d  "$THEMES_DIR/pistolero" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
-else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git pull; git reset --hard; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git reset --hard; git pull; fi
 if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then
 git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"
-else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git pull; git reset --hard; fi
+else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-strangerstuff.git" "/opt/retropie/configs/all/emulationstation/themes/strangerstuff"
+else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/Supreme_Space" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-Supreme_Space.git" "/opt/retropie/configs/all/emulationstation/themes/Supreme_Space"
+else cd /opt/retropie/configs/all/emulationstation/themes/Supreme_Space; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/merryxmas" ]; then
+git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
+else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git reset --hard; git pull; fi
 }
 
 download_videos() {
 echo "Setting up Splash, Exit, and Game Launching Screens"
 if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default; fi
-	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default
+	if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
+	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
 else echo "Moving Default Launch Screens to default folder"
-	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default
+	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
 fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 1
-if [ -f "$SPLASH_DIR/CharlieBrown.mp4" ] && [ -f "$SPLASH_DIR/Halloween.mp4" ] && [ -f "$SPLASH_DIR/JarvisSplash.mp4" ] && [ -f "$SPLASH_DIR/ThanksForPlaying.mp4" ]
+if [ -f "$SPL_DIR/Pistelero.mp4" ] && [ -f "$SPL_DIR/PleasureParadise.mp4" ] && [ -f "$SPL_DIR/RetroDevilReaper.mp4" ] && [ -f "$SPL_DIR/Supreme.mp4" ]&& [ -f "$SPL_DIR/ThanksForPlaying.mp4" ]
 then echo "Splash, Exit, and Game Launching Screens Found!"
+	move_exitscreens
 else
 	if [ -f "$HOME/tamoplus/tamoplus-screens.zip" ]; then echo "Extracting Splash, Exit, and Game Launching Screens"; unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie
 		echo "Splash, Exit, and Game Launching Screens Extracting Complete"
@@ -176,6 +177,7 @@ else
 		unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "Splash, Exit, and Game Launching Screens Extracting Complete"
 	fi
 fi
+move_exitscreens
 }
 
 download_thememusic() {
@@ -222,11 +224,49 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 fi
 }
 
+move_exitscreens() {
+# Moving Exitscreens To New Location
+mkdir $EXT_SPL_DIR
+if [ -f $SPL_DIR/HalloweenExitOff.mp4 ]; then mv -f $SPL_DIR/HalloweenExitOff.mp4 $EXT_SPL_DIR/HalloweenExitOff.mp4 
+elif [ -f $SPL_DIR/HalloweenExit.mp4 ]; then mv -f $SPL_DIR/HalloweenExit.mp4 $EXT_SPL_DIR/HalloweenExit.mp4; fi
+if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then mv -f $SPL_DIR/JarvisExitOff.mp4 $EXT_SPL_DIR/JarvisExitOff.mp4
+elif [ -f $SPL_DIR/JarvisExit.mp4 ]; then mv -f $SPL_DIR/JarvisExit.mp4 $EXT_SPL_DIR/JarvisExit.mp4; fi
+if [ -f $SPL_DIR/PisteleroExitOff.mp4 ]; then mv -f $SPL_DIR/PisteleroExitOff.mp4 $EXT_SPL_DIR/PisteleroExitOff.mp4
+elif [ -f $SPL_DIR/PisteleroExit.mp4 ]; then mv -f $SPL_DIR/PisteleroExit.mp4 $EXT_SPL_DIR/PisteleroExit.mp4; fi
+if [ -f $SPL_DIR/PleasureParadiseExitOff.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $EXT_SPL_DIR/PleasureParadiseExitOff.mp4
+elif [ -f $SPL_DIR/PleasureParadiseExit.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExit.mp4 $EXT_SPL_DIR/PleasureParadiseExit.mp4; fi
+if [ -f $SPL_DIR/RetroDevilReaperExitOff.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $EXT_SPL_DIR/RetroDevilReaperExitOff.mp4
+elif [ -f $SPL_DIR/RetroDevilReaperExit.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $EXT_SPL_DIR/RetroDevilReaperExit.mp4; fi
+if [ -f $SPL_DIR/StrangerExitOff.mp4 ]; then mv -f $SPL_DIR/StrangerExitOff.mp4 $EXT_SPL_DIR/StrangerExitOff.mp4
+elif [ -f $SPL_DIR/StrangerExit.mp4 ]; then mv -f $SPL_DIR/StrangerExit.mp4 $EXT_SPL_DIR/StrangerExit.mp4; fi
+if [ -f $SPL_DIR/SupremeExitOff.mp4 ]; then mv -f $SPL_DIR/SupremeExitOff.mp4 $EXT_SPL_DIR/SupremeExitOff.mp4
+elif [ -f $SPL_DIR/SupremeExit.mp4 ]; then mv -f $SPL_DIR/SupremeExit.mp4 $EXT_SPL_DIR/SupremeExit.mp4; fi
+if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL_DIR/XmasExitOff.mp4
+elif [ -f $SPL_DIR/XmasExit.mp4 ]; then mv -f $SPL_DIR/XmasExit.mp4 $EXT_SPL_DIR/XmasExit.mp4; fi
+}
+
 prep_work() {
 chmod 755 $INSTALL_DIR/scripts/*
+chmod 755 $INSTALL_DIR/files/*.sh
+if [ -d "$HOME/.tamoplus" ]; then echo "Found .tamoplus folder"; else mkdir $HOME/.tamoplus; fi
+cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
+#USER SETTINGS
+auto_update_flag=0
+user_menu_flag=0
+EOF_user_settings.ini
+sudo chmod +x $USER_SETTINGS
+
+if dialog --stdout --title "What to do?" \
+          --backtitle "Keep ReroPie menus?" \
+          --yesno "Yes: Delete, No:  Restore" 7 60; then
+    dialog --title "Removing menus" --msgbox "TRUE" 6 44
+
+#One removes menu
+sudo perl -p -i -e 's/user_menu_flag=0/user_menu_flag=1/g' $USER_SETTINGS
+
 if [ -f /etc/sbu/sbu.sh ]; then
-	echo "Please Note On A Supreme Build This Installer Will Remove The Audio Tools And Visual tools menus that will be added By TAMO+"
-	echo "You can put them back with Fix My Build in the RetroPie Menu"
+	echo "Please Note: Because You Picked Remove Menus And Your On A Supreme Build This Installer Will Remove The Audio Tools, Visual tools and controller tools menus that will be added By TAMO+"
+	echo "You can put them back with Fix My Build in the RetroPie Menu If On A Supreme Build"
 	sleep 3
 else
 	echo "Please Note This Installer Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
@@ -244,16 +284,17 @@ sudo apt-get install -y $PSUTIL_PKG # to generate overlays
 sudo pip install requests gdown
 
 # Normal RetroPie Menu Edits
-if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo mv $MENU_DIR/audiosettings.rp $MENU_DIR/audiosettings.rp.bk; fi
-if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo mv $MENU_DIR/esthemes.rp $MENU_DIR/esthemes.rp.bk; fi
-if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo mv $MENU_DIR/splashscreen.rp $MENU_DIR/splashscreen.rp.bk; fi
+if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f $MENU_DIR/audiosettings.rp; fi
+if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f $MENU_DIR/esthemes.rp; fi
+if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f $MENU_DIR/splashscreen.rp; fi
+
 # Supreme ES Edits
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	# Supreme RetroPie Menu Edits
-	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/audiotools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/controllertools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -r /home/pi/RetroPie/retropiemenu/visualtools; fi
+	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/audiotools; fi
+	if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/controllertools; fi
+	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/visualtools; fi
 
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
@@ -264,7 +305,6 @@ if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
    
 	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
-Controller tools;/ Controller Tools;@;;;;;;;;;0;;;;;
 Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
 Retropie tools;/ Retropie Tools;@;;;;;;;;;0;;;;;
 tamoplus;Tamo Plus;Settings;;;;;;;;;;;;;;
@@ -328,8 +368,8 @@ fi
 
 if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
 	if [ -f "/usr/local/bin/pngview" ]; then echo "Found pngview!"; else
-		sudo chmod +x $HOME/tamoplus/pngview
-		sudo cp $HOME/tamoplus/pngview /usr/local/bin/
+		sudo chmod +x $INSTALL_DIR/files/pngview
+		sudo cp $INSTALL_DIR/files/pngview /usr/local/bin/
 	fi
 elif [[ $currentuser == "pigaming" ]]; then
 	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev # Install ODROID stuff
@@ -340,10 +380,13 @@ elif [[ $currentuser == "pigaming" ]]; then
 fi
 
 cd $HOME/tamoplus/
-sudo cp -f $HOME/tamoplus/GROBOLD.ttf /usr/share/fonts/truetype/
-sudo cp -f $HOME/tamoplus/Pixel.otf /usr/share/fonts/truetype/
+sudo cp -f INSTALL_DIR/files/GROBOLD.ttf /usr/share/fonts/truetype/
+sudo cp -f $INSTALL_DIR/files/Pixel.otf /usr/share/fonts/truetype/
+cp -f $INSTALL_DIR/files/BGM.py $SETTINGS_DIR/BGM.py
+sudo chmod +x $SETTINGS_DIR/BGM.py
+cp -f $INSTALL_DIR/files/*.mp3 $SETTINGS_DIR
 sleep 1
-if [ ! -d  "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
+if [ ! -d "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 
 # Will add Default missing EmulationStation settings
 if [ ! -f  "/opt/retropie/configs/all/emulationstation/es_settings.cfg" ]; then
@@ -383,7 +426,7 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <int name="ScreenSaverTime" value="300000" />
 <int name="SubtitleSize" value="55" />
 <int name="SystemSleepTime" value="0" />
-<string name="AudioCard" value="default" />
+<string name="AudioCard" value="sysdefault" />
 <string name="AudioDevice" value="HDMI" />
 <string name="CollectionSystemsAuto" value="" />
 <string name="CollectionSystemsCustom" value="" />
@@ -410,6 +453,7 @@ sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 
 if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
 curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
+mv -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
 fi
 
 # Added Supreme Marquee and Script
@@ -421,7 +465,7 @@ sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
 mkdir /opt/retropie/configs/all/PieMarquee2/
 cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
 
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $TAMPO_DIR/scripts/; fi
+if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
 
 chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
@@ -445,38 +489,48 @@ EOF12389
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
 	fi
 fi
+fi
 }
 
 setup() {
 echo "Add menu options for BGM Overlay Controls"
-cp -f $HOME/tamoplus/tamoplus.png $MENU_DIR/icons/
+if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then cp -f $INSTALL_DIR/files/tamoplus-sbu.png $MENU_DIR/icons/tamoplus.png; else cp -f $INSTALL_DIR/files/tamoplus-rp.png $MENU_DIR/icons/tamoplus.png; fi
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
 if [ -f "$STMENU_DIR_V/tamoplus.sh" ]; then sudo rm -f $STMENU_DIR_V/tamoplus.sh; fi
 if [ "$minimum" = "1" ]; then
 	sudo chmod +x $INSTALL_DIR/tamoplus-minimum.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-minimum.sh
-	cp $INSTALL_DIR/tamoplus-minimum.sh $MENU_DIR/tamoplus.sh
+	cp $INSTALL_DIR/files/tamoplus-minimum.sh $MENU_DIR/tamoplus.sh
 	mkdir $MUSIC_DIR/custom
 elif [ "$minimum" = "2" ]; then
 	sudo chmod +x $INSTALL_DIR/tamoplus-bare.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus-bare.sh
-	cp $INSTALL_DIR/tamoplus-bare.sh $MENU_DIR/tamoplus.sh
+	cp $INSTALL_DIR/files/tamoplus-bare.sh $MENU_DIR/tamoplus.sh
 	mkdir $MUSIC_DIR/custom
 else
 	sudo chmod +x $INSTALL_DIR/tamoplus.sh
 	sudo chown $currentuser:$currentuser $INSTALL_DIR/tamoplus.sh
-	cp $INSTALL_DIR/tamoplus.sh $MENU_DIR/tamoplus.sh
+	cp $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
 fi
 
 if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
 if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
+
+# Backup Supreme gamelist.xml
+#if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then if [ ! -f "$SETTINGS_DIR/gamelist_sbu_menus.xml" ]; then cp $MENU_DIR/gamelist.xml $SETTINGS_DIR/gamelist_sbu_menus.xml; fi; fi
+
 CONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 if grep -q tamoplus.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
 else
-	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > /tmp/temp.xml
-	cat /tmp/temp.xml > $MENU_DIR/gamelist.xml
-	rm -f /tmp/temp.xml
+	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > /tmp/temp1.xml
+	cat /tmp/temp1.xml > $MENU_DIR/gamelist.xml
+	rm -f /tmp/temp1.xml
+	#if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
+	#	sed "/<\/gameList>/ s/.*/${C1}\n&/" $SETTINGS_DIR/gamelist_sbu_menus.xml > /tmp/temp2.xml
+	#	cat /tmp/temp2.xml > $SETTINGS_DIR/gamelist_sbu_menus.xml
+	#	rm -f /tmp/temp2.xml
+	#fi
 fi
 
 if [ "$minimum" -lt "2" ]; then
@@ -486,7 +540,7 @@ cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF1293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 	fi
@@ -497,7 +551,7 @@ cat <<\EOF18293 > "/opt/retropie/configs/all/emulationstation/scripts/shutdown/e
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 	fi
@@ -509,6 +563,7 @@ if [[ ${filefound11} > 0 ]]; then
 
    echo -e "$(tput setaf 2)Tamo+ Script Already Found in Auto Start But Will Now Enable! $(tput sgr0)"
    echo "already in autostart.sh" > /tmp/exists
+   sed -i 's/home\/pi\/tamoplus\/BGM.py/home\/pi\/.tamoplus\/BGM.py/g' $AUTOSTART
 
 else
 
@@ -523,7 +578,7 @@ else
 		sed -i '/^#(sleep 10; mpg123/d' $AUTOSTART
 
 cat <<\EOF123 > "/tmp/templist"
-(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python /home/pi/.tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -538,7 +593,7 @@ EOF123
 		echo -e "$(tput setaf 2)Now Installing The Supreme Version of TAMO+! $(tput sgr0)"
 		sleep 3    
 cat <<\EOF123 > "/tmp/templist"
-(nohup python /home/pi/tamoplus/BGM.py > /dev/null 2>&1) &
+(nohup python /home/pi/.tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
 		if [ "$minimum" = "2" ]; then
@@ -680,8 +735,9 @@ install_ending() {
 ending=""
 ending="${ending}TAMO+ and is now installed.\n"
 ending="${ending}Run $MENU_DIR/tamoplus.sh or navigate to:\n"
-if [ -d "$STMENU_DIR_V" ]; then ending="${ending}Retropie > Visualtools > TAMO+, for more options!\n"; else ending="${ending}Retropie > TAMO+, for more options!\n"; fi
-ending="${ending}BGM has also been set up to run automatically when the device boots!\n"
+ending="${ending}Retropie > TAMO+, for more options!\n"
+ending="${ending}BGM has also been set up to run automatically when the device boots\n"
+ending="${ending}to the default (Disabled no music will be playing) folder!\n\n"
 ending="${ending}Thanks for trying out TAMO+\n\n"
 dialog --backtitle "TAMO+ Install Script $ver" \
 	--title "TAMO+ Install Script $ver" \
