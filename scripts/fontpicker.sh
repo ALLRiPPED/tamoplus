@@ -3,7 +3,7 @@
 currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
-font_selection() {
+font_type_selection() {
 stats_check
 local choice
     while true; do
@@ -143,24 +143,9 @@ export CUR_FONT
 sed -i -E "s/overlay_text_font = ${CUR_FONT}/overlay_text_font = \"${1}\"/g" $SCRIPT_LOC
 bgm_check
 stats_check
-}
-
-stats_check() {
-CURFONT=$(grep "overlay_text_font =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
-cfontr="\Z3$CURFONT\Zn"
 exit
 }
 
-bgm_check() {
-if [ -f "$INSTALL_DIR"/DisableMusic ]; then
-	echo "Background Music Disabled!"
-else
-	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-	sleep 1
-	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
-fi
-sleep 1
-}
+. /home/$currentuser/tamoplus/scripts/tamo-functions
 
-font_selection
+font_type_selection

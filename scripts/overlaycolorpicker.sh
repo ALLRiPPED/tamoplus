@@ -3,7 +3,7 @@
 currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
-font_color_selection() {
+overlaycolor_selection() {
 stats_check
 local choice
     while true; do
@@ -291,23 +291,9 @@ export CUR_COLOR
 sed -i -E "s/overlay_background_color = ${CUR_COLOR}/overlay_background_color = \"${1}\"/g" $SCRIPT_LOC
 bgm_check
 stats_check
+exit
 }
 
-stats_check() {
-OVLCOLOR=$(grep "overlay_background_color =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
-ocolor="\Z3$OVLCOLOR\Zn"
-}
+. /home/$currentuser/tamoplus/scripts/tamo-functions
 
-bgm_check() {
-if [ -f "$INSTALL_DIR"/DisableMusic ]; then
-	echo "Background Music Disabled!"
-else
-	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-	sleep 1
-	(nohup python $SCRIPT_LOC > /dev/null 2>&1) &
-fi
-sleep 1
-}
-
-font_color_selection
+overlaycolor_selection
