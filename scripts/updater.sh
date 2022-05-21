@@ -22,6 +22,10 @@ tamo_update() {
 	fi
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 1
+	chmod 0755 /home/pi/tamoplus/scripts/*
+	chmod 0755 /home/pi/tamoplus/files/*.sh
+	chmod 0755 /home/pi/tamoplus/files/pngview
+	chmod 0755 /home/pi/tamoplus/files/BGM.py
 	}
 
 if [ -d "$INSTALL_DIR" ]; then
