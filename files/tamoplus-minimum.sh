@@ -53,7 +53,7 @@ stats_check
         case "$choice" in
             1) auto_update  ;;
             2) retropie_menu  ;;
-            3) $INSTALL_DIR/scripts/updater.sh; exit 1  ;;
+            3) bash $INSTALL_DIR/scripts/updater.sh; exit 1  ;;
             *) break  ;;
         esac
     done
@@ -80,14 +80,14 @@ stats_check
         case "$choice" in
             1) overlay_menu ;;
             2) bezel_project ;;
-            3) $INSTALL_DIR/scripts/bezels.sh ;;
+            3) bash $INSTALL_DIR/scripts/bezels.sh ;;
             4) supreme_marquee_tool ;;
-            5) $INSTALL_DIR/scripts/resolution-tool.sh ;;
-            6) $INSTALL_DIR/scripts/retroarch-tool.sh ;;
-            7) $INSTALL_DIR/scripts/remove-media.sh ;;
+            5) bash $INSTALL_DIR/scripts/resolution-tool.sh ;;
+            6) bash $INSTALL_DIR/scripts/retroarch-tool.sh ;;
+            7) bash $INSTALL_DIR/scripts/remove-media.sh ;;
             8) sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui ;;
-            9) $INSTALL_DIR/scripts/skyscraper.sh ;;
-           10) $INSTALL_DIR/scripts/genesis.sh ;;
+            9) bash $INSTALL_DIR/scripts/skyscraper.sh ;;
+           10) bash $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
@@ -439,9 +439,9 @@ local choice
             5) overlay_replace_newline ;;
             6) overlay_v_pos ;;
             7) overlay_h_pos ;;
-            8) $INSTALL_DIR/scripts/fontpicker.sh ;;
-            9) $INSTALL_DIR/scripts/fontcolorpicker.sh ;;
-           10) $INSTALL_DIR/scripts/overlaycolorpicker.sh ;;
+            8) bash $INSTALL_DIR/scripts/fontpicker.sh ;;
+            9) bash $INSTALL_DIR/scripts/fontcolorpicker.sh ;;
+           10) bash $INSTALL_DIR/scripts/overlaycolorpicker.sh ;;
             *) break ;;
         esac
     done
@@ -648,12 +648,12 @@ controller_menu() {
             6 "Xinmo Juyao" \
            2>&1 > /dev/tty)
         case "$choice" in
-            1) $INSTALL_DIR/scripts/joystick_selection.sh ;;
-            2) $INSTALL_DIR/scripts/LightGunAimtrak.sh ;;
-            3) $INSTALL_DIR/scripts/LightGunConf.sh ;;
-            4) $INSTALL_DIR/scripts/resetcontrollers.sh ;;
-            5) $INSTALL_DIR/scripts/sinden-menu.sh ;;
-            6) $INSTALL_DIR/scripts/xinmo-juyao.sh ;;
+            1) bash $INSTALL_DIR/scripts/joystick_selection.sh ;;
+            2) bash $INSTALL_DIR/scripts/LightGunAimtrak.sh ;;
+            3) bash $INSTALL_DIR/scripts/LightGunConf.sh ;;
+            4) bash $INSTALL_DIR/scripts/resetcontrollers.sh ;;
+            5) bash $INSTALL_DIR/scripts/sinden-menu.sh ;;
+            6) bash $INSTALL_DIR/scripts/xinmo-juyao.sh ;;
             *) break ;;
         esac
     done
