@@ -38,4 +38,6 @@ else
 fi
 }
 
+. /home/$currentuser/tamoplus/scripts/tamo-functions
+
 tamo_update
