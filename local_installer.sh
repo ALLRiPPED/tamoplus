@@ -227,22 +227,14 @@ fi
 move_exitscreens() {
 # Moving Exitscreens To New Location
 mkdir $EXT_SPL_DIR
-if [ -f $SPL_DIR/HalloweenExitOff.mp4 ]; then mv -f $SPL_DIR/HalloweenExitOff.mp4 $EXT_SPL_DIR/HalloweenExitOff.mp4 
-elif [ -f $SPL_DIR/HalloweenExit.mp4 ]; then mv -f $SPL_DIR/HalloweenExit.mp4 $EXT_SPL_DIR/HalloweenExit.mp4; fi
-if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then mv -f $SPL_DIR/JarvisExitOff.mp4 $EXT_SPL_DIR/JarvisExitOff.mp4
-elif [ -f $SPL_DIR/JarvisExit.mp4 ]; then mv -f $SPL_DIR/JarvisExit.mp4 $EXT_SPL_DIR/JarvisExit.mp4; fi
-if [ -f $SPL_DIR/PisteleroExitOff.mp4 ]; then mv -f $SPL_DIR/PisteleroExitOff.mp4 $EXT_SPL_DIR/PisteleroExitOff.mp4
-elif [ -f $SPL_DIR/PisteleroExit.mp4 ]; then mv -f $SPL_DIR/PisteleroExit.mp4 $EXT_SPL_DIR/PisteleroExit.mp4; fi
-if [ -f $SPL_DIR/PleasureParadiseExitOff.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $EXT_SPL_DIR/PleasureParadiseExitOff.mp4
-elif [ -f $SPL_DIR/PleasureParadiseExit.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExit.mp4 $EXT_SPL_DIR/PleasureParadiseExit.mp4; fi
-if [ -f $SPL_DIR/RetroDevilReaperExitOff.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $EXT_SPL_DIR/RetroDevilReaperExitOff.mp4
-elif [ -f $SPL_DIR/RetroDevilReaperExit.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $EXT_SPL_DIR/RetroDevilReaperExit.mp4; fi
-if [ -f $SPL_DIR/StrangerExitOff.mp4 ]; then mv -f $SPL_DIR/StrangerExitOff.mp4 $EXT_SPL_DIR/StrangerExitOff.mp4
-elif [ -f $SPL_DIR/StrangerExit.mp4 ]; then mv -f $SPL_DIR/StrangerExit.mp4 $EXT_SPL_DIR/StrangerExit.mp4; fi
-if [ -f $SPL_DIR/SupremeExitOff.mp4 ]; then mv -f $SPL_DIR/SupremeExitOff.mp4 $EXT_SPL_DIR/SupremeExitOff.mp4
-elif [ -f $SPL_DIR/SupremeExit.mp4 ]; then mv -f $SPL_DIR/SupremeExit.mp4 $EXT_SPL_DIR/SupremeExit.mp4; fi
-if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL_DIR/XmasExitOff.mp4
-elif [ -f $SPL_DIR/XmasExit.mp4 ]; then mv -f $SPL_DIR/XmasExit.mp4 $EXT_SPL_DIR/XmasExit.mp4; fi
+if [ -f $SPL_DIR/HalloweenExitOff.mp4 ]; then mv -f $SPL_DIR/HalloweenExitOff.mp4 $EXT_SPL_DIR/HalloweenExitOff.mp4; elif [ -f $SPL_DIR/HalloweenExit.mp4 ]; then mv -f $SPL_DIR/HalloweenExit.mp4 $EXT_SPL_DIR/HalloweenExit.mp4; fi
+if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then mv -f $SPL_DIR/JarvisExitOff.mp4 $EXT_SPL_DIR/JarvisExitOff.mp4; elif [ -f $SPL_DIR/JarvisExit.mp4 ]; then mv -f $SPL_DIR/JarvisExit.mp4 $EXT_SPL_DIR/JarvisExit.mp4; fi
+if [ -f $SPL_DIR/PisteleroExitOff.mp4 ]; then mv -f $SPL_DIR/PisteleroExitOff.mp4 $EXT_SPL_DIR/PisteleroExitOff.mp4; elif [ -f $SPL_DIR/PisteleroExit.mp4 ]; then mv -f $SPL_DIR/PisteleroExit.mp4 $EXT_SPL_DIR/PisteleroExit.mp4; fi
+if [ -f $SPL_DIR/PleasureParadiseExitOff.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $EXT_SPL_DIR/PleasureParadiseExitOff.mp4; elif [ -f $SPL_DIR/PleasureParadiseExit.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExit.mp4 $EXT_SPL_DIR/PleasureParadiseExit.mp4; fi
+if [ -f $SPL_DIR/RetroDevilReaperExitOff.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $EXT_SPL_DIR/RetroDevilReaperExitOff.mp4; elif [ -f $SPL_DIR/RetroDevilReaperExit.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $EXT_SPL_DIR/RetroDevilReaperExit.mp4; fi
+if [ -f $SPL_DIR/StrangerExitOff.mp4 ]; then mv -f $SPL_DIR/StrangerExitOff.mp4 $EXT_SPL_DIR/StrangerExitOff.mp4; elif [ -f $SPL_DIR/StrangerExit.mp4 ]; then mv -f $SPL_DIR/StrangerExit.mp4 $EXT_SPL_DIR/StrangerExit.mp4; fi
+if [ -f $SPL_DIR/SupremeExitOff.mp4 ]; then mv -f $SPL_DIR/SupremeExitOff.mp4 $EXT_SPL_DIR/SupremeExitOff.mp4; elif [ -f $SPL_DIR/SupremeExit.mp4 ]; then mv -f $SPL_DIR/SupremeExit.mp4 $EXT_SPL_DIR/SupremeExit.mp4; fi
+if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL_DIR/XmasExitOff.mp4; elif [ -f $SPL_DIR/XmasExit.mp4 ]; then mv -f $SPL_DIR/XmasExit.mp4 $EXT_SPL_DIR/XmasExit.mp4; fi
 }
 
 prep_work() {
@@ -259,18 +251,23 @@ sudo chmod +x $USER_SETTINGS
 if dialog --stdout --title "What to do?" \
           --backtitle "Keep ReroPie menus?" \
           --yesno "Yes: Delete, No:  Restore" 7 60; then
-    dialog --title "Removing menus" --msgbox "TRUE" 6 44
-
-#One removes menu
-sudo perl -p -i -e 's/user_menu_flag=0/user_menu_flag=1/g' $USER_SETTINGS
-
-if [ -f /etc/sbu/sbu.sh ]; then
-	echo "Please Note: Because You Picked Remove Menus And Your On A Supreme Build This Installer Will Remove The Audio Tools, Visual tools and controller tools menus that will be added By TAMO+"
-	echo "You can put them back with Fix My Build in the RetroPie Menu If On A Supreme Build"
-	sleep 3
+    dialog --title "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back" --msgbox "TRUE" 6 44
+	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	#game_list_full
+	keep_menus
 else
-	echo "Please Note This Installer Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
-	sleep 3
+    dialog --title "Keep Menus Now Set To Off. Now Removing RetroPie Menus." --msgbox "FALSE" 6 44
+	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	#game_list_full
+	rm_menus
 fi
 
 echo "Installing Needed Packages"
@@ -280,48 +277,9 @@ if sudo apt-get --simulate install $PYGAME_PKG; then sudo apt-get install -y $PY
 	echo "Unable to install python-pygame, please update your system (\"sudo apt-get upgrade && sudo apt-get update\") and then try running this script again!"
 	exit
 fi
+
 sudo apt-get install -y $PSUTIL_PKG # to generate overlays
 sudo pip install requests gdown
-
-# Normal RetroPie Menu Edits
-if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f $MENU_DIR/audiosettings.rp; fi
-if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f $MENU_DIR/esthemes.rp; fi
-if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f $MENU_DIR/splashscreen.rp; fi
-
-# Supreme ES Edits
-if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
-
-	# Supreme RetroPie Menu Edits
-	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/audiotools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/controllertools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/visualtools; fi
-
-	# Supreme Attract mode Edits
-	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
-	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
-	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
-	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
-	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
-   
-	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
-#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
-Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
-Retropie tools;/ Retropie Tools;@;;;;;;;;;0;;;;;
-tamoplus;Tamo Plus;Settings;;;;;;;;;;;;;;
-displayutility;Display Utility;Settings;;;;;;;;;;;;;;
-basicinfo;Retropie Basic Infos;Settings;;;;;;;;;;;;;;
-favorites;Favorites Utility;Settings;;;;;;;;;;;;;;
-fixmybuild;Fix My Build;Settings;;;;;;;;;;;;;;
-frontendselector;Front End Selector;Settings;;;;;;;;;;;;;;
-attract-systems-detection;Attract Systems Detection;Settings;;;;;;;;;;;;;;
-#systemsnapswitch;Systems snaps switch;Settings;;;;;;;;;;;;;;
-raspiconfig;Raspi Config;Settings;;;;;;;;;;;;;;
-rpsetup;Retropie Setup;Settings;;;;;;;;;;;;;;
-reboot;Reboot;Settings;;;;;;;;;;;;;;
-shutdown;Shutdown;Settings;;;;;;;;;;;;;;
-EOF152935
-	sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
-fi
 
 cd $HOME
 
@@ -469,7 +427,7 @@ if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -
 sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
 
 chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
-chmod 755 /home/pi/RetroPie/retropiemenu/supreme-marquee-tool.sh
+chmod 755 $MENU_DIR/supreme-marquee-tool.sh
 sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 	#Do Auto Start Edits for marquee#
 	ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
@@ -488,7 +446,6 @@ fi
 EOF12389
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
 	fi
-fi
 fi
 }
 
@@ -516,9 +473,6 @@ fi
 if [ ! -s $MENU_DIR/gamelist.xml ]; then sudo rm -f $MENU_DIR/gamelist.xml; fi
 if [ ! -f "$MENU_DIR/gamelist.xml" ]; then cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml; fi
 
-# Backup Supreme gamelist.xml
-#if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then if [ ! -f "$SETTINGS_DIR/gamelist_sbu_menus.xml" ]; then cp $MENU_DIR/gamelist.xml $SETTINGS_DIR/gamelist_sbu_menus.xml; fi; fi
-
 CONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
 C1=$(echo $CONTENT1 | sed 's/\//\\\//g')
 if grep -q tamoplus.sh "$MENU_DIR/gamelist.xml"; then echo "gamelist.xml entry confirmed"
@@ -526,11 +480,6 @@ else
 	sed "/<\/gameList>/ s/.*/${C1}\n&/" $MENU_DIR/gamelist.xml > /tmp/temp1.xml
 	cat /tmp/temp1.xml > $MENU_DIR/gamelist.xml
 	rm -f /tmp/temp1.xml
-	#if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
-	#	sed "/<\/gameList>/ s/.*/${C1}\n&/" $SETTINGS_DIR/gamelist_sbu_menus.xml > /tmp/temp2.xml
-	#	cat /tmp/temp2.xml > $SETTINGS_DIR/gamelist_sbu_menus.xml
-	#	rm -f /tmp/temp2.xml
-	#fi
 fi
 
 if [ "$minimum" -lt "2" ]; then
@@ -790,5 +739,7 @@ rebootnd() {
 	sleep 1
 	sudo reboot
 }
+
+. /home/$currentuser/tamoplus/scripts/tamo-functions
 
 main_menu
