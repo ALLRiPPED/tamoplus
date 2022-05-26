@@ -37,14 +37,20 @@ fi
 if grep 'user_menu_flag=0' "$USER_SETTINGS"; then
 	echo "Keep Menus Now Set To Off. Now Removing RetroPie Menus."
 	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
-	#cp $SETTINGS_DIR/gamelist_no_menus.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
-	#cp $SETTINGS_DIR/gamelist_no_menus.xml $MENU_DIR/gamelist.xml
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	#game_list_full
 	rm_menus
 else
 	echo "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back"
 	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
-	#cp $SETTINGS_DIR/gamelist_menus.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
-	#cp $SETTINGS_DIR/gamelist_menus.xml $MENU_DIR/gamelist.xml
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	#game_list_full
 	keep_menus
 fi
 stats_check
@@ -761,9 +767,9 @@ if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f $MENU_DIR/splashscreen.rp
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	# Supreme RetroPie Menu Edits
-	if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/audiotools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/controllertools; fi
-	if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/visualtools; fi
+	if [ -d $MENU_DIR/audiotools ]; then sudo rm -fR $MENU_DIR/audiotools; fi
+	if [ -d $MENU_DIR/controllertools ]; then sudo rm -fR $MENU_DIR/controllertools; fi
+	if [ -d $MENU_DIR/visualtools ]; then sudo rm -fR $MENU_DIR/visualtools; fi
 
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
@@ -809,48 +815,47 @@ fi
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	#Visual Tools
-	if [[ ! -d "/home/pi/RetroPie/retropiemenu/visualtools" ]]; then
-	mkdir -p "/home/pi/RetroPie/retropiemenu/visualtools"
+	if [[ ! -d "$MENU_DIR/visualtools" ]]; then
+	mkdir -p "$MENU_DIR/visualtools"
 	fi
 
-	cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/visualtools/bezelproject.sh
-	cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/visualtools/bezels.sh
-	cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/visualtools/genesis.sh
-	cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/visualtools/hurstythemes.sh
-	cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/loadingmedia-tool.sh
-	cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/visualtools/removemedia.sh
-	cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/visualtools/resolution-tool.sh 
-	cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh
-	cp $INSTALL_DIR/scripts/skyscraper.sh /home/pi/RetroPie/retropiemenu/visualtools/skyscraper.sh
-	cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/supreme-marquee-tool.sh
-	mv /home/pi/RetroPie/retropiemenu/splashscreen.rp /home/pi/RetroPie/retropiemenu/visualtools/splashscreen.rp
-	mv /home/pi/RetroPie/retropiemenu/esthemes.rp /home/pi/RetroPie/retropiemenu/visualtools/esthemes.rp
-	chmod 755 /home/pi/RetroPie/retropiemenu/visualtools/*
+	cp $INSTALL_DIR/scripts/bezelproject.sh $MENU_DIR/visualtools/bezelproject.sh
+	cp $INSTALL_DIR/scripts/bezels.sh $MENU_DIR/visualtools/bezels.sh
+	cp $INSTALL_DIR/scripts/genesis.sh $MENU_DIR/visualtools/genesis.sh
+	cp $INSTALL_DIR/scripts/hurstythemes.sh $MENU_DIR/visualtools/hurstythemes.sh
+	cp $INSTALL_DIR/scripts/loadingmedia-tool.sh $MENU_DIR/visualtools/loadingmedia-tool.sh
+	cp $INSTALL_DIR/scripts/removemedia.sh $MENU_DIR/visualtools/removemedia.sh
+	cp $INSTALL_DIR/scripts/resolution-tool.sh  $MENU_DIR/visualtools/resolution-tool.sh 
+	cp $INSTALL_DIR/scripts/retropie-tweak.sh $MENU_DIR/visualtools/retropie-tweak.sh
+	cp $INSTALL_DIR/scripts/skyscraper.sh $MENU_DIR/visualtools/skyscraper.sh
+	cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh $MENU_DIR/visualtools/supreme-marquee-tool.sh
+	mv $MENU_DIR/splashscreen.rp $MENU_DIR/visualtools/splashscreen.rp
+	mv $MENU_DIR/esthemes.rp $MENU_DIR/visualtools/esthemes.rp
+	chmod 755 $MENU_DIR/visualtools/*
 	#--------------------------------------------------------------------------------------------------------#
 
 	#Audio Tools
-	if [[ ! -d "/home/pi/RetroPie/retropiemenu/audiotools" ]]; then
-	mkdir -p "/home/pi/RetroPie/retropiemenu/audiotools"
+	if [[ ! -d "$MENU_DIR/audiotools" ]]; then
+	mkdir -p "$MENU_DIR/audiotools"
 	fi 
 
-	#cp $INSTALL_DIR/scripts/backgroundmusic.sh  /home/pi/RetroPie/retropiemenu/audiotools/bezelproject.sh
-	cp $INSTALL_DIR/scripts/NoAudioFix-TrythisFirst.sh  /home/pi/RetroPie/retropiemenu/audiotools/NoAudioFix-TrythisFirst.sh 
-	mv /home/pi/RetroPie/retropiemenu/audiosettings.rp /home/pi/RetroPie/retropiemenu/audiotools/audiosettings.rp
-	chmod 755 /home/pi/RetroPie/retropiemenu/audiotools/*
+	cp $INSTALL_DIR/scripts/NoAudioFix-TrythisFirst.sh  $MENU_DIR/audiotools/NoAudioFix-TrythisFirst.sh 
+	mv $MENU_DIR/audiosettings.rp $MENU_DIR/audiotools/audiosettings.rp
+	chmod 755 $MENU_DIR/audiotools/*
 	#--------------------------------------------------------------------------------------------------------#
 
 	#Controller Tools
-	if [[ ! -d "/home/pi/RetroPie/retropiemenu/controllertools" ]]; then
-	mkdir -p "/home/pi/RetroPie/retropiemenu/controllertools"
+	if [[ ! -d "$MENU_DIR/controllertools" ]]; then
+	mkdir -p "$MENU_DIR/controllertools"
 	fi
 
-	cp $INSTALL_DIR/scripts/joystick_selection.sh /home/pi/RetroPie/retropiemenu/controllertools/joystick_selection.sh
-	cp $INSTALL_DIR/scripts/LightGunAimtrak.sh /home/pi/RetroPie/retropiemenu/controllertools/LightGunAimtrak.sh
-	cp $INSTALL_DIR/scripts/LightGunConf.sh /home/pi/RetroPie/retropiemenu/controllertools/LightGunConf.sh
-	cp $INSTALL_DIR/scripts/resetcontrollers.sh /home/pi/RetroPie/retropiemenu/controllertools/resetcontrollers.sh
-	cp $INSTALL_DIR/scripts/sinden-menu.sh /home/pi/RetroPie/retropiemenu/controllertools/sinden-menu.sh
-	cp $INSTALL_DIR/scripts/xinmo-juyao.sh /home/pi/RetroPie/retropiemenu/controllertools/xinmo-juyao.sh
-	chmod 755 /home/pi/RetroPie/retropiemenu/controllertools/*
+	cp $INSTALL_DIR/scripts/joystick_selection.sh $MENU_DIR/controllertools/joystick_selection.sh
+	cp $INSTALL_DIR/scripts/LightGunAimtrak.sh $MENU_DIR/controllertools/LightGunAimtrak.sh
+	cp $INSTALL_DIR/scripts/LightGunConf.sh $MENU_DIR/controllertools/LightGunConf.sh
+	cp $INSTALL_DIR/scripts/resetcontrollers.sh $MENU_DIR/controllertools/resetcontrollers.sh
+	cp $INSTALL_DIR/scripts/sinden-menu.sh $MENU_DIR/controllertools/sinden-menu.sh
+	cp $INSTALL_DIR/scripts/xinmo-juyao.sh $MENU_DIR/controllertools/xinmo-juyao.sh
+	chmod 755 $MENU_DIR/controllertools/*
 	#--------------------------------------------------------------------------------------------------------#
 
 	# Supreme Attract mode Edits
@@ -881,9 +886,11 @@ shutdown;Shutdown;Settings;;;;;;;;;;;;;;
 EOF152935
 	sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
 else
-	sudo ~/RetroPie-Setup/retropie_packages.sh retropiemenu
+	# Normal RetroPie Menu Edits
+	touch $MENU_DIR/audiosettings.rp
+	touch $MENU_DIR/esthemes.rp
+	touch $MENU_DIR/splashscreen.rp
 	sudo chown $USER:$USER $MENU_DIR/*
-
 fi
 
 cd $HOME
