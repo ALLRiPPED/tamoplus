@@ -1,5 +1,7 @@
 #!/bin/bash
 #IFS=';'
+enable="\Z2Enabled\Zn"
+disable="\Z1Disabled\Zn"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=enable; else vls=disable; fi
 
