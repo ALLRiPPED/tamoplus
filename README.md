@@ -1,6 +1,16 @@
 ## TAMO+: Themes And Music Overlay Plus v1.40 (formally known as TAMPO)
-This installs all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
-for Halloween and Christmas Holiday themes and Stranger Things Theme plus my own concoction theme set Carbonite, for now, hopefully more to come!<br>
+This can install all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
+for two Holiday themes and my own concoction theme set Carbonite, for now, hopefully more to come!<br>
+## Total available themesets are as follows
+1. Carbinote (thepitster)
+2. Christmas (Dwayne Hurst)
+3. Halloween (spoony and Dwayne Hurst)
+4. Pistolero (Kio Dieken)
+5. Pleasure Paradise (MBM)
+6. Retro-Devils (Retro-Devils)
+7. Stranger Things (Filipe Bello)
+8. Supreme Team (Supreme Team)
+<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
 And for those using Supreme Ultra builds it removes Audio Settings, Controller Settings, & Visual Settings from the RetroPie Menu.<br>
 All of which can be found from within the TAMO+ script itself.<br>
