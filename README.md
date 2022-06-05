@@ -11,7 +11,7 @@ The install and main scripts now let you install the themesets and music seprate
 This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
-## Total available themesets are as follows
+## Total Available Themesets
 1. Carbinote (thepitster)
 2. Christmas (Dwayne Hurst)
 3. Halloween (spoony and Dwayne Hurst)
@@ -20,6 +20,12 @@ Now if you have any sugesstions or addition please fork the repo and hit me up w
 6. Retro-Devils (Retro-Devils)
 7. Stranger Things (Filipe Bello)
 8. Supreme Team (Supreme Team)
+## Total Available Background Music
+1. Arcade (Unknown)
+2. Custom (Brutal Legend Soundtrack)
+3. Nostalgia Trip (Brian Damaso)
+4. Ultimate Vs. Fighter (David Ball)
+5. Venom (Kio Dieken)
 ## Install Preparations!
 This will prep everything needed for TAMO+ to run on your system, hence everything needed will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y` just to make sure you are up-to-date<br>
