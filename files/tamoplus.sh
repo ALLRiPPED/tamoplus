@@ -1,5 +1,5 @@
 #!/bin/bash
-# TAMO+ Full Script
+# TAMO+ Script
 # By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
 # & The Supreme Team https://github.com/SupremePi/
 currentuser=$(whoami) # Check user
