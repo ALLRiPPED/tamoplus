@@ -10,7 +10,6 @@ for two Holiday themes and my own concoction theme set Carbonite, for now, hopef
 6. Retro-Devils (Retro-Devils)
 7. Stranger Things (Filipe Bello)
 8. Supreme Team (Supreme Team)
-<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
 And for those using Supreme Ultra builds it removes Audio Settings, Controller Settings, & Visual Settings from the RetroPie Menu.<br>
 All of which can be found from within the TAMO+ script itself.<br>
