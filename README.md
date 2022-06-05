@@ -52,7 +52,7 @@ This is a script that is similar to Kio Diekin's theme and music script, but min
 https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 
 ## Preview
-[![](https://i.imgur.com/CYeKEEf.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
+[![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section
 This is where you will find the info you will need to change the colors of the background and font on the Overlay.<br>
 At the moment I have a color table here with color names that can be typed in to the RPBGMO bash gui, right now they have to be typed in cause getting bash script color is not as easy to code as you would think.
