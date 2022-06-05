@@ -1,12 +1,13 @@
-## TAMO+: Themes And Music Overlay Plus v1.35 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.40 (formally known as TAMPO)
 This installs all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
 for Halloween and Christmas Holiday themes and Stranger Things Theme plus my own concoction theme set Carbonite, for now, hopefully more to come!<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
 And for those using Supreme Ultra builds it removes Audio Settings, Controller Settings, & Visual Settings from the RetroPie Menu.<br>
 All of which can be found from within the TAMO+ script itself.<br>
-This installs a BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
+This installs the same BGM Control Script from here [retropie_music_overlay](https://github.com/ALLRiPPED/retropie_music_overlay) as this is the complete merging of the BGM as well as the original idea for TAMPO and TAMO+.<br>
 It will do the full shabang, that means when you run tamo+ from your retropie menu and choose one of the preconfigured themes it will restart emulationstation, not the pi itself, so if you want to see the splashscreen you will have to manually reboot the pi, and you can turn the exit splashes and the videoloading screens on or off.<br><br>
 Now when installing you are able to keep your RetroPie Menu items, or if you choose to remove your Menu items you now restore it back to the orignal. Compatible with Supreme Ultra Builds.<br>
+The install and main scripts now let you install the themesets and music seprately later after installation of TAMO+.<br>
 This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
@@ -37,10 +38,6 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 
 ## Preview
 [![](https://i.imgur.com/4Z3IDi8.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
-## Future Plans
-#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Add more Holiday based themes.
-#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Adding other themes of the like with the full shabang; splash, videoloading, music, etc.
-#### Not Done. <img src="https://i.imgur.com/Jp2FKHX.png" alt="Not Done" style="float: left; margin-right: 10px;" /> Ability to change .
 ## Color Section
 This is where you will find the info you will need to change the colors of the background and font on the Overlay.<br>
 At the moment I have a color table here with color names that can be typed in to the RPBGMO bash gui, right now they have to be typed in cause getting bash script color is not as easy to code as you would think.
@@ -66,3 +63,4 @@ Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
 Version 1.30 - Added font, font color, and overlay color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
 Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>
 Version 1.35 - You now can keep your retropie menu intact or restore it later. Plus rearranged the install so user settings do not get over writen in BGM.py when you update.<br>
+Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them seprately later after install.<br>

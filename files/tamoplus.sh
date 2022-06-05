@@ -11,7 +11,7 @@ bash $INSTALL_DIR/scripts/updater.sh
 exit 1
 fi
 
-main_menu() {
+tamo_main_menu() {
 stats_check
     local choice
     while true; do
@@ -27,14 +27,14 @@ stats_check
             7 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
-            1) themesettings  ;;
-            2) musicsettings  ;;
-            3) visual_menu  ;;
-            4) loading_media  ;;
+            1) themesettings ;;
+            2) musicsettings ;;
+            3) visual_menu ;;
+            4) loading_media ;;
             5) controller_menu ;;
-            6) user_menu  ;;
-            7) disclaim  ;;
-            *) break  ;;
+            6) user_menu ;;
+            7) disclaim ;;
+            *) break ;;
         esac
     done
 }
@@ -48,13 +48,17 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Turn On-Off Auto Update $aupstat" \
             2 "Turn On-Off Keep RetroPie Menus $menstat" \
-            3 "Update TAMO+" \
+            3 "TAMO+ Themesets Downloader" \
+            4 "TAMO+ Music Downloader" \
+            5 "Update TAMO+" \
             2>&1 > /dev/tty)
         case "$choice" in
-            1) auto_update  ;;
-            2) retropie_menu  ;;
-            3) bash $INSTALL_DIR/scripts/updater.sh; exit 1  ;;
-            *) break  ;;
+            1) auto_update ;;
+            2) retropie_menu ;;
+            3) download_select_themesets ;;
+            4) download_select_music ;;
+            5) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
+            *) break ;;
         esac
     done
 }
@@ -475,22 +479,22 @@ local choice
         choice=$(dialog --colors --backtitle "Select Your Music Choice  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" --title " Music Selection " \
             --ok-label OK --cancel-label Back \
             --menu "What action would you like to perform?" 25 85 20 \
-            1 "Enable/Disable Arcade Music" \
-            2 "Enable/Disable Custom Music" \
-            3 "Enable/Disable Nostalgia Music" \
-            4 "Enable/Disable Ultimate Vs Fighter Music" \
-            5 "Enable/Disable Venom Music" \
-            6 "Change Music Folder" \
-            7 "Disable Music Folder" \
+            1 "Change Music Folder" \
+            2 "Disable Music Folder" \
+            3 "Enable/Disable Arcade Music" \
+            4 "Enable/Disable Custom Music" \
+            5 "Enable/Disable Nostalgia Music" \
+            6 "Enable/Disable Ultimate Vs Fighter Music" \
+            7 "Enable/Disable Venom Music" \
             2>&1 > /dev/tty)
         case "$choice" in
-            1) enable_arcade  ;;
-            2) enable_custom  ;;
-            3) enable_nt  ;;
-            5) enable_uvf  ;;
-            5) enable_venom  ;;
-            6) set_music_dir ;;
-            7) disable_music_dir ;;
+            1) set_music_dir ;;
+            2) disable_music_dir ;;
+            3) enable_arcade  ;;
+            4) enable_custom  ;;
+            5) enable_nt  ;;
+            6) enable_uvf  ;;
+            7) enable_venom  ;;
             *) break ;;
         esac
     done
@@ -669,6 +673,61 @@ controller_menu() {
     done
 }
 
+download_select_themesets() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Download Themesets  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Themesets " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Download Carbonite Themeset" \
+            2 "Download Christmas Themeset" \
+            3 "Download Halloween Themeset" \
+            4 "Download Retro-Devils Themeset" \
+            5 "Download Pistolero Themeset" \
+            6 "Download Pleasure Paradise Themeset" \
+            7 "Download Stranger Things Themeset" \
+            8 "Download Supreme Ultra Themeset" \
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) download_themesets "carbonite" ;;
+            2) download_themesets "merryxmas" ;;
+            3) download_themesets "halloweenspecial" ;;
+            4) download_themesets "devilchromey" ;;
+            5) download_themesets "pistolero" ;;
+            6) download_themesets "pleasureparadise" ;;
+            7) download_themesets "strangerthings" ;;
+            8) download_themesets "supremeteam" ;;
+            *) break ;;
+        esac
+    done
+}
+
+download_select_music() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Download Music  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Music " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Download Arcade Music" \
+            2 "Download Custom Music" \
+            3 "Download Nostalgia Trip Music" \
+            4 "Download Ultimate Vs Fighter Music" \
+            5 "Download Venom Music" \
+            2>&1 > /dev/tty)
+        case "$choice" in
+            1) download_music "arcade" ;;
+            2) download_music "custom" ;;
+            3) download_music "nt" ;;
+            4) download_music "uvt" ;;
+            5) download_music "venom" ;;
+            *) break ;;
+        esac
+    done
+}
+
+
 disclaim() {
 DISCLAIMER=""
 DISCLAIMER="${DISCLAIMER}_______________________________________________________\n\n"
@@ -678,7 +737,7 @@ DISCLAIMER="${DISCLAIMER}The background music python and control scripts have be
 DISCLAIMER="${DISCLAIMER}This script will play MP3 & OGG files during menu navigation in either Emulation Station or Attract mode.\n"
 DISCLAIMER="${DISCLAIMER}A Few subfolders have been created in the $HOME/RetroPie/roms/music directory with a selection of\n"
 DISCLAIMER="${DISCLAIMER}different music from various builds by many good build makers.\n"
-DISCLAIMER="${DISCLAIMER}The themes you can seltect bewteen are \"halloween\" (Halloween), \"xmas\" (Christmas),\n"
+DISCLAIMER="${DISCLAIMER}The themes you can seltect bewteen are \"halloween\" (Halloween), \"merryxmas\" (Christmas),\n"
 DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things), \"carbonite\" (Default) and \"devilchromey\" (Retro-Devils).\n"
 DISCLAIMER="${DISCLAIMER}This includes the themes, music, plus game splash, launching/loading, and exit screens.\n"
 DISCLAIMER="${DISCLAIMER}Launch a game, the music will stop. Upon exiting out of the game the music will begin playing again.\n"
@@ -699,4 +758,4 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 
 . /home/$currentuser/tamoplus/scripts/tamo-functions
 
-main_menu
+tamo_main_menu

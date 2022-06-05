@@ -10,6 +10,14 @@ cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
 #USER SETTINGS
 auto_update_flag=0
 user_menu_flag=0
+themeset_carbonite=0
+themeset_devilchromey=0
+themeset_halloweenspecial=0
+themeset_pistolero=0
+themeset_pleasureparadise=0
+themeset_strangerthings=0
+themeset_supremeteam=0
+themeset_merryxmas=0
 EOF_user_settings.ini
 sudo chmod +x $USER_SETTINGS
 fi
@@ -23,98 +31,68 @@ fi
     fi
 }
 
-retropie_menu() {
-#Double Check if User Settings found.
-if [ ! -f "$USER_SETTINGS" ]; then 
-cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
-#USER SETTINGS
-auto_update_flag=0
-user_menu_flag=0
-EOF_user_settings.ini
-sudo chmod +x $USER_SETTINGS
-fi
-
-if grep 'user_menu_flag=0' "$USER_SETTINGS"; then
-	echo "Keep Menus Now Set To Off. Now Removing RetroPie Menus."
-	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
-	#---------------------------------------------------------------------
-	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
-	#---------------------------------------------------------------------
-	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
-	#game_list_full
-	rm_menus
-else
-	echo "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back"
-	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
-	#---------------------------------------------------------------------
-	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
-	#---------------------------------------------------------------------
-	#rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
-	#game_list_full
-	keep_menus
-fi
-stats_check
-}
-
+#------------------#
+# Tools Selections #
+#------------------#
 bezel_project() {
 #Adds Updated Version to tamoplus Folder
 
 #One removes menu
 if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
-	
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
-if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
-	
-if [ -f "$MENU_DIR/bezelproject" ]; then sudo mv -f $MENU_DIR/bezelproject $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo mv -f $STMENU_VIS_DIR/bezelproject $INSTALL_DIR/scripts/; fi
+	if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
-chmod +x $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
+	if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
 
-else
+		if [ -f "$MENU_DIR/bezelproject" ]; then sudo mv -f $MENU_DIR/bezelproject $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo mv -f $STMENU_VIS_DIR/bezelproject $INSTALL_DIR/scripts/; fi
 
-if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo rm -f -r $MENU_DIR/bezelproject.sh; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/bezelproject.sh; fi
+		chmod +x $INSTALL_DIR/scripts/bezelproject.sh
+		$INSTALL_DIR/scripts/bezelproject.sh
 
-cd "$INSTALL_DIR/scripts/"
-wget "https://raw.githubusercontent.com/thebezelproject/BezelProject/master/bezelproject.sh"
-chmod +x "bezelproject.sh"
+	else
 
-mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
+		if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo rm -f -r $MENU_DIR/bezelproject.sh; fi
+		if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/bezelproject.sh; fi
 
-fi
+		cd "$INSTALL_DIR/scripts/"
+		wget "https://raw.githubusercontent.com/thebezelproject/BezelProject/master/bezelproject.sh"
+		chmod +x "bezelproject.sh"
 
-else
+		mv -f $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/bezelproject.sh
+		$INSTALL_DIR/scripts/bezelproject.sh
 
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
-
-if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
-
-if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo cp $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
-
-chmod +x $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
+	fi
 
 else
 
-if [ -f "$MENU_DIR/bezelproject,sh" ]; then sudo cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo cp $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
+	if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
-cd "$INSTALL_DIR/scripts/"
-wget "https://raw.githubusercontent.com/thebezelproject/BezelProject/master/bezelproject.sh"
-chmod +x "bezelproject.sh"
+	if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
 
-if [ -f "$MENU_DIR/bezelproject" ]; then sudo cp  $INSTALL_DIR/scripts/ $MENU_DIR/bezelproject; fi
-if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo cp  $INSTALL_DIR/scripts/ $STMENU_VIS_DIR/bezelproject; fi
+		if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo cp $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 
-cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/bezelproject.sh
-$INSTALL_DIR/scripts/bezelproject.sh
+		chmod +x $INSTALL_DIR/scripts/bezelproject.sh
+		$INSTALL_DIR/scripts/bezelproject.sh
 
-rm -fr "$INSTALL_DIR/tmp"
-fi
+	else
+
+		if [ -f "$MENU_DIR/bezelproject,sh" ]; then sudo cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo cp $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
+
+		cd "$INSTALL_DIR/scripts/"
+		wget "https://raw.githubusercontent.com/thebezelproject/BezelProject/master/bezelproject.sh"
+		chmod +x "bezelproject.sh"
+
+		if [ -f "$MENU_DIR/bezelproject" ]; then sudo cp  $INSTALL_DIR/scripts/ $MENU_DIR/bezelproject; fi
+		if [ -f "$STMENU_VIS_DIR/bezelproject" ]; then sudo cp  $INSTALL_DIR/scripts/ $STMENU_VIS_DIR/bezelproject; fi
+
+		cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/bezelproject.sh
+		$INSTALL_DIR/scripts/bezelproject.sh
+
+		rm -fr "$INSTALL_DIR/tmp"
+	fi
 
 fi
 }
@@ -294,6 +272,9 @@ fi
 fi
 }
 
+#---------------------#
+# No Audio Selections #
+#---------------------#
 no_audio_fix() {
 sudo grep hdmi_force_edid_audio /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
@@ -370,215 +351,254 @@ sudo reboot
 fi
 }
 
-enable_carbonite() {
+
+#---------------------#
+# Themeset Selections #
+#---------------------#
+themeset_variables() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"/home/pi/tamoplus"'
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"carbonite\""
-NOR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWN_LOD='"/home/pi/RetroPie/videoloadingscreens/jarvis"'
+CUR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWD_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
-if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $NOR_LOD == $NEWN_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${NOR_LOD}|videoloadingscreens=${NEWN_LOD}|g" $RUNONSTART; fi
-if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
-else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWD_EXS ]] && [[ $CUR_REXS == $NEWD_EXS ]]; then echo "Christmas Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWD_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWD_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+}
+
+enable_carbonite() {
+themeset_variables
+NEW_PLY='"/home/pi/.tamoplus"'
+NEW_THM="value=\"carbonite\""
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/carbonite"'
+NEW_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
+if grep 'themeset_carbonite=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Carbonite Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "carbonite"
+		sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_carbonite=1' "$USER_SETTINGS"; then
+	if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
+	else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Christmas Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_devils() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"/home/pi/RetroPie/roms/music/devils"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+themeset_variables
+NEW_PLY='"/home/pi/RetroPie/roms/music/devilchromey"'
 NEW_THM="value=\"devilchromey\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/retrodevils"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/devilchromey"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
+if grep 'themeset_devilchromey=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Retro-Devils Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "devilchromey"
+		sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_devilchromey=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Retro-Devils Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Retro-Devils Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Retro-Devils Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Retro-Devils Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_halloween() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"/home/pi/RetroPie/roms/music/halloween"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+themeset_variables
+NEW_PLY='"/home/pi/RetroPie/roms/music/halloweenspecial"'
 NEW_THM="value=\"halloweenspecial\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/halloween"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Halloween Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/halloweenspecial"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
+if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Halloween Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "halloweenspecial"
+		sed -i "s|themeset_halloweenspecial=0|themeset_halloweenspecial=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_halloweenspecial=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Halloween Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_pistolero() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pistolero\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pistolero Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
+if grep 'themeset_pistolero=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Pistolero Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pistolero"
+		sed -i "s|themeset_pistolero=0|themeset_pistolero=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_pistolero=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Pistolero Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_pleasure() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
 NEW_THM="value=\"pleasureparadise\""
-HAL_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWH_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWH_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $HAL_LOD == $NEWH_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${HAL_LOD}|videoloadingscreens=${NEWH_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWH_EXS ]] && [[ $CUR_REXS == $NEWH_EXS ]]; then echo "Pleasure Paradise Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWH_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWH_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
+if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Pleasure Paradise Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pleasureparadise"
+		sed -i "s|themeset_pleasureparadise=0|themeset_pleasureparadise=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Pleasure Paradise Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_stranger() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
+themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"strangerstuff\""
-STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWS_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerpi"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWS_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWS_EXS ]] && [[ $CUR_REXS == $NEWS_EXS ]]; then echo "Stranger Things Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWS_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWS_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+NEW_THM="value=\"strangerthings\""
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerthings"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
+if grep 'themeset_strangerthings=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Stranger Things Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "strangerthings"
+		sed -i "s|themeset_strangerthings=0|themeset_strangerthings=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_strangerthings=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Stranger Things Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_supreme() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"/home/pi/RetroPie/roms/music/st"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"Supreme_Space\""
-STR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWS_LOD='"/home/pi/RetroPie/videoloadingscreens/supreme"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
-NEWS_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $STR_LOD == $NEWS_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${STR_LOD}|videoloadingscreens=${NEWS_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWS_EXS ]] && [[ $CUR_REXS == $NEWS_EXS ]]; then echo "Supreme Ultra Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWS_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWS_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+themeset_variables
+NEW_PLY='"/home/pi/RetroPie/roms/music/supremeteam"'
+NEW_THM="value=\"supremeteam\""
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/supremeteam"'
+NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
+if grep 'themeset_supremeteam=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Supreme Team Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "supremeteam"
+		sed -i "s|themeset_supremeteam=0|themeset_supremeteam=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_supremeteam=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEW_EXS ]] && [[ $CUR_REXS == $NEW_EXS ]]; then echo "Supreme Ultra Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEW_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEW_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
 enable_xmas() {
-CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
-NEW_PLY='"/home/pi/RetroPie/roms/music/xmas"'
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+themeset_variables
+NEW_PLY='"/home/pi/RetroPie/roms/music/merryxmas"'
 NEW_THM="value=\"merryxmas\""
-XMA_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
-NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/xmas"'
-CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
-CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
+NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/merryxmas"'
 NEWX_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/XmasExit.mp4"'
-if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
-if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
-echo "Restarting EmulationStaion..."
-pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
-pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
-sleep 1
-killall emulationstation
-sleep 1
-if [[ $CUR_SEXS == $NEWX_EXS ]] && [[ $CUR_REXS == $NEWX_EXS ]]; then echo "Christmas Exit Splash already set!"
-else sed -i -E "s|${CUR_SEXS}|${NEWX_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWX_EXS}|g" $EXITSPLR; fi
-sudo openvt -c 1 -s -f emulationstation 2>&1
-exit
+if grep 'themeset_merryxmas=0' "$USER_SETTINGS"; then
+	if dialog --stdout --title "What to do?" --backtitle "Install Christmas Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "merryxmas"
+		sed -i "s|themeset_merryxmas=0|themeset_merryxmas=1|" "$USER_SETTINGS"; fi
+fi
+sleep 1 
+if grep 'themeset_merryxmas=1' "$USER_SETTINGS"; then
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
+	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
+	echo "Restarting EmulationStaion..."
+	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
+	if [[ $CUR_SEXS == $NEWX_EXS ]] && [[ $CUR_REXS == $NEWX_EXS ]]; then echo "Christmas Exit Splash already set!"
+	else sed -i -E "s|${CUR_SEXS}|${NEWX_EXS}|g" $EXITSPLS; sed -i -E "s|${CUR_REXS}|${NEWX_EXS}|g" $EXITSPLR; fi
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
+fi
 }
 
+#------------------#
+# Music Selections #
+#------------------#
 enable_music() {
 if [ -f "$SETTINGS_DIR"/DisableMusic ]; then
 	sudo rm -f "$SETTINGS_DIR"/DisableMusic
@@ -606,7 +626,18 @@ CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
 NEW_PLY='"/home/pi/RetroPie/roms/music/arcade"'
 export NEW_PLY
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+for file1 in "$MUSIC_DIR"/arcade/*.mp3
+do
+	if [ -f "$file1" ]; then
+		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+	else
+		if dialog --stdout --title "What to do?" --backtitle "Install Arcade Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+			download_music "arcade"
+			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+		else break
+		fi
+	fi
+done
 bgm_check
 stats_check
 }
@@ -626,7 +657,18 @@ CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
 NEW_PLY='"/home/pi/RetroPie/roms/music/nt"'
 export NEW_PLY
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+for file2 in "$MUSIC_DIR"/nt/*.mp3
+do
+	if [ -f "$file2" ]; then
+		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+	else
+		if dialog --stdout --title "What to do?" --backtitle "Install Nostalgia Trip Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+			download_music "nt"
+			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+		else break
+		fi
+	fi
+done
 bgm_check
 stats_check
 }
@@ -636,7 +678,18 @@ CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
 NEW_PLY='"/home/pi/RetroPie/roms/music/uvf"'
 export NEW_PLY
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+for file3 in $MUSIC_DIR/uvf/*.mp3
+do
+	if [ -f "$file3" ]; then
+		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+	else
+		if dialog --stdout --title "What to do?" --backtitle "Install Ultimate Vs. Fighter Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+			download_music "uvf"
+			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+		else break
+		fi
+	fi
+done
 bgm_check
 stats_check
 }
@@ -646,7 +699,18 @@ CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 export CUR_PLY
 NEW_PLY='"/home/pi/RetroPie/roms/music/venom"'
 export NEW_PLY
-sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+for file4 in "$MUSIC_DIR"/venom/*.mp3
+do
+	if [ -f "$file4" ]; then
+		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+	else
+		if dialog --stdout --title "What to do?" --backtitle "Install Venom Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+			download_music "venom"
+			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
+		else break
+		fi
+	fi
+done
 bgm_check
 stats_check
 }
@@ -661,6 +725,9 @@ bgm_check
 stats_check
 }
 
+#--------------------#
+# Screens Selections #
+#--------------------#
 exit_splash() {
 if [ -d "$HOME/RetroPie/splashscreens/exitscreensOff" ]; then
 	sudo mv -f $HOME/RetroPie/splashscreens/exitscreensOff $HOME/RetroPie/splashscreens/exitscreens
@@ -676,6 +743,9 @@ else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONST
 stats_check
 }
 
+#--------------------#
+# Ovkeray Selections #
+#--------------------#
 overlay_enable() {
 if grep -q 'overlay_enable = True' "$SCRIPT_LOC"; then
 	sed -i -E 's/overlay_enable = True/overlay_enable = False/g' $SCRIPT_LOC
@@ -748,36 +818,91 @@ bgm_check
 stats_check
 }
 
+#---------------------#
+# RetroPie Menu Edits #
+#---------------------#
+retropie_menu() {
+#Double Check if User Settings found.
+if [ ! -f "$USER_SETTINGS" ]; then 
+cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
+#USER SETTINGS
+auto_update_flag=0
+user_menu_flag=0
+themeset_carbonite=0
+themeset_devilchromey=0
+themeset_halloweenspecial=0
+themeset_pistolero=0
+themeset_pleasureparadise=0
+themeset_strangerthings=0
+themeset_supremeteam=0
+themeset_merryxmas=0
+EOF_user_settings.ini
+sudo chmod +x $USER_SETTINGS
+fi
+
+if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
+	echo "Keep Menus Now Set To Off. Now Removing RetroPie Menus."
+	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	game_list_full
+	rm_menus
+	db_detect
+else
+	echo "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back"
+	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
+	#---------------------------------------------------------------------
+	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
+	#---------------------------------------------------------------------
+	rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
+	game_list_full
+	keep_menus
+	db_detect
+fi
+stats_check
+}
+
 rm_menus() {
 if [ -f /etc/sbu/sbu.sh ]; then
-	echo "Please Note: Because You Picked Remove Menus And Your On A Supreme Build This Installer Will Remove The Audio Tools, Visual tools and controller tools menus that will be added By TAMO+"
+	echo "Please Note: Because You Picked Remove Menus And Your On A Supreme Build This Installer Will Remove The Audio Tools, Visual tools and Controller Tools Menus That Will Be Added By TAMO+"
 	echo "You can put them back with Fix My Build in the RetroPie Menu If On A Supreme Build"
 	sleep 3
 else
-	echo "Please Note This Installer Will Remove The Audio Settings, ES Themes, and Splash Screens menus that will be added By Tamo Plus"
+	echo "Please Note This Installer Will Remove The Audio Settings, ES Themes, And Splash Screens Menus That Will Be Added By Tamo Plus"
 	sleep 3
 fi
-
-# Normal RetroPie Menu Edits
-if [ -f "$MENU_DIR/audiosettings.rp" ]; then sudo rm -f $MENU_DIR/audiosettings.rp; fi
-if [ -f "$MENU_DIR/esthemes.rp" ]; then sudo rm -f $MENU_DIR/esthemes.rp; fi
-if [ -f "$MENU_DIR/splashscreen.rp" ]; then sudo rm -f $MENU_DIR/splashscreen.rp; fi
-
-# Supreme ES Edits
+ 
+# add clean .rp files
+sudo ~/RetroPie-Setup/retropie_packages.sh retropiemenu
+sudo chown $USER:$USER $MENU_DIR/*
+ 
+# Supreme RetroPie Menu Edits
+if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/audiotools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/controllertools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/visualtools; fi
+ 
+# Supreme Check
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	# Supreme RetroPie Menu Edits
-	if [ -d $MENU_DIR/audiotools ]; then sudo rm -fR $MENU_DIR/audiotools; fi
-	if [ -d $MENU_DIR/controllertools ]; then sudo rm -fR $MENU_DIR/controllertools; fi
-	if [ -d $MENU_DIR/visualtools ]; then sudo rm -fR $MENU_DIR/visualtools; fi
-
+	if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
+ 
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
 	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
 	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
-   
+ 
 	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
 Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
@@ -797,74 +922,88 @@ shutdown;Shutdown;Settings;;;;;;;;;;;;;;
 EOF152935
 	sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
 fi
-
+ 
 cd $HOME
 }
-
+ 
 keep_menus() {
-	if [ -f /etc/sbu/sbu.sh ]; then
-	echo "Please Note: Because You Picked Keep Menus And Your On A Supreme Build This Installer Will Keep The Audio Tools, Visual tools and controller tools menus."
+if [ -f /etc/sbu/sbu.sh ]; then
+	echo "Please Note: Because You Picked Keep Menus And Your On A Supreme Build This Installer Will Keep The Audio Tools, Visual Tools And Controller Tools Menus."
 	echo "You can put them back with Fix My Build in the RetroPie Menu If On A Supreme Build"
 	sleep 3
 else
 	echo "Please Note: Because You Picked Keep Menus, This Installer Will Keep The Audio Settings, ES Themes, and Splash Screens Scripts. This Script will also add new menu folders"
 	sleep 3
 fi
-
-# Supreme ES Edits
+ 
+# Add clean .rp files
+sudo ~/RetroPie-Setup/retropie_packages.sh retropiemenu
+sudo chown $USER:$USER $MENU_DIR/*
+ 
+#Visual Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/visualtools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/visualtools"
+fi
+ 
+cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/visualtools/bezelproject.sh
+cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/visualtools/bezels.sh
+cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/visualtools/genesis.sh
+cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/visualtools/hurstythemes.sh
+cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/loadingmedia-tool.sh
+cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/visualtools/removemedia.sh
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/visualtools/resolution-tool.sh 
+cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh
+cp $INSTALL_DIR/scripts/skyscraper.sh /home/pi/RetroPie/retropiemenu/visualtools/skyscraper.sh
+cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/supreme-marquee-tool.sh
+mv /home/pi/RetroPie/retropiemenu/splashscreen.rp /home/pi/RetroPie/retropiemenu/visualtools/splashscreen.rp
+mv /home/pi/RetroPie/retropiemenu/esthemes.rp /home/pi/RetroPie/retropiemenu/visualtools/esthemes.rp
+chmod 755 /home/pi/RetroPie/retropiemenu/visualtools/*
+#--------------------------------------------------------------------------------------------------------#
+ 
+#Audio Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/audiotools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/audiotools"
+fi 
+ 
+cp $INSTALL_DIR/scripts/NoAudioFix-TrythisFirst.sh  /home/pi/RetroPie/retropiemenu/audiotools/NoAudioFix-TrythisFirst.sh 
+mv /home/pi/RetroPie/retropiemenu/audiosettings.rp /home/pi/RetroPie/retropiemenu/audiotools/audiosettings.rp
+chmod 755 /home/pi/RetroPie/retropiemenu/audiotools/*
+#--------------------------------------------------------------------------------------------------------#
+ 
+#Controller Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/controllertools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/controllertools"
+fi
+ 
+cp $INSTALL_DIR/scripts/joystick_selection.sh /home/pi/RetroPie/retropiemenu/controllertools/joystick_selection.sh
+cp $INSTALL_DIR/scripts/LightGunAimtrak.sh /home/pi/RetroPie/retropiemenu/controllertools/LightGunAimtrak.sh
+cp $INSTALL_DIR/scripts/LightGunConf.sh /home/pi/RetroPie/retropiemenu/controllertools/LightGunConf.sh
+cp $INSTALL_DIR/scripts/resetcontrollers.sh /home/pi/RetroPie/retropiemenu/controllertools/resetcontrollers.sh
+cp $INSTALL_DIR/scripts/sinden-menu.sh /home/pi/RetroPie/retropiemenu/controllertools/sinden-menu.sh
+cp $INSTALL_DIR/scripts/xinmo-juyao.sh /home/pi/RetroPie/retropiemenu/controllertools/xinmo-juyao.sh
+chmod 755 /home/pi/RetroPie/retropiemenu/controllertools/*
+#--------------------------------------------------------------------------------------------------------#
+ 
+# Supreme Check
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
-	#Visual Tools
-	if [[ ! -d "$MENU_DIR/visualtools" ]]; then
-	mkdir -p "$MENU_DIR/visualtools"
-	fi
-
-	cp $INSTALL_DIR/scripts/bezelproject.sh $MENU_DIR/visualtools/bezelproject.sh
-	cp $INSTALL_DIR/scripts/bezels.sh $MENU_DIR/visualtools/bezels.sh
-	cp $INSTALL_DIR/scripts/genesis.sh $MENU_DIR/visualtools/genesis.sh
-	cp $INSTALL_DIR/scripts/hurstythemes.sh $MENU_DIR/visualtools/hurstythemes.sh
-	cp $INSTALL_DIR/scripts/loadingmedia-tool.sh $MENU_DIR/visualtools/loadingmedia-tool.sh
-	cp $INSTALL_DIR/scripts/removemedia.sh $MENU_DIR/visualtools/removemedia.sh
-	cp $INSTALL_DIR/scripts/resolution-tool.sh  $MENU_DIR/visualtools/resolution-tool.sh 
-	cp $INSTALL_DIR/scripts/retropie-tweak.sh $MENU_DIR/visualtools/retropie-tweak.sh
-	cp $INSTALL_DIR/scripts/skyscraper.sh $MENU_DIR/visualtools/skyscraper.sh
-	cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh $MENU_DIR/visualtools/supreme-marquee-tool.sh
-	mv $MENU_DIR/splashscreen.rp $MENU_DIR/visualtools/splashscreen.rp
-	mv $MENU_DIR/esthemes.rp $MENU_DIR/visualtools/esthemes.rp
-	chmod 755 $MENU_DIR/visualtools/*
-	#--------------------------------------------------------------------------------------------------------#
-
-	#Audio Tools
-	if [[ ! -d "$MENU_DIR/audiotools" ]]; then
-	mkdir -p "$MENU_DIR/audiotools"
-	fi 
-
-	cp $INSTALL_DIR/scripts/NoAudioFix-TrythisFirst.sh  $MENU_DIR/audiotools/NoAudioFix-TrythisFirst.sh 
-	mv $MENU_DIR/audiosettings.rp $MENU_DIR/audiotools/audiosettings.rp
-	chmod 755 $MENU_DIR/audiotools/*
-	#--------------------------------------------------------------------------------------------------------#
-
-	#Controller Tools
-	if [[ ! -d "$MENU_DIR/controllertools" ]]; then
-	mkdir -p "$MENU_DIR/controllertools"
-	fi
-
-	cp $INSTALL_DIR/scripts/joystick_selection.sh $MENU_DIR/controllertools/joystick_selection.sh
-	cp $INSTALL_DIR/scripts/LightGunAimtrak.sh $MENU_DIR/controllertools/LightGunAimtrak.sh
-	cp $INSTALL_DIR/scripts/LightGunConf.sh $MENU_DIR/controllertools/LightGunConf.sh
-	cp $INSTALL_DIR/scripts/resetcontrollers.sh $MENU_DIR/controllertools/resetcontrollers.sh
-	cp $INSTALL_DIR/scripts/sinden-menu.sh $MENU_DIR/controllertools/sinden-menu.sh
-	cp $INSTALL_DIR/scripts/xinmo-juyao.sh $MENU_DIR/controllertools/xinmo-juyao.sh
-	chmod 755 $MENU_DIR/controllertools/*
-	#--------------------------------------------------------------------------------------------------------#
-
+	# Supreme RetroPie Menu Edits
+	if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
+	if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
+ 
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt; fi
 	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg; fi
 	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg; fi
-   
+ 
 	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
 Audio tools;/ Audio Tools;@;;;;;;;;;0;;;;;
@@ -885,17 +1024,739 @@ reboot;Reboot;Settings;;;;;;;;;;;;;;
 shutdown;Shutdown;Settings;;;;;;;;;;;;;;
 EOF152935
 	sudo chmod +x /opt/retropie/configs/all/attractmode/romlists/Settings.txt
-else
-	# Normal RetroPie Menu Edits
-	touch $MENU_DIR/audiosettings.rp
-	touch $MENU_DIR/esthemes.rp
-	touch $MENU_DIR/splashscreen.rp
-	sudo chown $USER:$USER $MENU_DIR/*
 fi
-
+ 
 cd $HOME
 }
 
+game_list_full() {
+	cat <<\EOF_gamelist > "/opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml"
+<?xml version="1.0"?>
+<gameList>
+  <game>
+    <path>./emulationtools</path>
+    <name>/ Emulation Tools</name>
+    <desc>This folder contains emulator related scripts.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/emulators.png</image>
+  </game>
+  <game>
+    <path>./frontendselector.sh</path>
+    <name>Front-End selector</name>
+    <desc>This script will let you chose what front end to boot into</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/frontendselector.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-Fuse.sh</path>
+    <name>+Start Fuse</name>
+    <desc>Configure ZX Spectrum Emulator</desc>
+    <image>./icons/+Start-Fuse.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/openborautoconfig.sh</path>
+    <name>OpenBor Game Autoconfig</name>
+    <desc>Set OpenBor default controler config for all game</desc>
+    <image>./icons/openborautoconfig.png</image>
+    <playcount>2</playcount>
+    <lastplayed>20200521T203936</lastplayed>
+  </game>
+  <game>
+    <path>./emulationtools/openbormoduleselectionscript.sh</path>
+    <name>OpenBor Module Selection Script</name>
+    <desc>Select OpenBOR Module</desc>
+    <image>./icons/openbormoduleselectionscript.png</image>
+    <playcount>1</playcount>
+    <lastplayed>20200521T204357</lastplayed>
+  </game>
+  <game>
+    <path>./emulationtools/n64tweaks.sh</path>
+    <name>N64 Tweaks.</name>
+    <desc>The user friendly N64 tweak script.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/n64tweaks.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-DOSBox-SDL2.sh</path>
+    <name>+Start DOSBox-SDL2</name>
+    <desc>Configure DOSBox-SDL2 PC Emulator</desc>
+    <image>./icons/+Start-DOSBox-SDL2.png</image>
+  </game>
+  <game>
+    <path>./retropietools/clearlastplayed.sh</path>
+    <name>Clear Last Played</name>
+    <desc>The user friendly Game list cleaner By THE SUPREME TEAM</desc>
+    <image>./icons/clearlastplayed.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-DOSBox.sh</path>
+    <name>+Start DOSbox</name>
+    <desc>Configure DOSBox PC Emulator</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/+Start-DOSBox.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-Reicast.sh</path>
+    <name>+Start Reicast</name>
+    <desc>Configure ScummVM Emulator </desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/+Start-Reicast.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-ScummVM.sh</path>
+    <name>+Start Scummvm</name>
+    <desc>Configure Reicast Dreamcast Emulator</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/+Start-ScummVM.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-ResidualVM.sh</path>
+    <name>+Start ResidualVM</name>
+    <desc>Configure ResidualVM Emulator</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/+Start-ResidualVM.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/Auto-Amiga-Install.sh</path>
+    <name>Amiga Auto Install, HS</name>
+    <desc>Enabled on Retropie ! This will install the Amiga required files and folders to work with Amiberry and WHD Load. Retropie has latest Amiberry SDL enabled!</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/Auto-Amiga-Install.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/UAE-Config-Maker.sh</path>
+    <name>UAE Congfig Maker, HS</name>
+    <desc>After adding your Amiga game files in the corresponding roms/amiga-data/ folder, use this script to create automatic WHD Load config files for your Amiga\CD32 main roms folder!</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/UAE-Config-Maker.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/configedit.rp</path>
+    <name>Configuration Editor</name>
+    <desc>Change common RetroArch options, and manually edit RetroArch configs, global configs, and non-RetroArch configs.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/configedit.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/dcdatefix.sh</path>
+    <name>Dreamcast Date &amp; Time</name>
+    <desc>This will enable or disable date &amp; time setting when Reicast starts. Reicast binary by jonsim.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/dc.png</image>
+  </game>
+  <game>
+    <path>./visualtools/genesis.sh</path>
+    <name>Switch Genesis-Megadrive</name>
+    <desc>This script will switch between the Sega Genesis and the Sega Megadrive themes in both ES and AM to show in the main menu. You will need to restart Emulation Station after making the change. By SUPREME TEAM</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/genesis.png</image>
+  </game>
+  <game>
+    <path>./visualtools/emulatoroutput.sh</path>
+    <name>Emulator resolution editor</name>
+    <desc>Change your resolution settings for certain emulators with this amzing tool.</desc>
+    <image>./icons/emulatoroutput.png</image>
+  </game>
+  <game>
+    <path>./emulationtools/rpc80-savefile.sh</path>
+    <name>Saves Single Folder, RPC</name>
+    <desc>Not enabled on Retropie ! Creates a "saves" directory at ~/RetroPie/saves and configures all RetroArch emulators with their own config files to store savefiles at ~/RetroPie/saves/{system_name} and savestate files at ~/Retropie/saves/{system_name}/states.</desc>
+    <image>./icons/rpc80-savefile.png</image>
+  </game>
+  <game>
+    <path>./controllertools</path>
+    <name>/ Controller tools</name>
+    <desc>This folder contains contoller related scripts.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/controller.png</image>
+  </game>
+  <game>
+    <path>./controllertools/LightGunAimtrak.sh</path>
+    <name>LightGun Aimtrak Install, EZH</name>
+    <desc>Enabled on Retropie ! Enables Aimtrack Lightgun support and installs Advance-Mame v1.4. Mouse is supported on Retropie for both Advance-Mame &amp; lr-mame systems/emus.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/LightGunAimtrak.png</image>
+  </game>
+  <game>
+    <path>./controllertools/LightGunConf.sh</path>
+    <name>LightGun Aimtrak Config, EZH</name>
+    <desc>The configuration script created by the Aimtrak script.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/LightGunConf.png</image>
+  </game>
+  <game>
+    <path>./controllertools/resetcontrollers.sh</path>
+    <name>Reset All Controllers</name>
+    <desc>It will reset all ES cotroller configurations and remove any previous controller profiles. This will give you a clean controllers setup!</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/resetcontrollers.png</image>
+  </game>
+  <game>
+    <path>./controllertools/xinmo-juyao.sh</path>
+    <name>XinMo &amp; Juyao Dual</name>
+    <desc>Enable XIN MO or JUYAO dual Arcade player support as per official Wiki.</desc>
+    <image>./icons/xinmo-juyao.png</image>
+  </game>
+  <game>
+    <path>./raspiconfig.rp</path>
+    <name>Raspi-Config</name>
+    <desc>Change user password, boot options, internationalization, camera, add your Pi to Rastrack, overclock, overscan, memory split, SSH and more.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/raspiconfig.png</image>
+  </game>
+  <game>
+    <path>./retropietools</path>
+    <name>/ Retropie Tools</name>
+    <desc>This folder contains more system related scripts from A-Z.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/retropie.png</image>
+  </game>
+  <game>
+    <path>./retropietools/am-latest.sh</path>
+    <name>Install or Update AM &amp; HW Video Encoding</name>
+    <desc>It will install or update your Attract Mode, SFML-Pi &amp; FFMPEG with mmal HW Video Encoding Support. To Enable mmal you need also to set it in the attract.cfg in the general section 'video_decoder   mmal'. Can be done also while in AM by pressing TAB.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/attractmode.png</image>
+  </game>
+  <game>
+    <path>./retropietools/filefind.sh</path>
+    <name>ES Pathfinder Custom Collections</name>
+    <desc>CygeGhost final release! It compares custom imported collections (by other users) with your Romsets. It will automatically correct paths. If there are more than one possible hit, then you can choose out of a selection of ROMs. Standard &amp; advanced search options.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/filefind.png</image>
+  </game>
+  <game>
+    <path>./retropietools/filemanager.rp</path>
+    <name>File Manager</name>
+    <desc>Basic ASCII file manager for Linux allowing you to browse, copy, delete and move files.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/filemanager.png</image>
+  </game>
+  <game>
+    <path>./retropietools/gpioshutdown.sh</path>
+    <name>GPIO Shutdown Utility</name>
+    <desc>The GPIO shutdown script has already been installed on this base image. This script will allow a momentary pusbutton to power on or power off the Raspberry Pi. The script is setup to have the pushbutton wired to GPIO pins 5 and 6. One press will shutdown and one press will power back on.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/gpioshutdown.png</image>
+  </game>
+  <game>
+    <path>./retropietools/reference.sh</path>
+    <name>Reference Utility Menu, DM</name>
+    <desc>Find out common information about Retropie, Emulation Station, Attract Mode, RetroArch and ROM information.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/reference.png</image>
+  </game>
+  <game>
+    <path>./retropietools/repairkodi.sh</path>
+    <name>Kodi Repair</name>
+    <desc>This script will repair kodi launching(emulator.cfg on retropie/configs).</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/kodirepair.png</image>
+  </game>
+  <game>
+    <path>./retropietools/escollections.sh</path>
+    <name>ES Collection List Generator</name>
+    <desc>This will add or update the custom collection gamelist that will be used to show games in the custom collections menu items.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/escollections.png</image>
+  </game>
+  <game>
+    <path>./retropietools/esgamelist.sh</path>
+    <name>ES Gamelist Utility</name>
+    <desc>This script is for installing premade, prescraped Emulation Station gamelist.xml files. The script also provides a cleanup utility to audit existing gamelist.xml files against existing rom files to end up with a gamelist.xml file only containing entries for matching rom files. The premade gamelist files are setup for No Intro filenames like EmuMovies, Hyperspin, Launchbox. They are also setup to use the four folders for PNG/MP4 media. boxart cart snap wheel The premade gamelist files contain multiple entries per game to account for all known filename extensions supported by the particular system.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/esgamelist.png</image>
+  </game>
+  <game>
+    <path>./retropietools/retroarch.rp</path>
+    <name>Retroarch</name>
+    <desc>Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.</desc>
+    <image>./icons/retroarch.png</image>
+  </game>
+  <game>
+    <path>./retropietools/retronetplay.rp</path>
+    <name>RetroArch Net Play</name>
+    <desc>Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/retronetplay.png</image>
+  </game>
+  <game>
+    <path>./retropietools/runcommand.rp</path>
+    <name>RunCommand Settings</name>
+    <desc>Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art and change CPU configuration.</desc>
+    <image>./icons/runcommand.png</image>
+  </game>
+  <game>
+    <path>./retropietools/update.sh</path>
+    <name>Update &amp; Upgrade OS</name>
+    <desc>You can update and upgrade your OS in one click!</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/update.png</image>
+  </game>
+  <game>
+    <path>./retropietools/usb-ext.sh</path>
+    <name>USB Roms On/Off</name>
+    <desc>Dual script! You can choose to expand the roms file system to an external USB MSD or disable it. External MSD needs to be in NTFS format. Note: When you change ext USB you need to run removal script and then connect and enable the new drive.</desc>
+    <image>./icons/usb-ext.png</image>
+  </game>
+  <game>
+    <path>./retropietools/wifi.rp</path>
+    <name>WiFi</name>
+    <desc>Connect to or disconnect from a wifi network and configure wifi settings. On Pi4 you might need to set location.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/wifi.png</image>
+  </game>
+  <game>
+    <path>./audiotools</path>
+    <name>/ Audio Tools</name>
+    <desc>This folder contains Sound related scripts.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/audiotools.png</image>
+  </game>
+  <game>
+    <path>./visualtools</path>
+    <name>/ Visual Tools</name>
+    <desc>This folder contains Visuals related scripts.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/visualtools.png</image>
+  </game>
+  <game>
+    <path>./audiotools/audiosettings.rp</path>
+    <name>Audio Settings</name>
+    <desc>Configure audio settings. Choose default to Auto, 3.5mm Jack or HDMI. Mixer controls, and apply default settings.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
+  </game>
+  <game>
+    <path>./visualtools/bezels.sh</path>
+    <name>Bezel Custom Sets</name>
+    <desc>You can enable or disable custom folder bezels such as Motion Blue #2 set or future sets.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/bezels.png</image>
+  </game>
+  <game>
+    <path>./audiotools/bgm.sh</path>
+    <name>Alterative Background Music Setup</name>
+    <desc>Enabled on Retropie ! You can remove or re-install the background music. If removed, run the relative fix in Retropie Toolkit to disable BGM when an emulator starts. NOTE: It won't delete your music folder!</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/music.png</image>
+  </game>
+  <game>
+    <path>./audiotools/bgm-mute.sh</path>
+    <name>Music On/Off</name>
+    <desc>Mute or unmute the background music.</desc>
+    <image>./icons/musicoff.png</image>
+  </game>
+  <game>
+    <path>./retropietools/bluetooth.rp</path>
+    <name>Bluetooth</name>
+    <desc>Register and connect to Bluetooth devices. Unregister, remove devices and display registered &amp; connected devices.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/bluetooth.png</image>
+  </game>
+  <game>
+    <path>./visualtools/supreme-marquee-tool.sh</path>
+    <name>Supreme Marquee Tool</name>
+    <desc>The supreme marquee tool is a all in one place to set up your marquee.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/supreme-marquee-tool.png</image>
+  </game>
+  <game>
+    <path>./visualtools/esthemerandomizer.sh</path>
+    <name>Bootup Theme Randomizer</name>
+    <desc>Utility to enable or disable random themes upon Emulation Station bootup.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/esthemerandomizer.png</image>
+  </game>
+  <game>
+    <path>./audiotools/NoAudioFix-TrythisFirst.sh</path>
+    <name>No Audio Fix - Apply 1st!</name>
+    <desc>Try first this HDMI configuration audio fix By EASY HAX.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/NoAudioFix-TrythisFirst.png</image>
+  </game>
+  <game>
+    <path>./audiotools/NoAudioForce720p.sh</path>
+    <name>No Audio Fix - Force 720p</name>
+    <desc>Second HDMI configuration audio fix By EASY HAX.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/NoAudioForce720p.png</image>
+  </game>
+  <game>
+    <path>./audiotools/NoAudioForce1080p.sh</path>
+    <name>No Audio Fix - Force 1080p</name>
+    <desc>Third HDMI configuration audio fix By EASY HAX.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/NoAudioForce1080p.png</image>
+  </game>
+  <game>
+    <path>./visualtools/hurstythemes.sh</path>
+    <name>Hursty's Themes</name>
+    <desc>Install, uninstall, or update Hursty's EmulationStation themes.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/hurstythemes.png</image>
+  </game>
+  <game>
+    <path>./visualtools/shaders.sh</path>
+    <name>RetroArch Shaders On/Off</name>
+    <desc>Enable or disable your RetroArch shaders.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/shaders.png</image>
+  </game>
+  <game>
+    <path>./visualtools/videosmooth.sh</path>
+    <name>Video smooth script</name>
+    <desc>Enable or Disable video smoothing. This may fix screen tearing in emulators if found.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/videosmooth.png</image>
+  </game>
+  <game>
+    <path>./test/launchmp4.sh</path>
+    <name>Mp4 Launching Screens</name>
+    <desc>Disable or enable launching mp4 screen prior loading a rom. Or enable the launching mp4 screens per system. Requires the systems mp4 to exist in the RetroPie/extras+/mp4 folder and match PlayBox system names.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/videosettings.png</image>
+  </game>
+  <game>
+    <path>./visualtools/launchingscreens.sh</path>
+    <name>Launching Screens</name>
+    <desc>This script will enable or disable the use of launching screens. Launching screensets are located here: /home/pi/RetroPie/LaunchingScreens Each set of launching screens you have located there must be in their own parent folder, with the individual emulator system folders containing the launching.png files underneath.</desc>
+    <image>./icons/launchingscreens.png</image>
+  </game>
+  <game>
+    <path>./visualtools/removemedia.sh</path>
+    <name>Media Removal Util </name>
+    <desc>This utility will remove extra media files (mixart, boxart, cartart, snap and wheel) for a chosen system when there is not a matching game/rom for it. Mixart tweak added.</desc>
+    <image>./icons/removemedia.png</image>
+  </game>
+  <game>
+    <path>./visualtools/videoloading.sh</path>
+    <name>RetroPie Video Loading screen</name>
+    <desc>Enable or Disable video loading screen.</desc>
+    <image>./icons/videoloading.png</image>
+  </game>
+  <game>
+    <path>./visualtools/videolaunch.sh</path>
+    <name>System Unified Launching Videos</name>
+    <desc>Utility to enable or disable the unified system launching videos.</desc>
+    <image>./icons/videolaunch.png</image>
+  </game>
+  <game>
+    <path>./visualtools/esthemes.rp</path>
+    <name>ES Themes</name>
+    <desc>Install, uninstall, or update EmulationStation themes. Officialy supported themes can be previewed at https://github.com/retropie/RetroPie-Setup/wiki/themes.</desc>
+    <image>./icons/esthemes.png</image>
+  </game>
+  <game>
+    <path>./visualtools/bezelproject.sh</path>
+    <name>Bezel Project</name>
+    <desc>Download and manage games bezels.</desc>
+    <image>./icons/bezelproject.png</image>
+  </game>
+  <game>
+    <path>./basicinfo.sh</path>
+    <name>System Info &amp; Weather</name>
+    <desc>View a summary of your Retropie system info, temperature, partition info, ip, weather etc.! PLEASE GIVE TIME TO GATHER INFO.</desc>
+    <image>./icons/basicinfo.png</image>
+  </game>
+  <game>
+    <path>./audiotools/backgroundmusic.sh</path>
+    <name>Background Music</name>
+    <desc>The mpg123 music script has been installed in this build to play MP3/WAV files during menu navigation in both Emulation Station and Attract Mode. A special folder in /roms has been created called music. This folder is used to place your MP3/WAV files into. Once done, restart the system and they will begin automatically playing. Once you launch a game, the music will stop. Upon exiting out of a game, the music will begin playing again.</desc>
+    <image>./icons/backgroundmusic.png</image>
+  </game>
+  <game>
+    <path>./retropietools/showip.rp</path>
+    <name>What is my IP?</name>
+    <desc>Displays your current IP address, as well as other information provided by the command, "ip addr show."</desc>
+    <image>./icons/showip.png</image>
+  </game>
+  <game>
+    <path>./retropietools/overclock.sh</path>
+    <name>OverClock Optimized</name>
+    <desc>Overclock your Pi4 with N64 optimization in mind.</desc>
+    <image>./icons/overclock.png</image>
+  </game>
+  <game>
+    <path>./visualtools/OverscanOn-Off.sh</path>
+    <name>OverScan On/Off</name>
+    <desc>This script will let quickly enable or disable the overscan setting.</desc>
+    <image>./icons/OverscanOn-Off.png</image>
+  </game>
+  <game>
+    <path>./visualtools/retropie-tweak.sh</path>
+    <name>RetroPie Tweak</name>
+    <desc>This easy to use script lets you pick what layout you want.</desc>
+    <image>./icons/retropie-tweak.png</image>
+  </game>
+  <game>
+    <path>./visualtools/Raspberry-Video-Output.sh</path>
+    <name>Raspberry Video Output</name>
+    <desc>This script will let quickly let you change video output. Some ex 1080P,720P,480P,240P.</desc>
+    <image>./icons/Raspberry-Video-Output.png</image>
+  </game>
+  <game>
+    <path>./retropietools/systeminfo.sh</path>
+    <name>Basic system info</name>
+    <desc>Displays the most basic system info.</desc>
+    <image>./icons/systeminfo.png</image>
+  </game>
+  <game>
+    <path>./joystick_selection.sh</path>
+    <name>Joystick Selection</name>
+    <desc>Select which joystick to use for RetroArch players 1-4 (global or system specific).</desc>
+    <image>./icons/joystick_selection.png</image>
+  </game>
+  <game>
+    <path>./joystick_selection.sh</path>
+    <name>Joystick Selection</name>
+    <desc>Select which joystick to use for RetroArch players 1-4 (global or system specific).</desc>
+    <image>./icons/joystick_selection.png</image>
+  </game>
+  <game>
+    <path>./controllertools/joystick_selection.sh</path>
+    <name>Controller Selection Script, Meleu</name>
+    <desc>Lets the user define which controller to use for RetroArch players 1-4, global and system specific. The joystick selection has two methods of work: 1) selection by joystick index and 2) by joystick name.</desc>
+    <image>./icons/joystick_selection.png</image>
+  </game>
+  <game>
+    <path>./retropietools/usbbootmode.sh</path>
+    <name>USB Boot Mode</name>
+    <desc>This will enable the permanent USB Boot Mode on Pi4 Model. You can boot a USB device with no SD card needed or any further changes.</desc>
+    <image>./icons/usbmod.png</image>
+  </game>
+  <game>
+    <path>./visualtools/skyscraper.sh</path>
+    <name>Skyscraper</name>
+    <desc>A powerful and versatile yet easy to use game scraper. Supports EmulationStation &amp; Attract Mode, 61+ systems. Written by Lars Muldjord.</desc>
+    <image>./icons/skyscraper.png</image>
+  </game>
+  <game>
+    <path>./visualtools/splashscreen.rp</path>
+    <name>Splash Screens</name>
+    <desc>Enable or disable the RetroPie splashscreen during boot. Choose a splashscreen, download new splashscreens or return splashscreen to default.</desc>
+    <image>./icons/splashscreen.png</image>
+  </game>
+  <game>
+    <path>./clear.sh</path>
+    <name>clear</name>
+  </game>
+  <game>
+    <path>./supreme-online-tool.sh</path>
+    <name>Supreme Online Tool</name>
+    <desc>The supreme online tool offers supreme build tweaks and improvemts using the supreme sever. [ **Must have a internet connection to use** ] </desc>
+    <image>./icons/supremeonline.png</image>
+    <playcount>4</playcount>
+    <lastplayed>20200519T002902</lastplayed>
+  </game>
+  <game>
+    <path>./attractmode.sh</path>
+    <name>Switch To Attract Mode</name>
+    <desc>Enable and switch to Attract Mode FrontEnd.</desc>
+    <image>./icons/attractmode.png</image>
+    <playcount>3</playcount>
+    <lastplayed>20200606T010617</lastplayed>
+  </game>
+  <game>
+    <path>./emulationtools/+Start-Amiberry.sh</path>
+    <name>+Start Amiberry</name>
+    <desc>Configure Amiberry Amiga Emulator</desc>
+    <image>./icons/+Start-Amiberry.png</image>
+    <playcount>4</playcount>
+    <lastplayed>20200613T204025</lastplayed>
+  </game>
+  <game>
+    <path>./fixmybuild.sh</path>
+    <name>FIX MY BUILD</name>
+    <desc>Fix all your broken SUPREME BUILD features. Update, maintenance tools and many more. This Supreme Toolkit runs also from cli so you can use Skyscraper and open Raspbian desktop. (This tool will also let you fix your RetroPie Menu after a update)</desc>
+    <image>./icons/fixmybuild.png</image>
+    <playcount>2</playcount>
+    <lastplayed>20200613T204240</lastplayed>
+  </game>
+  <game>
+    <path>./rpsetup.rp</path>
+    <name>RetroPie Setup</name>
+    <desc>Install RetroPie from binary or source, install experimental packages, additional drivers, edit Samba shares, custom scraper, as well as other RetroPie-related configurations.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/rpsetup.png</image>
+    <playcount>9</playcount>
+    <lastplayed>20200613T204525</lastplayed>
+  </game>
+  <game>
+    <path>./controllertools/SindenLightgunTestP2.sh</path>
+    <name>Sinden Lightgun Test P2</name>
+    <desc>This script will let you test Sinden Lightgun P2.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
+    <path>./controllertools/SindenLightgunTestP1.sh</path>
+    <name>Sinden Lightgun Test P1</name>
+    <desc>This script will let you test Sinden Lightgun P1.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
+    <path>./controllertools/SindenLightgunStartP2.sh</path>
+    <name>Sinden Lightgun Start P2</name>
+    <desc>This script will let you start Sinden Lightgun P2.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
+    <path>./controllertools/SindenLightgunStartP1.sh</path>
+    <name>Sinden Lightgun Start P1</name>
+    <desc>This script will let you Start Sinden Lightgun P1.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
+    <path>./controllertools/SindenLightgun(s)Stop.sh</path>
+    <name>Sinden Lightguns Stop</name>
+    <desc>This script will let you stop Sinden Lightguns.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
+    <path>./audiosettings.rp</path>
+    <name>Audio</name>
+    <desc>Configure audio settings. Choose default of auto, 3.5mm jack, or HDMI. Mixer controls, and apply default settings.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/audiosettings.png</image>
+  </game>
+  <game>
+    <path>./bluetooth.rp</path>
+    <name>Bluetooth</name>
+    <desc>Register and connect to Bluetooth devices. Unregister and remove devices, and display registered and connected devices.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/bluetooth.png</image>
+  </game>
+  <game>
+    <path>./configedit.rp</path>
+    <name>Configuration Editor</name>
+    <desc>Change common RetroArch options, and manually edit RetroArch configs, global configs, and non-RetroArch configs.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/configedit.png</image>
+  </game>
+  <game>
+    <path>./esthemes.rp</path>
+    <name>ES Themes</name>
+    <desc>Install, uninstall, or update EmulationStation themes. Most themes can be previewed at https://retropie.org.uk/docs/Themes/.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/esthemes.png</image>
+  </game>
+  <game>
+    <path>./filemanager.rp</path>
+    <name>File Manager</name>
+    <desc>Basic ASCII file manager for Linux allowing you to browse, copy, delete, and move files.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/filemanager.png</image>
+  </game>
+  <game>
+    <path>./retroarch.rp</path>
+    <name>Retroarch</name>
+    <desc>Launches the RetroArch GUI so you can change RetroArch options. Note: Changes will not be saved unless you have enabled the "Save Configuration On Exit" option.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/retroarch.png</image>
+  </game>
+  <game>
+    <path>./retronetplay.rp</path>
+    <name>RetroArch Net Play</name>
+    <desc>Set up RetroArch Netplay options, choose host or client, port, host IP, delay frames, and your nickname.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/retronetplay.png</image>
+  </game>
+  <game>
+    <path>./runcommand.rp</path>
+    <name>Run Command Configuration</name>
+    <desc>Change what appears on the runcommand screen. Enable or disable the menu, enable or disable box art, and change CPU configuration.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/runcommand.png</image>
+  </game>
+  <game>
+    <path>./showip.rp</path>
+    <name>Show IP</name>
+    <desc>Displays your current IP address, as well as other information provided by the command "ip addr show."</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/showip.png</image>
+  </game>
+  <game>
+    <path>./splashscreen.rp</path>
+    <name>Splash Screens</name>
+    <desc>Enable or disable the splashscreen on RetroPie boot. Choose a splashscreen, download new splashscreens, and return splashscreen to default.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/splashscreen.png</image>
+  </game>
+  <game>
+    <path>./tamoplus.sh</path>
+    <name>TAMO+</name>
+    <desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>
+    <image>./icons/tamoplus.png</image>
+    <releasedate>20220422T010251</releasedate>
+    <developer>thepitster, Supreme Team</developer>
+    <publisher>thepitster</publisher>
+    <genre>TAMO+ Script</genre>
+    <playcount>2</playcount>
+    <lastplayed>20220525T191722</lastplayed>
+  </game>
+  <game>
+    <path>./wifi.rp</path>
+    <name>WiFi</name>
+    <desc>Connect to or disconnect from a WiFi network and configure WiFi settings.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/wifi.png</image>
+  </game>
+</gameList>
+EOF_gamelist
+sudo chmod +x /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml $MENU_DIR/gamelist.xml
+}
+
+db_detect() {
+if grep -q Devils-Box.sh "$HOME/RetroPie/retropiemenu/gamelist.xml"; then echo "gamelist.xml entry confirmed"
+else
+	sed "/<\/gameList>/ s/.*/${DBC1}\n&/" $HOME/RetroPie/retropiemenu/gamelist.xml > $HOME/temp2.xml
+	cat $HOME/temp2.xml > $HOME/RetroPie/retropiemenu/gamelist.xml
+	rm -f $HOME/temp2.xml
+fi
+}
+
+#------------------------------#
+# Themeset And Music Downloads #
+#------------------------------#
+download_themesets() {
+if [ ! -d  "$THEMES_DIR/"${1}"" ]; then git clone "https://github.com/ALLRiPPED/es-theme-${1}.git" "/opt/retropie/configs/all/emulationstation/themes/${1}"
+else cd "$THEMES_DIR/${1}"; git reset --hard; git pull; fi
+
+if [ ! -d "$VID_LOD_SCR/"${1}"/" ]; then mkdir "$VID_LOD_SCR/"${1}""; fi
+if [ ! -d "$SPL_DIR" ]; then mkdir "$SPL_DIR"; fi
+if [ ! -d "$EXT_SPL_DIR" ]; then mkdir "$EXT_SPL_DIR"; fi
+
+if [ -f "$INSTALL_DIR/${1}.zip" ]; then
+	echo "Extracting Music"
+	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+	rm -f "$INSTALL_DIR"/"${1}".zip
+else
+	wget "${HOST1}"/thememusic/"${1}".zip -P "$INSTALL_DIR"
+	echo "Extracting Music"
+	unzip -uq "${INSTALL_DIR}"/"${1}".zip -d "$HOME"/RetroPie
+	rm -f "$INSTALL_DIR"/"${1}".zip
+fi
+
+if [ -d "$VID_LOD_SCR"/"${1}"/ ]; then
+	wget -m -r -np -nH -nd -R "index.html" "${RAW_HOST1}"/videoloadingscreens/"${1}"/ -P "${VID_LOD_SCR}"/"${1}" -erobots=off
+	rm -f "$VID_LOD_SCR"/"${1}"/index.html.tmp
+	rm -f "${VID_LOD_SCR}"/"${1}"/*.ia.*
+fi
+
+if [ "${1}" = "carbonite" ]; then
+	wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "halloweenspecial" ]; then
+	wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "devilchromey" ]; then
+	wget "${RAW_HOST1}"/splashscreens/RetroDevilReaper.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "merryxmas" ]; then
+	wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "pistolero" ]; then
+	wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "pleasureparadise" ]; then
+	wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "strangerthings" ]; then
+	wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"
+elif [ "${1}" = "supremeteam" ]; then
+	wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"
+	wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"
+fi
+}
+
+download_music() {
+if [ "${1}" = "custom" ]; then
+	if [ -f "$MUSIC_DIR/custom/No Music in Folder.mp3" ]; then rm -f "$MUSIC_DIR/custom/No Music in Folder.mp3"; fi
+	if [ ! -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then
+		if [ -f "$INSTALL_DIR/custommusic.zip" ]; then
+			echo "Extracting Music"
+			unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
+			rm -f "$INSTALL_DIR/custombgm.zip"
+		fi
+	else
+		wget "${HOST1}"/custombgm.zip -P "$INSTALL_DIR"
+		echo "Extracting Music"
+		unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
+		rm -f "$INSTALL_DIR/custombgm.zip"
+	fi
+else
+	if [ -f "$INSTALL_DIR/${1}.zip" ]; then
+		echo "Extracting Music"
+		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+		rm -f "$INSTALL_DIR"/"${1}".zip
+	else
+		wget "${HOST1}"/bgm/"${1}".zip -P "$INSTALL_DIR"
+		echo "Extracting Music"
+		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+		rm -f "$INSTALL_DIR"/"${1}".zip
+	fi
+fi
+}
+
+#------------------------#
+# Stats and BGM Checking #
+#------------------------#
 stats_check() {
 enable="\Z2Enabled\Zn"
 disable="\Z1Disabled\Zn"
@@ -947,13 +1808,13 @@ else
 	vpos="\Z3Bottom\Zn"
 fi
 if grep -q 'musicdir = "/home/pi/.tamoplus"' "$SCRIPT_LOC"; then ms=$disable
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloween"' "$SCRIPT_LOC"; then ms="\Z3Halloween\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/xmas"' "$SCRIPT_LOC"; then ms="\Z3Christmas\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devils"' "$SCRIPT_LOC"; then ms="\Z3Retro-Devils\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/halloweenspecial"' "$SCRIPT_LOC"; then ms="\Z3Halloween\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/merryxmas"' "$SCRIPT_LOC"; then ms="\Z3Christmas\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/devilchromey"' "$SCRIPT_LOC"; then ms="\Z3Retro-Devils\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pistolero"' "$SCRIPT_LOC"; then ms="\Z3Pistolero\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/pleasureparadise"' "$SCRIPT_LOC"; then ms="\Z3Pleasure Paradise\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/strangerthings"' "$SCRIPT_LOC"; then ms="\Z3StrangerThings\Zn"
-elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/st"' "$SCRIPT_LOC"; then ms="\Z3Supreme Ultra\Zn"
+elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/supremeteam"' "$SCRIPT_LOC"; then ms="\Z3Supreme Ultra\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/custom"' "$SCRIPT_LOC"; then ms="\Z3Custom\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/arcade"' "$SCRIPT_LOC"; then ms="\Z3Arcade\Zn"
 elif grep -q 'musicdir = "/home/pi/RetroPie/roms/music/nt"' "$SCRIPT_LOC"; then ms="\Z3Nostalgia\Zn"
@@ -965,14 +1826,14 @@ else
 	ms="\Z3$(basename $CUR_PLY | tr -d '"')\Zn"
 fi
 THEME=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-if [[ $THEME == value=\"strangerstuff\" ]]; then ts="\Z3Stranger Things\Zn"
+if [[ $THEME == value=\"strangerthings\" ]]; then ts="\Z3Stranger Things\Zn"
 elif [[ $THEME == value=\"halloweenspecial\" ]]; then ts="\Z3Halloween\Zn"
 elif [[ $THEME == value=\"merryxmas\" ]]; then ts="\Z3Christmas\Zn"
 elif [[ $THEME == value=\"devilchromey\" ]]; then ts="\Z3Retro-Devils\Zn"
 elif [[ $THEME == value=\"carbonite\" ]]; then ts="\Z3Carbonite\Zn"
 elif [[ $THEME == value=\"pleasureparadise\" ]]; then ts="\Z3Pleasure Paradise\Zn"
 elif [[ $THEME == value=\"pistolero\" ]]; then ts="\Z3Pistolero\Zn"
-elif [[ $THEME == value=\"Supreme_Space\" ]]; then ts="\Z3Supreme Ultra\Zn"
+elif [[ $THEME == value=\"supremeteam\" ]]; then ts="\Z3Supreme Ultra\Zn"
 else
 	ts="\Z3$(basename $THEME | cut -d '"' -f 2)\Zn"
 fi

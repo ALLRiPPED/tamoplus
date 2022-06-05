@@ -10,22 +10,13 @@ currentuser=$(whoami) # Check user
 
 tamo_update() {
 	tamoscriptupdate() {
-	if grep -q "TAMO+ Full Script" "$MENU_DIR/tamoplus.sh"; then
-		if ! cmp $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh >/dev/null 2>&1; then
-			cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh; fi
-	elif grep -q "TAMO+ Minimal Script" "$MENU_DIR/tamoplus.sh"; then
-		if ! cmp $INSTALL_DIR/files/tamoplus-minimum.sh $MENU_DIR/tamoplus.sh >/dev/null 2>&1; then
-			cp -f $INSTALL_DIR/files/tamoplus-minimum.sh $MENU_DIR/tamoplus.sh; fi
-	elif grep -q "TAMO+ Bare Script" "$MENU_DIR/tamoplus.sh"; then
-		if ! cmp $INSTALL_DIR/files/tamoplus-bare.sh $MENU_DIR/tamoplus.sh >/dev/null 2>&1; then
-			cp -f $INSTALL_DIR/files/tamoplus-bare.sh $MENU_DIR/tamoplus.sh; fi
-	fi
-	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
-	sleep 1
 	chmod 0755 /home/pi/tamoplus/scripts/*
 	chmod 0755 /home/pi/tamoplus/files/*.sh
 	chmod 0755 /home/pi/tamoplus/files/pngview
 	chmod 0755 /home/pi/tamoplus/files/BGM.py
+	cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh; fi
+	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
+	sleep 2
 	}
 
 if [ -d "$INSTALL_DIR" ]; then

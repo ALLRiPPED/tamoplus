@@ -1,6 +1,12 @@
 #!/bin/bash
 # TAMO+ Vars
-ver="v1.35"
+ver="v1.40"
+TAMOCONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"
+TC1=$(echo $TAMOCONTENT1 | sed 's/\//\\\//g')
+DBCONTENT1="\t<game>\n\t\t<path>./Devils-Box.sh</path>\n\t\t<name>Devils-Box</name>\n\t\t<desc>The Retro Devils Tool Box - A fully fuctional script to get even the newbies started up with ease, able to download roms and artwork to their proper places, Mugen and Sega Model 3 emulators, themes and music tools, plus much, much more.</desc>\n\t\t<image>./icons/Devils-Box.png</image>\n\t\t<releasedate>20220105T173842</releasedate>\n\t\t<developer>The Retro Devils</developer>\n\t\t<publisher>The Retro Devils</publisher>\n\t\t<genre>Devils-Box Script</genre>\n\t</game>"
+DBC1=$(echo $DBCONTENT1 | sed 's/\//\\\//g')
+HOST1="https://archive.org/download/tamoplus"
+RAW_HOST1="https://archive.org/download/tamoplusrawfiles"
 SCRIPT_LOC="$HOME/.tamoplus/BGM.py"
 SETTINGS_DIR="$HOME/.tamoplus"
 INSTALL_DIR="$HOME/tamoplus"
