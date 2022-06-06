@@ -44,7 +44,7 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 5. Assortment of Audio Tool Scripts.
 6. Assortment of Controller Tool Scripts.
 7. Assortment of Visual Tool Scripts.
-8. Rearranges Retropie Menu items with the above tools or leaves the default menu (can be switched in script).
+8. Rearranges Retropie Menu items with the above tools or leaves the default menu intact (can be switched in script).
 9. Scripts for Themes and Bezels, plus much more.
 #### Total Available Themesets
 1. Carbonite (thepitster).
