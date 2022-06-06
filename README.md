@@ -65,8 +65,8 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 ## Color Section
 This is where you will find the info you can refference to change the colors of the background and font on the Overlay in the script.<br>
 I have a [Table of Color Names](https://allripped.github.io/ImageMagickColors.html) with the names that can be typed in to the BGM python script if you prefer to customize the overlay more.
-    overlay_background_color = "DimGray"
-    overlay_text_color = "LightCoral"
+     overlay_background_color = "DimGray"
+     overlay_text_color = "LightCoral"
 
 ## Credits, cause they are that important
 Props to Livewire for the original script: https://retropie.org.uk/forum/topic/347/background-music-continued-from-help-support<br>
