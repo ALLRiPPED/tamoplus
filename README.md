@@ -32,11 +32,12 @@ or
 curl -sSL https://t.ly/5Oqi | bash
 ```
 If you would like to manually install this script:
-
-     git clone https://github.com/ALLRiPPED/tamoplus.git
-     cd tamoplus
-     sudo chmod +x local_installer.sh
-     ./local_installer.sh
+```bash
+git clone https://github.com/ALLRiPPED/tamoplus.git
+cd tamoplus
+sudo chmod +x local_installer.sh
+./local_installer.sh
+```
 This will install all the files for the bgm script, themes, music, videoloading and splash screens!<br>
 ## More Information
 This is a script that is similar to Kio Diekin's theme and music script, but mine was made only by me and this is in no way the works he premeries in this video:<br>
