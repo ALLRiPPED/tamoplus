@@ -92,4 +92,4 @@ Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
 Version 1.30 - Added font, font color, and overlay color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
 Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>
 Version 1.35 - You now can keep your retropie menu intact or restore it later. Plus rearranged the install so user settings do not get over writen in BGM.py when you update.<br>
-Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them seprately later after install.<br>
+Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them separately later after install.<br>
