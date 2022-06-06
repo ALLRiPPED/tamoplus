@@ -37,29 +37,30 @@ This is a script that is similar to Kio Diekin's theme and music script, but min
 https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 
 #### What Comes With TAMO+
-1. TAMO+ Configuration Script
-2. BGM.py by madmodder123
-3. Sinden Lightgun
-4. Supreme's PieMarquee2 
-5. Assortment of Audio Tool Scripts
-6. Assortment of Controller Tool Scripts
-7. Assortment of Visual Tool Scripts
-8. Scripts for Themes and Bezels, plus much more
+1. TAMO+ Configuration Script.
+2. BGM.py by madmodder123.
+3. Sinden Lightgun.
+4. Supreme's PieMarquee2.
+5. Assortment of Audio Tool Scripts.
+6. Assortment of Controller Tool Scripts.
+7. Assortment of Visual Tool Scripts.
+8. Rearranges Retropie Menu with the tools in each above named folders, or leaves it default.
+9. Scripts for Themes and Bezels, plus much more.
 #### Total Available Themesets
-1. Carbonite (thepitster)
-2. Christmas (Dwayne Hurst)
-3. Halloween (spoony and Dwayne Hurst)
-4. Pistolero (Kio Dieken)
-5. Pleasure Paradise (MBM)
-6. Retro-Devils (Retro-Devils)
-7. Stranger Things (Filipe Bello)
-8. Supreme Team (Supreme Team)
+1. Carbonite (thepitster).
+2. Christmas (Dwayne Hurst).
+3. Halloween (spoony and Dwayne Hurst).
+4. Pistolero (Kio Dieken).
+5. Pleasure Paradise (MBM).
+6. Retro-Devils (Retro-Devils).
+7. Stranger Things (Filipe Bello).
+8. Supreme Team (Supreme Team).
 #### Total Available Background Music
-1. Arcade (Unknown)
-2. Custom (Brutal Legend Soundtrack)
-3. Nostalgia Trip (Brian Damaso)
-4. Ultimate Vs. Fighter (David Ball)
-5. Venom (Kio Dieken)
+1. Arcade (Unknown).
+2. Custom (Brutal Legend Soundtrack).
+3. Nostalgia Trip (Brian Damaso).
+4. Ultimate Vs. Fighter (David Ball).
+5. Venom (Kio Dieken).
 ## Preview
 [![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section
