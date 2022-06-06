@@ -11,30 +11,6 @@ The install and main scripts now let you install the themesets and music seprate
 This is open source and free for anyone to use, just drop me a little credit is all I ask.<br>
 The script has a one line install, so no need to clone a repo (it does all that for you).<br>
 Now if you have any sugesstions or addition please fork the repo and hit me up with a pull request.<br>
-#### What Comes With TAMO+
-1. TAMO+ Configuration Script
-2. BGM.py by madmodder123
-3. Sinden Lightgun
-4. Supreme's PieMarquee2 
-5. Assortment of Audio Tool Scripts
-6. Assortment of Controller Tool Scripts
-7. Assortment of Visual Tool Scripts
-8. Scripts for Themes and Bezels, plus much more
-#### Total Available Themesets
-1. Carbonite (thepitster)
-2. Christmas (Dwayne Hurst)
-3. Halloween (spoony and Dwayne Hurst)
-4. Pistolero (Kio Dieken)
-5. Pleasure Paradise (MBM)
-6. Retro-Devils (Retro-Devils)
-7. Stranger Things (Filipe Bello)
-8. Supreme Team (Supreme Team)
-#### Total Available Background Music
-1. Arcade (Unknown)
-2. Custom (Brutal Legend Soundtrack)
-3. Nostalgia Trip (Brian Damaso)
-4. Ultimate Vs. Fighter (David Ball)
-5. Venom (Kio Dieken)
 ## Install Preparations!
 This will prep everything needed for TAMO+ to run on your system, hence everything needed will automatically be generated<br>
 plus it would not hurt to run `sudo apt update -y && sudo apt upgrade -y` just to make sure you are up-to-date<br>
@@ -60,6 +36,30 @@ This will install all the files for the bgm script, themes, music, videoloading 
 This is a script that is similar to Kio Diekin's theme and music script, but mine was made only by me and this is in no way the works he premeries in this video:<br>
 https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 
+#### What Comes With TAMO+
+1. TAMO+ Configuration Script
+2. BGM.py by madmodder123
+3. Sinden Lightgun
+4. Supreme's PieMarquee2 
+5. Assortment of Audio Tool Scripts
+6. Assortment of Controller Tool Scripts
+7. Assortment of Visual Tool Scripts
+8. Scripts for Themes and Bezels, plus much more
+#### Total Available Themesets
+1. Carbonite (thepitster)
+2. Christmas (Dwayne Hurst)
+3. Halloween (spoony and Dwayne Hurst)
+4. Pistolero (Kio Dieken)
+5. Pleasure Paradise (MBM)
+6. Retro-Devils (Retro-Devils)
+7. Stranger Things (Filipe Bello)
+8. Supreme Team (Supreme Team)
+#### Total Available Background Music
+1. Arcade (Unknown)
+2. Custom (Brutal Legend Soundtrack)
+3. Nostalgia Trip (Brian Damaso)
+4. Ultimate Vs. Fighter (David Ball)
+5. Venom (Kio Dieken)
 ## Preview
 [![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section
