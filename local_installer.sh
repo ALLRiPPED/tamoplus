@@ -573,7 +573,7 @@ if [[ ${filefound2} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
 filefound51=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep BGM_vol_fade.sh |wc -l`
 if [[ ${filefound51} > 0 ]]; then sed -i '/home\/pi\/BGM_vol_fade.sh -stop/d' $RUNONSTART
 	if grep -q 'omxplayer' "$RUNONSTART"; then
-		sed -i 's/omxplayer "$default" > \/dev\/null 2>\&1/omxplayer "$default" > \/dev\/null 2>\&1\nfi/g' $RUNONSTART; sleep 1
+		sed -i 's/omxplayer "$default" > \/dev\/null 2>\&1/omxplayer "$default" > \/dev\/null 2>\&1\nfi; fi/g' $RUNONSTART; sleep 1
 		sed -i '1i #!/bin/sh' $RUNONSTART
 		sed -i '2i ### Begin VideoLoading Screens Function' $RUNONSTART
 		sed -i '3i enablevideolaunch="true"' $RUNONSTART
