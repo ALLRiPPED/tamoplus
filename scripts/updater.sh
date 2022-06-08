@@ -14,7 +14,7 @@ tamo_update() {
 	chmod 0755 /home/pi/tamoplus/files/*.sh
 	chmod 0755 /home/pi/tamoplus/files/pngview
 	chmod 0755 /home/pi/tamoplus/files/BGM.py
-	cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh; fi
+	cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 2
 	}
