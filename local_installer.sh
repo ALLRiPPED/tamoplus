@@ -219,8 +219,10 @@ if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL
 }
 
 prep_work() {
-chmod 755 $INSTALL_DIR/scripts/*
-chmod 755 $INSTALL_DIR/files/*.sh
+chmod 0755 /home/pi/tamoplus/scripts/*
+chmod 0755 /home/pi/tamoplus/files/*.sh
+chmod 0755 /home/pi/tamoplus/files/pngview
+chmod 0755 /home/pi/tamoplus/files/BGM.py
 if [ -d "$HOME/.tamoplus" ]; then echo "Found .tamoplus folder"; else mkdir $HOME/.tamoplus; fi
 cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
 #USER SETTINGS
@@ -392,7 +394,7 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="SubtitleAlignment" value="left" />
 <string name="SubtitleFont" value="/usr/share/fonts/truetype/freefont/FreeSans.ttf" />
 <string name="SubtitleItalicFont" value="/usr/share/fonts/truetype/freefont/FreeSansOblique.ttf" />
-<string name="ThemeSet" value="pistolero" />
+<string name="ThemeSet" value="carbonite" />
 <string name="TransitionStyle" value="fade" />
 <string name="UIMode" value="Full" />
 <string name="UIMode_passkey" value="uuddlrlrba" />
