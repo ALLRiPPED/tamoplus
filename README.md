@@ -53,6 +53,7 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 7. Assortment of Visual Tool Scripts.
 8. Rearranges Retropie Menu items with above tools or leaves the default menu intact (can be switched in script).
 9. Scripts for Themes and Bezels, plus much more.
+
 #### Total Available Themesets
 1. Carbonite (thepitster).
 2. Christmas (Dwayne Hurst).
@@ -62,12 +63,14 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 6. Retro-Devils (Retro-Devils).
 7. Stranger Things (Filipe Bello).
 8. Supreme Team (Supreme Team).
+
 #### Total Available Background Music
 1. Arcade (Unknown).
 2. Custom (Brutal Legend Soundtrack).
 3. Nostalgia Trip (Brian Damaso).
 4. Ultimate Vs. Fighter (David Ball).
 5. Venom (Kio Dieken).
+
 ## Preview
 [![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section
