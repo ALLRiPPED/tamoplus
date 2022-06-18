@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.40 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.41 (formally known as TAMPO)
 This can install all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
 for two Holiday themes and my own concoction theme set Carbonite, for now, hopefully more to come!<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
@@ -25,6 +25,7 @@ wget -O - https://bit.ly/Install-TAMO | bash
 ## One Liner Install Mirrors
 ```bash
 wget -O - https://t.ly/5Oqi | bash
+
 ```
 or
 ```bash
@@ -52,24 +53,22 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 7. Assortment of Visual Tool Scripts.
 8. Rearranges Retropie Menu items with above tools or leaves the default menu intact (can be switched in script).
 9. Scripts for Themes and Bezels, plus much more.
-
 #### Total Available Themesets
 1. Carbonite (thepitster).
 2. Christmas (Dwayne Hurst).
-3. Halloween (spoony and Dwayne Hurst).
-4. Pistolero (Kio Dieken).
-5. Pleasure Paradise (MBM).
-6. Retro-Devils (Retro-Devils).
-7. Stranger Things (Filipe Bello).
-8. Supreme Team (Supreme Team).
-
+3. Diablos Arcade (Retro-Devils).
+4. Halloween (spoony and Dwayne Hurst).
+5. Neon IBAD (Retro-Devils).
+6. Pistolero (Kio Dieken).
+7. Pleasure Paradise (MBM).
+8. Stranger Things (Filipe Bello).
+9. Supreme Team (Supreme Team).
 #### Total Available Background Music
 1. Arcade (Unknown).
 2. Custom (Brutal Legend Soundtrack).
 3. Nostalgia Trip (Brian Damaso).
 4. Ultimate Vs. Fighter (David Ball).
 5. Venom (Kio Dieken).
-
 ## Preview
 [![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section
@@ -91,7 +90,7 @@ TAMO+ Version 1.20 - Total script rewrite thanks to a big help from the [Supreme
 ### TAMO+ Credits
 The Halloween theme, music, splash, and videoloading screens are from the build [32GB]-Halloween.Candy.RPI4.2gb.4gb-Scoony and DB Project<br>
 The Christmas theme, music, splash, and videoloading screens are from the build [32gb]-Christmas.Pi.RPI4-Scoony.Hursty, though I did shorten the splashscreen down from 2 minutes 38 seconds to 1 minute 40 seconds<br>
-Diablos Arcade by the [Retro-Devils](https://github.com/Retro-Devils/Devils-Pi "Diablos Arcade")<br>
+Diablos Arcade and Neon INAD by the [Retro-Devils](https://github.com/Retro-Devils/Devils-Pi "Retro-Devils")<br>
 Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 [Dwayne Hurst](https://github.com/retrohursty69 "Dwayne Hurst") for every thing he has done with themes, which some are included in tamo+.<br>
 Version 1.00 - thepitster<br>
@@ -103,3 +102,4 @@ Version 1.30 - Added font, font color, and overlay color selections to the menu 
 Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>
 Version 1.35 - You now can keep your retropie menu intact or restore it later. Plus rearranged the install so user settings do not get over writen in BGM.py when you update.<br>
 Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them separately later after install.<br>
+Version 1.41 - Added Neon IBAD from The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils").<br>

@@ -333,21 +333,23 @@ stats_check
             1 "Enable Carbonite Themeset" \
             2 "Enable Christmas Themeset" \
             3 "Enable Halloween Themeset" \
-            4 "Enable Retro-Devils Themeset" \
-            5 "Enable Pistolero Themeset" \
-            6 "Enable Pleasure Paradise Themeset" \
-            7 "Enable Stranger Things Themeset" \
-            8 "Enable Supreme Ultra Themeset" \
+            4 "Enable Diablos Arcade Themeset" \
+            5 "Enable Neon IBAD Themeset" \
+            6 "Enable Pistolero Themeset" \
+            7 "Enable Pleasure Paradise Themeset" \
+            8 "Enable Stranger Things Themeset" \
+            9 "Enable Supreme Ultra Themeset" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) enable_carbonite ;;
             2) enable_xmas ;;
             3) enable_halloween ;;
-            4) enable_devils ;;
-            5) enable_pistolero ;;
-            6) enable_pleasure ;;
-            7) enable_stranger ;;
-            8) enable_supreme ;;
+            4) enable_diablos ;;
+            5) enable_neonibad ;;
+            6) enable_pistolero ;;
+            7) enable_pleasure ;;
+            8) enable_stranger ;;
+            9) enable_supreme ;;
             *) break ;;
         esac
     done
@@ -683,21 +685,23 @@ stats_check
             1 "Download Carbonite Themeset" \
             2 "Download Christmas Themeset" \
             3 "Download Halloween Themeset" \
-            4 "Download Retro-Devils Themeset" \
-            5 "Download Pistolero Themeset" \
-            6 "Download Pleasure Paradise Themeset" \
-            7 "Download Stranger Things Themeset" \
-            8 "Download Supreme Ultra Themeset" \
+            4 "Download Diablos Arcade Themeset" \
+            5 "Download Neon IBAD Themeset" \
+            6 "Download Pistolero Themeset" \
+            7 "Download Pleasure Paradise Themeset" \
+            8 "Download Stranger Things Themeset" \
+            9 "Download Supreme Ultra Themeset" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) download_themesets "carbonite" ;;
             2) download_themesets "merryxmas" ;;
             3) download_themesets "halloweenspecial" ;;
             4) download_themesets "devilchromey" ;;
-            5) download_themesets "pistolero" ;;
-            6) download_themesets "pleasureparadise" ;;
-            7) download_themesets "strangerthings" ;;
-            8) download_themesets "supremeteam" ;;
+            5) download_themesets "neonibad" ;;
+            6) download_themesets "pistolero" ;;
+            7) download_themesets "pleasureparadise" ;;
+            8) download_themesets "strangerthings" ;;
+            9) download_themesets "supremeteam" ;;
             *) break ;;
         esac
     done
@@ -738,7 +742,7 @@ DISCLAIMER="${DISCLAIMER}This script will play MP3 & OGG files during menu navig
 DISCLAIMER="${DISCLAIMER}A Few subfolders have been created in the $HOME/RetroPie/roms/music directory with a selection of\n"
 DISCLAIMER="${DISCLAIMER}different music from various builds by many good build makers.\n"
 DISCLAIMER="${DISCLAIMER}The themes you can seltect bewteen are \"halloween\" (Halloween), \"merryxmas\" (Christmas),\n"
-DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things), \"carbonite\" (Default) and \"devilchromey\" (Retro-Devils).\n"
+DISCLAIMER="${DISCLAIMER}\"strangerthings\" (Stranger Things), \"carbonite\" (Default) and \"devilchromey\" (Diablos Arcade).\n"
 DISCLAIMER="${DISCLAIMER}This includes the themes, music, plus game splash, launching/loading, and exit screens.\n"
 DISCLAIMER="${DISCLAIMER}Launch a game, the music will stop. Upon exiting out of the game the music will begin playing again.\n"
 DISCLAIMER="${DISCLAIMER}This also lets you turn off certain options for BGM.py such as, Enable/Disable the Overlay, Fadeout effect,\n"

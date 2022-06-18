@@ -34,7 +34,7 @@ infobox="${infobox}The background music python and control scripts have been ins
 infobox="${infobox}This script will play MP3 & OGG files during menu navigation in either Emulation Station or Attract mode.\n"
 infobox="${infobox}A Few subfolders have been created in the $HOME/RetroPie/roms/music directory for\n"
 infobox="${infobox}\"halloweenspecial\" (Halloween), \"merryxmas\" (Christmas), \"strangerthings\" (Stranger Things), and\n"
-infobox="${infobox}\"devilchromey\" (Retro-Devils). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
+infobox="${infobox}\"devilchromey\" (Diablos Arcade). This includes themes, music, splashscreens, and game videoloadingscreens.\n"
 infobox="${infobox}Also you have \"arcade\" (Arcade), \"st\" (Supreme Team), \"uvf\"\n"
 infobox="${infobox}(Ultimate Vs Fighter), \"venom\" (Venom), \"pistolero\" (Pistolero),  and this last one\n"
 infobox="${infobox}\"custom\" (Custom) is for placing your own MP3 files into.\n"
@@ -99,6 +99,7 @@ if [ $installset -ge "2" ]; then
 	sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_halloweenspecial=0|themeset_halloweenspecial=1|" "$USER_SETTINGS"
+	sed -i "s|themeset_neonibad=0|themeset_neonibad=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_pistolero=0|themeset_pistolero=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_pleasureparadise=0|themeset_pleasureparadise=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_strangerthings=0|themeset_strangerthings=1|" "$USER_SETTINGS"
@@ -229,8 +230,9 @@ cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
 auto_update_flag=0
 user_menu_flag=0
 themeset_carbonite=0
-themeset_devilchromey=0
+themeset_diabloschromey=0
 themeset_halloweenspecial=0
+themeset_neonibad=0
 themeset_pistolero=0
 themeset_pleasureparadise=0
 themeset_strangerthings=0
