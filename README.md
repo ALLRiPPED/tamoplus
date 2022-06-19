@@ -25,7 +25,6 @@ wget -O - https://bit.ly/Install-TAMO | bash
 ## One Liner Install Mirrors
 ```bash
 wget -O - https://t.ly/5Oqi | bash
-
 ```
 or
 ```bash
