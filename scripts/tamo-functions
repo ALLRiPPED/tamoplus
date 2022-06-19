@@ -359,6 +359,7 @@ fi
 themeset_variables() {
 CUR_PLY=$(grep "musicdir =" "$SCRIPT_LOC"|awk '{print $3}')
 CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
+CUR_VIEW=$(grep "<string name=\"GamelistViewStyle\"" "$ES_SETTINGS"|awk '{print $3}')
 CUR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 CUR_SEXS=$(grep "omxplayer" "$EXITSPLS"|awk '{print $7}')
 CUR_REXS=$(grep "omxplayer" "$EXITSPLR"|awk '{print $7}')
@@ -368,6 +369,7 @@ enable_carbonite() {
 themeset_variables
 NEW_PLY='"/home/pi/.tamoplus"'
 NEW_THM="value=\"carbonite\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/carbonite"'
 NEW_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
 if grep 'themeset_carbonite=0' "$USER_SETTINGS"; then
@@ -376,8 +378,9 @@ if grep 'themeset_carbonite=0' "$USER_SETTINGS"; then
 fi
 sleep 1 
 if grep 'themeset_carbonite=1' "$USER_SETTINGS"; then
-	if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-	if [ $CUR_PLY == $NEW_PLY ]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
+	if [[ $CUR_THM == $NEW_THM ]]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
+	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
 	else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
@@ -398,6 +401,7 @@ enable_diablos() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/devilchromey"'
 NEW_THM="value=\"devilchromey\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/devilchromey"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
 if grep 'themeset_devilchromey=0' "$USER_SETTINGS"; then
@@ -407,6 +411,7 @@ fi
 sleep 1 
 if grep 'themeset_devilchromey=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Diablos Arcade Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Diablos Arcade Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Diablos Arcade Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
@@ -427,6 +432,7 @@ enable_halloween() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/halloweenspecial"'
 NEW_THM="value=\"halloweenspecial\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/halloweenspecial"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
 if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS"; then
@@ -436,6 +442,7 @@ fi
 sleep 1 
 if grep 'themeset_halloweenspecial=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
@@ -456,6 +463,7 @@ enable_neonibad() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/neonibad"'
 NEW_THM="value=\"neonibad\""
+NEW_VIEW="value=\"grid\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/neonibad"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/NeonIBADExit.mp4"'
 if grep 'themeset_neonibad=0' "$USER_SETTINGS"; then
@@ -465,6 +473,7 @@ fi
 sleep 1 
 if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Neon IBAD Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Grid View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Neon IBAD Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Neon IBAD Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/NeonIBAD.mp4/" $SPLSCREEN
@@ -485,6 +494,7 @@ enable_pistolero() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
 NEW_THM="value=\"pistolero\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
 if grep 'themeset_pistolero=0' "$USER_SETTINGS"; then
@@ -494,6 +504,7 @@ fi
 sleep 1 
 if grep 'themeset_pistolero=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
@@ -514,6 +525,7 @@ enable_pleasure() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
 NEW_THM="value=\"pleasureparadise\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
 if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS"; then
@@ -523,6 +535,7 @@ fi
 sleep 1 
 if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
@@ -543,6 +556,7 @@ enable_stranger() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
 NEW_THM="value=\"strangerthings\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerthings"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
 if grep 'themeset_strangerthings=0' "$USER_SETTINGS"; then
@@ -552,6 +566,7 @@ fi
 sleep 1 
 if grep 'themeset_strangerthings=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
@@ -572,6 +587,7 @@ enable_supreme() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/supremeteam"'
 NEW_THM="value=\"supremeteam\""
+NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/supremeteam"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
 if grep 'themeset_supremeteam=0' "$USER_SETTINGS"; then
@@ -581,6 +597,7 @@ fi
 sleep 1 
 if grep 'themeset_supremeteam=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
@@ -601,6 +618,7 @@ enable_xmas() {
 themeset_variables
 NEW_PLY='"/home/pi/RetroPie/roms/music/merryxmas"'
 NEW_THM="value=\"merryxmas\""
+NEW_VIEW="value=\"automatic\""
 NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/merryxmas"'
 NEWX_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/XmasExit.mp4"'
 if grep 'themeset_merryxmas=0' "$USER_SETTINGS"; then
@@ -610,6 +628,7 @@ fi
 sleep 1 
 if grep 'themeset_merryxmas=1' "$USER_SETTINGS"; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
+	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
