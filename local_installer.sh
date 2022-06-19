@@ -79,9 +79,9 @@ prep_work
 echo "Prep Work All Done. Downloading Music"
 
 if [ $installset -eq "1" ]; then
-	if [ -f "$SPL_DIR/ThanksForPlaying.mp4" ]; then wget https://archive.org/download/tamoplusrawfiles/splashscreens/ThanksForPlaying.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/JarvisSplash.mp4" ]; then wget https://archive.org/download/tamoplusrawfiles/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$EXT_SPL_DIR/JarvisExit.mp4" ]; then wget https://archive.org/download/tamoplusrawfiles/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
+	if [ -f "$SPL_DIR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlaying.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/JarvisSplash.mp4" ]; then wget"${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$EXT_SPL_DIR/JarvisExit.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
 fi
 
 if [ $installset -le "2" ]; then
@@ -119,22 +119,24 @@ exit
 download_themes() {
 # Downloading Themes
 echo "Downloading themes needed for TAMO+"
-if [ ! -d  "$THEMES_DIR/carbonite" ]; then git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "/opt/retropie/configs/all/emulationstation/themes/carbonite"
-else cd /opt/retropie/configs/all/emulationstation/themes/carbonite; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "/opt/retropie/configs/all/emulationstation/themes/halloweenspecial"
-else cd /opt/retropie/configs/all/emulationstation/themes/halloweenspecial; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/devilchromey" ]; then git clone "https://github.com/ALLRiPPED/es-theme-devilchromey.git" "/opt/retropie/configs/all/emulationstation/themes/devilchromey"
-else cd /opt/retropie/configs/all/emulationstation/themes/devilchromey; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/pistolero" ]; then git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "/opt/retropie/configs/all/emulationstation/themes/pistolero"
-else cd /opt/retropie/configs/all/emulationstation/themes/pistolero; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "/opt/retropie/configs/all/emulationstation/themes/pleasureparadise"
-else cd /opt/retropie/configs/all/emulationstation/themes/pleasureparadise; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then git clone "https://github.com/ALLRiPPED/es-theme-strangerthings.git" "/opt/retropie/configs/all/emulationstation/themes/strangerthings"
-else cd /opt/retropie/configs/all/emulationstation/themes/strangerstuff; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/supremeteam" ]; then git clone "https://github.com/ALLRiPPED/es-theme-supremeteam.git" "/opt/retropie/configs/all/emulationstation/themes/supremeteam"
-else cd /opt/retropie/configs/all/emulationstation/themes/supremeteam; git reset --hard; git pull; fi
-if [ ! -d  "$THEMES_DIR/merryxmas" ]; then git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "/opt/retropie/configs/all/emulationstation/themes/merryxmas"
-else cd /opt/retropie/configs/all/emulationstation/themes/merryxmas; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/carbonite" ]; then git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "$THEMES_DIR/carbonite"
+else cd $THEMES_DIR/carbonite; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/halloweenspecial" ]; then git clone "https://github.com/ALLRiPPED/es-theme-halloweenspecial.git" "$THEMES_DIR/halloweenspecial"
+else cd $THEMES_DIR/halloweenspecial; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/devilchromey" ]; then git clone "https://github.com/ALLRiPPED/es-theme-devilchromey.git" "$THEMES_DIR/devilchromey"
+else cd $THEMES_DIR/devilchromey; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/neonibad" ]; then git clone "https://github.com/ALLRiPPED/es-theme-neonibad.git" "$THEMES_DIR/neonibad"
+else cd $THEMES_DIR/neonibad; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/pistolero" ]; then git clone "https://github.com/ALLRiPPED/es-theme-pistolero.git" "$THEMES_DIR/pistolero"
+else cd $THEMES_DIR/pistolero; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/pleasureparadise" ]; then git clone "https://github.com/ALLRiPPED/es-theme-pleasureparadise.git" "$THEMES_DIR/pleasureparadise"
+else cd $THEMES_DIR/pleasureparadise; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/strangerstuff" ]; then git clone "https://github.com/ALLRiPPED/es-theme-strangerthings.git" "$THEMES_DIR/strangerthings"
+else cd $THEMES_DIR/strangerstuff; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/supremeteam" ]; then git clone "https://github.com/ALLRiPPED/es-theme-supremeteam.git" "$THEMES_DIR/supremeteam"
+else cd $THEMES_DIR/supremeteam; git reset --hard; git pull; fi
+if [ ! -d  "$THEMES_DIR/merryxmas" ]; then git clone "https://github.com/ALLRiPPED/es-theme-merryxmas.git" "$THEMES_DIR/merryxmas"
+else cd $THEMES_DIR/merryxmas; git reset --hard; git pull; fi
 }
 
 download_videos() {
@@ -150,13 +152,13 @@ sleep 1
 if [ -f "$SPL_DIR/Pistelero.mp4" ] && [ -f "$SPL_DIR/PleasureParadise.mp4" ] && [ -f "$SPL_DIR/RetroDevilReaper.mp4" ] && [ -f "$SPL_DIR/Supreme.mp4" ]
 then echo "Splash, Exit, and Game Launching Screens Found!"
 else
-	if [ -f "$HOME/tamoplus/tamoplus-screens.zip" ]; then echo "Extracting Splash, Exit, and Game Launching Screens"; unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie
+	if [ -f "$INSTALL_DIR/tamoplus-screens.zip" ]; then echo "Extracting Splash, Exit, and Game Launching Screens"; unzip -uq $INSTALL_DIR/tamoplus-screens.zip -d $HOME/RetroPie
 		echo "Splash, Exit, and Game Launching Screens Extracting Complete"
 	else
 		echo "Downloading Splash, Exit, and Game Launching Screens"
-		gdown https://drive.google.com/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $HOME/tamoplus/tamoplus-screens.zip
+		gdown "${GOOG_HOST}"/uc?id=1002ccXpBnKgrSBT8lD-nbU9xGHY2emVE -O $INSTALL_DIR/tamoplus-screens.zip
 		echo "Downloading Complete, Now Extracting Splash, Exit, and Game Launching Screens"
-		unzip -uq $HOME/tamoplus/tamoplus-screens.zip -d $HOME/RetroPie; echo "Splash, Exit, and Game Launching Screens Extracting Complete"
+		unzip -uq $INSTALL_DIR/tamoplus-screens.zip -d $HOME/RetroPie; echo "Splash, Exit, and Game Launching Screens Extracting Complete"
 	fi
 fi
 move_exitscreens
@@ -166,40 +168,40 @@ download_thememusic() {
 if [ -f "$MUSIC_DIR/halloweenspecial/1.mp3" ] && [ -f "$MUSIC_DIR/strangerthings/01. Stranger Things.mp3" ] && [ -f "$MUSIC_DIR/merryxmas/Sleigh Ride.mp3" ]
 then echo "Theme Music Found!"
 else
-	if [ -f "$HOME/tamoplus/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie
+	if [ -f "$INSTALL_DIR/thememusic.zip" ]; then echo "Extracting Theme Music"; unzip -uq $INSTALL_DIR/thememusic.zip -d $HOME/RetroPie
 		echo "Theme Music Extracting Complete"
 	else
 		echo "Downloading Theme Music"
-		gdown https://drive.google.com/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $HOME/tamoplus/thememusic.zip
+		gdown "${GOOG_HOST}"/uc?id=1-Gctmc_AAp-MMOr265vZfjfTijLUN_6M -O $INSTALL_DIR/thememusic.zip
 		echo "Downloading Complete, Now Extracting Theme Music"
-		unzip -uq $HOME/tamoplus/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extracting Complete"
+		unzip -uq $INSTALL_DIR/thememusic.zip -d $HOME/RetroPie; echo "Theme Music Extracting Complete"
 	fi
 fi
 }
 
 download_bgmusic() {
 if [ -f "$MUSIC_DIR/arcade/arcade81.mp3" ]; then echo "BGM Found Music!"; else
-	if [ -f "$HOME/tamoplus/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie
+	if [ -f "$INSTALL_DIR/bgm.zip" ]; then echo "Extracting BGM Music"; unzip -uq $INSTALL_DIR/bgm.zip -d $HOME/RetroPie
 		echo "BGM Music Extraction Complete"
 	else
 		echo "Downloading BGM Music"
-		gdown https://drive.google.com/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $HOME/tamoplus/bgm.zip
+		gdown "${GOOG_HOST}"/uc?id=1-GLqdCNpH0i3zKRAJDOWwxfaP2gVGaC4 -O $INSTALL_DIR/bgm.zip
 		echo "Downloading Complete, Now Extracting BGM Music"
-		unzip -uq $HOME/tamoplus/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extracting Complete"
+		unzip -uq $INSTALL_DIR/bgm.zip -d $HOME/RetroPie; echo "BGM Music Extracting Complete"
 	fi
 fi
 }
 
 download_custommusic() {
 if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "Custom Found Music!"; else
-	if [ -f "$HOME/tamoplus/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $HOME/tamoplus/custombgm.zip -d $HOME/RetroPie
+	if [ -f "$INSTALL_DIR/custombgm.zip" ]; then echo "Extracting CustomBGM Music"; unzip -uq $INSTALL_DIR/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
 		echo "CustomBGM Music Extracting Complete"
 	else
 		echo "Downloading CustomBGM Music"
-		gdown https://drive.google.com/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $HOME/tamoplus/custombgm.zip
+		gdown "${GOOG_HOST}"/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O $INSTALL_DIR/custombgm.zip
 		echo "Downloading Complete, Now Extracting CustomBGM Music"
-		unzip -uq $HOME/tamoplus/custombgm.zip -d $HOME/RetroPie
+		unzip -uq $INSTALL_DIR/custombgm.zip -d $HOME/RetroPie
 		rm -f $MUSIC_DIR/custom/'No Music in Folder.mp3'
 		echo "CustomBGM Music Extraction Complete"
 	fi
@@ -326,12 +328,12 @@ if [[ $currentuser == "pi" ]]; then #Use pngview if using Raspberry Pi
 elif [[ $currentuser == "pigaming" ]]; then
 	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev # Install ODROID stuff
 	git clone https://github.com/AreaScout/Gaming-Kit-Tools.git
-	cd $HOME/tamoplus/Gaming-Kit-Tools
+	cd $INSTALL_DIR/Gaming-Kit-Tools
 	make
 	sudo make install
 fi
 
-cd $HOME/tamoplus/
+cd $INSTALL_DIR/
 sudo cp -f $INSTALL_DIR/files/GROBOLD.ttf /usr/share/fonts/truetype/
 sudo cp -f $INSTALL_DIR/files/Pixel.otf /usr/share/fonts/truetype/
 cp -f $INSTALL_DIR/files/BGM.py $SETTINGS_DIR/BGM.py
@@ -446,7 +448,7 @@ fi
 setup() {
 echo "Add menu options for BGM Overlay Controls"
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then cp -f $INSTALL_DIR/files/tamoplus-sbu.png $MENU_DIR/icons/tamoplus.png
-elif [ -d "/opt/retropie/configs/all/emulationstation/themes/devil chromey" ]; then cp -f $INSTALL_DIR/files/tamoplus-dev.png $MENU_DIR/icons/tamoplus.png
+elif [ -d "$THEMES_DIR/devil chromey" ]; then cp -f $INSTALL_DIR/files/tamoplus-dev.png $MENU_DIR/icons/tamoplus.png
 else cp -f $INSTALL_DIR/files/tamoplus-rp.png $MENU_DIR/icons/tamoplus.png; fi
 
 if [ -f "$MENU_DIR/tamoplus.sh" ]; then sudo rm -f $MENU_DIR/tamoplus.sh; fi
@@ -701,14 +703,14 @@ rebootn() {
 }
 
 rebootld() {
-	rm -f $HOME/tamoplus/*.zip
+	rm -f $INSTALL_DIR/*.zip
 	echo -e "$(tput setaf 2)Zip Files Deleted$(tput setaf 0)"
 	sleep 1
 	exit
 }
 
 rebootnd() {
-	rm -f $HOME/tamoplus/*.zip
+	rm -f $INSTALL_DIR/*.zip
 	echo -e "$(tput setaf 2)Zip Files Deleted$(tput setaf 0)"
 	sleep 1
 	sudo reboot

@@ -1801,8 +1801,9 @@ if [ "${1}" = "custom" ]; then
 			rm -f "$INSTALL_DIR/custombgm.zip"
 		fi
 	else
-		wget "${HOST1}"/custombgm.zip -P "$INSTALL_DIR"
-		echo "Extracting Music"
+		echo "Downloading Custom Music"
+		gdown "${GOOG_HOST}"/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O  "$INSTALL_DIR/custombgm.zip"
+		echo "Extracting Custom Music"
 		unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
 		rm -f "$INSTALL_DIR/custombgm.zip"
 	fi
