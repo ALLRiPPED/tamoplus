@@ -101,4 +101,4 @@ Version 1.30 - Added font, font color, and overlay color selections to the menu 
 Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>
 Version 1.35 - You now can keep your retropie menu intact or restore it later. Plus rearranged the install so user settings do not get over writen in BGM.py when you update.<br>
 Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them separately later after install.<br>
-Version 1.41 - Added Neon IBAD from The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils").<br>
+Version 1.41 - Added Neon IBAD themeset from The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils").<br>
