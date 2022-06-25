@@ -1821,6 +1821,23 @@ else
 fi
 }
 
+#-----------------------------#
+# Fan And Temperature Controls #
+#-----------------------------#
+set_fan_cron() {
+if [ ! -f "/usr/local/bin/temp-fan.sh" ]; then
+	echo "Fan Temperature Control File Not Found, Setting It Up Now"
+	sudo cp -f /home/pi/tamoplus/files/temp-fan.sh /usr/local/bin/temp-fan.sh
+	crontab -l | { cat; echo "* * * * * /usr/local/bin/temp-fan.sh"; } | crontab -
+else
+	echo "Fan Temperature Control File Found"
+fi
+}
+
+remove_fan_cron() {
+crontab -l | grep -v "\* \* \* \* \* /usr/local/bin/temp-fan.sh" | crontab -
+}
+
 #------------------------#
 # Stats and BGM Checking #
 #------------------------#

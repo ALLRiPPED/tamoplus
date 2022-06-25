@@ -128,14 +128,16 @@ stats_check
             2 "Turn On-Off Keep RetroPie Menus $menstat" \
             3 "TAMO+ Themesets Downloader" \
             4 "TAMO+ Music Downloader" \
-            5 "Update TAMO+" \
+            5 "CPU Fan Temperature Control" \
+            6 "Update TAMO+" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) auto_update ;;
             2) retropie_menu ;;
             3) download_select_themesets ;;
             4) download_select_music ;;
-            5) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
+            5) fan_control ;;
+            6) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
             *) break ;;
         esac
     done
@@ -809,6 +811,41 @@ stats_check
     done
 }
 
+fan_control() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "CPU Fan Temperature Control  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Music " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Set Fan Temperature " \
+            2 "Install Fan Temp Cronjob" \
+            3 "Remove Fan Temp Cronjob" \
+            2>&1 > /dev/tty)
+        case "$choice" in
+            1) set_fan_temp ;;
+            2) set_fan_cron ;;
+            3) remove_fan_cron ;;
+            *) break ;;
+        esac
+    done
+}
+
+set_fan_temp() {
+oldfantemp=$(grep "ontemp=" "/usr/local/bin/temp-fan.sh"|(awk '{print $1}') | tr -d 'ontemp=')
+export oldfantemp
+newfantemp=$(dialog \
+	--colors \
+	--title "Adjust The Fan Temperature" \
+	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantemp" 3>&1 1>&2 2>&3 3>&-)
+export newfantemp
+if [ $newfantemp ]; then
+	sudo sed -i -E "s/ontemp=${oldfantemp}/ontemp=${newfantemp}/g" /usr/local/bin/temp-fan.sh
+else
+	return
+fi
+stats_check
+}
 
 disclaim() {
 DISCLAIMER=""

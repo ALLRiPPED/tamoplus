@@ -1,5 +1,5 @@
 #!/bin/bash
-ontemp=45
+ontemp=40
 temp=$(vcgencmd measure_temp | egrep -o '[0-9]*\.[0-9]*')
 echo $temp #use BCM pin 14 for Ice Tower
 temp0=${temp%.*}
