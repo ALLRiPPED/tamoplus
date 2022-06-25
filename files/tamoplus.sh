@@ -23,8 +23,10 @@ stats_check
             3 "Visual Settings" \
             4 "Loading Media Settings" \
             5 "Controller Settings" \
-            6 "User Control Panel" \
-            7 "View TAMO+ Disclamer" \
+            6 "Emulation Settings" \
+            7 "Retropie Settings" \			
+            8 "User Control Panel" \
+            9 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) themesettings ;;
@@ -32,8 +34,84 @@ stats_check
             3) visual_menu ;;
             4) loading_media ;;
             5) controller_menu ;;
-            6) user_menu ;;
-            7) disclaim ;;
+            6) emulation_menu ;;
+            7) retropie_tools_menu ;;			
+            8) user_menu ;;
+            9) disclaim ;;
+            *) break ;;
+        esac
+    done
+}
+
+emulation_menu() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Emulation Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Emulation Menu " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Start A Default System" \
+            2 "Auto Amiga Install" \
+            3 "RetroPie configedit" \
+            4 "Install N64 Tweaks" \
+            5 "Openbor Module Selection Script" \
+            6 "Rpc80 Save File Script" \
+            7 "UAE Config Maker" \
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) bash $INSTALL_DIR/scripts/+Start-System.sh ;;
+            2) bash $INSTALL_DIR/scripts/Auto-Amiga-Install.sh ;;
+            3) sudo /home/pi/RetroPie-Setup/retropie_packages.sh configedit gui ;;
+            4) bash $INSTALL_DIR/scripts/n64tweaks.sh ;;
+            5) bash $INSTALL_DIR/scripts/openbormoduleselectionscript.sh ;;
+            6) bash $INSTALL_DIR/scripts/rpc80-savefile.sh ;;
+            7) bash $INSTALL_DIR/scripts/UAE-Config-Maker.sh ;;
+            *) break ;;
+        esac
+    done
+}
+
+retropie_tools_menu() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Retropie Tools Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Retropie Tools Menu " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "RetroPie Bluetooth" \
+            2 "Clear Last Played" \
+            3 "ES Collections" \
+            4 "ES Gamelist" \
+            5 "File Find" \
+            6 "File Manager" \
+            7 "Gpio Shutdown" \
+            8 "Over Clock" \
+            9 "Reference" \
+           10 "Retroarch" \
+           11 "Retro Net Play" \
+           12 "Runcommand" \
+           13 "Show My Ip" \
+           14 "System Info" \
+           15 "Usb Ext" \
+           16 "Wifi" \		   
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) sudo /home/pi/RetroPie-Setup/retropie_packages.sh bluetooth gui ;;
+            2) bash $INSTALL_DIR/scripts/clearlastplayed.sh ;;
+            3) bash $INSTALL_DIR/scripts/escollections.sh ;;
+            4) bash $INSTALL_DIR/scripts/esgamelist.sh ;;
+            5) bash $INSTALL_DIR/scripts/filefind.sh ;;
+            6) sudo /home/pi/RetroPie-Setup/retropie_packages.sh filemanager gui ;;
+            7) bash $INSTALL_DIR/scripts/gpioshutdown.sh ;;
+			8) bash $INSTALL_DIR/scripts/overclock.sh ;;
+            9) bash $INSTALL_DIR/scripts/reference.sh ;;
+           10) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retroarch gui ;;
+           11) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retronetplay gui ;;
+           12) sudo /home/pi/RetroPie-Setup/retropie_packages.sh runcommand gui ;;
+           13) sudo /home/pi/RetroPie-Setup/retropie_packages.sh showip gui ;;
+           14) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
+		   15) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
+           16) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
             *) break ;;
         esac
     done

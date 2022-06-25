@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.41 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.42 (formally known as TAMPO)
 This can install all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
 for two Holiday themes and my own concoction theme set Carbonite, for now, hopefully more to come!<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
@@ -102,3 +102,4 @@ Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgu
 Version 1.35 - You now can keep your retropie menu intact or restore it later. Plus rearranged the install so user settings do not get over writen in BGM.py when you update.<br>
 Version 1.40 - Redone install and main scripts, so the themesets and music you can now choose to install them separately later after install.<br>
 Version 1.41 - Added Neon IBAD themeset from The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils").<br>
+Version 1.42 - Added more ultility tools and other helpful scripts thanks to [Supreme Team](https://github.com/SupremePi "Supreme Team").<br>
