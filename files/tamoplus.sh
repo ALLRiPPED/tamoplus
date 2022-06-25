@@ -24,7 +24,7 @@ stats_check
             4 "Loading Media Settings" \
             5 "Controller Settings" \
             6 "Emulation Settings" \
-            7 "Retropie Settings" \			
+            7 "Retropie Settings" \
             8 "User Control Panel" \
             9 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
@@ -35,7 +35,7 @@ stats_check
             4) loading_media ;;
             5) controller_menu ;;
             6) emulation_menu ;;
-            7) retropie_tools_menu ;;			
+            7) retropie_tools_menu ;;
             8) user_menu ;;
             9) disclaim ;;
             *) break ;;
@@ -93,7 +93,7 @@ stats_check
            13 "Show My Ip" \
            14 "System Info" \
            15 "Usb Ext" \
-           16 "Wifi" \		   
+           16 "Wifi" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) sudo /home/pi/RetroPie-Setup/retropie_packages.sh bluetooth gui ;;
