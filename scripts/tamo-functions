@@ -1821,9 +1821,9 @@ else
 fi
 }
 
-#-----------------------------#
+#------------------------------#
 # Fan And Temperature Controls #
-#-----------------------------#
+#------------------------------#
 set_fan_cron() {
 if [ ! -f "/usr/local/bin/temp-fan.sh" ]; then
 	echo "Fan Temperature Control File Not Found, Setting It Up Now"
