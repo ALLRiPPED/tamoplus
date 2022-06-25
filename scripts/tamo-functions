@@ -944,9 +944,11 @@ sudo chown $USER:$USER $MENU_DIR/*
 # Supreme RetroPie Menu Edits
 if [ -d /home/pi/RetroPie/retropiemenu/audiotools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/audiotools; fi
 if [ -d /home/pi/RetroPie/retropiemenu/controllertools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/controllertools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/emulationtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/emulationtools; fi
+if [ -d /home/pi/RetroPie/retropiemenu/retropietools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/retropietools; fi
 if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/RetroPie/retropiemenu/visualtools; fi
  
-# Supreme Check
+# Supreme Check Attract
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
 	# Supreme RetroPie Menu Edits
@@ -962,14 +964,18 @@ if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt.bk; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk; fi
-	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
 	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg.bk; fi
+    if [ -f /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg.bk; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg.bk; fi
+    if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk; fi
  
 	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
-Emulation tools;/ Emulation Tools;@;;;;;;;;;0;;;;;
-Retropie tools;/ Retropie Tools;@;;;;;;;;;0;;;;;
 tamoplus;Tamo Plus;Settings;;;;;;;;;;;;;;
 displayutility;Display Utility;Settings;;;;;;;;;;;;;;
 basicinfo;Retropie Basic Infos;Settings;;;;;;;;;;;;;;
@@ -1003,26 +1009,6 @@ fi
 sudo ~/RetroPie-Setup/retropie_packages.sh retropiemenu
 sudo chown $USER:$USER $MENU_DIR/*
  
-#Visual Tools
-if [[ ! -d "/home/pi/RetroPie/retropiemenu/visualtools" ]]; then
-mkdir -p "/home/pi/RetroPie/retropiemenu/visualtools"
-fi
- 
-cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/visualtools/bezelproject.sh
-cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/visualtools/bezels.sh
-cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/visualtools/genesis.sh
-cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/visualtools/hurstythemes.sh
-cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/loadingmedia-tool.sh
-cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/visualtools/removemedia.sh
-cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/visualtools/resolution-tool.sh 
-cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh
-cp $INSTALL_DIR/scripts/skyscraper.sh /home/pi/RetroPie/retropiemenu/visualtools/skyscraper.sh
-cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/supreme-marquee-tool.sh
-mv /home/pi/RetroPie/retropiemenu/splashscreen.rp /home/pi/RetroPie/retropiemenu/visualtools/splashscreen.rp
-mv /home/pi/RetroPie/retropiemenu/esthemes.rp /home/pi/RetroPie/retropiemenu/visualtools/esthemes.rp
-chmod 755 /home/pi/RetroPie/retropiemenu/visualtools/*
-#--------------------------------------------------------------------------------------------------------#
- 
 #Audio Tools
 if [[ ! -d "/home/pi/RetroPie/retropiemenu/audiotools" ]]; then
 mkdir -p "/home/pi/RetroPie/retropiemenu/audiotools"
@@ -1046,26 +1032,92 @@ cp $INSTALL_DIR/scripts/sinden-menu.sh /home/pi/RetroPie/retropiemenu/controller
 cp $INSTALL_DIR/scripts/xinmo-juyao.sh /home/pi/RetroPie/retropiemenu/controllertools/xinmo-juyao.sh
 chmod 755 /home/pi/RetroPie/retropiemenu/controllertools/*
 #--------------------------------------------------------------------------------------------------------#
- 
-# Supreme Check
-if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
-	# Supreme RetroPie Menu Edits
-	if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
+#Emulation Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/emulationtools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/emulationtools"
+fi
  
-	# Supreme Attract mode Edits
+cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/emulationtools/+Start-System.sh
+cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/emulationtools/Auto-Amiga-Install.sh
+cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/emulationtools/emulator.info
+cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/emulationtools/n64tweaks.sh
+cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/emulationtools/openbormoduleselectionscript.sh
+cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/emulationtools/rpc80-savefile.sh
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/emulationtools/UAE-Config-Maker.sh 
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp
+chmod 755 /home/pi/RetroPie/retropiemenu/emulationtools/*
+#--------------------------------------------------------------------------------------------------------#
+
+#Retropie Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/emulationtools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/emulationtools"
+fi
+ 
+cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/retropietools/usb-ext.sh
+cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/retropietools/systeminfo.sh
+cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/retropietools/reference.sh
+cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/retropietools/overclock.sh
+cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/retropietools/gpioshutdown.sh
+cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/retropietools/filefind.sh
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/esgamelist.sh 
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/escollections.sh 
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/clearlastplayed.sh 
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp
+mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp
+chmod 755 /home/pi/RetroPie/retropiemenu/retropietools/*
+#--------------------------------------------------------------------------------------------------------#
+   
+#Visual Tools
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/visualtools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/visualtools"
+fi
+ 
+cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/visualtools/bezelproject.sh
+cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/visualtools/bezels.sh
+cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/visualtools/genesis.sh
+cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/visualtools/hurstythemes.sh
+cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/loadingmedia-tool.sh
+cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/visualtools/removemedia.sh
+cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/visualtools/resolution-tool.sh 
+cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh
+cp $INSTALL_DIR/scripts/skyscraper.sh /home/pi/RetroPie/retropiemenu/visualtools/skyscraper.sh
+cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/supreme-marquee-tool.sh
+mv /home/pi/RetroPie/retropiemenu/splashscreen.rp /home/pi/RetroPie/retropiemenu/visualtools/splashscreen.rp
+mv /home/pi/RetroPie/retropiemenu/esthemes.rp /home/pi/RetroPie/retropiemenu/visualtools/esthemes.rp
+chmod 755 /home/pi/RetroPie/retropiemenu/visualtools/*
+#--------------------------------------------------------------------------------------------------------#
+ 
+	# Supreme RetroPie Menu Edits # Updated 
+	#if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
+	#if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
+
+# Supreme Check Attract
+if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
+ 
+    # Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
-	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt; fi
-	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt; fi
-	if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg; fi
-	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt.bk  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Controller\ tools.txt; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt.bk  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Emulation\ tools.txt; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt.bk  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Retropie\ tools.txt; fi
+	if [ -f /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk  ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt.bk /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Audio\ tools.cfg; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Controller\ tools.cfg; fi
+    if [ -f /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Emulation\ tools.cfg; fi
+	if [ -f /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Retropie\ tools.cfg; fi
+    if [ -f /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk ]; then sudo mv /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg.bk /opt/retropie/configs/all/attractmode/emulators/Visual\ tools.cfg; fi	
  
 	cat <<\EOF152935 > "/opt/retropie/configs/all/attractmode/romlists/Settings.txt"
 #Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons
@@ -1108,6 +1160,12 @@ game_list_full() {
     <desc>This script will let you chose what front end to boot into</desc>
     <image>/home/pi/RetroPie/retropiemenu/icons/frontendselector.png</image>
   </game>
+  <game>
+    <path>./emulationtools/+Start-System.sh</path>
+    <name>+Start Fuse</name>
+    <desc>Configure ZX Spectrum Emulator</desc>
+    <image>./icons/+Start-Fuse.png</image>
+  </game>  
   <game>
     <path>./emulationtools/+Start-Fuse.sh</path>
     <name>+Start Fuse</name>
