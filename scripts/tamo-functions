@@ -2035,11 +2035,11 @@ OVLCOLOR=$(grep "overlay_background_color =" "$SCRIPT_LOC"|awk '{print $3}' | tr
 ocolor="\Z3$OVLCOLOR\Zn"
 if grep 'auto_update_flag=0' "$USER_SETTINGS"; then aupstat="\Z1Off\Zn"; else aupstat="\Z2On\Zn"; fi
 if grep 'user_menu_flag=0' "$USER_SETTINGS"; then menstat="\Z1Off\Zn"; else menstat="\Z2On\Zn"; fi
-oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d 'tempSteps =[,]')
-oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d 'tempSteps =[,]')
+oldfantempL=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}')|tr -d 'tempSteps =[,]')
+oldfantempH=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $4}')|tr -d 'tempSteps =[,]')
 fantempL="\Z3$oldfantempL\Zn°C"
 fantempH="\Z1$oldfantempH\Zn°C"
-oldfanpin=$(grep "FAN_PIN =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}'))
+oldfanpin=$(grep "FAN_PIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
 fanpin="\Z2$oldfanpin\Zn"
 }
 

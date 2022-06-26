@@ -838,15 +838,15 @@ stats_check
 }
 
 set_fan_tempL() {
-oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
-oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
+oldfantempL=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
+oldfantempH=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
 export oldfantempL
 export oldfantempH
 newfantempL=$(dialog --colors --title "Adjust The Fan Temperature  Current $fantempL" \
 	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantempL" 3>&1 1>&2 2>&3 3>&-)
 export newfantempL
 if [ $newfantempL ]; then
-	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${newfantempL}, ${oldfantempH}\]/g" "$HOME/.tamoplus/fan_ctrl.py"
+	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${newfantempL}, ${oldfantempH}\]/g" "$SETTINGS_DIR/fan_ctrl.py"
 else
 	return
 fi
@@ -854,15 +854,15 @@ stats_check
 }
 
 set_fan_tempH() {
-oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
-oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
+oldfantempL=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
+oldfantempH=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
 export oldfantempL
 export oldfantempH
 newfantempH=$(dialog --colors --title "Adjust The Fan Temperature  Current $fantempH" \
 	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantempH" 3>&1 1>&2 2>&3 3>&-)
 export newfantempH
 if [ $newfantempH ]; then
-	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${oldfantempL}, ${newfantempH}\]/g" "$HOME/.tamoplus/fan_ctrl.py"
+	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${oldfantempL}, ${newfantempH}\]/g" "$SETTINGS_DIR/fan_ctrl.py"
 	fan_restart
 else
 	return
@@ -871,13 +871,13 @@ stats_check
 }
 
 set_fan_pin() {
-oldfanpin=$(grep "FAN_PIN =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}'))
+oldfanpin=$(grep "FAN_PIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
 export oldfanpin
 newfanpin=$(dialog --colors --title "Change The Fan GPIO Pin  Current $fanpin" \
 	--inputbox "Input The Fan GPIO Pin:" 8 40 "$oldfanpin" 3>&1 1>&2 2>&3 3>&-)
 export newfanpin
 if [ $newfanpin ]; then
-	sed -i -E "s/FAN_PIN = ${oldfanpin}/FAN_PIN = ${newfanpin}]g" "$HOME/.tamoplus/fan_ctrl.py"
+	sed -i -E "s/FAN_PIN = ${oldfanpin}/FAN_PIN = ${newfanpin}]g" "$SETTINGS_DIR/fan_ctrl.py"
 	fan_restart
 else
 	return
