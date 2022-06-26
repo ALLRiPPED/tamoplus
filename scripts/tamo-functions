@@ -676,9 +676,9 @@ stats_check
 
 enable_musicos() {
 if grep -q "#(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	sudo sed -i 's/\#(nohup python/(nohup python/g' $AUTOSTART
+	sed -i 's/\#(nohup python/(nohup python/g' $AUTOSTART
 elif grep -q "(nohup python $SCRIPT_LOC > /dev/null 2>&1) &" "$AUTOSTART"; then
-	sudo sed -i 's/(nohup python/\#(nohup python/g' $AUTOSTART
+	sed -i 's/(nohup python/\#(nohup python/g' $AUTOSTART
 fi
 stats_check
 }
@@ -1882,18 +1882,38 @@ fi
 #------------------------------#
 # Fan And Temperature Controls #
 #------------------------------#
-set_fan_cron() {
-if [ ! -f "/usr/local/bin/temp-fan.sh" ]; then
-	echo "Fan Temperature Control File Not Found, Setting It Up Now"
-	sudo cp -f /home/pi/tamoplus/files/temp-fan.sh /usr/local/bin/temp-fan.sh
-	crontab -l | { cat; echo "* * * * * /usr/local/bin/temp-fan.sh"; } | crontab -
+switch_fan_temp() {
+if grep -q '#(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then
+	echo "Enabling Fan Control On-Start"
+	sudo sed -i 's/\#(nohup python/(nohup python/g' /etc/rc.local
+	fan_restart
 else
-	echo "Fan Temperature Control File Found"
+	echo "Disabling Fan Control On-Start"
+	sudo sed -i 's/(nohup python/\#(nohup python/g' /etc/rc.local
+	pgrep -f "fan_ctrl.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 fi
 }
 
-remove_fan_cron() {
-crontab -l | grep -v "\* \* \* \* \* /usr/local/bin/temp-fan.sh" | crontab -
+setup_fan_temp() {
+if [ ! -f "$SETTINGS_DIR/fan_ctrl.py" ]; then
+	echo "Fan Temperature Control Script Not Found, Setting It Up Now"
+	cp -f "$INSTALL_DIR/files/fan_ctrl.py" "$SETTINGS_DIR/fan_ctrl.py"
+	if grep -q '(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then echo "Found On-Start"
+	else sudo sed -i -e '$a(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; fi
+	fan_restart
+else
+	if grep -q '#(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then echo "Enabling Fan Temperature Control Script"
+		sudo sed -i 's/\#(nohup python/(nohup python/g' /etc/rc.local
+	elif grep -q '(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then echo "Fan Temperature Control Script Already Set"
+	fi
+	fan_restart
+fi
+}
+
+fan_restart() {
+pgrep -f "fan_ctrl.py" |xargs sudo kill -9 > /dev/null 2>&1 &
+sleep 1
+(nohup python $SETTINGS_DIR/fan_ctrl.py > /dev/null 2>&1) &
 }
 
 #------------------------#
@@ -2015,6 +2035,12 @@ OVLCOLOR=$(grep "overlay_background_color =" "$SCRIPT_LOC"|awk '{print $3}' | tr
 ocolor="\Z3$OVLCOLOR\Zn"
 if grep 'auto_update_flag=0' "$USER_SETTINGS"; then aupstat="\Z1Off\Zn"; else aupstat="\Z2On\Zn"; fi
 if grep 'user_menu_flag=0' "$USER_SETTINGS"; then menstat="\Z1Off\Zn"; else menstat="\Z2On\Zn"; fi
+oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d 'tempSteps =[,]')
+oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d 'tempSteps =[,]')
+fantempL="\Z3$oldfantempL\Zn°C"
+fantempH="\Z1$oldfantempH\Zn°C"
+oldfanpin=$(grep "FAN_PIN =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}'))
+fanpin="\Z2$oldfanpin\Zn"
 }
 
 bgm_check() {

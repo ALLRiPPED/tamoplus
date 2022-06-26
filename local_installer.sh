@@ -225,7 +225,7 @@ prep_work() {
 chmod 0755 /home/pi/tamoplus/scripts/*
 chmod 0755 /home/pi/tamoplus/files/*.sh
 chmod 0755 /home/pi/tamoplus/files/pngview
-chmod 0755 /home/pi/tamoplus/files/BGM.py
+chmod 0755 /home/pi/tamoplus/files/*.py
 if [ -d "$HOME/.tamoplus" ]; then echo "Found .tamoplus folder"; else mkdir $HOME/.tamoplus; fi
 cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
 #USER SETTINGS

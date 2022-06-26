@@ -815,32 +815,70 @@ fan_control() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "CPU Fan Temperature Control  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Music " \
+        choice=$(dialog --colors --backtitle "CPU Fan Temperature Control  Current Low $fantempL  Current High $fantempH  GPIO/BCM Pin $fanpin" --title " Temperature Control " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "Set Fan Temperature " \
-            2 "Install Fan Temp Cronjob" \
-            3 "Remove Fan Temp Cronjob" \
+            1 "Set Fan Low Temperature" \
+            2 "Set Fan High Temperature" \
+            3 "Set GPIO/BCM Pin" \
+            4 "Enable/Disable Temperature Script" \
+            - "------ Install This First -------" \
+            5 "Install Fan Temperature Script" \
             2>&1 > /dev/tty)
         case "$choice" in
-            1) set_fan_temp ;;
-            2) set_fan_cron ;;
-            3) remove_fan_cron ;;
+            1) set_fan_tempL ;;
+            2) set_fan_tempH ;;
+            3) set_fan_pin ;;
+            4) switch_fan_temp ;;
+            5) setup_fan_temp ;;
+            -) nono ;;
             *) break ;;
         esac
     done
 }
 
-set_fan_temp() {
-oldfantemp=$(grep "ontemp=" "/usr/local/bin/temp-fan.sh"|(awk '{print $1}') | tr -d 'ontemp=')
-export oldfantemp
-newfantemp=$(dialog \
-	--colors \
-	--title "Adjust The Fan Temperature" \
-	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantemp" 3>&1 1>&2 2>&3 3>&-)
-export newfantemp
-if [ $newfantemp ]; then
-	sudo sed -i -E "s/ontemp=${oldfantemp}/ontemp=${newfantemp}/g" /usr/local/bin/temp-fan.sh
+set_fan_tempL() {
+oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
+oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
+export oldfantempL
+export oldfantempH
+newfantempL=$(dialog --colors --title "Adjust The Fan Temperature  Current $fantempL" \
+	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantempL" 3>&1 1>&2 2>&3 3>&-)
+export newfantempL
+if [ $newfantempL ]; then
+	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${newfantempL}, ${oldfantempH}\]/g" "$HOME/.tamoplus/fan_ctrl.py"
+else
+	return
+fi
+stats_check
+}
+
+set_fan_tempH() {
+oldfantempL=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}')|tr -d '[,]')
+oldfantempH=$(grep "tempSteps =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $4}')|tr -d '[,]')
+export oldfantempL
+export oldfantempH
+newfantempH=$(dialog --colors --title "Adjust The Fan Temperature  Current $fantempH" \
+	--inputbox "Input The Fan Temperature:" 8 40 "$oldfantempH" 3>&1 1>&2 2>&3 3>&-)
+export newfantempH
+if [ $newfantempH ]; then
+	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${oldfantempL}, ${newfantempH}\]/g" "$HOME/.tamoplus/fan_ctrl.py"
+	fan_restart
+else
+	return
+fi
+stats_check
+}
+
+set_fan_pin() {
+oldfanpin=$(grep "FAN_PIN =" "$HOME/.tamoplus/fan_ctrl.py"|(awk '{print $3}'))
+export oldfanpin
+newfanpin=$(dialog --colors --title "Change The Fan GPIO Pin  Current $fanpin" \
+	--inputbox "Input The Fan GPIO Pin:" 8 40 "$oldfanpin" 3>&1 1>&2 2>&3 3>&-)
+export newfanpin
+if [ $newfanpin ]; then
+	sed -i -E "s/FAN_PIN = ${oldfanpin}/FAN_PIN = ${newfanpin}]g" "$HOME/.tamoplus/fan_ctrl.py"
+	fan_restart
 else
 	return
 fi
