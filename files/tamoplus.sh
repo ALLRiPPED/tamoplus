@@ -820,17 +820,19 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Set Fan Low Temperature" \
             2 "Set Fan High Temperature" \
-            3 "Set GPIO/BCM Pin" \
-            4 "Enable/Disable Temperature Script" \
+            3 "Set Fan Idle Speed" \
+            4 "Set GPIO/BCM Pin" \
+            5 "Enable/Disable Temperature Script" \
             - "------ Install This First -------" \
-            5 "Install Fan Temperature Script" \
+            6 "Install Fan Temperature Script" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) set_fan_tempL ;;
             2) set_fan_tempH ;;
-            3) set_fan_pin ;;
-            4) switch_fan_temp ;;
-            5) setup_fan_temp ;;
+            3) set_fan_idle ;;
+            4) set_fan_pin ;;
+            5) switch_fan_temp ;;
+            6) setup_fan_temp ;;
             -) nono ;;
             *) break ;;
         esac
@@ -863,6 +865,21 @@ newfantempH=$(dialog --colors --title "Adjust The Fan Temperature  Current $fant
 export newfantempH
 if [ $newfantempH ]; then
 	sed -i -E "s/tempSteps = \[${oldfantempL}, ${oldfantempH}\]/tempSteps = \[${oldfantempL}, ${newfantempH}\]/g" "$SETTINGS_DIR/fan_ctrl.py"
+	fan_restart
+else
+	return
+fi
+stats_check
+}
+
+set_fan_idle() {
+oldfanidle=$(grep "FAN_MIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
+export oldfanidle
+newfanidle=$(dialog --colors --title "Change The Fan Idle Speed  Current $fanidle" \
+	--inputbox "Input The Fan Idle Speed:" 8 40 "$oldfanidle" 3>&1 1>&2 2>&3 3>&-)
+export newfanidle
+if [ $newfanidle ]; then
+	sed -i -E "s/FAN_MIN = ${oldfanidle}/FAN_MIN = ${newfanidle}]g" "$SETTINGS_DIR/fan_ctrl.py"
 	fan_restart
 else
 	return

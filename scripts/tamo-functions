@@ -1905,6 +1905,8 @@ else
 	if grep -q '#(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then echo "Enabling Fan Temperature Control Script"
 		sudo sed -i 's/\#(nohup python/(nohup python/g' /etc/rc.local
 	elif grep -q '(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local; then echo "Fan Temperature Control Script Already Set"
+	else
+		sudo sed -i -e '$a(nohup python $HOME/.tamoplus/fan_ctrl.py > /dev/null 2>&1) &' /etc/rc.local
 	fi
 	fan_restart
 fi
@@ -2042,6 +2044,8 @@ if [ -f "$SETTINGS_DIR/fan_ctrl.py" ]; then
 	fantempH="\Z1$oldfantempH\Zn°C"
 	oldfanpin=$(grep "FAN_PIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
 	fanpin="\Z2$oldfanpin\Zn"
+	oldfanidle=$(grep "FAN_MIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
+	fanidle="\Z2$oldfanidle\Zn"
 fi
 }
 

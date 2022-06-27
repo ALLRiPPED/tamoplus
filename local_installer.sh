@@ -338,8 +338,8 @@ fi
 cd $INSTALL_DIR/
 sudo cp -f $INSTALL_DIR/files/GROBOLD.ttf /usr/share/fonts/truetype/
 sudo cp -f $INSTALL_DIR/files/Pixel.otf /usr/share/fonts/truetype/
-cp -f $INSTALL_DIR/files/BGM.py $SETTINGS_DIR/BGM.py
-sudo chmod +x $SETTINGS_DIR/BGM.py
+cp -f $INSTALL_DIR/files/*.py $SETTINGS_DIR
+chmod +x $SETTINGS_DIR/*.py
 cp -f $INSTALL_DIR/files/*.mp3 $SETTINGS_DIR
 sleep 1
 if [ ! -d "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
