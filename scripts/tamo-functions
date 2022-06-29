@@ -1829,11 +1829,11 @@ if [ -d "$VID_LOD_SCR"/"${1}"/ ]; then
 fi
 
 if [ "${1}" = "carbonite" ]; then
-	if [ -f "$SPL_DIR/JarvisSplash.mp4" ];then wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/JarvisSplash.mp4" ];then wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "halloweenspecial" ]; then
-	if [ -f "$SPL_DIR/Halloween.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/Halloween.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "devilchromey" ]; then
 	if [ -f "$SPL_DIR/RetroDevilReaper.mp4" ];then wget "${RAW_HOST1}"/splashscreens/RetroDevilReaper.mp4 -P "$SPL_DIR"; fi
 	if [ -f "$SPL_DIR/exitscreens/RetroDevilReaperExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"; fi
@@ -1842,20 +1842,20 @@ elif [ "${1}" = "neonibad" ]; then
 	if [ -f "$SPL_DIR/exitscreens/NeonIBADExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/NeonIBADExit.mp4 -P "$EXT_SPL_DIR"; fi
 	if [ -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingIBAD.mp4 -P "$SPL_DIR"; fi
 elif [ "${1}" = "merryxmas" ]; then
-	if [ -f "$SPL_DIR/CharlieBrown.mp4" ];then wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/CharlieBrown.mp4" ];then wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "pistolero" ]; then
-	if [ -f "$SPL_DIR/Pistolero.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/Pistolero.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "pleasureparadise" ]; then
-	if [ -f "$SPL_DIR/PleasureParadise.mp4" ];then wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/PleasureParadise.mp4" ];then wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "strangerthings" ]; then
-	if [ -f "$SPL_DIR/StrangerPi.mp4" ];then wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/StrangerPi.mp4" ];then wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"; fi
 elif [ "${1}" = "supremeteam" ]; then
-	if [ -f "$SPL_DIR/Supreme.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"
-	if [ -f "$SPL_DIR/exitscreens/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"
+	if [ -f "$SPL_DIR/Supreme.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"; fi
+	if [ -f "$SPL_DIR/exitscreens/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"; fi
 fi
 }
 
