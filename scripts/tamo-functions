@@ -36,13 +36,13 @@ EOF_user_settings.ini
 sudo chmod +x $USER_SETTINGS
 fi
 
-    if grep 'auto_update_flag=0' "$USER_SETTINGS"; then
-      echo "Auto update now On"
-      sed -i "s|auto_update_flag=0|auto_update_flag=1|" "$USER_SETTINGS"
-    else
-      echo "Auto update now Off"
-      sed -i "s|auto_update_flag=1|auto_update_flag=0|" "$USER_SETTINGS"
-    fi
+if grep 'auto_update_flag=0' "$USER_SETTINGS"; then
+	echo "Auto update now On"
+	sed -i "s|auto_update_flag=0|auto_update_flag=1|" "$USER_SETTINGS"
+else
+	echo "Auto update now Off"
+	sed -i "s|auto_update_flag=1|auto_update_flag=0|" "$USER_SETTINGS"
+fi
 }
 
 #------------------#
@@ -292,76 +292,76 @@ fi
 no_audio_fix() {
 sudo grep hdmi_force_edid_audio /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you."
-sleep 5
-sudo perl -p -i -e 's/hdmi_force_edid_audio=1/#dtoverlay=lirc-rpi/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_force_hotplug=1/#hdmi_force_hotplug=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_drive=2/#hdmi_drive=2/g' /boot/config.txt
+	echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
+	sleep 4
+	echo "For now I will reverse the changes since they did not help you."
+	sleep 5
+	sudo perl -p -i -e 's/hdmi_force_edid_audio=1/#dtoverlay=lirc-rpi/g' /boot/config.txt
+	sudo perl -p -i -e 's/hdmi_force_hotplug=1/#hdmi_force_hotplug=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/hdmi_drive=2/#hdmi_drive=2/g' /boot/config.txt
 else
-echo "I have scanned the config file and see that the audio fix is NOT in place."
-sleep 4
-echo "If this fix does not work please run the script again to roll the changes back."
-sleep 10
-echo "I will make the necessary config changes and reboot your Pi"
-sleep 5
-sudo perl -p -i -e 's/#dtoverlay=lirc-rpi/hdmi_force_edid_audio=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_force_hotplug=1/hdmi_force_hotplug=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_drive=2/hdmi_drive=2/g' /boot/config.txt
-sudo reboot
+	echo "I have scanned the config file and see that the audio fix is NOT in place."
+	sleep 4
+	echo "If this fix does not work please run the script again to roll the changes back."
+	sleep 10
+	echo "I will make the necessary config changes and reboot your Pi"
+	sleep 5
+	sudo perl -p -i -e 's/#dtoverlay=lirc-rpi/hdmi_force_edid_audio=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/#hdmi_force_hotplug=1/hdmi_force_hotplug=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/#hdmi_drive=2/hdmi_drive=2/g' /boot/config.txt
+	sudo reboot
 fi
 }
 
 no_audio_force_720p() {
 sudo grep hdmi_mode=16 /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "It looks like you have tried the Force 1080p script. Please run it again to roll the changes back before running this script."
-sleep 10
-exit
+	echo "It looks like you have tried the Force 1080p script. Please run it again to roll the changes back before running this script."
+	sleep 10
+	exit
 fi
 sudo grep hdmi_mode=4 /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you."
-sleep 5
-sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_mode=4/#hdmi_mode=1/g' /boot/config.txt
+	echo "The Audio changes have already been made. If you are still not getting audio then there must be another issue."
+	sleep 4
+	echo "For now I will reverse the changes since they did not help you."
+	sleep 5
+	sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/hdmi_mode=4/#hdmi_mode=1/g' /boot/config.txt
 else
-echo "I have scanned the config file and see that Force 720p is not cofigured."
-sleep 4
-echo "I will make the necessary config changes and reboot your Pi. If this does not fix your issue please run this script again to reverse the changes."
-sleep 5
-sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=4/g' /boot/config.txt
-sudo reboot
+	echo "I have scanned the config file and see that Force 720p is not cofigured."
+	sleep 4
+	echo "I will make the necessary config changes and reboot your Pi. If this does not fix your issue please run this script again to reverse the changes."
+	sleep 5
+	sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=4/g' /boot/config.txt
+	sudo reboot
 fi
 }
 
 no_audio_force_1080p() {
 sudo grep hdmi_mode=4 /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "It looks like you have tried the Force 720p script. Please run it again to roll the changes back before running this script."
-sleep 10
-exit
+	echo "It looks like you have tried the Force 720p script. Please run it again to roll the changes back before running this script."
+	sleep 10
+	exit
 fi
 sudo grep hdmi_mode=16 /boot/config.txt > /dev/null 2>&1
 if [ $? -eq 0 ] ; then
-echo "Looks like we have already tried to force 1080p output. If you are still not getting audio then there must be another issue."
-sleep 4
-echo "For now I will reverse the changes since they did not help you. They will take effect after the next reboot"
-sleep 5
-sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/hdmi_mode=16/#hdmi_mode=1/g' /boot/config.txt
+	echo "Looks like we have already tried to force 1080p output. If you are still not getting audio then there must be another issue."
+	sleep 4
+	echo "For now I will reverse the changes since they did not help you. They will take effect after the next reboot"
+	sleep 5
+	sudo perl -p -i -e 's/hdmi_group=1/#hdmi_group=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/hdmi_mode=16/#hdmi_mode=1/g' /boot/config.txt
 else
-echo "I have scanned the config file and see that 1080p is not being forced."
-sleep 4
-echo "I will make the necessary config changes and reboot your Pi"
-sleep 5
-sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
-sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=16/g' /boot/config.txt
-sudo reboot
+	echo "I have scanned the config file and see that 1080p is not being forced."
+	sleep 4
+	echo "I will make the necessary config changes and reboot your Pi"
+	sleep 5
+	sudo perl -p -i -e 's/#hdmi_group=1/hdmi_group=1/g' /boot/config.txt
+	sudo perl -p -i -e 's/#hdmi_mode=1/hdmi_mode=16/g' /boot/config.txt
+	sudo reboot
 fi
 }
 
@@ -397,6 +397,7 @@ if grep 'themeset_carbonite=1' "$USER_SETTINGS"; then
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	if [ -f /home/pi/RetroPie/splashscreens/JarvisSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
 	else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -428,6 +429,7 @@ if grep 'themeset_devilchromey=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Diablos Arcade Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Diablos Arcade Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/RetroDevilReaper.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -459,6 +461,7 @@ if grep 'themeset_halloweenspecial=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Halloween Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Halloween.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -490,6 +493,7 @@ if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Neon IBAD Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Neon IBAD Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/NeonIBAD.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlaying.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlaying.mp4/ThanksForPlayingIBAD.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -521,6 +525,7 @@ if grep 'themeset_pistolero=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pistolero Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Pistolero.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -552,6 +557,7 @@ if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -583,6 +589,7 @@ if grep 'themeset_strangerthings=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Stranger Pi Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/StrangerPi.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -614,6 +621,7 @@ if grep 'themeset_supremeteam=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -645,6 +653,7 @@ if grep 'themeset_merryxmas=1' "$USER_SETTINGS"; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
+	if grep 'ThanksForPlayingIBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingIBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &

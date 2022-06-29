@@ -95,6 +95,7 @@ if [ $installset -ge "2" ]; then
 	download_thememusic
 	echo "Theme Music All Done."
 	download_videos
+	if [ -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingIBAD.mp4 -P "$SPL_DIR"; fi
 	echo "Videos All Done."
 	sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"
 	sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"
