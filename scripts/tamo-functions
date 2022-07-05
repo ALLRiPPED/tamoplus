@@ -4,17 +4,19 @@ currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
 # Just some user settings checks
-if ! grep 'auto_update_flag=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$aauto_update_flag=0' "$USER_SETTINGS"; fi
-if ! grep 'user_menu_flag=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$auser_menu_flag=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_carbonite=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_carbonite=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_devilchromey=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_devilchromey=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_neonibad=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_neonibad=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_halloweenspecial=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_halloweenspecial=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_pistolero=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_pistolero=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_pleasureparadise=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_pleasureparadise=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_strangerthings=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_strangerthings=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_supremeteam=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_supremeteam=0' "$USER_SETTINGS"; fi
-if ! grep 'themeset_merryxmas=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_merryxmas=0' "$USER_SETTINGS"; fi
+if [ -f $USER_SETTINGS ]; then
+	if ! grep 'auto_update_flag=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$aauto_update_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'user_menu_flag=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$auser_menu_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_carbonite=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_carbonite=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_devilchromey=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_devilchromey=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_neonibad=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_neonibad=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_halloweenspecial=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_halloweenspecial=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_pistolero=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_pistolero=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_pleasureparadise=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_pleasureparadise=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_strangerthings=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_strangerthings=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_supremeteam=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_supremeteam=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+	if ! grep 'themeset_merryxmas=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
+fi
 
 auto_update() {
 #Double Check if User Settings found.
@@ -960,16 +962,6 @@ if [ -d /home/pi/RetroPie/retropiemenu/visualtools ]; then sudo rm -fR /home/pi/
 # Supreme Check Attract
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then
 
-	# Supreme RetroPie Menu Edits
-	if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
-	if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
- 
 	# Supreme Attract mode Edits
 	if [ ! -d "/opt/retropie/configs/all/attractmode" ]; then mkdir /opt/retropie/configs/all/attractmode; ln -s /home/pi/.attract/* /opt/retropie/configs/all/attractmode/; fi
 	if [ -f /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt ]; then sudo mv /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt /opt/retropie/configs/all/attractmode/romlists/Audio\ tools.txt.bk; fi
@@ -1047,38 +1039,37 @@ if [[ ! -d "/home/pi/RetroPie/retropiemenu/emulationtools" ]]; then
 mkdir -p "/home/pi/RetroPie/retropiemenu/emulationtools"
 fi
  
-cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/emulationtools/+Start-System.sh
-cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/emulationtools/Auto-Amiga-Install.sh
-cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/emulationtools/emulator.info
-cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/emulationtools/n64tweaks.sh
-cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/emulationtools/openbormoduleselectionscript.sh
-cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/emulationtools/rpc80-savefile.sh
-cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/emulationtools/UAE-Config-Maker.sh 
+cp $INSTALL_DIR/scripts/+Start-System.sh /home/pi/RetroPie/retropiemenu/emulationtools/+Start-System.sh
+cp $INSTALL_DIR/scripts/Auto-Amiga-Install.sh /home/pi/RetroPie/retropiemenu/emulationtools/Auto-Amiga-Install.sh
+cp $INSTALL_DIR/scripts/emulator.info /home/pi/RetroPie/retropiemenu/emulationtools/emulator.info
+cp $INSTALL_DIR/scripts/n64tweaks.sh /home/pi/RetroPie/retropiemenu/emulationtools/n64tweaks.sh
+cp $INSTALL_DIR/scripts/openbormoduleselectionscript.sh /home/pi/RetroPie/retropiemenu/emulationtools/openbormoduleselectionscript.sh
+cp $INSTALL_DIR/scripts/rpc80-savefile.sh /home/pi/RetroPie/retropiemenu/emulationtools/rpc80-savefile.sh
+cp $INSTALL_DIR/scripts/UAE-Config-Maker.sh /home/pi/RetroPie/retropiemenu/emulationtools/UAE-Config-Maker.sh 
 mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp
 chmod 755 /home/pi/RetroPie/retropiemenu/emulationtools/*
 #--------------------------------------------------------------------------------------------------------#
 
 #Retropie Tools
-if [[ ! -d "/home/pi/RetroPie/retropiemenu/emulationtools" ]]; then
-mkdir -p "/home/pi/RetroPie/retropiemenu/emulationtools"
+if [[ ! -d "/home/pi/RetroPie/retropiemenu/retropietools" ]]; then
+mkdir -p "/home/pi/RetroPie/retropiemenu/retropietools"
 fi
  
-cp $INSTALL_DIR/scripts/bezelproject.sh /home/pi/RetroPie/retropiemenu/retropietools/usb-ext.sh
-cp $INSTALL_DIR/scripts/bezels.sh /home/pi/RetroPie/retropiemenu/retropietools/systeminfo.sh
-cp $INSTALL_DIR/scripts/genesis.sh /home/pi/RetroPie/retropiemenu/retropietools/reference.sh
-cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/retropietools/overclock.sh
-cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/retropietools/gpioshutdown.sh
-cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/retropietools/filefind.sh
-cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/esgamelist.sh 
-cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/escollections.sh 
-cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/retropietools/clearlastplayed.sh 
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp
-mv /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp
+cp $INSTALL_DIR/scripts/usb-ext.sh /home/pi/RetroPie/retropiemenu/retropietools/usb-ext.sh
+cp $INSTALL_DIR/scripts/systeminfo.sh /home/pi/RetroPie/retropiemenu/retropietools/systeminfo.sh
+cp $INSTALL_DIR/scripts/reference.sh /home/pi/RetroPie/retropiemenu/retropietools/reference.sh
+cp $INSTALL_DIR/scripts/overclock.sh /home/pi/RetroPie/retropiemenu/retropietools/overclock.sh
+cp $INSTALL_DIR/scripts/gpioshutdown.sh /home/pi/RetroPie/retropiemenu/retropietools/gpioshutdown.sh
+cp $INSTALL_DIR/scripts/filefind.sh /home/pi/RetroPie/retropiemenu/retropietools/filefind.sh
+cp $INSTALL_DIR/scripts/esgamelist.sh /home/pi/RetroPie/retropiemenu/retropietools/esgamelist.sh 
+cp $INSTALL_DIR/scripts/escollections.sh /home/pi/RetroPie/retropiemenu/retropietools/escollections.sh 
+cp $INSTALL_DIR/scripts/clearlastplayed.sh  /home/pi/RetroPie/retropiemenu/retropietools/clearlastplayed.sh
+mv /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp
+mv /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp
+mv /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp
+mv /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp
+mv /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp
+mv /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp
 chmod 755 /home/pi/RetroPie/retropiemenu/retropietools/*
 #--------------------------------------------------------------------------------------------------------#
    
@@ -1094,23 +1085,13 @@ cp $INSTALL_DIR/scripts/hurstythemes.sh /home/pi/RetroPie/retropiemenu/visualtoo
 cp $INSTALL_DIR/scripts/loadingmedia-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/loadingmedia-tool.sh
 cp $INSTALL_DIR/scripts/removemedia.sh /home/pi/RetroPie/retropiemenu/visualtools/removemedia.sh
 cp $INSTALL_DIR/scripts/resolution-tool.sh  /home/pi/RetroPie/retropiemenu/visualtools/resolution-tool.sh 
-cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh
+#cp $INSTALL_DIR/scripts/retropie-tweak.sh /home/pi/RetroPie/retropiemenu/visualtools/retropie-tweak.sh #Needs to be updated for tampo plus.
 cp $INSTALL_DIR/scripts/skyscraper.sh /home/pi/RetroPie/retropiemenu/visualtools/skyscraper.sh
 cp $INSTALL_DIR/scripts/supreme-marquee-tool.sh /home/pi/RetroPie/retropiemenu/visualtools/supreme-marquee-tool.sh
 mv /home/pi/RetroPie/retropiemenu/splashscreen.rp /home/pi/RetroPie/retropiemenu/visualtools/splashscreen.rp
 mv /home/pi/RetroPie/retropiemenu/esthemes.rp /home/pi/RetroPie/retropiemenu/visualtools/esthemes.rp
 chmod 755 /home/pi/RetroPie/retropiemenu/visualtools/*
 #--------------------------------------------------------------------------------------------------------#
- 
-	# Supreme RetroPie Menu Edits # Updated 
-	#if [ -f /home/pi/RetroPie/retropiemenu/configedit.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/configedit.rp /home/pi/RetroPie/retropiemenu/emulationtools/configedit.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/bluetooth.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/filemanager.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/retroarch.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/retronetplay.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu/retropietools/retronetplay.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/runcommand.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/runcommand.rp /home/pi/RetroPie/retropiemenu/retropietools/runcommand.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/showip.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp; fi
-	#if [ -f /home/pi/RetroPie/retropiemenu/wifi.rp ]; then mv -f /home/pi/RetroPie/retropiemenu/wifi.rp /home/pi/RetroPie/retropiemenu/retropietools/wifi.rp; fi
 
 # Supreme Check Attract
 if [ -d "/home/pi/RetroPie/scripts/.sb-unified" ]; then

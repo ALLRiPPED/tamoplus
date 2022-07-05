@@ -24,7 +24,6 @@ OLDIFS=$IFS
 AUTOSTART="/opt/retropie/configs/all/autostart.sh"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
 RUNONEND="/opt/retropie/configs/all/runcommand-onend.sh"
-ES_SETTINGS="/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 SPL_DIR="$HOME/RetroPie/splashscreens"
 EXT_SPL_DIR="$HOME/RetroPie/splashscreens/exitscreens"
 SPLSCREEN="/etc/splashscreen.list"

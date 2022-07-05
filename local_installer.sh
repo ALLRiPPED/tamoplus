@@ -74,6 +74,7 @@ main_menu() {
 }
 
 install_tamoplus() {
+if [ -d "$HOME/.tamoplus" ]; then echo "Found .tamoplus folder"; else mkdir $HOME/.tamoplus; fi
 clear
 prep_work
 echo "Prep Work All Done. Downloading Music"
@@ -227,7 +228,7 @@ chmod 0755 /home/pi/tamoplus/scripts/*
 chmod 0755 /home/pi/tamoplus/files/*.sh
 chmod 0755 /home/pi/tamoplus/files/pngview
 chmod 0755 /home/pi/tamoplus/files/*.py
-if [ -d "$HOME/.tamoplus" ]; then echo "Found .tamoplus folder"; else mkdir $HOME/.tamoplus; fi
+sudo chown pi:pi $MENU_DIR/*
 cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
 #USER SETTINGS
 auto_update_flag=0
@@ -410,7 +411,8 @@ sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 
 if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
 curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
-mv -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
+cp -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
+chmod 755 $INSTALL_DIR/scripts/sinden-menu.sh
 fi
 
 # Added Supreme Marquee and Script
@@ -422,11 +424,11 @@ sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
 mkdir /opt/retropie/configs/all/PieMarquee2/
 cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
 
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
+if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo cp -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
 
 chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
-chmod 755 $MENU_DIR/supreme-marquee-tool.sh
+chmod 755 $INSTALL_DIR/scripts/supreme-marquee-tool.sh
 sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 	#Do Auto Start Edits for marquee#
 	ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
