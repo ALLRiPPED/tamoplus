@@ -1154,7 +1154,7 @@ game_list_full() {
     <path>./emulationtools/+Start-System.sh</path>
     <name>+Start Fuse</name>
     <desc>Configure ZX Spectrum Emulator</desc>
-    <image>./icons/+Start-Fuse.png</image>
+    <image>./icons/+Start-System.png</image>
   </game>  
   <game>
     <path>./emulationtools/+Start-Fuse.sh</path>
