@@ -1,6 +1,6 @@
 #!/bin/bash
 # local_installer.sh
-# Updated script by Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
+# Updated script by Chad "thepitster" Ward https://github.com/ALLRiPPED/
 # & The Supreme Team https://github.com/SupremePi/
 #############################################
 # Install Themes and Music Overlay Plus

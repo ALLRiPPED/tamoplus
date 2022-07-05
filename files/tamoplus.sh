@@ -1,6 +1,6 @@
 #!/bin/bash
 # TAMO+ Script
-# By Chad "thepitster" Ward https://github.com/ALLRiPPED/ 
+# By Chad "thepitster" Ward https://github.com/ALLRiPPED/
 # & The Supreme Team https://github.com/SupremePi/
 currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
