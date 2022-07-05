@@ -95,7 +95,7 @@ Pistolero by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken")<br>
 Version 1.00 - thepitster<br>
 Version 1.05 - Added Devil Chromey from the Diablos Arcade Build by The [Retro-Devils](https://github.com/Retro-Devils "Retro-Devils").<br>
 Version 1.10 - Added Pistolero From Return Of Pistolero Build by [Kio Dieken](https://www.youtube.com/c/kiodiekin "Kio Dieken"). Fixed quite a few script errors and tweaked the install scripts.<br>
-Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM<br>Fixed script errors and tweaked the install scripts.<br>
+Version 1.20 - Added Pleasure Paradise From Peasure Paradise Build by MBM, Fixed script errors and tweaked the install scripts.<br>
 Version 1.25 - Also added Supreme Team Supreme_Space themeset.<br>
 Version 1.30 - Added font, font color, and overlay color selections to the menu for the overlay. Only 60 fonts and 134 font colors have been coded into script so far to choose from.<br>
 Version 1.31 - Added Controller Settings to Main Menu. also added Sinden Lightgun Drivers Install<br>
