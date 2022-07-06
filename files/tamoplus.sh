@@ -859,9 +859,9 @@ stats_check
             3 "Set Fan Idle Speed" \
             4 "Set GPIO/BCM Pin" \
             5 "Set PWM Frequency" \
-            5 "Enable/Disable Temperature Script" \
+            6 "Enable/Disable Temperature Script" \
             - "------ Install This First -------" \
-            6 "Install Fan Temperature Script" \
+            7 "Install Fan Temperature Script" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) set_fan_tempL ;;
