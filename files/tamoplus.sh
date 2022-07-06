@@ -60,6 +60,7 @@ stats_check
             5 "Openbor Module Selection Script" \
             6 "Rpc80 Save File Script" \
             7 "UAE Config Maker" \
+            8 "Simple Genesis & MegaDrive Swap" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) bash $INSTALL_DIR/scripts/+Start-System.sh ;;
@@ -69,6 +70,7 @@ stats_check
             5) bash $INSTALL_DIR/scripts/openbormoduleselectionscript.sh ;;
             6) bash $INSTALL_DIR/scripts/rpc80-savefile.sh ;;
             7) bash $INSTALL_DIR/scripts/UAE-Config-Maker.sh ;;
+            8) bash $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
@@ -165,7 +167,6 @@ stats_check
             7 "Game Media Removal Utility" \
             8 "RetroPie splashscreen Utility" \
             9 "Skyscraper Utility" \
-           10 "Simple Genesis & MegaDrive Swap" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_menu ;;
@@ -177,7 +178,6 @@ stats_check
             7) bash $INSTALL_DIR/scripts/remove-media.sh ;;
             8) sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui ;;
             9) bash $INSTALL_DIR/scripts/skyscraper.sh ;;
-           10) bash $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
