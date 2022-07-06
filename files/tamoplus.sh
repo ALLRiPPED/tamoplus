@@ -52,7 +52,7 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Start A Default System" \
             2 "Auto Amiga Install" \
-            3 "RetroPie configedit" \
+            3 "RetroPie Config Edit" \
             4 "Install N64 Tweaks" \
             5 "Openbor Module Selection Script" \
             6 "Rpc80 Save File Script" \
