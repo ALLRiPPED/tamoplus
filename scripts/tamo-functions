@@ -45,6 +45,7 @@ else
 	echo "Auto update now Off"
 	sed -i "s|auto_update_flag=1|auto_update_flag=0|" "$USER_SETTINGS"
 fi
+stats_check
 }
 
 #------------------#
