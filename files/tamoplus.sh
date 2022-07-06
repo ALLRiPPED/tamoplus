@@ -767,62 +767,6 @@ controller_menu() {
     done
 }
 
-download_select_themesets2() {
-stats_check
-    local choice
-    while true; do
-        choice=$(dialog --colors --backtitle "Download Themesets  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Themesets " \
-            --ok-label OK --cancel-label Exit \
-            --menu "Choose An Option Below" 25 85 20 \
-            1 "Download Carbonite Themeset" \
-            2 "Download Christmas Themeset" \
-            3 "Download Halloween Themeset" \
-            4 "Download Diablos Arcade Themeset" \
-            5 "Download Neon IBAD Themeset" \
-            6 "Download Pistolero Themeset" \
-            7 "Download Pleasure Paradise Themeset" \
-            8 "Download Stranger Things Themeset" \
-            9 "Download Supreme Ultra Themeset" \
-           2>&1 > /dev/tty)
-        case "$choice" in
-            1) download_themesets "carbonite" ;;
-            2) download_themesets "merryxmas" ;;
-            3) download_themesets "halloweenspecial" ;;
-            4) download_themesets "devilchromey" ;;
-            5) download_themesets "neonibad" ;;
-            6) download_themesets "pistolero" ;;
-            7) download_themesets "pleasureparadise" ;;
-            8) download_themesets "strangerthings" ;;
-            9) download_themesets "supremeteam" ;;
-            *) break ;;
-        esac
-    done
-}
-
-download_select_music2() {
-stats_check
-    local choice
-    while true; do
-        choice=$(dialog --colors --backtitle "Download Music  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Download Music " \
-            --ok-label OK --cancel-label Exit \
-            --menu "Choose An Option Below" 25 85 20 \
-            1 "Download Arcade Music" \
-            2 "Download Custom Music" \
-            3 "Download Nostalgia Trip Music" \
-            4 "Download Ultimate Vs Fighter Music" \
-            5 "Download Venom Music" \
-            2>&1 > /dev/tty)
-        case "$choice" in
-            1) download_music "arcade" ;;
-            2) download_music "custom" ;;
-            3) download_music "nt" ;;
-            4) download_music "uvt" ;;
-            5) download_music "venom" ;;
-            *) break ;;
-        esac
-    done
-}
-
 download_select_themesets() {
 stats_check
 if [ $NETCHECK  = 1 ]; then
