@@ -129,10 +129,10 @@ stats_check
             --menu "Choose An Option Below" 25 85 20 \
             1 "Turn On-Off Auto Update $aupstat" \
             2 "Turn Categorized Menus On-Off $menstat" \
-            - "----------------------" \
+            - "--------------------------------------" \
             3 "TAMO+ Themesets Downloader" \
             4 "TAMO+ Music Downloader" \
-            - "----------------------" \
+            - "--------------------------------------" \
             5 "CPU Fan Temperature Control" \
             6 "Update TAMO+" \
             2>&1 > /dev/tty)
