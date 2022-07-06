@@ -119,7 +119,7 @@ stats_check
            11) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retroarch gui ;;
            12) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retronetplay gui ;;
            13) sudo /home/pi/RetroPie-Setup/retropie_packages.sh runcommand gui ;;
-           14) sudo /home/pi/RetroPie-Setup/retropie_packages.sh showip gui ;;
+           14) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch showip ;;
            15) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
 		   16) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
            17) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
