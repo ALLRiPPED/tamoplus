@@ -19,21 +19,23 @@ if [[ -f "/opt/vc/bin/vcgencmd" ]]; then
 fi
 
 
-infobox= ""
+infobox="${infobox}"
 infobox="${infobox}\n$(date)\n"
 infobox="${infobox}_______________________________________________________\n\n"
 infobox="${infobox}Temperature\n\n"
 infobox="${infobox}CPU: ${cpuTempC} C/${cpuTempF} F\n"
 infobox="${infobox}GPU: ${gpuTempC} C/${gpuTempF} F\n"
 infobox="${infobox}\n"
-sdcard1=`df -h |head -2 |grep -v G|awk '{print $2, $3, $4}'`
-sdcard2=`df -h |head -2 |grep -v Size|awk '{print $2, $3, $4}'`
+sdcard1=`df -h|head -2|grep -v G|awk '{print $1,"     "$2,"  "$3," "$4," "$5}'`
+sdcard2=`df -h|grep '/dev/sda1'|awk '{print "Boot            "$2,"  "$3,"  "$4,"  "$5}'`
+sdcard3=`df -h|grep '/dev/root'|awk '{print "Root            "$2,"  "$3," "$4,"   "$5}'`
 infobox="${infobox}SD Card Information\n\n"
 infobox="${infobox}${sdcard1}\n"
 infobox="${infobox}${sdcard2}\n"
-infobox="${infobox}\n"
+infobox="${infobox}${sdcard3}\n\n"
 infobox="${infobox}IP Address Information\n\n"
-infobox="${infobox}$(ip route get 8.8.8.8 2>/dev/null | awk '{print $NF; exit}')\n"
+infobox="${infobox}LAN: $(ip route get 8.8.8.8 2>/dev/null | awk '{print $(NF-2); exit}')\n"
+infobox="${infobox}WAN: $(curl -4 icanhazip.com 2>/dev/null | awk '{print $NF; exit}')\n"
 
 dialog --backtitle "System Information" \
 --title "RetroPie System Information" \
