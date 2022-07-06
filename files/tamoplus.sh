@@ -22,10 +22,12 @@ stats_check
             2 "Music Settings" \
             3 "Visual Settings" \
             4 "Loading Media Settings" \
+            - "----------------------" \
             5 "Controller Settings" \
             6 "Emulation Settings" \
             7 "Retropie Settings" \
             8 "User Control Panel" \
+            - "----------------------" \
             9 "View TAMO+ Disclamer" \
             2>&1 > /dev/tty)
         case "$choice" in
@@ -38,6 +40,7 @@ stats_check
             7) retropie_tools_menu ;;
             8) user_menu ;;
             9) disclaim ;;
+            -) nono ;;
             *) break ;;
         esac
     done
@@ -129,6 +132,7 @@ stats_check
             3 "TAMO+ Themesets Downloader" \
             4 "TAMO+ Music Downloader" \
             5 "CPU Fan Temperature Control" \
+            - "----------------------" \
             6 "Update TAMO+" \
             2>&1 > /dev/tty)
         case "$choice" in
@@ -138,6 +142,7 @@ stats_check
             4) download_select_music ;;
             5) fan_control ;;
             6) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
+            -) nono ;;
             *) break ;;
         esac
     done
