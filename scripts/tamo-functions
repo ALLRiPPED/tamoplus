@@ -2038,6 +2038,8 @@ if [ -f "$SETTINGS_DIR/fan_ctrl.py" ]; then
 	fanpin="\Z2$oldfanpin\Zn"
 	oldfanidle=$(grep "FAN_MIN =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
 	fanidle="\Z2$oldfanidle\Zn"
+	oldpwmfreq=$(grep "PWM_FREQ =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
+	pwmfreq="\Z2$oldpwmfreq\Zn"
 fi
 }
 

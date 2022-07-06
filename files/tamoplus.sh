@@ -851,13 +851,14 @@ fan_control() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "CPU Fan Temperature Control  Current Low $fantempL  Current High $fantempH  GPIO/BCM Pin $fanpin" --title " Temperature Control " \
+        choice=$(dialog --colors --backtitle "CPU Fan Temperature Control  Current Low $fantempL  Current High $fantempH  GPIO/BCM Pin $fanpin  PWM Frequency $pwmfreq" --title " Temperature Control " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Set Fan Low Temperature" \
             2 "Set Fan High Temperature" \
             3 "Set Fan Idle Speed" \
             4 "Set GPIO/BCM Pin" \
+            5 "Set PWM Frequency" \
             5 "Enable/Disable Temperature Script" \
             - "------ Install This First -------" \
             6 "Install Fan Temperature Script" \
@@ -867,8 +868,9 @@ stats_check
             2) set_fan_tempH ;;
             3) set_fan_idle ;;
             4) set_fan_pin ;;
-            5) switch_fan_temp ;;
-            6) setup_fan_temp ;;
+            5) set_pwm_freq ;;
+            6) switch_fan_temp ;;
+            7) setup_fan_temp ;;
             -) nono ;;
             *) break ;;
         esac
@@ -931,6 +933,21 @@ newfanpin=$(dialog --colors --title "Change The Fan GPIO Pin  Current $fanpin" \
 export newfanpin
 if [ $newfanpin ]; then
 	sed -i -E "s/FAN_PIN = ${oldfanpin}/FAN_PIN = ${newfanpin}]g" "$SETTINGS_DIR/fan_ctrl.py"
+	fan_restart
+else
+	return
+fi
+stats_check
+}
+
+set_pwm_freq() {
+oldpwmfreq=$(grep "PWM_FREQ =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
+export oldpwmfreq
+newpwmfreq=$(dialog --colors --title "Change The PWM Frequency Current $pwmfreq" \
+	--inputbox "Input The Fan GPIO Pin:" 8 40 "$oldpwmfreq" 3>&1 1>&2 2>&3 3>&-)
+export newpwmfreq
+if [ $newpwmfreq ]; then
+	sed -i -E "s/PWM_FREQ = ${oldpwmfreq}/PWM_FREQ = ${newpwmfreq}]g" "$SETTINGS_DIR/fan_ctrl.py"
 	fan_restart
 else
 	return
