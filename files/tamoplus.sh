@@ -8,8 +8,8 @@ currentuser=$(whoami) # Check user
 #Auto Updater
 if grep 'auto_update_flag=1' "$USER_SETTINGS"; then
 	if dialog --stdout --title "What to do?" \
-			--backtitle "Keep ReroPie menus?" \
-			--yesno "Yes: Delete, No:  Restore" 7 60; then
+			--backtitle "Contiue Auto-Update?" \
+			--yesno "Yes: Update, No: Skip" 7 60; then
 		bash $INSTALL_DIR/scripts/updater.sh
 		exit 1
 	else
