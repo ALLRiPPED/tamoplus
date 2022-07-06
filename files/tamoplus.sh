@@ -60,7 +60,6 @@ stats_check
             5 "Openbor Module Selection Script" \
             6 "Rpc80 Save File Script" \
             7 "UAE Config Maker" \
-            8 "Simple Genesis & MegaDrive Swap" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) bash $INSTALL_DIR/scripts/+Start-System.sh ;;
@@ -70,7 +69,6 @@ stats_check
             5) bash $INSTALL_DIR/scripts/openbormoduleselectionscript.sh ;;
             6) bash $INSTALL_DIR/scripts/rpc80-savefile.sh ;;
             7) bash $INSTALL_DIR/scripts/UAE-Config-Maker.sh ;;
-            8) bash $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
@@ -167,6 +165,7 @@ stats_check
             7 "Game Media Removal Utility" \
             8 "RetroPie splashscreen Utility" \
             9 "Skyscraper Utility" \
+           10 "Switch Genesis & MegaDrive Swap" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) overlay_menu ;;
@@ -178,6 +177,7 @@ stats_check
             7) bash $INSTALL_DIR/scripts/remove-media.sh ;;
             8) sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui ;;
             9) bash $INSTALL_DIR/scripts/skyscraper.sh ;;
+           10) bash $INSTALL_DIR/scripts/genesis.sh ;;
             *) break ;;
         esac
     done
@@ -761,7 +761,7 @@ controller_menu() {
     done
 }
 
-download_select_themesets() {
+download_select_themesets2() {
 stats_check
     local choice
     while true; do
@@ -793,7 +793,7 @@ stats_check
     done
 }
 
-download_select_music() {
+download_select_music2() {
 stats_check
     local choice
     while true; do
@@ -815,6 +815,86 @@ stats_check
             *) break ;;
         esac
     done
+}
+
+download_select_themesets() {
+stats_check
+if [ $NETCHECK  = 1 ]; then
+	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+else
+	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
+-------------------------------
+   THEMESET INSTALLER HELP
+-------------------------------
+-What are Themesets? Themesets are a collection of Themes, Music,
+-Splashscreens, Exitscreens, Videoloading screens, and Videoexit screens
+-that coincide with together and that you can choose between 9 presets." 0 0
+
+	whiptail --clear --title "THEMESET INSTALL MENU" --separate-output \
+		--ok-button Install --cancel-button Back \
+		--checklist "Choose:" 0 0 0 \
+			"1" "Install Carbonite Themeset" off \
+			"2" "Install Christmas Themeset" off \
+			"3" "Install Halloween Themeset" off \
+			"4" "Install Diablos Arcade Themeset" off \
+			"5" "Install Neon IBAD Themeset" off \
+			"6" "Install Pistolero Themeset" off \
+			"7" "Install Pleasure Paradise Themeset" off \
+			"8" "Install Stranger Things Themeset" off \
+			"9" "Install Supreme Ultra Themeset" off \
+			2>/tmp/results
+	while read -r choice  
+		do
+		case $choice in
+			1) download_themesets "carbonite" ;;
+			2) download_themesets "merryxmas" ;;
+			3) download_themesets "halloweenspecial" ;;
+			4) download_themesets "devilchromey" ;;
+			5) download_themesets "neonibad" ;;
+			6) download_themesets "pistolero" ;;
+			7) download_themesets "pleasureparadise" ;;
+			8) download_themesets "strangerthings" ;;
+			9) download_themesets "supremeteam" ;;
+			*) ;;
+		esac
+		done < /tmp/results
+fi
+}
+
+download_select_music() {
+stats_check
+if [ $NETCHECK  = 1 ]; then
+	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+else
+	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
+-------------------------------
+     MUSIC INSTALLER HELP
+-------------------------------
+-What is this? A collection of Music from different builds
+-that does not have a full Themeset currently in use.
+-You can choose between 5 presets of music." 0 0
+
+	whiptail --clear --title "MUSIC INSTALL MENU" --separate-output \
+		--ok-button Install --cancel-button Back \
+		--checklist "Choose:" 0 0 0 \
+			"1" "Install Arcade Music" off \
+			"2" "Install Custom Music" off \
+			"3" "Install Nostalgia Trip Music" off \
+			"4" "Install Ultimate Vs Fighter Music" off \
+			"5" "Install Venom Music" off \
+			2>/tmp/results
+	while read -r choice  
+		do
+		case $choice in
+			1) download_music "arcade" ;;
+			2) download_music "custom" ;;
+			3) download_music "nt" ;;
+			4) download_music "uvt" ;;
+			5) download_music "venom" ;;
+			*) ;;
+		esac
+		done < /tmp/results
+fi
 }
 
 fan_control() {
