@@ -87,36 +87,38 @@ stats_check
             2 "Clear Last Played" \
             3 "ES Collections" \
             4 "ES Gamelist" \
-            5 "File Find" \
-            6 "File Manager" \
-            7 "Gpio Shutdown" \
-            8 "Over Clock" \
-            9 "Reference" \
-           10 "Retroarch" \
-           11 "Retro Net Play" \
-           12 "Runcommand" \
-           13 "Show My Ip" \
-           14 "System Info" \
-           15 "Usb Ext" \
-           16 "Wifi" \
+            5 "CPU Fan Temperature Control" \
+            6 "File Find" \
+            7 "File Manager" \
+            8 "Gpio Shutdown" \
+            9 "Over Clock" \
+           10 "Reference" \
+           11 "Retroarch" \
+           12 "Retro Net Play" \
+           13 "Runcommand" \
+           14 "Show My Ip" \
+           15 "System Info" \
+           16 "Usb Ext" \
+           17 "Wifi" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) sudo /home/pi/RetroPie-Setup/retropie_packages.sh bluetooth gui ;;
             2) bash $INSTALL_DIR/scripts/clearlastplayed.sh ;;
             3) bash $INSTALL_DIR/scripts/escollections.sh ;;
             4) bash $INSTALL_DIR/scripts/esgamelist.sh ;;
-            5) bash $INSTALL_DIR/scripts/filefind.sh ;;
-            6) sudo /home/pi/RetroPie-Setup/retropie_packages.sh filemanager gui ;;
-            7) bash $INSTALL_DIR/scripts/gpioshutdown.sh ;;
-			8) bash $INSTALL_DIR/scripts/overclock.sh ;;
-            9) bash $INSTALL_DIR/scripts/reference.sh ;;
-           10) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retroarch gui ;;
-           11) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retronetplay gui ;;
-           12) sudo /home/pi/RetroPie-Setup/retropie_packages.sh runcommand gui ;;
-           13) sudo /home/pi/RetroPie-Setup/retropie_packages.sh showip gui ;;
-           14) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
-		   15) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
-           16) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
+            5) fan_control ;;
+            6) bash $INSTALL_DIR/scripts/filefind.sh ;;
+            7) sudo /home/pi/RetroPie-Setup/retropie_packages.sh filemanager gui ;;
+            8) bash $INSTALL_DIR/scripts/gpioshutdown.sh ;;
+			9) bash $INSTALL_DIR/scripts/overclock.sh ;;
+           10) bash $INSTALL_DIR/scripts/reference.sh ;;
+           11) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retroarch gui ;;
+           12) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retronetplay gui ;;
+           13) sudo /home/pi/RetroPie-Setup/retropie_packages.sh runcommand gui ;;
+           14) sudo /home/pi/RetroPie-Setup/retropie_packages.sh showip gui ;;
+           15) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
+		   16) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
+           17) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
             *) break ;;
         esac
     done
@@ -135,16 +137,14 @@ stats_check
             3 "TAMO+ Themesets Downloader" \
             4 "TAMO+ Music Downloader" \
             - "--------------------------------------" \
-            5 "CPU Fan Temperature Control" \
-            6 "Update TAMO+" \
+            5 "Update TAMO+" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) auto_update ;;
             2) retropie_menu ;;
             3) download_select_themesets ;;
             4) download_select_music ;;
-            5) fan_control ;;
-            6) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
+            5) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
             -) nono ;;
             *) break ;;
         esac
