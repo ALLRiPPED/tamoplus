@@ -112,14 +112,14 @@ stats_check
             4) bash $INSTALL_DIR/scripts/esgamelist.sh ;;
             5) fan_control ;;
             6) bash $INSTALL_DIR/scripts/filefind.sh ;;
-            7) sudo /home/pi/RetroPie-Setup/retropie_packages.sh filemanager gui ;;
+            7) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch filemanager.rp ;;
             8) bash $INSTALL_DIR/scripts/gpioshutdown.sh ;;
 			9) bash $INSTALL_DIR/scripts/overclock.sh ;;
            10) bash $INSTALL_DIR/scripts/reference.sh ;;
            11) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retroarch gui ;;
            12) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retronetplay gui ;;
            13) sudo /home/pi/RetroPie-Setup/retropie_packages.sh runcommand gui ;;
-           14) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch showip ;;
+           14) sudo /home/pi/RetroPie-Setup/retropie_packages.sh retropiemenu launch showip.rp ;;
            15) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
 		   16) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
            17) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
