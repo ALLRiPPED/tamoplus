@@ -7,8 +7,14 @@ currentuser=$(whoami) # Check user
 
 #Auto Updater
 if grep 'auto_update_flag=1' "$USER_SETTINGS"; then
-bash $INSTALL_DIR/scripts/updater.sh
-exit 1
+	if dialog --stdout --title "What to do?" \
+			--backtitle "Keep ReroPie menus?" \
+			--yesno "Yes: Delete, No:  Restore" 7 60; then
+		bash $INSTALL_DIR/scripts/updater.sh
+		exit 1
+	else
+		echo "Skipping Update"
+	fi
 fi
 
 tamo_main_menu() {
