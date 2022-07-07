@@ -1016,7 +1016,7 @@ if [[ ! -d "/home/pi/RetroPie/retropiemenu/audiotools" ]]; then
 mkdir -p "/home/pi/RetroPie/retropiemenu/audiotools"
 fi 
  
-cp $INSTALL_DIR/scripts/NoAudioFix-TrythisFirst.sh  /home/pi/RetroPie/retropiemenu/audiotools/NoAudioFix-TrythisFirst.sh 
+cp $INSTALL_DIR/scripts/NoAudioFixes.sh /home/pi/RetroPie/retropiemenu/audiotools/NoAudioFixes.sh
 mv /home/pi/RetroPie/retropiemenu/audiosettings.rp /home/pi/RetroPie/retropiemenu/audiotools/audiosettings.rp
 chmod 755 /home/pi/RetroPie/retropiemenu/audiotools/*
 #--------------------------------------------------------------------------------------------------------#
@@ -1444,6 +1444,12 @@ game_list_full() {
     <image>/home/pi/RetroPie/retropiemenu/icons/esthemerandomizer.png</image>
   </game>
   <game>
+    <path>./audiotools/NoAudioFixes.sh</path>
+    <name>No Audio Fix - Apply 1st!</name>
+    <desc>No Audio HDMI configuration audio fixes By EASY HAX.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/NoAudioFixes.png</image>
+  </game>
+  <game>
     <path>./audiotools/NoAudioFix-TrythisFirst.sh</path>
     <name>No Audio Fix - Apply 1st!</name>
     <desc>Try first this HDMI configuration audio fix By EASY HAX.</desc>
@@ -1647,11 +1653,11 @@ game_list_full() {
   </game>
   <game>
     <path>./controllertools/sinden-menu.sh</path>
-    <name>Sinden Lightgun Menu</name>
+    <name>sinden lightgun menu</name>
     <desc>This script will let you start, stop, test, Sinden Lightgun P1 P2.</desc>
     <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
-    <playcount>1</playcount>
-    <lastplayed/>
+    <rating>0</rating>
+    <playcount>2</playcount>
   </game>
   <game>
     <path>./controllertools/SindenLightgunTestP2.sh</path>
