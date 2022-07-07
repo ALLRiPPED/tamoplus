@@ -15,7 +15,7 @@ function main_menu() {
     clear
     local choice
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title "LAUNCHING MEDIA UTILITY MENU" \
+        choice=$(dialog --colors --backtitle "$BACKTITLE" --title "LAUNCHING MEDIA UTILITY MENU" \
             --ok-label OK --cancel-label Back \
             --menu "What option would you like to apply ?" 25 75 20 \
             - "*** LAUNCHING SCREENS SELECTION ***" \
