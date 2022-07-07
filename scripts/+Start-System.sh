@@ -14,7 +14,7 @@ function main_menu() {
             4 "+Start-Fuse" \
 			5 "+Start-Reicast" \
             6 "+Start-ResidualVM" \
-			7 "+Start-ScummVM" \			
+			7 "+Start-ScummVM" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -24,7 +24,7 @@ function main_menu() {
             4) +Start-Fuse  ;;
 		    5) +Start-Reicast  ;;
             6) +Start-ResidualVM  ;;
-		    7) +Start-ScummVM  ;;			
+		    7) +Start-ScummVM  ;;
             *)  break ;;
         esac
     done
