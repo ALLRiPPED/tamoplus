@@ -3,7 +3,7 @@
 enable="\Z2Enabled\Zn"
 disable="\Z1Disabled\Zn"
 RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
-if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=enable; else vls=disable; fi
+if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=$enable; else vls=$disable; fi
 
 # Welcome
  dialog --backtitle "RetroPie Media Utility" --title "RetroPie Launching Media Utility Menu" \
