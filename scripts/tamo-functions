@@ -1445,7 +1445,7 @@ game_list_full() {
   </game>
   <game>
     <path>./audiotools/NoAudioFixes.sh</path>
-    <name>No Audio Fix - Apply 1st!</name>
+    <name>No Audio Fixes</name>
     <desc>No Audio HDMI configuration audio fixes By EASY HAX.</desc>
     <image>/home/pi/RetroPie/retropiemenu/icons/NoAudioFixes.png</image>
   </game>
