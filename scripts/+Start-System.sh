@@ -35,7 +35,7 @@ function +Start-Amiberry() {
 if [[ -f "/opt/retropie/emulators/amiberry/amiberry.sh" ]]; then
 "/opt/retropie/emulators/amiberry/amiberry.sh"
 else
-echo Your System Amiberry Is Not Installed Or Missing.
+echo "Your System Amiberry Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -81,7 +81,7 @@ midi_synth start
 "/opt/retropie/emulators/dosbox/bin/dosbox" "${params[@]}"
 midi_synth stop
 else
-echo Your System Pc Is Not Installed Or Missing.
+echo "Your System Pc Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -127,7 +127,7 @@ midi_synth start
 "/opt/retropie/emulators/dosbox-sdl2/bin/dosbox" "${params[@]}"
 midi_synth stop
 else
-echo Your System Pc Is Not Installed Or Missing.
+echo "Your System Pc Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -137,7 +137,7 @@ function +Start-Fuse() {
 if [[ -f "/opt/retropie/emulators/fuse/bin/fuse" ]]; then
 /opt/retropie/emulators/fuse/bin/fuse --machine 128 --full-screen
 else
-echo Your System Fuse Is Not Installed Or Missing.
+echo "Your System Fuse Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -147,7 +147,7 @@ function +Start-Reicast() {
 if [[ -f "/opt/retropie/emulators/reicast/bin/reicast.sh" ]]; then
 /opt/retropie/emulators/reicast/bin/reicast.sh
 else
-echo Your System Reicast Is Not Installed Or Missing.
+echo "Your System Reicast Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -166,7 +166,7 @@ while read id desc; do
 done < <(/opt/retropie/emulators/residualvm/bin/residualvm --list-targets | tail -n +3)
 popd >/dev/null
 else
-echo Your System ResidualVM Is Not Installed Or Missing.
+echo "Your System ResidualVM Is Not Installed Or Missing."
 sleep 3
 fi
 }
@@ -198,7 +198,7 @@ while read line; do
 done < <(/opt/retropie/emulators/scummvm/bin/scummvm --list-targets | tail -n +3)
 popd >/dev/null
 else
-echo Your System ScummVM( Is Not Installed Or Missing.
+echo "Your System ScummVM( Is Not Installed Or Missing."
 sleep 3
 fi
 }
