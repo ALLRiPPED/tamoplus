@@ -1650,6 +1650,14 @@ game_list_full() {
     <lastplayed>20200613T204525</lastplayed>
   </game>
   <game>
+    <path>./controllertools/sinden-menu.sh</path>
+    <name>Sinden Lightgun Menu</name>
+    <desc>This script will let you start, stop, test, Sinden Lightgun P1 P2.</desc>
+    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <playcount>1</playcount>
+    <lastplayed/>
+  </game>
+  <game>
     <path>./controllertools/SindenLightgunTestP2.sh</path>
     <name>Sinden Lightgun Test P2</name>
     <desc>This script will let you test Sinden Lightgun P2.</desc>
