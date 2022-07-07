@@ -1655,7 +1655,7 @@ game_list_full() {
     <path>./controllertools/sinden-menu.sh</path>
     <name>sinden lightgun menu</name>
     <desc>This script will let you start, stop, test, Sinden Lightgun P1 P2.</desc>
-    <image>/home/pi/RetroPie/retropiemenu/icons/SindenLightgun.png</image>
+    <image>/home/pi/RetroPie/retropiemenu/icons/sinden-menu.png</image>
     <rating>0</rating>
     <playcount>2</playcount>
   </game>
