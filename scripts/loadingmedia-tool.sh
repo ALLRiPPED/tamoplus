@@ -22,18 +22,17 @@ function main_menu() {
             1 "Install launching screens" \
             2 "Remove launching screens" \
             3 "Download launching screens" \
-	    - "" \
-	    - "*** LAUNCHING VIDEOS SELECTION ***" \
+            - "" \
+            - "*** LAUNCHING VIDEOS SELECTION ***" \
             4 "Enable/Disable videoloadingscreens ($vls) " \
-
-	   2>&1 > /dev/tty)
+            2>&1 > /dev/tty)
 
         case "$choice" in
             1) install_screens  ;;
             2) remove_screens  ;;
             3) download_screens  ;;
             4) video_screens  ;;
-	    -) none  ;;
+            -) none  ;;
             *)  break ;;
         esac
     done
