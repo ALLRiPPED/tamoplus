@@ -6,8 +6,8 @@ RUNONSTART="/opt/retropie/configs/all/runcommand-onstart.sh"
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=enable; else vls=disable; fi
 
 # Welcome
- dialog --backtitle "RetroPie Midea Utility" --title "RetroPie Launching Media Utility Menu" \
-    --yesno "\nRetroPie Launching Midea Utility menu.\n\nThis utility will let you quickly install or remove launching/loading media.\n\nLaunching meidea files that are shown for a few seconds after you initally launch a game.\n\nThey are shown for a few seconds and then the game will start.\n\n\n\nDo you want to proceed?" \
+ dialog --backtitle "RetroPie Media Utility" --title "RetroPie Launching Media Utility Menu" \
+    --yesno "\nRetroPie Launching Media Utility menu.\n\nThis utility will let you quickly install or remove launching/loading media.\n\nLaunching meidea files that are shown for a few seconds after you initally launch a game.\n\nThey are shown for a few seconds and then the game will start.\n\n\n\nDo you want to proceed?" \
     20 80 2>&1 > /dev/tty \
     || exit
 
