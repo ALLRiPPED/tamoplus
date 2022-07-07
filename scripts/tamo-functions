@@ -1498,6 +1498,12 @@ game_list_full() {
     <image>./icons/launchingscreens.png</image>
   </game>
   <game>
+    <path>./visualtools/loadingmedia-tool.sh</path>
+    <name>loading-Launching Screens Tool</name>
+    <desc>This script will enable or disable the use of launching screens. Launching screensets are located here: /home/pi/RetroPie/LaunchingScreens Each set of launching screens you have located there must be in their own parent folder, with the individual emulator system folders containing the launching.png files underneath.</desc>
+    <image>./icons/launchingscreens.png</image>
+  </game>
+  <game>
     <path>./visualtools/removemedia.sh</path>
     <name>Media Removal Util </name>
     <desc>This utility will remove extra media files (mixart, boxart, cartart, snap and wheel) for a chosen system when there is not a matching game/rom for it. Mixart tweak added.</desc>
