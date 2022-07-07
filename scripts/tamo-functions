@@ -1606,10 +1606,6 @@ game_list_full() {
     <image>./icons/splashscreen.png</image>
   </game>
   <game>
-    <path>./clear.sh</path>
-    <name>clear</name>
-  </game>
-  <game>
     <path>./supreme-online-tool.sh</path>
     <name>Supreme Online Tool</name>
     <desc>The supreme online tool offers supreme build tweaks and improvemts using the supreme sever. [ **Must have a internet connection to use** ] </desc>
