@@ -384,7 +384,7 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <int name="ScreenSaverTime" value="300000" />
 <int name="SubtitleSize" value="55" />
 <int name="SystemSleepTime" value="0" />
-<string name="AudioCard" value="sysdefault" />
+<string name="AudioCard" value="default" />
 <string name="AudioDevice" value="HDMI" />
 <string name="CollectionSystemsAuto" value="" />
 <string name="CollectionSystemsCustom" value="" />
