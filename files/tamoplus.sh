@@ -180,7 +180,7 @@ stats_check
             4) supreme_marquee_tool ;;
             5) bash $INSTALL_DIR/scripts/resolution-tool.sh ;;
             6) bash $INSTALL_DIR/scripts/retroarch-tool.sh ;;
-            7) bash $INSTALL_DIR/scripts/remove-media.sh ;;
+            7) bash $INSTALL_DIR/scripts/removemedia.sh ;;
             8) sudo /home/pi/RetroPie-Setup/retropie_packages.sh splashscreen gui ;;
             9) bash $INSTALL_DIR/scripts/skyscraper.sh ;;
            10) bash $INSTALL_DIR/scripts/genesis.sh ;;
