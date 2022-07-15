@@ -29,12 +29,6 @@ if [ -f "$VID_LOD_SCR/halloween/default.mp4" ]; then mv -f "$VID_LOD_SCR/hallowe
 if [ -f "$VID_LOD_SCR/supreme/default.mp4" ]; then mv -f "$VID_LOD_SCR/supreme" "$VID_LOD_SCR/supremeteam"; fi
 if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$VID_LOD_SCR/carbonite"; fi
 
-if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
-	if [ ! -d "$MUSIC_DIR/neonibad" ]; then
-		download_theme_music "neonibad"
-	fi
-fi
-
 auto_update() {
 check_for_usersettings
 if grep 'auto_update_flag=0' "$USER_SETTINGS"; then
@@ -2064,3 +2058,8 @@ fi
 sleep 1
 }
 
+if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
+	if [ ! -d "$MUSIC_DIR/neonibad" ]; then
+		download_theme_music "neonibad"
+	fi
+fi
