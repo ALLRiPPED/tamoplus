@@ -18,26 +18,25 @@ if [ -f $USER_SETTINGS ]; then
 	if ! grep 'themeset_merryxmas=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
 fi
 
-auto_update() {
-#Double Check if User Settings found.
-if [ ! -f "$USER_SETTINGS" ]; then 
-cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
-#USER SETTINGS
-auto_update_flag=0
-user_menu_flag=0
-themeset_carbonite=0
-themeset_devilchromey=0
-themeset_neonibad=0
-themeset_halloweenspecial=0
-themeset_pistolero=0
-themeset_pleasureparadise=0
-themeset_strangerthings=0
-themeset_supremeteam=0
-themeset_merryxmas=0
-EOF_user_settings.ini
-sudo chmod +x $USER_SETTINGS
+if [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]; then mv -f "$MUSIC_DIR/xmas" "$MUSIC_DIR/merryxmas"; fi
+if [ -f "$MUSIC_DIR/halloween/1.mp3" ]; then mv -f "$MUSIC_DIR/halloween" "$MUSIC_DIR/halloweenspecial"; fi
+if [ -f "$MUSIC_DIR/devils/NEFFEX - Rollin' With The Devil.mp3" ]; then mv -f "$MUSIC_DIR/devils" "$MUSIC_DIR/devilchromey"; fi
+if [ -f "$MUSIC_DIR/st/Dream RetroWave1.mp3" ]; then mv -f "$MUSIC_DIR/st" "$MUSIC_DIR/supremeteam"; fi
+
+if [ -f "$VID_LOD_SCR/xmas/default.mp4" ]; then mv -f "$VID_LOD_SCR/xmas" "$VID_LOD_SCR/merryxmas"; fi
+if [ -f "$VID_LOD_SCR/retrodevils/default.mp4" ]; then mv -f "$VID_LOD_SCR/retrodevils" "$VID_LOD_SCR/devilchromey"; fi
+if [ -f "$VID_LOD_SCR/halloween/default.mp4" ]; then mv -f "$VID_LOD_SCR/halloween" "$VID_LOD_SCR/halloweenspecial"; fi
+if [ -f "$VID_LOD_SCR/supreme/default.mp4" ]; then mv -f "$VID_LOD_SCR/supreme" "$VID_LOD_SCR/supremeteam"; fi
+if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$VID_LOD_SCR/carbonite"; fi
+
+if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
+	if [ ! -d "$MUSIC_DIR/neonibad" ]; then
+		download_theme_music "neonibad"
+	fi
 fi
 
+auto_update() {
+check_for_usersettings
 if grep 'auto_update_flag=0' "$USER_SETTINGS"; then
 	echo "Auto update now On"
 	sed -i "s|auto_update_flag=0|auto_update_flag=1|" "$USER_SETTINGS"
@@ -68,7 +67,6 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 		$INSTALL_DIR/scripts/bezelproject.sh
 
 	else
-
 		if [ -f "$MENU_DIR/bezelproject.sh" ]; then sudo rm -f -r $MENU_DIR/bezelproject.sh; fi
 		if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/bezelproject.sh; fi
 
@@ -82,7 +80,6 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 	fi
 
 else
-
 	if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
 	if [ -f "$INSTALL_DIR/scripts/bezelproject.sh" ]; then 
@@ -94,7 +91,6 @@ else
 		$INSTALL_DIR/scripts/bezelproject.sh
 
 	else
-
 		if [ -f "$MENU_DIR/bezelproject,sh" ]; then sudo cp $MENU_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 		if [ -f "$STMENU_VIS_DIR/bezelproject.sh" ]; then sudo cp $STMENU_VIS_DIR/bezelproject.sh $INSTALL_DIR/scripts/; fi
 
@@ -110,12 +106,10 @@ else
 
 		rm -fr "$INSTALL_DIR/tmp"
 	fi
-
 fi
 }
 
 supreme_marquee_tool() {
-
 if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 
 	#Added step because marquee script reboots on clean install - Checks if the marquee script has been installed.
@@ -132,7 +126,6 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 		$INSTALL_DIR/scripts/supreme-marquee-tool.sh
 
 	else
-
 		if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $MENU_DIR/supreme-marquee-tool.sh; fi
 		if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/supreme-marquee-tool.sh; fi
 
@@ -150,7 +143,6 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 	fi
 
 else
-
 	#Added step because marquee script reboots on clean install - Checks if the marquee script has been installed.
 	if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo cp /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
 
@@ -164,7 +156,6 @@ else
 			$INSTALL_DIR/scripts/supreme-marquee-tool.sh
 
 		else
-
 			if [ -f "$MENU_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $MENU_DIR/supreme-marquee-tool.sh; fi
 			if [ -f "$STMENU_VIS_DIR/supreme-marquee-tool.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/supreme-marquee-tool.sh; fi
 
@@ -233,59 +224,52 @@ hursty_themes() {
 
 #One removes menu
 if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
-	
-if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
-	
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+	if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
+		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
 
-chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
+		chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
+		$INSTALL_DIR/scripts/hurstythemes.sh
 
-else
+	else
+		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
 
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
+		wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
+		chmod +x "$INSTALL_DIR/tmp/install.sh"
+		./$INSTALL_DIR/tmp/install.sh
 
-wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
-chmod +x "$INSTALL_DIR/tmp/install.sh"
-./$INSTALL_DIR/tmp/install.sh
+		if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
+		mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
+		$INSTALL_DIR/scripts/hurstythemes.sh
 
-mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
-
-rm -fr "$INSTALL_DIR/tmp"
-fi
+		rm -fr "$INSTALL_DIR/tmp"
+	fi
 
 else
+	if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
+		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
 
-if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
+		chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
+		$INSTALL_DIR/scripts/hurstythemes.sh
 
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+	else
+		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
 
-chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
+		wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
+		chmod +x "$INSTALL_DIR/tmp/install.sh"
+		./$INSTALL_DIR/tmp/install.sh
 
-else
+		if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
-if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		cp $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
+		$INSTALL_DIR/scripts/hurstythemes.sh
 
-wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
-chmod +x "$INSTALL_DIR/tmp/install.sh"
-./$INSTALL_DIR/tmp/install.sh
-
-if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
-
-cp $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
-$INSTALL_DIR/scripts/hurstythemes.sh
-
-rm -fr "$INSTALL_DIR/tmp"
-fi
-
+		rm -fr "$INSTALL_DIR/tmp"
+	fi
 fi
 }
 
@@ -706,7 +690,7 @@ do
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
 		if dialog --stdout --title "What to do?" --backtitle "Install Arcade Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
-			download_music "arcade"
+			download_bg_music "arcade"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
 		fi
@@ -737,7 +721,7 @@ do
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
 		if dialog --stdout --title "What to do?" --backtitle "Install Nostalgia Trip Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
-			download_music "nt"
+			download_bg_music "nt"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
 		fi
@@ -758,7 +742,7 @@ do
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
 		if dialog --stdout --title "What to do?" --backtitle "Install Ultimate Vs. Fighter Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
-			download_music "uvf"
+			download_bg_music "uvf"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
 		fi
@@ -779,7 +763,7 @@ do
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
 		if dialog --stdout --title "What to do?" --backtitle "Install Venom Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
-			download_music "venom"
+			download_bg_music "venom"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
 		fi
@@ -896,27 +880,9 @@ stats_check
 # RetroPie Menu Edits #
 #---------------------#
 retropie_menu() {
-#Double Check if User Settings found.
-if [ ! -f "$USER_SETTINGS" ]; then 
-cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
-#USER SETTINGS
-auto_update_flag=0
-user_menu_flag=0
-themeset_carbonite=0
-themeset_devilchromey=0
-themeset_neonibad=0
-themeset_halloweenspecial=0
-themeset_pistolero=0
-themeset_pleasureparadise=0
-themeset_strangerthings=0
-themeset_supremeteam=0
-themeset_merryxmas=0
-EOF_user_settings.ini
-sudo chmod +x $USER_SETTINGS
-fi
-
+check_for_usersettings
 if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
-	echo "Keep Menus Now Set To Off. Now Removing RetroPie Menus."
+	echo "Now Set To Stock Menu. Now Removing RetroPie Folders."
 	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
@@ -926,7 +892,7 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
 	rm_menus
 	db_detect
 else
-	echo "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back"
+	echo "Now Set To Folders Menu. Now Bringing RetroPie Folders Menu Back"
 	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
@@ -1135,6 +1101,9 @@ fi
 cd $HOME
 }
 
+#-------------------------------------#
+# Retropie Menu gamelist.xml creation #
+#-------------------------------------#
 game_list_full() {
 	cat <<\EOF_gamelist > "/opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml"
 <?xml version="1.0"?>
@@ -1798,6 +1767,27 @@ else
 fi
 }
 
+#Double Check if User Settings found.
+check_for_usersettings() {
+if [ ! -f "$USER_SETTINGS" ]; then 
+cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
+#USER SETTINGS
+auto_update_flag=0
+user_menu_flag=0
+themeset_carbonite=0
+themeset_devilchromey=0
+themeset_neonibad=0
+themeset_halloweenspecial=0
+themeset_pistolero=0
+themeset_pleasureparadise=0
+themeset_strangerthings=0
+themeset_supremeteam=0
+themeset_merryxmas=0
+EOF_user_settings.ini
+sudo chmod +x $USER_SETTINGS
+fi
+}
+
 #------------------------------#
 # Themeset And Music Downloads #
 #------------------------------#
@@ -1809,16 +1799,7 @@ if [ ! -d "$VID_LOD_SCR/"${1}"/" ]; then mkdir "$VID_LOD_SCR/"${1}""; fi
 if [ ! -d "$SPL_DIR" ]; then mkdir "$SPL_DIR"; fi
 if [ ! -d "$EXT_SPL_DIR" ]; then mkdir "$EXT_SPL_DIR"; fi
 
-if [ -f "$INSTALL_DIR/${1}.zip" ]; then
-	echo "Extracting Music"
-	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
-	rm -f "$INSTALL_DIR"/"${1}".zip
-else
-	wget "${HOST1}"/thememusic/"${1}".zip -P "$INSTALL_DIR"
-	echo "Extracting Music"
-	unzip -uq "${INSTALL_DIR}"/"${1}".zip -d "$HOME"/RetroPie
-	rm -f "$INSTALL_DIR"/"${1}".zip
-fi
+download_theme_music "${1}"
 
 if [ -d "$VID_LOD_SCR"/"${1}"/ ]; then
 	wget -m -r -np -nH -nd -R "index.html" "${RAW_HOST1}"/videoloadingscreens/"${1}"/ -P "${VID_LOD_SCR}"/"${1}" -erobots=off
@@ -1857,7 +1838,7 @@ elif [ "${1}" = "supremeteam" ]; then
 fi
 }
 
-download_music() {
+download_bg_music() {
 if [ "${1}" = "custom" ]; then
 	if [ -f "$MUSIC_DIR/custom/No Music in Folder.mp3" ]; then rm -f "$MUSIC_DIR/custom/No Music in Folder.mp3"; fi
 	if [ ! -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then
@@ -1887,6 +1868,18 @@ else
 fi
 }
 
+download_theme_music() {
+if [ -f "$INSTALL_DIR/${1}.zip" ]; then
+	echo "Extracting Music"
+	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+	rm -f "$INSTALL_DIR"/"${1}".zip
+else
+	wget "${HOST1}"/thememusic/"${1}".zip -P "$INSTALL_DIR"
+	echo "Extracting Music"
+	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+	rm -f "$INSTALL_DIR"/"${1}".zip
+fi
+}
 #------------------------------#
 # Fan And Temperature Controls #
 #------------------------------#

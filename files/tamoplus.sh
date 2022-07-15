@@ -836,11 +836,11 @@ else
 	while read -r choice  
 		do
 		case $choice in
-			1) download_music "arcade" ;;
-			2) download_music "custom" ;;
-			3) download_music "nt" ;;
-			4) download_music "uvt" ;;
-			5) download_music "venom" ;;
+			1) download_bg_music "arcade" ;;
+			2) download_bg_music "custom" ;;
+			3) download_bg_music "nt" ;;
+			4) download_bg_music "uvt" ;;
+			5) download_bg_music "venom" ;;
 			*) ;;
 		esac
 		done < /tmp/results

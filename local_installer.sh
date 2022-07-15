@@ -229,21 +229,9 @@ chmod 0755 /home/pi/tamoplus/files/*.sh
 chmod 0755 /home/pi/tamoplus/files/pngview
 chmod 0755 /home/pi/tamoplus/files/*.py
 sudo chown pi:pi $MENU_DIR/*
-cat <<\EOF_user_settings.ini > "$USER_SETTINGS"
-#USER SETTINGS
-auto_update_flag=0
-user_menu_flag=0
-themeset_carbonite=0
-themeset_diabloschromey=0
-themeset_halloweenspecial=0
-themeset_neonibad=0
-themeset_pistolero=0
-themeset_pleasureparadise=0
-themeset_strangerthings=0
-themeset_supremeteam=0
-themeset_merryxmas=0
-EOF_user_settings.ini
-sudo chmod +x $USER_SETTINGS
+
+check_for_usersettings
+
 cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist_bak.xml
 
 if dialog --stdout --title "What to do?" \

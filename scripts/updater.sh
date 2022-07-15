@@ -13,7 +13,9 @@ tamo_update() {
 	chmod 0755 /home/pi/tamoplus/scripts/*
 	chmod 0755 /home/pi/tamoplus/files/*.sh
 	chmod 0755 /home/pi/tamoplus/files/pngview
-	chmod 0755 /home/pi/tamoplus/files/BGM.py
+	chmod 0755 /home/pi/tamoplus/files/*.py
+	sudo chown pi:pi $MENU_DIR/*
+	sudo chmod +x $USER_SETTINGS
 	cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
 	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
 	sleep 2
