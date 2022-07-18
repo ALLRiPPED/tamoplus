@@ -6,7 +6,7 @@ currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
 #Auto Updater
-if grep 'auto_update_flag=1' "$USER_SETTINGS"; then
+if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Contiue Auto-Update?" \
 			--backtitle "Contiue Auto-Update?" \
 			--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
