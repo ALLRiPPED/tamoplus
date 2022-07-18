@@ -31,7 +31,7 @@ if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$
 
 auto_update() {
 check_for_usersettings
-if grep 'auto_update_flag=0' "$USER_SETTINGS"; then
+if grep 'auto_update_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	echo "Auto update now On"
 	sed -i "s|auto_update_flag=0|auto_update_flag=1|" "$USER_SETTINGS"
 else
@@ -48,7 +48,7 @@ bezel_project() {
 #Adds Updated Version to tamoplus Folder
 
 #One removes menu
-if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
+if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 
 	if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
 
@@ -104,7 +104,7 @@ fi
 }
 
 supreme_marquee_tool() {
-if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
+if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 
 	#Added step because marquee script reboots on clean install - Checks if the marquee script has been installed.
 	if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo mv -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
@@ -217,7 +217,7 @@ hursty_themes() {
 #Adds Updated Version to tamoplus Folder
 
 #One removes menu
-if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
+if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
 		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
 		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
@@ -366,12 +366,12 @@ NEW_THM="value=\"carbonite\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/carbonite"'
 NEW_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
-if grep 'themeset_carbonite=0' "$USER_SETTINGS"; then
+if grep 'themeset_carbonite=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Carbonite Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "carbonite"
 		sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_carbonite=1' "$USER_SETTINGS"; then
+if grep 'themeset_carbonite=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -399,12 +399,12 @@ NEW_THM="value=\"devilchromey\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/devilchromey"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
-if grep 'themeset_devilchromey=0' "$USER_SETTINGS"; then
+if grep 'themeset_devilchromey=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Diablos Arcade Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "devilchromey"
 		sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_devilchromey=1' "$USER_SETTINGS"; then
+if grep 'themeset_devilchromey=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Diablos Arcade Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Diablos Arcade Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -431,12 +431,12 @@ NEW_THM="value=\"halloweenspecial\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/halloweenspecial"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
-if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS"; then
+if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Halloween Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "halloweenspecial"
 		sed -i "s|themeset_halloweenspecial=0|themeset_halloweenspecial=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_halloweenspecial=1' "$USER_SETTINGS"; then
+if grep 'themeset_halloweenspecial=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Halloween Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Halloween Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -463,12 +463,12 @@ NEW_THM="value=\"neonibad\""
 NEW_VIEW="value=\"grid\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/neonibad"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/NeonIBADExit.mp4"'
-if grep 'themeset_neonibad=0' "$USER_SETTINGS"; then
+if grep 'themeset_neonibad=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Neon IBAD Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "neonibad"
 		sed -i "s|themeset_neonibad=0|themeset_neonibad=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
+if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Neon IBAD Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Grid View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Neon IBAD Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -495,12 +495,12 @@ NEW_THM="value=\"pistolero\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
-if grep 'themeset_pistolero=0' "$USER_SETTINGS"; then
+if grep 'themeset_pistolero=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Pistolero Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pistolero"
 		sed -i "s|themeset_pistolero=0|themeset_pistolero=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_pistolero=1' "$USER_SETTINGS"; then
+if grep 'themeset_pistolero=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pistolero Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pistolero Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -527,12 +527,12 @@ NEW_THM="value=\"pleasureparadise\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
-if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS"; then
+if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Pleasure Paradise Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pleasureparadise"
 		sed -i "s|themeset_pleasureparadise=0|themeset_pleasureparadise=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS"; then
+if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Pleasure Paradise Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -559,12 +559,12 @@ NEW_THM="value=\"strangerthings\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerthings"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
-if grep 'themeset_strangerthings=0' "$USER_SETTINGS"; then
+if grep 'themeset_strangerthings=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Stranger Things Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "strangerthings"
 		sed -i "s|themeset_strangerthings=0|themeset_strangerthings=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_strangerthings=1' "$USER_SETTINGS"; then
+if grep 'themeset_strangerthings=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Stranger Pi Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Stranger Pi Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -591,12 +591,12 @@ NEW_THM="value=\"supremeteam\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/supremeteam"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
-if grep 'themeset_supremeteam=0' "$USER_SETTINGS"; then
+if grep 'themeset_supremeteam=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Supreme Team Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "supremeteam"
 		sed -i "s|themeset_supremeteam=0|themeset_supremeteam=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_supremeteam=1' "$USER_SETTINGS"; then
+if grep 'themeset_supremeteam=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Supreme Ultra Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -623,12 +623,12 @@ NEW_THM="value=\"merryxmas\""
 NEW_VIEW="value=\"automatic\""
 NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/merryxmas"'
 NEWX_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/XmasExit.mp4"'
-if grep 'themeset_merryxmas=0' "$USER_SETTINGS"; then
+if grep 'themeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "What to do?" --backtitle "Install Christmas Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "merryxmas"
 		sed -i "s|themeset_merryxmas=0|themeset_merryxmas=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
-if grep 'themeset_merryxmas=1' "$USER_SETTINGS"; then
+if grep 'themeset_merryxmas=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_THM == $NEW_THM ]]; then echo "Christmas Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
 	if [[ $CUR_VIEW == $NEW_VIEW ]]; then echo "Automatic View already set!"; else sed -i -E "s|${CUR_VIEW}|${NEW_VIEW}|g" $ES_SETTINGS; fi
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
@@ -875,7 +875,7 @@ stats_check
 #---------------------#
 retropie_menu() {
 check_for_usersettings
-if grep 'user_menu_flag=1' "$USER_SETTINGS"; then
+if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	echo "Now Set To Stock Menu. Now Removing RetroPie Folders."
 	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
@@ -2030,8 +2030,8 @@ CURFONT=$(grep "overlay_text_font =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
 cfont="\Z3$CURFONT\Zn"
 OVLCOLOR=$(grep "overlay_background_color =" "$SCRIPT_LOC"|awk '{print $3}' | tr -d '"')
 ocolor="\Z3$OVLCOLOR\Zn"
-if grep 'auto_update_flag=0' "$USER_SETTINGS"; then aupstat="\Z1Off\Zn"; else aupstat="\Z2On\Zn"; fi
-if grep 'user_menu_flag=0' "$USER_SETTINGS"; then menstat="\Z1Stock Menu\Zn"; else menstat="\Z2Folder Menu\Zn"; fi
+if grep 'auto_update_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then aupstat="\Z1Off\Zn"; else aupstat="\Z2On\Zn"; fi
+if grep 'user_menu_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then menstat="\Z1Stock Menu\Zn"; else menstat="\Z2Folder Menu\Zn"; fi
 if [ -f "$SETTINGS_DIR/fan_ctrl.py" ]; then
 	oldfantempL=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}')|tr -d 'tempSteps =[,]')
 	oldfantempH=$(grep "tempSteps =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $4}')|tr -d 'tempSteps =[,]')
@@ -2058,7 +2058,7 @@ fi
 sleep 1
 }
 
-if grep 'themeset_neonibad=1' "$USER_SETTINGS"; then
+if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ ! -d "$MUSIC_DIR/neonibad" ]; then
 		download_theme_music "neonibad"
 	fi
