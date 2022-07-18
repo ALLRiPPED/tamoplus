@@ -758,8 +758,7 @@ controller_menu() {
 download_select_themesets() {
 stats_check
 net_check
-if [ $NETCHECK = 1 ]; then
-	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+if [ $NETCHECK = 1 ]; then dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
 	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
 -------------------------------
@@ -803,8 +802,7 @@ fi
 download_select_music() {
 stats_check
 net_check
-if [ $NETCHECK = 1 ]; then
-	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+if [ $NETCHECK = 1 ]; then dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
 	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
 -------------------------------
@@ -976,23 +974,27 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 . /home/$currentuser/tamoplus/scripts/tamo-functions
 
 #Auto Updater
-if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
-	cd $INSTALL_DIR
-	git remote update
-	LAST_UPDATE=`git show --no-notes --format=format:"%H" main | head -n 1`
-	LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/main | head -n 1`
+net_check
+if [ $NETCHECK = 1 ]; then dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+else
+	if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
+		cd $INSTALL_DIR
+		git remote update
+		LAST_UPDATE=`git show --no-notes --format=format:"%H" main | head -n 1`
+		LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/main | head -n 1`
 
-	if [ $LAST_COMMIT != $LAST_UPDATE ]; then
-		if dialog --stdout --title "Update Availible, Continue Auto-Update?" \
-				--backtitle "Continue Auto-Update?" \
-				--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
-			bash $INSTALL_DIR/scripts/updater.sh
-			exit 1
+		if [ $LAST_COMMIT != $LAST_UPDATE ]; then
+			if dialog --stdout --title "Update Availible, Continue Auto-Update?" \
+					--backtitle "Continue Auto-Update?" \
+					--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
+				bash $INSTALL_DIR/scripts/updater.sh
+				exit 1
+			else
+				echo "$(tput setaf 2)Skipping Update$(tput setaf 0)"
+			fi
 		else
-			echo "$(tput setaf 2)Skipping Update$(tput setaf 0)"
+			echo "$(tput setaf 2)No updates available$(tput setaf 0)"
 		fi
-	else
-		echo "$(tput setaf 2)No updates available$(tput setaf 0)"
 	fi
 fi
 
