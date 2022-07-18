@@ -211,17 +211,7 @@ fi
 }
 
 # Moving Exitscreens To New Location
-move_exitscreens() {
-mkdir $EXT_SPL_DIR
-if [ -f $SPL_DIR/HalloweenExitOff.mp4 ]; then mv -f $SPL_DIR/HalloweenExitOff.mp4 $EXT_SPL_DIR/HalloweenExitOff.mp4; elif [ -f $SPL_DIR/HalloweenExit.mp4 ]; then mv -f $SPL_DIR/HalloweenExit.mp4 $EXT_SPL_DIR/HalloweenExit.mp4; fi
-if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then mv -f $SPL_DIR/JarvisExitOff.mp4 $EXT_SPL_DIR/JarvisExitOff.mp4; elif [ -f $SPL_DIR/JarvisExit.mp4 ]; then mv -f $SPL_DIR/JarvisExit.mp4 $EXT_SPL_DIR/JarvisExit.mp4; fi
-if [ -f $SPL_DIR/PisteleroExitOff.mp4 ]; then mv -f $SPL_DIR/PisteleroExitOff.mp4 $EXT_SPL_DIR/PisteleroExitOff.mp4; elif [ -f $SPL_DIR/PisteleroExit.mp4 ]; then mv -f $SPL_DIR/PisteleroExit.mp4 $EXT_SPL_DIR/PisteleroExit.mp4; fi
-if [ -f $SPL_DIR/PleasureParadiseExitOff.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExitOff.mp4 $EXT_SPL_DIR/PleasureParadiseExitOff.mp4; elif [ -f $SPL_DIR/PleasureParadiseExit.mp4 ]; then mv -f $SPL_DIR/PleasureParadiseExit.mp4 $EXT_SPL_DIR/PleasureParadiseExit.mp4; fi
-if [ -f $SPL_DIR/RetroDevilReaperExitOff.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExitOff.mp4 $EXT_SPL_DIR/RetroDevilReaperExitOff.mp4; elif [ -f $SPL_DIR/RetroDevilReaperExit.mp4 ]; then mv -f $SPL_DIR/RetroDevilReaperExit.mp4 $EXT_SPL_DIR/RetroDevilReaperExit.mp4; fi
-if [ -f $SPL_DIR/StrangerExitOff.mp4 ]; then mv -f $SPL_DIR/StrangerExitOff.mp4 $EXT_SPL_DIR/StrangerExitOff.mp4; elif [ -f $SPL_DIR/StrangerExit.mp4 ]; then mv -f $SPL_DIR/StrangerExit.mp4 $EXT_SPL_DIR/StrangerExit.mp4; fi
-if [ -f $SPL_DIR/SupremeExitOff.mp4 ]; then mv -f $SPL_DIR/SupremeExitOff.mp4 $EXT_SPL_DIR/SupremeExitOff.mp4; elif [ -f $SPL_DIR/SupremeExit.mp4 ]; then mv -f $SPL_DIR/SupremeExit.mp4 $EXT_SPL_DIR/SupremeExit.mp4; fi
-if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL_DIR/XmasExitOff.mp4; elif [ -f $SPL_DIR/XmasExit.mp4 ]; then mv -f $SPL_DIR/XmasExit.mp4 $EXT_SPL_DIR/XmasExit.mp4; fi
-}
+move_exitscreens
 
 prep_work() {
 chmod 0755 /home/pi/tamoplus/scripts/*

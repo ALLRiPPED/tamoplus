@@ -9,18 +9,6 @@ currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
 tamo_update() {
-	tamoscriptupdate() {
-	chmod 0755 /home/pi/tamoplus/scripts/*
-	chmod 0755 /home/pi/tamoplus/files/*.sh
-	chmod 0755 /home/pi/tamoplus/files/pngview
-	chmod 0755 /home/pi/tamoplus/files/*.py
-	sudo chown pi:pi $MENU_DIR/*
-	sudo chmod +x $USER_SETTINGS
-	cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
-	echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
-	sleep 2
-	}
-
 if [ -d "$INSTALL_DIR" ]; then
 	cd $INSTALL_DIR
 	git reset --hard
@@ -33,6 +21,19 @@ else
 	sleep 5
 	exit 1
 fi
+}
+
+tamoscriptupdate() {
+chmod 0755 /home/pi/tamoplus/scripts/*
+chmod 0755 /home/pi/tamoplus/files/*.sh
+chmod 0755 /home/pi/tamoplus/files/pngview
+chmod 0755 /home/pi/tamoplus/files/*.py
+sudo chown pi:pi $MENU_DIR/*
+sudo chmod +x $USER_SETTINGS
+cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
+echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
+post_update
+sleep 2
 }
 
 . /home/$currentuser/tamoplus/scripts/tamo-functions
