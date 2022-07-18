@@ -5,18 +5,6 @@
 currentuser=$(whoami) # Check user
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 
-#Auto Updater
-if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "Contiue Auto-Update?" \
-			--backtitle "Contiue Auto-Update?" \
-			--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
-		bash $INSTALL_DIR/scripts/updater.sh
-		exit 1
-	else
-		echo "Skipping Update"
-	fi
-fi
-
 tamo_main_menu() {
 stats_check
     local choice
@@ -984,5 +972,25 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 }
 
 . /home/$currentuser/tamoplus/scripts/tamo-functions
+
+#Auto Updater
+if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
+	cd $INSTALL_DIR
+	git remote update
+	if [ $LAST_COMMIT != $LAST_UPDATE ]; then
+		if dialog --stdout --title "Update Availible, Contiue Auto-Update?" \
+				--backtitle "Contiue Auto-Update?" \
+				--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
+			bash $INSTALL_DIR/scripts/updater.sh
+			exit 1
+		else
+			echo "$(tput setaf 2)Skipping Update$(tput setaf 0)"
+		fi
+	else
+		echo "$(tput setaf 2)No updates available$(tput setaf 0)"
+	fi
+fi
+
+if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then cd $INSTALL_DIR; git remote update; if [ $LAST_COMMIT != $LAST_UPDATE ]; then if dialog --stdout --title "Update Availible, Contiue Auto-Update?" --backtitle "Contiue Auto-Update?" --yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then bash $INSTALL_DIR/scripts/updater.sh;exit 1; else echo "$(tput setaf 2)Skipping Update$(tput setaf 0)"; fi; else echo "$(tput setaf 2)No updates available$(tput setaf 0)"; fi; fi
 
 tamo_main_menu
