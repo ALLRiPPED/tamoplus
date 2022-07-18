@@ -983,8 +983,8 @@ if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/main | head -n 1`
 
 	if [ $LAST_COMMIT != $LAST_UPDATE ]; then
-		if dialog --stdout --title "Update Availible, Contiue Auto-Update?" \
-				--backtitle "Contiue Auto-Update?" \
+		if dialog --stdout --title "Update Availible, Continue Auto-Update?" \
+				--backtitle "Continue Auto-Update?" \
 				--yesno "Yes: Continue Auto-Update, No: Skip Auto-Update" 7 60; then
 			bash $INSTALL_DIR/scripts/updater.sh
 			exit 1
