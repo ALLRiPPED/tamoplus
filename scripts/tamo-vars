@@ -33,5 +33,3 @@ EXITSPLS="/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splas
 EXITSPLR="/opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash"
 USER_SETTINGS="$HOME/.tamoplus/user_settings.ini"
 VID_LOD_SCR="$HOME/RetroPie/videoloadingscreens"
-LAST_UPDATE=`git show --no-notes --format=format:"%H" main | head -n 1`
-LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/main | head -n 1`

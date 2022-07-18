@@ -977,6 +977,9 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	cd $INSTALL_DIR
 	git remote update
+	LAST_UPDATE=`git show --no-notes --format=format:"%H" main | head -n 1`
+	LAST_COMMIT=`git show --no-notes --format=format:"%H" origin/main | head -n 1`
+
 	if [ $LAST_COMMIT != $LAST_UPDATE ]; then
 		if dialog --stdout --title "Update Availible, Contiue Auto-Update?" \
 				--backtitle "Contiue Auto-Update?" \
