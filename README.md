@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.44 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.45 (formally known as TAMPO)
 This can install all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
 for two Holiday themes and my own concoction theme set Carbonite, for now, hopefully more to come!<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
