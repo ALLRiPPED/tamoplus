@@ -1,6 +1,6 @@
 #!/bin/bash
 # TAMO+ Vars
-ver="v1.44"
+ver="v1.45"
 BACKTITLE="TAMO+ Script $ver"
 TITLE="TAMO+ $ver"
 TAMOCONTENT1="\t<game>\n\t\t<path>./tamoplus.sh</path>\n\t\t<name>TAMO+</name>\n\t\t<desc>TAMO+ Theme and Music Overlay Plus, much more. This script changes between Themes and their Background Music. Plus many scripts for themes downloading, visual and audio tools and much, much more.</desc>\n\t\t<image>./icons/tamoplus.png</image>\n\t\t<releasedate>20220422T010251</releasedate>\n\t\t<developer>thepitster, Supreme Team</developer>\n\t\t<publisher>thepitster</publisher>\n\t\t<genre>TAMO+ Script</genre>\n\t</game>"

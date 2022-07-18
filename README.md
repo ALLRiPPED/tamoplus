@@ -105,3 +105,4 @@ Version 1.41 - Added Neon IBAD themeset from The [Retro-Devils](https://github.c
 Version 1.42 - Added more ultility tools and other helpful scripts thanks to [Supreme Team](https://github.com/SupremePi "Supreme Team").<br>
 Version 1.43 - Added Temperature Control script thanks to [Jeremy Cook](https://github.com/JeremySCook "Jeremy Cook").<br>
 Version 1.44 - Lots of bug fixes to the main script, thanks to [Supreme Team](https://github.com/SupremePi "Supreme Team") for all the troubleshooting help.<br>
+Version 1.45 - Few bug fixes, tweaked Auto-Update to check github for update.<br>
