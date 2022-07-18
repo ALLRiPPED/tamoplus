@@ -1760,6 +1760,7 @@ fi
 # Themeset And Music Downloads #
 #------------------------------#
 download_themesets() {
+net_check
 if [ $NETCHECK = 1 ]; then
 dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
 Offline ... Downloads not Availible Please Connect To Internet!" 0 0
@@ -1813,6 +1814,7 @@ fi
 }
 
 download_bg_music() {
+net_check
 if [ $NETCHECK = 1 ]; then
 dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
 Offline ... Downloads not Availible Please Connect To Internet!" 0 0
@@ -1849,6 +1851,7 @@ fi
 }
 
 download_theme_music() {
+net_check
 if [ $NETCHECK = 1 ]; then
 dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
 Offline ... Downloads not Availible Please Connect To Internet!" 0 0
@@ -2058,8 +2061,8 @@ if [ $? -eq 0 ]; then
 else
   NETCHECK=1
 fi
-
 }
+
 # Moving Exitscreens To New Location
 move_exitscreens() {
 mkdir $EXT_SPL_DIR
