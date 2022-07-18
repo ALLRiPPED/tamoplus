@@ -757,7 +757,7 @@ controller_menu() {
 
 download_select_themesets() {
 stats_check
-if [ $NETCHECK  = 1 ]; then
+if [ $NETCHECK = 1 ]; then
 	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
 	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
@@ -801,7 +801,7 @@ fi
 
 download_select_music() {
 stats_check
-if [ $NETCHECK  = 1 ]; then
+if [ $NETCHECK = 1 ]; then
 	dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
 	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 

@@ -1760,92 +1760,110 @@ fi
 # Themeset And Music Downloads #
 #------------------------------#
 download_themesets() {
-if [ ! -d  "$THEMES_DIR/"${1}"" ]; then git clone "https://github.com/ALLRiPPED/es-theme-${1}.git" "/opt/retropie/configs/all/emulationstation/themes/${1}"
-else cd "$THEMES_DIR/${1}"; git reset --hard; git pull; fi
+if [ $NETCHECK = 1 ]; then
+dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
+Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+else
 
-if [ ! -d "$VID_LOD_SCR/"${1}"/" ]; then mkdir "$VID_LOD_SCR/"${1}""; fi
-if [ ! -d "$SPL_DIR" ]; then mkdir "$SPL_DIR"; fi
-if [ ! -d "$EXT_SPL_DIR" ]; then mkdir "$EXT_SPL_DIR"; fi
+	if [ ! -d  "$THEMES_DIR/"${1}"" ]; then git clone "https://github.com/ALLRiPPED/es-theme-${1}.git" "/opt/retropie/configs/all/emulationstation/themes/${1}"
+	else cd "$THEMES_DIR/${1}"; git reset --hard; git pull; fi
 
-download_theme_music "${1}"
+	if [ ! -d "$VID_LOD_SCR/"${1}"/" ]; then mkdir "$VID_LOD_SCR/"${1}""; fi
+	if [ ! -d "$SPL_DIR" ]; then mkdir "$SPL_DIR"; fi
+	if [ ! -d "$EXT_SPL_DIR" ]; then mkdir "$EXT_SPL_DIR"; fi
 
-if [ -d "$VID_LOD_SCR"/"${1}"/ ]; then
-	wget -m -r -np -nH -nd -R "index.html" "${RAW_HOST1}"/videoloadingscreens/"${1}"/ -P "${VID_LOD_SCR}"/"${1}" -erobots=off
-	rm -f "$VID_LOD_SCR"/"${1}"/index.html.tmp
-	rm -f "${VID_LOD_SCR}"/"${1}"/*.ia.*
-fi
+	download_theme_music "${1}"
 
-if [ "${1}" = "carbonite" ]; then
-	if [ -f "$SPL_DIR/JarvisSplash.mp4" ];then wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "halloweenspecial" ]; then
-	if [ -f "$SPL_DIR/Halloween.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "devilchromey" ]; then
-	if [ -f "$SPL_DIR/RetroDevilReaper.mp4" ];then wget "${RAW_HOST1}"/splashscreens/RetroDevilReaper.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/RetroDevilReaperExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "neonibad" ]; then
-	if [ -f "$SPL_DIR/NeonIBAD.mp4" ];then wget "${RAW_HOST1}"/splashscreens/NeonIBAD.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/NeonIBADExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/NeonIBADExit.mp4 -P "$EXT_SPL_DIR"; fi
-	if [ -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$SPL_DIR"; fi
-elif [ "${1}" = "merryxmas" ]; then
-	if [ -f "$SPL_DIR/CharlieBrown.mp4" ];then wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "pistolero" ]; then
-	if [ -f "$SPL_DIR/Pistolero.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "pleasureparadise" ]; then
-	if [ -f "$SPL_DIR/PleasureParadise.mp4" ];then wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "strangerthings" ]; then
-	if [ -f "$SPL_DIR/StrangerPi.mp4" ];then wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"; fi
-elif [ "${1}" = "supremeteam" ]; then
-	if [ -f "$SPL_DIR/Supreme.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/exitscreens/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"; fi
+	if [ -d "$VID_LOD_SCR"/"${1}"/ ]; then
+		wget -m -r -np -nH -nd -R "index.html" "${RAW_HOST1}"/videoloadingscreens/"${1}"/ -P "${VID_LOD_SCR}"/"${1}" -erobots=off
+		rm -f "$VID_LOD_SCR"/"${1}"/index.html.tmp
+		rm -f "${VID_LOD_SCR}"/"${1}"/*.ia.*
+	fi
+
+	if [ "${1}" = "carbonite" ]; then
+		if [ -f "$SPL_DIR/JarvisSplash.mp4" ];then wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "halloweenspecial" ]; then
+		if [ -f "$SPL_DIR/Halloween.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "devilchromey" ]; then
+		if [ -f "$SPL_DIR/RetroDevilReaper.mp4" ];then wget "${RAW_HOST1}"/splashscreens/RetroDevilReaper.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/RetroDevilReaperExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "neonibad" ]; then
+		if [ -f "$SPL_DIR/NeonIBAD.mp4" ];then wget "${RAW_HOST1}"/splashscreens/NeonIBAD.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/NeonIBADExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/NeonIBADExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$SPL_DIR"; fi
+	elif [ "${1}" = "merryxmas" ]; then
+		if [ -f "$SPL_DIR/CharlieBrown.mp4" ];then wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "pistolero" ]; then
+		if [ -f "$SPL_DIR/Pistolero.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "pleasureparadise" ]; then
+		if [ -f "$SPL_DIR/PleasureParadise.mp4" ];then wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "strangerthings" ]; then
+		if [ -f "$SPL_DIR/StrangerPi.mp4" ];then wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"; fi
+	elif [ "${1}" = "supremeteam" ]; then
+		if [ -f "$SPL_DIR/Supreme.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$SPL_DIR/exitscreens/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"; fi
+	fi
 fi
 }
 
 download_bg_music() {
-if [ "${1}" = "custom" ]; then
-	if [ -f "$MUSIC_DIR/custom/No Music in Folder.mp3" ]; then rm -f "$MUSIC_DIR/custom/No Music in Folder.mp3"; fi
-	if [ ! -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then
-		if [ -f "$INSTALL_DIR/custommusic.zip" ]; then
-			echo "Extracting Music"
+if [ $NETCHECK = 1 ]; then
+dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
+Offline ... Downloads not Availible Please Connect To Internet!" 0 0
+else
+
+	if [ "${1}" = "custom" ]; then
+		if [ -f "$MUSIC_DIR/custom/No Music in Folder.mp3" ]; then rm -f "$MUSIC_DIR/custom/No Music in Folder.mp3"; fi
+		if [ ! -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then
+			if [ -f "$INSTALL_DIR/custommusic.zip" ]; then
+				echo "Extracting Music"
+				unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
+				rm -f "$INSTALL_DIR/custombgm.zip"
+			fi
+		else
+			echo "Downloading Custom Music"
+			gdown "${GOOG_HOST}"/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O  "$INSTALL_DIR/custombgm.zip"
+			echo "Extracting Custom Music"
 			unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
 			rm -f "$INSTALL_DIR/custombgm.zip"
 		fi
 	else
-		echo "Downloading Custom Music"
-		gdown "${GOOG_HOST}"/uc?id=1-BHwb4oT6GiwpRv7l3VLHuJLsRxScGNV -O  "$INSTALL_DIR/custombgm.zip"
-		echo "Extracting Custom Music"
-		unzip -uq "$INSTALL_DIR/custombgm.zip" -d "$HOME"/RetroPie
-		rm -f "$INSTALL_DIR/custombgm.zip"
-	fi
-else
-	if [ -f "$INSTALL_DIR/${1}.zip" ]; then
-		echo "Extracting Music"
-		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
-		rm -f "$INSTALL_DIR"/"${1}".zip
-	else
-		wget "${HOST1}"/bgm/"${1}".zip -P "$INSTALL_DIR"
-		echo "Extracting Music"
-		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
-		rm -f "$INSTALL_DIR"/"${1}".zip
+		if [ -f "$INSTALL_DIR/${1}.zip" ]; then
+			echo "Extracting Music"
+			unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+			rm -f "$INSTALL_DIR"/"${1}".zip
+		else
+			wget "${HOST1}"/bgm/"${1}".zip -P "$INSTALL_DIR"
+			echo "Extracting Music"
+			unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+			rm -f "$INSTALL_DIR"/"${1}".zip
+		fi
 	fi
 fi
 }
 
 download_theme_music() {
-if [ -f "$INSTALL_DIR/${1}.zip" ]; then
-	echo "Extracting Music"
-	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
-	rm -f "$INSTALL_DIR"/"${1}".zip
+if [ $NETCHECK = 1 ]; then
+dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " 
+Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
-	wget "${HOST1}"/thememusic/"${1}".zip -P "$INSTALL_DIR"
-	echo "Extracting Music"
-	unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
-	rm -f "$INSTALL_DIR"/"${1}".zip
+
+	if [ -f "$INSTALL_DIR/${1}.zip" ]; then
+		echo "Extracting Music"
+		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+		rm -f "$INSTALL_DIR"/"${1}".zip
+	else
+		wget "${HOST1}"/thememusic/"${1}".zip -P "$INSTALL_DIR"
+		echo "Extracting Music"
+		unzip -uq "$INSTALL_DIR"/"${1}".zip -d "$HOME"/RetroPie
+		rm -f "$INSTALL_DIR"/"${1}".zip
+	fi
 fi
 }
 #------------------------------#
@@ -2032,6 +2050,16 @@ fi
 sleep 1
 }
 
+net_check() {
+#-----------NET CHECKER-----------#
+wget -q --spider http://google.com
+if [ $? -eq 0 ]; then
+  NETCHECK=0
+else
+  NETCHECK=1
+fi
+
+}
 # Moving Exitscreens To New Location
 move_exitscreens() {
 mkdir $EXT_SPL_DIR
