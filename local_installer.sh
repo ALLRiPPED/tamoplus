@@ -52,7 +52,7 @@ infobox="${infobox}it then set it to desired postition, compatible with all reso
 infobox="${infobox}_______________________________________________________\n\n"
 dialog --backtitle "TAMO+ Install Script $ver" --title "TAMO+ Install Script $ver" --msgbox "${infobox}" 35 110
 
-main_menu() {
+tamo_install_menu() {
     local choice
     while true; do
         choice=$(dialog --backtitle "TAMO+ Install Script $ver" --title " MAIN MENU " \
@@ -701,4 +701,4 @@ rebootnd() {
 
 . /home/$currentuser/tamoplus/scripts/tamo-functions
 
-main_menu
+tamo_install_menu

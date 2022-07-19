@@ -977,6 +977,7 @@ dialog --colors --backtitle "TAMO+ Control Script $ver" \
 net_check
 if [ $NETCHECK = 1 ]; then dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Downloads not Availible Please Connect To Internet!" 0 0
 else
+	check_for_usersettings
 	if grep 'auto_update_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 		cd $INSTALL_DIR
 		git remote update

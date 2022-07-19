@@ -341,7 +341,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/carbonite"'
 NEW_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
 if grep 'themeset_carbonite=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Carbonite Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "carbonite"
+	if dialog --stdout --title "Carbonite Themeset is not Installed, would you like to install it?" --backtitle "Install Carbonite Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "carbonite"
 		sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -374,7 +374,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/devilchromey"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
 if grep 'themeset_devilchromey=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Diablos Arcade Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "devilchromey"
+	if dialog --stdout --title "Diablos Arcade Themeset is not Installed, would you like to install it?" --backtitle "Install Diablos Arcade Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "devilchromey"
 		sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -406,7 +406,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/halloweenspecial"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
 if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Halloween Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "halloweenspecial"
+	if dialog --stdout --title "Halloween Themeset is not Installed, would you like to install it?" --backtitle "Install Halloween Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "halloweenspecial"
 		sed -i "s|themeset_halloweenspecial=0|themeset_halloweenspecial=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -438,7 +438,7 @@ NEW_VIEW="value=\"grid\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/neonibad"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/NeonIBADExit.mp4"'
 if grep 'themeset_neonibad=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Neon IBAD Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "neonibad"
+	if dialog --stdout --title "NEON IBAD Themeset is not Installed, would you like to install it?" --backtitle "Install Neon IBAD Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "neonibad"
 		sed -i "s|themeset_neonibad=0|themeset_neonibad=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -470,7 +470,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
 if grep 'themeset_pistolero=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Pistolero Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pistolero"
+	if dialog --stdout --title "Pistolero Themeset is not Installed, would you like to install it?" --backtitle "Install Pistolero Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pistolero"
 		sed -i "s|themeset_pistolero=0|themeset_pistolero=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -502,7 +502,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
 if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Pleasure Paradise Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pleasureparadise"
+	if dialog --stdout --title "Plasure Paradise Themeset is not Installed, would you like to install it?" --backtitle "Install Pleasure Paradise Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pleasureparadise"
 		sed -i "s|themeset_pleasureparadise=0|themeset_pleasureparadise=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -534,7 +534,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerthings"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
 if grep 'themeset_strangerthings=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Stranger Things Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "strangerthings"
+	if dialog --stdout --title "Stranger Things Themeset is not Installed, would you like to install it?" --backtitle "Install Stranger Things Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "strangerthings"
 		sed -i "s|themeset_strangerthings=0|themeset_strangerthings=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -566,7 +566,7 @@ NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/supremeteam"'
 NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
 if grep 'themeset_supremeteam=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Supreme Team Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "supremeteam"
+	if dialog --stdout --title "Supreme Team Themeset is not Installed, would you like to install it?" --backtitle "Install Supreme Team Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "supremeteam"
 		sed -i "s|themeset_supremeteam=0|themeset_supremeteam=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -598,7 +598,7 @@ NEW_VIEW="value=\"automatic\""
 NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/merryxmas"'
 NEWX_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/XmasExit.mp4"'
 if grep 'themeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; then
-	if dialog --stdout --title "What to do?" --backtitle "Install Christmas Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "merryxmas"
+	if dialog --stdout --title "Christmas Themeset is not Installed, would you like to install it?" --backtitle "Install Christmas Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "merryxmas"
 		sed -i "s|themeset_merryxmas=0|themeset_merryxmas=1|" "$USER_SETTINGS"; fi
 fi
 sleep 1 
@@ -657,7 +657,7 @@ do
 	if [ -f "$file1" ]; then
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
-		if dialog --stdout --title "What to do?" --backtitle "Install Arcade Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+		if dialog --stdout --title "Arcade Music is not Installed, would you like to install it?" --backtitle "Install Arcade Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
 			download_bg_music "arcade"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
@@ -688,7 +688,7 @@ do
 	if [ -f "$file2" ]; then
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
-		if dialog --stdout --title "What to do?" --backtitle "Install Nostalgia Trip Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+		if dialog --stdout --title "Nostalgia Trip Music is not Installed, would you like to install it?" --backtitle "Install Nostalgia Trip Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
 			download_bg_music "nt"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
@@ -709,7 +709,7 @@ do
 	if [ -f "$file3" ]; then
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
-		if dialog --stdout --title "What to do?" --backtitle "Install Ultimate Vs. Fighter Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+		if dialog --stdout --title "Ultimate Vs. Fighter Music is not Installed, would you like to install it?" --backtitle "Install Ultimate Vs. Fighter Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
 			download_bg_music "uvf"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
@@ -730,7 +730,7 @@ do
 	if [ -f "$file4" ]; then
 		sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 	else
-		if dialog --stdout --title "What to do?" --backtitle "Install Venom Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
+		if dialog --stdout --title "Venom Music is not Installed, would you like to install it?" --backtitle "Install Venom Music?" --yesno "Yes: Install, No: Cancel" 7 60; then
 			download_bg_music "venom"
 			sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC
 		else break
