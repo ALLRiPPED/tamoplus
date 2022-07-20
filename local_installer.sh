@@ -354,7 +354,7 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <bool name="UseCustomCollectionsSystem" value="true" />
 <bool name="VideoAudio" value="true" />
 <bool name="VideoOmxPlayer" value="false" />
-<int name="MaxVRAM" value="80" />
+<int name="MaxVRAM" value="220" />
 <int name="ScraperResizeHeight" value="0" />
 <int name="ScraperResizeWidth" value="400" />
 <int name="ScreenSaverSwapImageTimeout" value="10000" />
