@@ -1,5 +1,7 @@
 #!/bin/bash
 # Reset all of your ES controller configuration. Similar to EZH Script.
+currentuser=$(whoami) # Check user
+. /home/$currentuser/tamoplus/scripts/tamo-vars
 
 infobox=""
 infobox="${infobox}\n"
@@ -43,7 +45,7 @@ function reset_ctrls() {
 	dialog --infobox "...Fixing..." 3 17 ; sleep 1
 	rm /home/pi/.emulationstation/es_input.cfg
 	rm /opt/retropie/configs/all/retroarch-joypads/*
-	cp /home/pi/.supreme_toolkit/sb_toolkit/es_cfg/es_input.cfg /home/pi/.emulationstation/
+	cp $INSTALL_DIR/files/es_input.cfg /home/pi/.emulationstation/
 	clear
 	echo
 	echo "[OK DONE!...]"
