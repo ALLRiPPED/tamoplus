@@ -1863,6 +1863,16 @@ else
 	fi
 fi
 }
+
+download_themes() {
+net_check
+if [ $NETCHECK = 1 ]; then dialog  --sleep 1 --title "OFFLINE ERROR!!" --msgbox " Offline ... Themes not Availible Please Connect To Internet!" 0 0
+else
+	if [ ! -d  "$THEMES_DIR/"${1}"" ]; then git clone "https://github.com/ALLRiPPED/es-theme-${1}.git" "/opt/retropie/configs/all/emulationstation/themes/${1}"
+	else cd "$THEMES_DIR/${1}"; git reset --hard; git pull; fi
+fi
+}
+
 #------------------------------#
 # Fan And Temperature Controls #
 #------------------------------#

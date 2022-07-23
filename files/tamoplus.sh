@@ -128,15 +128,17 @@ stats_check
             - "--------------------------------------" \
             3 "TAMO+ Themesets Downloader" \
             4 "TAMO+ Music Downloader" \
+            5 "TAMO+ Themes Installer" \
             - "--------------------------------------" \
-            5 "Update TAMO+" \
+            6 "Update TAMO+" \
             2>&1 > /dev/tty)
         case "$choice" in
             1) auto_update ;;
             2) retropie_menu ;;
             3) download_select_themesets ;;
             4) download_select_music ;;
-            5) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
+            5) download_select_themes ;;
+            6) bash $INSTALL_DIR/scripts/updater.sh; exit 1 ;;
             -) nono ;;
             *) break ;;
         esac
@@ -766,7 +768,8 @@ else
 -------------------------------
 -What are Themesets? Themesets are a collection of Themes, Music,
 -Splashscreens, Exitscreens, Videoloading screens, and Videoexit screens
--that coincide with together and that you can choose between 9 presets." 0 0
+-that coincide with together and that you can choose between 9 presets.
+-You can install more than one." 0 0
 
 	whiptail --clear --title "THEMESET INSTALL MENU" --separate-output \
 		--ok-button Install --cancel-button Back \
@@ -810,7 +813,8 @@ else
 -------------------------------
 -What is this? A collection of Music from different builds
 -that does not have a full Themeset currently in use.
--You can choose between 5 presets of music." 0 0
+-You can choose between 5 presets of music.
+-You can install more than one." 0 0
 
 	whiptail --clear --title "MUSIC INSTALL MENU" --separate-output \
 		--ok-button Install --cancel-button Back \
@@ -829,6 +833,47 @@ else
 			3) download_bg_music "nt" ;;
 			4) download_bg_music "uvt" ;;
 			5) download_bg_music "venom" ;;
+			*) ;;
+		esac
+		done < /tmp/results
+fi
+}
+
+download_select_themes() {
+stats_check
+	dialog  --sleep 1 --title "Themeset Installer Help" --msgbox " 
+-------------------------------
+   THEMES INSTALLER HELP
+-------------------------------
+-These are all the themes that TAMO+ uses in script that you can install.
+- standalone if you want instead of installing a Themeset
+-You can install more than one." 0 0
+
+	whiptail --clear --title "THEMES INSTALL MENU" --separate-output \
+		--ok-button Install --cancel-button Back \
+		--checklist "Choose:" 0 0 0 \
+			"1" "Install Carbonite ES Theme" off \
+			"2" "Install Christmas ES Theme" off \
+			"3" "Install Halloween ES Theme" off \
+			"4" "Install Diablos Arcade ES Theme" off \
+			"5" "Install Neon IBAD ES Theme" off \
+			"6" "Install Pistolero ES Theme" off \
+			"7" "Install Pleasure Paradise ES Theme" off \
+			"8" "Install Stranger Things ES Theme" off \
+			"9" "Install Supreme Ultra ES Theme" off \
+			2>/tmp/results
+	while read -r choice  
+		do
+		case $choice in
+			1) download_themes "carbonite" ;;
+			2) download_themes "merryxmas" ;;
+			3) download_themes "halloweenspecial" ;;
+			4) download_themes "devilchromey" ;;
+			5) download_themes "neonibad" ;;
+			6) download_themes "pistolero" ;;
+			7) download_themes "pleasureparadise" ;;
+			8) download_themes "strangerthings" ;;
+			9) download_themes "supremeteam" ;;
 			*) ;;
 		esac
 		done < /tmp/results
