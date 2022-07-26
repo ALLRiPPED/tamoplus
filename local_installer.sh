@@ -119,6 +119,7 @@ exit
 }
 
 download_themes() {
+if [ ! -d $THEMES_DIR ]; then mkdir $THEMES_DIR; fi
 # Downloading Themes
 echo "Downloading themes needed for TAMO+"
 if [ ! -d  "$THEMES_DIR/carbonite" ]; then git clone "https://github.com/ALLRiPPED/es-theme-carbonite.git" "$THEMES_DIR/carbonite"
@@ -662,7 +663,7 @@ rebootq() {
             --menu "Choose An Option Below" 25 85 20 \
             01 "Reboot Later and keep zips" \
             02 "Reboot Now and keep zips" \
-            03 "Rebot Later and Delete zips" \
+            03 "Reboot Later and Delete zips" \
             04 "Reboot Now and Delete zips" \
             2>&1 > /dev/tty)
         case "$choice" in

@@ -877,7 +877,6 @@ stats_check
 			*) ;;
 		esac
 		done < /tmp/results
-fi
 }
 
 fan_control() {
