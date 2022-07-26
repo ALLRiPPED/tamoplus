@@ -8,7 +8,7 @@
 currentuser=$(whoami) # Check user and then stop the script if root later on
 . /home/$currentuser/tamoplus/scripts/tamo-vars
 PYGAME_PKG="python3-pygame"
-PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libjpeg8 libpng12-0 fbi python-pip python3-pip python3-psutil wiringpi"
+PSUTIL_PKG="omxplayer python-pygame mpg123 imagemagick python-urllib3 libjpeg8 libpng12-0 fbi python-pip python3-pip python3-psutil wiringpi mono-complete v4l-utils libsdl1.2-dev libsdl-image1.2-dev libjpeg-dev"
 installset=0
 
 if [[ $currentuser == "root" ]]; then echo "DON'T RUN THIS SCRIPT AS ROOT! USE './local_installer.sh' !"; exit; fi
