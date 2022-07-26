@@ -229,7 +229,7 @@ if dialog --stdout --title "What to do?" \
           --backtitle "Keep ReroPie menus?" \
           --yesno "Yes: Delete, No:  Restore" 7 60; then
     dialog --title "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back" --msgbox "TRUE" 6 44
-	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
+	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
 	#---------------------------------------------------------------------
@@ -238,7 +238,7 @@ if dialog --stdout --title "What to do?" \
 	keep_menus
 else
     dialog --title "Keep Menus Now Set To Off. Now Removing RetroPie Menus." --msgbox "FALSE" 6 44
-	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
+	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
 	#---------------------------------------------------------------------
