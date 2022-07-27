@@ -32,6 +32,7 @@ sudo chown pi:pi $MENU_DIR/*
 sudo chmod +x $USER_SETTINGS
 cp -f $INSTALL_DIR/files/tamoplus.sh $MENU_DIR/tamoplus.sh
 echo -e "$(tput setaf 2)TAMO+ Updated$(tput setaf 0)"
+. /home/$currentuser/tamoplus/scripts/tamo-functions
 post_update
 sleep 2
 }
