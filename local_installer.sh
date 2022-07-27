@@ -226,9 +226,9 @@ check_for_usersettings
 cp /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist_bak.xml
 
 if dialog --stdout --title "What to do?" \
-          --backtitle "Keep ReroPie menus?" \
-          --yesno "Yes: Delete, No:  Restore" 7 60; then
-    dialog --title "Keep Menus Now Set To ON. Now Bring RetroPie Menus Back" --msgbox "TRUE" 6 44
+          --backtitle "Setup ReroPie Folder Menus?" \
+          --yesno "Yes: Folder Menus, No: Stock Menu" 7 60; then
+    dialog --title "Folder Menus Now Set To ON. Setting up Folder Menus" --msgbox "TRUE" 6 44
 	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
@@ -237,7 +237,7 @@ if dialog --stdout --title "What to do?" \
 	game_list_full
 	keep_menus
 else
-    dialog --title "Keep Menus Now Set To Off. Now Removing RetroPie Menus." --msgbox "FALSE" 6 44
+    dialog --title "Folder Menus Now Set To Off. Resetting back to RetroPie Stock Menu." --msgbox "FALSE" 6 44
 	sed -i "s|user_menu_flag=1|user_menu_flag=0|" "$USER_SETTINGS"
 	#---------------------------------------------------------------------
 	#ADD ALL ICONS AND THE FULL GAMELIST FOR EASY RSYNC EVEN WHEN REMOVING
