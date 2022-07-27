@@ -865,15 +865,15 @@ stats_check
 	while read -r choice  
 		do
 		case $choice in
-			1) download_themes "carbonite" ;;
-			2) download_themes "merryxmas" ;;
-			3) download_themes "halloweenspecial" ;;
-			4) download_themes "devilchromey" ;;
-			5) download_themes "neonibad" ;;
-			6) download_themes "pistolero" ;;
-			7) download_themes "pleasureparadise" ;;
-			8) download_themes "strangerthings" ;;
-			9) download_themes "supremeteam" ;;
+			1) download_tamo_themes "carbonite" ;;
+			2) download_tamo_themes "merryxmas" ;;
+			3) download_tamo_themes "halloweenspecial" ;;
+			4) download_tamo_themes "devilchromey" ;;
+			5) download_tamo_themes "neonibad" ;;
+			6) download_tamo_themes "pistolero" ;;
+			7) download_tamo_themes "pleasureparadise" ;;
+			8) download_tamo_themes "strangerthings" ;;
+			9) download_tamo_themes "supremeteam" ;;
 			*) ;;
 		esac
 		done < /tmp/results
