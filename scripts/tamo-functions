@@ -2112,8 +2112,8 @@ if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ ! -d "$MUSIC_DIR/neonibad" ]; then download_theme_music "neonibad"; fi
 fi
 
-if ! grep 'emulatornames = ["runcommand.sh","OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then
-	sed -i -E 's|emulatornames = \[|emulatornames = \"runcommand.sh","OPP.sh",|g' $SCRIPT_LOC; fi
+if ! grep 'emulatornames = \["runcommand.sh","OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then
+	sed -i -E 's|emulatornames = \[|emulatornames = \["runcommand.sh","OPP.sh",|g' $SCRIPT_LOC
 fi
 }
 
