@@ -60,7 +60,7 @@ tamo_install_menu() {
             --menu "Choose An Option Below" 25 85 20 \
             01 "Bare Install No Themes or Music Just Tools (Can Always Install Later)" \
             02 "Minimal Install Themesets No Extra Music (Can Always Install Later)" \
-            03 "Full Install Themesets No Custom Music (Must Reinstall For Custom Music)" \
+            03 "Full Install Themesets No Custom Music (Can Always Install Later)" \
             04 "Full Install Themesets And All Music (Everything Included)" \
             2>&1 > /dev/tty)
         case "$choice" in
