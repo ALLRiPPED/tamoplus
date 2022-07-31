@@ -677,6 +677,8 @@ rebootq() {
 }
 
 rebootl() {
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sudo openvt -c 1 -s -f emulationstation 2>&1
 	sleep 1
 	exit
 }
@@ -689,6 +691,8 @@ rebootn() {
 rebootld() {
 	rm -f $INSTALL_DIR/*.zip
 	echo -e "$(tput setaf 2)Zip Files Deleted$(tput setaf 0)"
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sudo openvt -c 1 -s -f emulationstation 2>&1
 	sleep 1
 	exit
 }
