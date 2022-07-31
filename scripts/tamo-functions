@@ -859,6 +859,10 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	game_list_full
 	rm_menus
 	db_detect
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
 else
 	echo "Now Set To Folders Menu. Now Bringing RetroPie Folders Menu Back"
 	sed -i "s|user_menu_flag=0|user_menu_flag=1|" "$USER_SETTINGS"
@@ -869,6 +873,10 @@ else
 	game_list_full
 	keep_menus
 	db_detect
+	sleep 1
+	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sudo openvt -c 1 -s -f emulationstation 2>&1
+	exit
 fi
 stats_check
 }
