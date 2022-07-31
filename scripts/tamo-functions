@@ -859,7 +859,7 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	game_list_full
 	rm_menus
 	db_detect
-	echo "Restarting Emulationstation"
+	echo "$(tput setaf 2)Restarting Emulationstation$(tput setaf 0)"
 	sleep 1
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
 	sudo openvt -c 1 -s -f emulationstation 2>&1
@@ -874,7 +874,7 @@ else
 	game_list_full
 	keep_menus
 	db_detect
-	echo "Restarting Emulationstation"
+	echo "$(tput setaf 2)Restarting Emulationstation$(tput setaf 0)"
 	sleep 1
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
 	sudo openvt -c 1 -s -f emulationstation 2>&1
