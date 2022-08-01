@@ -5,7 +5,6 @@
 # This script is a third party script to install the RetroHursty
 # Emulation Station themes onto a RetroPie build.
 #
-# It also includes the Motion Blue Unified ES bootup themes randomizer script
 #
 
 function depends_hurstythemes() {
@@ -41,7 +40,7 @@ dialog --infobox "...processing..." 3 20 ; sleep 2
 ifexist=`cat /opt/retropie/configs/all/autostart.sh |grep themerandom |wc -l`
 if [[ ${ifexist} > "0" ]]
 then
-  perl -pi -w -e 's/\/home\/pi\/RetroPie\/retropiemenu\/hurstythemes.sh/#\/home\/pi\/RetroPie\/retropiemenu\/hurstythemes.sh/g;' /opt/retropie/configs/all/autostart.sh
+  perl -pi -w -e 's/\/home\/pi\/scripts\/themerandom.sh/#\/home\/pi\/scripts\/themerandom.sh/g;' /opt/retropie/configs/all/autostart.sh
 fi
 sleep 2
 }
@@ -51,10 +50,10 @@ dialog --infobox "...processing..." 3 20 ; sleep 2
 ifexist=`cat /opt/retropie/configs/all/autostart.sh |grep themerandom |wc -l`
 if [[ ${ifexist} > "0" ]]
 then
-  perl -pi -w -e 's/#\/home\/pi\/RetroPie\/retropiemenu\/hurstythemes.sh/\/home\/pi\/RetroPie\/retropiemenu\/hurstythemes.sh/g;' /opt/retropie/configs/all/autostart.sh
+  perl -pi -w -e 's/#\/home\/pi\/scripts\/themerandom.sh/\/home\/pi\/scripts\/themerandom.sh/g;' /opt/retropie/configs/all/autostart.sh
 else
   cp /opt/retropie/configs/all/autostart.sh /opt/retropie/configs/all/autostart.sh.bkp
-  echo ". /home/pi/RetroPie/retropiemenu/hurstythemes.sh & theme_random" > /tmp/autostart.sh
+  echo "/home/pi/scripts/themerandom.sh" > /tmp/autostart.sh
   cat /opt/retropie/configs/all/autostart.sh >> /tmp/autostart.sh
   chmod 777 /tmp/autostart.sh
   cp /tmp/autostart.sh /opt/retropie/configs/all
@@ -77,19 +76,22 @@ function gui_hurstythemes() {
         options+=(F "Mini Sweet Themes Manager (240 Themes)")
         options+=(G "Cool Themes Manager (121 Themes)")
         options+=(H "Spin Themes Manager (172 Themes)")
-        options+=(I "16:9 Aspect Themes Manager (102 Themes)")
-        options+=(J "5:4 Aspect Themes Manager (8 Themes)")
+        options+=(I "16:9 Aspect Themes Manager (113 Themes)")
+        options+=(J "5:4 Aspect Themes Manager (15 Themes)")
         options+=(K "Vertical Aspect Themes Manager (2 Themes)")
         options+=(L "Chromey Blue Themes Manager (133 Themes)")
         options+=(M "Chromey Green Themes Manager (133 Themes)")
         options+=(N "Chromey Neon Themes Manager (134 Themes)")
-        options+=(O "Hursty's Picks Themes Manager (23 Themes)")
+        options+=(O "Hursty's Picks Themes Manager (31 Themes)")
 		options+=(P "Handheld (3:2, 4:3) Themes Manager (11 Themes)")
-		options+=(Q "Slick Themes Manager (29 Themes)")
+		options+=(Q "Slick Themes Manager (30 Themes)")
 		options+=(R "Hyper Themes Manager (177 Themes)")
 		options+=(S "Mario Themes Manager (22 Themes)")
 		options+=(T "GPi (320x240) Themes Manager (37 Themes)")
-		options+=(V "Comic (16:9) Themes Manager (11 Themes)")		
+		options+=(V "Comic (16:9) Themes Manager (11 Themes)")
+		options+=(W "Adios (16:9) Themes Manager (99 Themes)")
+		options+=(Y "Slanty (16:9) Themes Manager (77 Themes)")
+		options+=(Z "Community Themes Manager (Themes by the community, not just Hursty)")		
 
         local i=1
         for theme in "${themes[@]}"; do
@@ -106,7 +108,7 @@ function gui_hurstythemes() {
             fi
             ((i++))
         done
-        local cmd=(dialog --default-item "$default" --backtitle "Hursty's ES Themes Installer" --menu "Hursty's ES Themes Installer - (Well over 1300 Themes as at 31 March 2022)" 22 76 16)
+        local cmd=(dialog --default-item "$default" --backtitle "Hursty's ES Themes Installer" --menu "Hursty's Theme Installer (1505 ES Themes made by Hursty), also includes all the Community Made Themes (located bottom of the list)" 22 76 16)
         local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         default="$choice"
         [[ -z "$choice" ]] && break
@@ -176,7 +178,16 @@ function gui_hurstythemes() {
                 ;;
             V)  #Comic themes
                 Comic_themes
+                ;;
+            W)  #Adios themes
+                Adios_themes
                 ;;				
+            Y)  #Slanty themes
+                Slanty_themes
+                ;;	
+            Z)  #Community themes
+                Community_themes
+                ;;					
             *)  #install or update themes
                 theme=(${themes[choice-1]})
                 repo="${theme[0]}"
@@ -913,6 +924,7 @@ function 16x9_themes() {
 		'RetroHursty69 blueprism'
 		'RetroHursty69 bluesmooth'	
         'RetroHursty69 bluray'
+		'RetroHursty69 BoomBoxStreet'
         'RetroHursty69 boxalloyblue'
         'RetroHursty69 boxalloyred'
         'RetroHursty69 boxcity'
@@ -926,6 +938,7 @@ function 16x9_themes() {
 		'RetroHursty69 CircularEssence'
 		'RetroHursty69 ColorfulExtreme'
 		'RetroHursty69 ColorfulSupreme'
+		'RetroHursty69 ComicCover16x9'
         'RetroHursty69 comiccrazy'
         'RetroHursty69 corg'
 		'RetroHursty69 CosmicRise'
@@ -982,6 +995,8 @@ function 16x9_themes() {
         'RetroHursty69 orbpilot'
         'RetroHursty69 pacman'
         'RetroHursty69 pitube'
+		'RetroHursty69 PopCom16x9'
+		'RetroHursty69 PopCombo16x9'
         'RetroHursty69 primo'
         'RetroHursty69 primo_light'
         'RetroHursty69 realghostbusters'	
@@ -989,6 +1004,8 @@ function 16x9_themes() {
         'RetroHursty69 retroboy2'
         'RetroHursty69 retrogamenews'
         'RetroHursty69 retroroid'
+		'RetroHursty69 ShabangCLEAN'
+		'RetroHursty69 ShabangCRT'
         'RetroHursty69 ShadowClean'
 		'RetroHursty69 shine'		
         'RetroHursty69 snapback'
@@ -1068,8 +1085,11 @@ function 16x9_themes() {
 
 function 5x4_themes() {
     local themes=(
-        'RetroHursty69 synthyA1UP'
-		'RetroHursty69 supersynthyA1UP'	
+        'RetroHursty69 PopCom5x4'
+		'RetroHursty69 ComicCover5x4'
+		'RetroHursty69 synthyA1UP'
+		'RetroHursty69 supersynthyA1UP'
+		'RetroHursty69 Shabang5x4'		
         'RetroHursty69 Card_Decky_5x4'		
 		'RetroHursty69 2DAI4_Ratio_5-4'
         'RetroHursty69 arcade1up_aspectratio54'
@@ -1079,6 +1099,7 @@ function 5x4_themes() {
         'RetroHursty69 arcade1up_spaceinv2_vertical'
         'RetroHursty69 Vertical-Limit-A1UP-1024x1280'
 		'RetroHursty69 MK54'
+		'RetroHursty69 BoomBoxStreet4x3'
     )
     while true; do
         local theme
@@ -1783,6 +1804,7 @@ function hurstypicks_themes() {
 		'RetroHursty69 meshy'
 		'RetroHursty69 NeonFantasy'
         'RetroHursty69 retroroid'
+		'RetroHursty69 ShabangCRT'
         'RetroHursty69 Slick_Red'
         'RetroHursty69 soda'
         'RetroHursty69 stirling'
@@ -2468,24 +2490,576 @@ function Comic_themes() {
     done
 }
 
-function theme_random() {
-# Get list of currently installed themes and count
-ls /etc/emulationstation/themes > /tmp/themes
-mkdir -p -- "/opt/retropie/configs/all/emulationstation/themes"
-ls /opt/retropie/configs/all/emulationstation/themes >> /tmp/themes
-themecount=`cat /tmp/themes |wc -l`
+function Adios_themes() {
+    local themes=(
+			'RetroHursty69 Adios_007'
+			'RetroHursty69 Adios_Aliens'			
+			'RetroHursty69 Adios_Akuma'
+			'RetroHursty69 Adios_AlexKidd'
+			'RetroHursty69 Adios_Assassins'			
+			'RetroHursty69 Adios_Axel'
+			'RetroHursty69 Adios_Banjo'			
+			'RetroHursty69 Adios_Billy'
+			'RetroHursty69 Adios_Batman'
+			'RetroHursty69 Adios_Battletoads'			
+			'RetroHursty69 Adios_Bison'
+			'RetroHursty69 Adios_BobaFett'
+			'RetroHursty69 Adios_Boo'
+			'RetroHursty69 Adios_BOrchid'
+			'RetroHursty69 Adios_Bowser'
+			'RetroHursty69 Adios_BowserJr'
+			'RetroHursty69 Adios_C3PO'
+			'RetroHursty69 Adios_ChunLi'
+			'RetroHursty69 Adios_Crash'
+			'RetroHursty69 Adios_DevilMayCry'			
+			'RetroHursty69 Adios_DiddyKong'
+			'RetroHursty69 Adios_DonkeyKong'
+			'RetroHursty69 Adios_DonkeyKongJr'
+			'RetroHursty69 Adios_Doom'
+			'RetroHursty69 Adios_DoubleDragon'			
+			'RetroHursty69 Adios_Drake'
+			'RetroHursty69 Adios_Dragonball'			
+			'RetroHursty69 Adios_DrMario'
+			'RetroHursty69 Adios_DuckHunt'			
+			'RetroHursty69 Adios_DukeNukem'
+			'RetroHursty69 Adios_EarthwormJim'			
+			'RetroHursty69 Adios_Eggman'
+			'RetroHursty69 Adios_Freeman'			
+			'RetroHursty69 Adios_Ganon'			
+			'RetroHursty69 Adios_Gears'
+			'RetroHursty69 Adios_GodofWar'
+			'RetroHursty69 Adios_Ghouls'
+			'RetroHursty69 Adios_Goro'
+			'RetroHursty69 Adios_GTA'
+			'RetroHursty69 Adios_Halo'
+			'RetroHursty69 Adios_Heichi'
+			'RetroHursty69 Adios_Hulk'			
+			'RetroHursty69 Adios_Hwoarang'
+			'RetroHursty69 Adios_Invaders'
+			'RetroHursty69 Adios_Jago'
+			'RetroHursty69 Adios_Jak'
+			'RetroHursty69 Adios_Jin'			
+			'RetroHursty69 Adios_JohnnyCage'
+			'RetroHursty69 Adios_Joker'
+			'RetroHursty69 Adios_Ken'
+			'RetroHursty69 Adios_KOF'
+			'RetroHursty69 Adios_Koopa'
+			'RetroHursty69 Adios_Lara'
+			'RetroHursty69 Adios_Link'
+			'RetroHursty69 Adios_Luigi'
+			'RetroHursty69 Adios_Luke'
+			'RetroHursty69 Adios_Mario'
+			'RetroHursty69 Adios_MarioGolf'
+			'RetroHursty69 Adios_Megaman'
+			'RetroHursty69 Adios_MetalGear'
+			'RetroHursty69 Adios_Monkey'
+			'RetroHursty69 Adios_Nights'
+			'RetroHursty69 Adios_Ninja'
+			'RetroHursty69 Adios_Nook'
+			'RetroHursty69 Adios_Pacman'
+			'RetroHursty69 Adios_Paul'			
+			'RetroHursty69 Adios_Penelope'
+			'RetroHursty69 Adios_PepsiMan'
+			'RetroHursty69 Adios_Predator'
+			'RetroHursty69 Adios_Punchout'
+			'RetroHursty69 Adios_Rayman'
+			'RetroHursty69 Adios_ResidentEvil'
+			'RetroHursty69 Adios_Ryu'
+			'RetroHursty69 Adios_SackBoy'
+			'RetroHursty69 Adios_Samurai'
+			'RetroHursty69 Adios_ShyGuy'
+			'RetroHursty69 Adios_Sonic'
+			'RetroHursty69 Adios_Spiderman'
+			'RetroHursty69 Adios_Splatoon'
+			'RetroHursty69 Adios_SplinterCell'
+			'RetroHursty69 Adios_Spock'
+			'RetroHursty69 Adios_StarFox'
+			'RetroHursty69 Adios_Strikers'
+			'RetroHursty69 Adios_Sully'			
+			'RetroHursty69 Adios_Superman'
+			'RetroHursty69 Adios_Tails'
+			'RetroHursty69 Adios_Terminator'
+			'RetroHursty69 Adios_TerryB'
+			'RetroHursty69 Adios_TMNT'
+			'RetroHursty69 Adios_Toad'
+			'RetroHursty69 Adios_Toadette'
+			'RetroHursty69 Adios_TonyHawk'
+			'RetroHursty69 Adios_Vader'
+			'RetroHursty69 Adios_VirtuaFighter'
+			'RetroHursty69 Adios_Wolverine'
+			'RetroHursty69 Adios_WonderWoman'
+			'RetroHursty69 Adios_Yoda'
+			'RetroHursty69 Adios_Yoshi'
+			'RetroHursty69 Adios_Zelda'			
+    )
+    while true; do
+        local theme
+        local installed_themes=()
+        local repo
+        local options=()
+        local status=()
+        local default
 
-# Get the currently used theme name
-curtheme=`cat /opt/retropie/configs/all/emulationstation/es_settings.cfg |grep ThemeSet |cut -f4 -d '"'`
+        local i=1
+        for theme in "${themes[@]}"; do
+            theme=($theme)
+            repo="${theme[0]}"
+            theme="${theme[1]}"
+            if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                status+=("i")
+                options+=("$i" "Update or Uninstall $theme (installed)")
+                installed_themes+=("$theme $repo")
+            else
+                status+=("n")
+                options+=("$i" "Install $theme (not installed)")
+            fi
+            ((i++))
+        done
+        local cmd=(dialog --default-item "$default" --backtitle "Hursty's ES Themes Installer" --menu "Hursty's ES Themes Installer - Choose an option" 22 76 16)
+        local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+        default="$choice"
+        [[ -z "$choice" ]] && break
+        case "$choice" in
+            *)  #install or update themes
+                theme=(${themes[choice-1]})
+                repo="${theme[0]}"
+                theme="${theme[1]}"
+#                if [[ "${status[choice]}" == "i" ]]; then
+                if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                    options=(1 "Update $theme" 2 "Uninstall $theme")
+                    cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for theme" 12 40 06)
+                    local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+                    case "$choice" in
+                        1)
+                            install_theme_hurstythemes "$theme" "$repo"
+                            ;;
+                        2)
+                            uninstall_theme_hurstythemes "$theme"
+                            ;;
+                    esac
+                else
+                    install_theme_hurstythemes "$theme" "$repo"
+                fi
+                ;;
+        esac
+    done
+}
 
-# Generate a random number between 1 and theme count
-r=$(( $RANDOM % ${themecount} +1 ))
+function Slanty_themes() {
+    local themes=(
+			'RetroHursty69 Slanty_Agent47'
+			'RetroHursty69 Slanty_AlexKidd'
+			'RetroHursty69 Slanty_Astroboy'
+			'RetroHursty69 Slanty_Batman'
+			'RetroHursty69 Slanty_Battletoads'
+			'RetroHursty69 Slanty_Bomberman'
+			'RetroHursty69 Slanty_Boogerman'
+			'RetroHursty69 Slanty_BOrchid'
+			'RetroHursty69 Slanty_Bowser'
+			'RetroHursty69 Slanty_BubbleBobble'
+			'RetroHursty69 Slanty_Castlevania'
+			'RetroHursty69 Slanty_CrashBandicoot'
+			'RetroHursty69 Slanty_DarkStalkers'
+			'RetroHursty69 Slanty_DigDug'
+			'RetroHursty69 Slanty_DKJunior'
+			'RetroHursty69 Slanty_DonkeyKong'
+			'RetroHursty69 Slanty_Doom'
+			'RetroHursty69 Slanty_DrMario'
+			'RetroHursty69 Slanty_Earthbound'
+			'RetroHursty69 Slanty_EarthwormJim'
+			'RetroHursty69 Slanty_Eggman'
+			'RetroHursty69 Slanty_FinalFantasy'
+			'RetroHursty69 Slanty_FZero'
+			'RetroHursty69 Slanty_GameWatch'
+			'RetroHursty69 Slanty_Ganon'
+			'RetroHursty69 Slanty_GoW'
+			'RetroHursty69 Slanty_Halo'
+			'RetroHursty69 Slanty_Heichi'
+			'RetroHursty69 Slanty_Hulk'
+			'RetroHursty69 Slanty_Jin'
+			'RetroHursty69 Slanty_King'			
+			'RetroHursty69 Slanty_KingdomHearts'
+			'RetroHursty69 Slanty_Kirby'
+			'RetroHursty69 Slanty_KoF'
+			'RetroHursty69 Slanty_Koopa'
+			'RetroHursty69 Slanty_Lego'
+			'RetroHursty69 Slanty_Lemmings'
+			'RetroHursty69 Slanty_Link'
+			'RetroHursty69 Slanty_Luigi'
+			'RetroHursty69 Slanty_Mario'
+			'RetroHursty69 Slanty_Megaman'
+			'RetroHursty69 Slanty_Metroid'
+			'RetroHursty69 Slanty_MKGoro'
+			'RetroHursty69 Slanty_MKScorpion'
+			'RetroHursty69 Slanty_MKSubZero'
+			'RetroHursty69 Slanty_Nights'
+			'RetroHursty69 Slanty_NinjaGaiden'
+			'RetroHursty69 Slanty_Nook'
+			'RetroHursty69 Slanty_Pacman'
+			'RetroHursty69 Slanty_Pikachu'
+			'RetroHursty69 Slanty_Piranha'			
+			'RetroHursty69 Slanty_PrincePersia'
+			'RetroHursty69 Slanty_Punchout'
+			'RetroHursty69 Slanty_QBert'
+			'RetroHursty69 Slanty_Robotron'
+			'RetroHursty69 Slanty_SackBoy'
+			'RetroHursty69 Slanty_SFBison'
+			'RetroHursty69 Slanty_SFChunLi'
+			'RetroHursty69 Slanty_SFRyu'
+			'RetroHursty69 Slanty_Simpsons'
+			'RetroHursty69 Slanty_Sonic'
+			'RetroHursty69 Slanty_SoR'
+			'RetroHursty69 Slanty_Spiderman'
+			'RetroHursty69 Slanty_SplinterCell'
+			'RetroHursty69 Slanty_SpongeBob'
+			'RetroHursty69 Slanty_Spyro'
+			'RetroHursty69 Slanty_StarFox'
+			'RetroHursty69 Slanty_TMNT'
+			'RetroHursty69 Slanty_Toad'
+			'RetroHursty69 Slanty_TombRaider'
+			'RetroHursty69 Slanty_VirtuaFighter'
+			'RetroHursty69 Slanty_Wario'
+			'RetroHursty69 Slanty_WonderBoy'
+			'RetroHursty69 Slanty_Wrestling'
+			'RetroHursty69 Slanty_XMen'
+			'RetroHursty69 Slanty_Yoshi'
+			'RetroHursty69 Slanty_Zelda'			
+    )
+    while true; do
+        local theme
+        local installed_themes=()
+        local repo
+        local options=()
+        local status=()
+        local default
 
-# Read the random line in the tmp file to get a new theme name
-newtheme=`sed -n "${r}p" /tmp/themes`
+        local i=1
+        for theme in "${themes[@]}"; do
+            theme=($theme)
+            repo="${theme[0]}"
+            theme="${theme[1]}"
+            if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                status+=("i")
+                options+=("$i" "Update or Uninstall $theme (installed)")
+                installed_themes+=("$theme $repo")
+            else
+                status+=("n")
+                options+=("$i" "Install $theme (not installed)")
+            fi
+            ((i++))
+        done
+        local cmd=(dialog --default-item "$default" --backtitle "Hursty's ES Themes Installer" --menu "Hursty's ES Themes Installer - Choose an option" 22 76 16)
+        local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+        default="$choice"
+        [[ -z "$choice" ]] && break
+        case "$choice" in
+            *)  #install or update themes
+                theme=(${themes[choice-1]})
+                repo="${theme[0]}"
+                theme="${theme[1]}"
+#                if [[ "${status[choice]}" == "i" ]]; then
+                if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                    options=(1 "Update $theme" 2 "Uninstall $theme")
+                    cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for theme" 12 40 06)
+                    local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+                    case "$choice" in
+                        1)
+                            install_theme_hurstythemes "$theme" "$repo"
+                            ;;
+                        2)
+                            uninstall_theme_hurstythemes "$theme"
+                            ;;
+                    esac
+                else
+                    install_theme_hurstythemes "$theme" "$repo"
+                fi
+                ;;
+        esac
+    done
+}
 
-# Replace the current used theme with a new one
-perl -pi -w -e 's/<string name=\"ThemeSet\" value=\"'${curtheme}'\" \/>/<string name=\"ThemeSet\" value=\"'${newtheme}'\" \/>/g;' /opt/retropie/configs/all/emulationstation/es_settings.cfg
+function Community_themes() {
+    local themes=(
+        'RetroPie carbon'
+        'RetroPie carbon-centered'
+        'RetroPie carbon-nometa'
+        'RetroPie simple'
+        'RetroPie simple-dark'
+        'RetroPie clean-look'
+        'RetroPie color-pi'
+        'RetroPie nbba'
+        'RetroPie simplified-static-canela'
+        'RetroPie turtle-pi'
+        'RetroPie zoid'
+        'ehettervik pixel'
+        'ehettervik pixel-metadata'
+        'ehettervik pixel-tft'
+        'ehettervik luminous'
+        'ehettervik minilumi'
+        'ehettervik workbench'
+        'AmadhiX eudora'
+        'AmadhiX eudora-bigshot'
+        'AmadhiX eudora-concise'
+        'Omnija simpler-turtlepi'
+        'Omnija simpler-turtlemini'
+        'Omnija metro'
+        'lilbud material'
+        'mattrixk io'
+        'mattrixk metapixel'
+        'mattrixk spare'
+        'robertybob space'
+        'robertybob simplebigart'
+        'robertybob tv'
+        'HerbFargus tronkyfran'
+        'lilbud flat'
+        'lilbud flat-dark'
+        'lilbud minimal'
+        'lilbud switch'
+        'lilbud angular'
+        'FlyingTomahawk futura-V'
+        'FlyingTomahawk futura-dark-V'
+        'G-rila fundamental'
+        'ruckage nes-mini'
+        'ruckage famicom-mini'
+        'ruckage snes-mini'
+        'anthonycaccese crt'
+        'anthonycaccese crt-centered'
+        'anthonycaccese art-book'
+        'anthonycaccese art-book-4-3'
+        'anthonycaccese art-book-pocket'
+        'anthonycaccese art-book-micro'
+        'anthonycaccese tft'
+        'anthonycaccese picade'
+        'TMNTturtleguy ComicBook'
+        'TMNTturtleguy ComicBook_4-3'
+        'TMNTturtleguy ComicBook_SE-Wheelart'
+        'TMNTturtleguy ComicBook_4-3_SE-Wheelart'
+        'ChoccyHobNob cygnus'
+        'DTEAM-1 cygnus-blue-flames'
+        'dmmarti steampunk'
+        'dmmarti hurstyblue'
+        'dmmarti maximuspie'
+        'dmmarti showcase'
+        'dmmarti kidz'
+        'dmmarti unified'
+        'dmmarti gamehat'
+        'rxbrad freeplay'
+        'rxbrad gbz35'
+        'rxbrad gbz35-dark'
+        'garaine marioblue'
+        'garaine bigwood'
+        'MrTomixf Royal_Primicia'
+        'lostless playstation'
+        'mrharias superdisplay'
+        'coinjunkie synthwave'
+        'nickearl retrowave'
+        'nickearl retrowave_4_3'
+        'pacdude minijawn'
+        'RetroHursty69 magazinemadness'
+        'RetroHursty69 stirling'
+        'RetroHursty69 boxalloyred'
+        'RetroHursty69 boxalloyblue'
+        'RetroHursty69 greenilicious'
+        'RetroHursty69 retroroid'
+        'RetroHursty69 merryxmas'
+        'RetroHursty69 cardcrazy'
+        'RetroHursty69 license2game'
+        'RetroHursty69 comiccrazy'
+        'RetroHursty69 snazzy'
+        'RetroHursty69 tributeGoT'
+        'RetroHursty69 tributeSTrek'
+        'RetroHursty69 tributeSWars'
+        'RetroHursty69 crisp'
+        'RetroHursty69 crisp_light'
+        'RetroHursty69 primo'
+        'RetroHursty69 primo_light'
+        'RetroHursty69 back2basics'
+        'RetroHursty69 retrogamenews'
+        'RetroHursty69 bluray'
+        'RetroHursty69 soda'
+        'RetroHursty69 lightswitch'
+        'RetroHursty69 darkswitch'
+        'RetroHursty69 whiteslide'
+        'RetroHursty69 graffiti'
+        'RetroHursty69 whitewood'
+        'RetroHursty69 sublime'
+        'RetroHursty69 infinity'
+        'RetroHursty69 neogeo_only'
+        'RetroHursty69 boxcity'
+        'RetroHursty69 vertical_arcade'
+        'RetroHursty69 cabsnazzy'
+        'RetroHursty69 garfieldism'
+        'RetroHursty69 halloweenspecial'
+        'RetroHursty69 heychromey'
+        'RetroHursty69 homerism'
+        'RetroHursty69 spaceinvaders'
+        'RetroHursty69 disenchantment'
+        'RetroHursty69 minions'
+        'RetroHursty69 tmnt'
+        'RetroHursty69 pacman'
+        'RetroHursty69 dragonballz'
+        'RetroHursty69 minecraft'
+        'RetroHursty69 incredibles'
+        'RetroHursty69 mario_melee'
+        'RetroHursty69 evilresident'
+        'RetroHursty69 hurstyspin'
+        'RetroHursty69 cyber'
+        'RetroHursty69 supersweet'
+        'RetroHursty69 donkeykonkey'
+        'RetroHursty69 snapback'
+        'RetroHursty69 heman'
+        'RetroHursty69 pitube'
+        'RetroHursty69 batmanburton'
+        'RetroHursty69 NegativeColor'
+        'RetroHursty69 NegativeSepia'
+        'RetroHursty69 corg'
+        'RetroHursty69 mysticorb'
+        'RetroHursty69 joysticks'
+        'RetroHursty69 orbpilot'
+        'RetroHursty69 bitfit'
+        'RetroHursty69 circuit'
+        'RetroHursty69 retroboy'
+        'RetroHursty69 retroboy2'
+        'RetroHursty69 hurstybluetake2'
+        'RetroHursty69 fabuloso'
+        'RetroHursty69 arcade1up_aspectratio54'
+        'RetroHursty69 supersweet_aspectratio54'
+        'RetroHursty69 heychromey_aspectratio54'
+        'RetroHursty69 mariobrosiii'
+        'RetroHursty69 vertical_limit_verticaltheme'
+        'RetroHursty69 CapcomColorHorizontal'
+        'RetroHursty69 CapcomColorSpin'
+        'RetroHursty69 CapcomColorVertical'
+        'RetroHursty69 bluesteel'
+        'RetroHursty69 blueprism'
+        'RetroHursty69 bluesmooth'
+        'RetroHursty69 floyd'
+        'RetroHursty69 floyd_arcade'
+        'RetroHursty69 floyd_room'
+        'RetroHursty69 Slick_Bluey'
+        'RetroHursty69 Slick_Red'
+        'RetroHursty69 ghostbusters'
+        'RetroHursty69 realghostbusters'
+        'RetroHursty69 stirlingness'
+        'RetroHursty69 marco'
+        'RetroHursty69 swatch'
+        'RetroHursty69 meshy'
+        'RetroHursty69 magazinemadness2'
+        'RetroHursty69 CosmicRise'
+        'RetroHursty69 uniflyered'
+        'RetroHursty69 gametime'
+        'RetroHursty69 CRTBlast'
+        'RetroHursty69 CRTNeonBlast'
+        'RetroHursty69 CRTCabBlast'
+        'RetroHursty69 ComicCRASHB'
+        'RetroHursty69 ComicPACMAN'
+        'RetroHursty69 ComicSONIC'
+        'RetroHursty69 ComicXMEN'
+        'RetroHursty69 ComicZELDA'
+        'RetroHursty69 synthy16x9'
+        'RetroHursty69 synthyA1UP'
+        'RetroHursty69 supersynthy16x9'
+        'RetroHursty69 supersynthyA1UP'
+        'RetroHursty69 HyperCab'
+        'RetroHursty69 NeonFantasy'
+        'RetroHursty69 ShadowClean'
+        'RetroHursty69 shine'
+        'RetroHursty69 Vinyl-Hits'
+        'RetroHursty69 ColorfulExtreme'
+        'RetroHursty69 ColorfulSupreme'
+        'RetroHursty69 CircularEssence'
+        'RetroHursty69 BoomBoxStreet'
+        'RetroHursty69 ShabangCLEAN'
+        'RetroHursty69 ShabangCRT'
+        'Saracade scv720'
+        'chicueloarcade Chicuelo'
+        'SuperMagicom nostalgic'
+        'lipebello retrorama'
+        'lipebello retrorama-turbo'
+        'lipebello strangerstuff'
+        'lipebello spaceoddity'
+        'lipebello spaceoddity-43'
+        'lipebello spaceoddity-wide'
+        'lipebello swineapple'
+        'waweedman pii-wii'
+        'waweedman Blade-360'
+        'waweedman Venom'
+        'waweedman Spider-Man'
+        'blowfinger77 locomotion'
+        'justincaseurskynet Arcade1up-5x4-Horizontal'
+        'KALEL1981 Super-Retroboy'
+        'xovox RetroCRT-240p'
+        'xovox RetroCRT-240p-Rainbow'
+        'xovox RetroCRT-240p-Vertical'
+        'arcadeforge push-a'
+        'arcadeforge push-a-v'
+        'arcadeforge pixel-heaven'
+        'arcadeforge pixel-heaven-text'
+        'arcadeforge 240p_Bubblegum'
+        'arcadeforge 240p-honey'
+        'dionmunk clean'
+        'c64-dev epicnoir'
+        'AndreaMav arcade-crt'
+        'AndreaMav arcade-crt2020'
+        'Zechariel VectorPie'
+        'KALEL1981 nes-box'
+        'KALEL1981 super-arcade1up-5x4'
+        'KALEL1981 gold-standard'
+        'Elratauru angular-artwork'
+        'cjonasw raspixel-320-240'
+        'crxone 3twenty2fourty'			
+    )
+    while true; do
+        local theme
+        local installed_themes=()
+        local repo
+        local options=()
+        local status=()
+        local default
+
+        local i=1
+        for theme in "${themes[@]}"; do
+            theme=($theme)
+            repo="${theme[0]}"
+            theme="${theme[1]}"
+            if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                status+=("i")
+                options+=("$i" "Update or Uninstall $theme (installed)")
+                installed_themes+=("$theme $repo")
+            else
+                status+=("n")
+                options+=("$i" "Install $theme (not installed)")
+            fi
+            ((i++))
+        done
+        local cmd=(dialog --default-item "$default" --backtitle "Hursty's ES Themes Installer" --menu "Hursty's ES Themes Installer - Choose an option" 22 76 16)
+        local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+        default="$choice"
+        [[ -z "$choice" ]] && break
+        case "$choice" in
+            *)  #install or update themes
+                theme=(${themes[choice-1]})
+                repo="${theme[0]}"
+                theme="${theme[1]}"
+#                if [[ "${status[choice]}" == "i" ]]; then
+                if [[ -d "/etc/emulationstation/themes/$theme" ]]; then
+                    options=(1 "Update $theme" 2 "Uninstall $theme")
+                    cmd=(dialog --backtitle "$__backtitle" --menu "Choose an option for theme" 12 40 06)
+                    local choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+                    case "$choice" in
+                        1)
+                            install_theme_hurstythemes "$theme" "$repo"
+                            ;;
+                        2)
+                            uninstall_theme_hurstythemes "$theme"
+                            ;;
+                    esac
+                else
+                    install_theme_hurstythemes "$theme" "$repo"
+                fi
+                ;;
+        esac
+    done
 }
 
 gui_hurstythemes
