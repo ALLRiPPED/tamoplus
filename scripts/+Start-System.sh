@@ -10,21 +10,21 @@ function main_menu() {
             --menu "What action would you like to perform?" 25 75 20 \
             1 "+Start-Amiberry" \
             2 "+Start-DOSBox" \
-			3 "+Start-DOSBox-SDL2" \
+            3 "+Start-DOSBox-SDL2" \
             4 "+Start-Fuse" \
-			5 "+Start-Reicast" \
+            5 "+Start-Reicast" \
             6 "+Start-ResidualVM" \
-			7 "+Start-ScummVM" \
+            7 "+Start-ScummVM" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) +Start-Amiberry  ;;
             2) +Start-DOSBox  ;;
-			3) +Start-DOSBox-SDL2  ;;
+            3) +Start-DOSBox-SDL2  ;;
             4) +Start-Fuse  ;;
-		    5) +Start-Reicast  ;;
+            5) +Start-Reicast  ;;
             6) +Start-ResidualVM  ;;
-		    7) +Start-ScummVM  ;;
+            7) +Start-ScummVM  ;;
             *)  break ;;
         esac
     done
