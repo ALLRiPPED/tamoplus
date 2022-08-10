@@ -2119,6 +2119,12 @@ if [ -f "$VID_LOD_SCR/halloween/default.mp4" ]; then mv -f "$VID_LOD_SCR/hallowe
 if [ -f "$VID_LOD_SCR/supreme/default.mp4" ]; then mv -f "$VID_LOD_SCR/supreme" "$VID_LOD_SCR/supremeteam"; fi
 if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$VID_LOD_SCR/carbonite"; fi
 
+if ! grep 'pkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; fi
+if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
+
+if ! grep 'pkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; then sed -i -e '$apkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; fi
+
+
 if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ ! -d "$MUSIC_DIR/neonibad" ]; then download_theme_music "neonibad"; fi
 fi
