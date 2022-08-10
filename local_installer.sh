@@ -142,9 +142,9 @@ else cd $THEMES_DIR/merryxmas; git reset --hard; git pull; fi
 }
 
 download_videos() {
+if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
 echo "Setting up Splash, Exit, and Game Launching Screens"
 if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
 	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
 else echo "Moving Default Launch Screens to default folder"
 	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
@@ -531,7 +531,7 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 #!/bin/sh
 ### Begin VideoLoading Screens Function
 enablevideolaunch="true"
-videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/"
+videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/default"
 if [[ $enablevideolaunch == "true" ]]; then
 	# Extract file name from called ROM
 	gname="$(basename "$3")"
@@ -570,7 +570,7 @@ if [[ ${filefound51} > 0 ]]; then sed -i '/home\/pi\/BGM_vol_fade.sh -stop/d' $R
 		sed -i '1i #!/bin/sh' $RUNONSTART
 		sed -i '2i ### Begin VideoLoading Screens Function' $RUNONSTART
 		sed -i '3i enablevideolaunch="true"' $RUNONSTART
-		sed -i '4i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens"' $RUNONSTART
+		sed -i '4i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/default/"' $RUNONSTART
 		sed -i '5i if [[ $enablevideolaunch == "true" ]]; then' $RUNONSTART
 		sed -i '23i ### End VideoLoading Screens Function' $RUNONSTART
 		sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
@@ -581,7 +581,7 @@ fi
 ifexist2=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "vlc --no-loop --play-and-exit --no-video-title-show" |wc -l`
 if [[ ${ifexist2} > 0 ]]; then
 	echo -e "$(tput setaf 2)Now Editing Runcommand On Start And Enabling Tamo+! $(tput sgr0)"
-	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens"' $RUNONSTART
+	sed -i '6i videoloadingscreens="/home/pi/RetroPie/videoloadingscreens/default/"' $RUNONSTART
 	sed -i 's/vlc --no-loop --play-and-exit --no-video-title-show/omxplayer --vol 250 --amp 250 -b/g' $RUNONSTART
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 fi
