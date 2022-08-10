@@ -460,6 +460,7 @@ if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
 # /etc/init.d/start-sound
 
 omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
+pkill -f -CONT BGM.py
 EOF1293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
 fi
@@ -549,6 +550,8 @@ if [[ $enablevideolaunch == "true" ]]; then
 	fi
 fi
 ### End VideoLoading Screens Function
+pkill -f -STOP BGM.py
+pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1
 EOF1234
 	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
 	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
@@ -595,6 +598,7 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #! /bin/bash
 # /etc/init.d/start-sound
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+pkill -f -CONT BGM.py
 EOF12345
 	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 fi
@@ -612,6 +616,7 @@ if [[ ${filefound3} > 0 ]]; then
 #! /bin/bash
 # /etc/init.d/start-sound
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+pkill -f -CONT BGM.py
 EOF12345
 	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 
@@ -630,10 +635,6 @@ else sed -i '1i #!/bin/bash' $RUNONEND; fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 3
 clear
-CUR_THM=$(grep "<string name=\"ThemeSet\"" "$ES_SETTINGS"|awk '{print $3}')
-NEW_THM="value=\"carbonite\""
-if [ $CUR_THM == $NEW_THM ]; then echo "Theme already set!"; else sed -i -E "s|${CUR_THM}|${NEW_THM}|g" $ES_SETTINGS; fi
-sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/JarvisSplash.mp4/" $SPLSCREEN
 
 cd $HOME
 }
@@ -677,6 +678,7 @@ rebootq() {
 
 rebootl() {
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
 	sudo openvt -c 1 -s -f emulationstation 2>&1
 	sleep 1
 	exit
@@ -691,6 +693,7 @@ rebootld() {
 	rm -f $INSTALL_DIR/*.zip
 	echo -e "$(tput setaf 2)Zip Files Deleted$(tput setaf 0)"
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
+	sleep 1
 	sudo openvt -c 1 -s -f emulationstation 2>&1
 	sleep 1
 	exit
