@@ -2127,7 +2127,7 @@ if ! grep 'emulatornames = \["OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then
 	sed -i -E 's|emulatornames = \[|emulatornames = \["OPP.sh",|g' $SCRIPT_LOC
 fi
 
-if ! grep '"hypseus.sh","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; then
+if ! grep '"hypseus.sh","flycast","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; then
 	sed -i -E 's|"hypseus.sh","reicast"|"hypseus.sh","flycast","reicast"|g' $SCRIPT_LOC
 fi
 }
