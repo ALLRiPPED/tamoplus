@@ -518,7 +518,7 @@ EOF123
 	fi
 fi
 
-filefound21=`cat /opt/retropie/configs/all//autostart.sh |grep "/bin/bash" |wc -l`
+filefound21=`cat /opt/retropie/configs/all/autostart.sh |grep "/bin/bash" |wc -l`
 if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
@@ -586,7 +586,7 @@ if [[ ${ifexist2} > 0 ]]; then
 	sed -i 's/$HOME\/RetroPie\/videoloadingscreens/$videoloadingscreens/g' $RUNONSTART
 fi
 
-filefound31=`cat /opt/retropie/configs/all//runcommand-onstart.sh |grep "/bin/bash" |wc -l`
+filefound31=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/bin/bash" |wc -l`
 if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 
@@ -628,7 +628,7 @@ if [[ ${ifexist3} > 0 ]]; then
 	echo "already in runcommand-onend.sh" > /tmp/exists
 fi
 
-filefound41=`cat /opt/retropie/configs/all//runcommand-onend.sh |grep "/bin/bash" |wc -l`
+filefound41=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "/bin/bash" |wc -l`
 if [[ ${filefound41} > 0 ]]; then echo "Shebang already in runcommand-onend.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $RUNONEND; fi
 
@@ -677,10 +677,6 @@ rebootq() {
 }
 
 rebootl() {
-	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
-	sleep 1
-	sudo openvt -c 1 -s -f emulationstation 2>&1
-	sleep 1
 	exit
 }
 
@@ -692,9 +688,6 @@ rebootn() {
 rebootld() {
 	rm -f $INSTALL_DIR/*.zip
 	echo -e "$(tput setaf 2)Zip Files Deleted$(tput setaf 0)"
-	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
-	sleep 1
-	sudo openvt -c 1 -s -f emulationstation 2>&1
 	sleep 1
 	exit
 }
