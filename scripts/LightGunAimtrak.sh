@@ -18,15 +18,15 @@ echo ""
 echo ""
 echo "Making advance mame config changes so your Aimtrak will be detected in game."
 sleep 3
-sed -i 's/device_mouse auto/device_mouse raw/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousedev\[0\] auto/device_raw_mousedev[0] \/dev\/input\/mouse0/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousedev\[1\] auto/device_raw_mousedev[1] \/dev\/input\/mouse1/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousedev\[2\] auto/device_raw_mousedev[2] \/dev\/input\/mouse2/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousedev\[3\] auto/device_raw_mousedev[3] \/dev\/input\/mouse3/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousetype\[0\] pnp/device_raw_mousetype[0] ps2/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousetype\[1\] pnp/device_raw_mousetype[1] ps2/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousetype\[2\] pnp/device_raw_mousetype[2] ps2/g' /home/pi/.advance/advmame-1.4.rc
-sed -i 's/device_raw_mousetype\[3\] pnp/device_raw_mousetype[3] ps2/g' /home/pi/.advance/advmame-1.4.rc
+sed -i 's/device_mouse auto/device_mouse raw/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousedev\[0\] auto/device_raw_mousedev[0] \/dev\/input\/mouse0/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousedev\[1\] auto/device_raw_mousedev[1] \/dev\/input\/mouse1/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousedev\[2\] auto/device_raw_mousedev[2] \/dev\/input\/mouse2/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousedev\[3\] auto/device_raw_mousedev[3] \/dev\/input\/mouse3/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousetype\[0\] pnp/device_raw_mousetype[0] ps2/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousetype\[1\] pnp/device_raw_mousetype[1] ps2/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousetype\[2\] pnp/device_raw_mousetype[2] ps2/g' /home/pi/.advance/advmame.rc
+sed -i 's/device_raw_mousetype\[3\] pnp/device_raw_mousetype[3] ps2/g' /home/pi/.advance/advmame.rc
 echo ""
 echo ""
 echo "Checking for the cheats.dat file. I will install and enable cheats for Advance-Mame if they are needed."
