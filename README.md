@@ -68,6 +68,15 @@ https://www.youtube.com/watch?v=I0nUTGeLT8o<br>
 3. Nostalgia Trip (Brian Damaso).
 4. Ultimate Vs. Fighter (David Ball).
 5. Venom (Kio Dieken).
+## Included Tools
+1 The Entire Tools From Supreme Ultra v1.1 
+2 Auto-Amiga-Install simple script to set-up base folders and files on RetroPie for Amiga WHDload gaming, including downloading the WHDLoad Booter and some example games.
+3 Aimtrak LightGuns Configuration Script
+4 Sinden Lightguns Configuration Script
+5 Xin Mo or Juyao Dual Player Controllers Setup Script
+6 Bezel Project Script
+7 Husrty Themes
+8 Supreme Team Marquee Tool (PieMarquee2 install by default)
 ## Preview
 [![](https://i.imgur.com/jPYSdPr.png)](https://youtu.be/8lft4ufwE0o "Demo Preview")
 ## Color Section

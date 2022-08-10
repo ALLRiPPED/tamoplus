@@ -381,7 +381,6 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="SubtitleAlignment" value="left" />
 <string name="SubtitleFont" value="/usr/share/fonts/truetype/freefont/FreeSans.ttf" />
 <string name="SubtitleItalicFont" value="/usr/share/fonts/truetype/freefont/FreeSansOblique.ttf" />
-<string name="ThemeSet" value="carbonite" />
 <string name="TransitionStyle" value="fade" />
 <string name="UIMode" value="Full" />
 <string name="UIMode_passkey" value="uuddlrlrba" />

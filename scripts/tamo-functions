@@ -1015,7 +1015,6 @@ mv /home/pi/RetroPie/retropiemenu/retronetplay.rp /home/pi/RetroPie/retropiemenu
 mv /home/pi/RetroPie/retropiemenu/retroarch.rp /home/pi/RetroPie/retropiemenu/retropietools/retroarch.rp
 mv /home/pi/RetroPie/retropiemenu/filemanager.rp /home/pi/RetroPie/retropiemenu/retropietools/filemanager.rp
 mv /home/pi/RetroPie/retropiemenu/bluetooth.rp /home/pi/RetroPie/retropiemenu/retropietools/bluetooth.rp
-mv /home/pi/RetroPie/retropiemenu/showip.rp /home/pi/RetroPie/retropiemenu/retropietools/showip.rp
 chmod 755 /home/pi/RetroPie/retropiemenu/retropietools/*
 #--------------------------------------------------------------------------------------------------------#
    
@@ -2125,6 +2124,10 @@ fi
 
 if ! grep 'emulatornames = \["OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then
 	sed -i -E 's|emulatornames = \[|emulatornames = \["OPP.sh",|g' $SCRIPT_LOC
+fi
+
+if ! grep '"hypseus.sh","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; then
+	sed -i -E 's|"hypseus.sh","reicast"|"hypseus.sh","flycast","reicast"|g' $SCRIPT_LOC
 fi
 }
 
