@@ -113,6 +113,7 @@ if [ $installset -ge "3" ]; then download_bgmusic; echo "Background Music All Do
 if [ $installset -eq "4" ]; then download_custommusic; echo "Custom Music All Done."; fi
 
 setup
+post_update
 install_ending
 exit
 }
@@ -145,8 +146,6 @@ download_videos() {
 if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
 echo "Setting up Splash, Exit, and Game Launching Screens"
 if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
-else echo "Moving Default Launch Screens to default folder"
 	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
 fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
@@ -590,6 +589,13 @@ filefound31=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/bin/bas
 if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 
+filefound91=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "pkill -f -CONT BGM.py" |wc -l`
+if [[ ${filefound91} > 0 ]]; then echo "$(tput setaf 2)Tamo+ Script Already Found In Runcommand-OnEnd! $(tput sgr0)"
+else
+	if ! grep 'pkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; fi
+	if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
+fi
+
 # Runcommand On End Edits for TAMO+
 if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
@@ -622,10 +628,9 @@ EOF12345
 
 fi
 
-ifexist3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "omxplayer --vol 250 --amp 250 -b" |wc -l`
-if [[ ${ifexist3} > 0 ]]; then
-	echo -e "$(tput setaf 2)Tamo+ Script Already Found In Runcommand! $(tput sgr0)"
-	echo "already in runcommand-onend.sh" > /tmp/exists
+filefound92=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -f -CONT BGM.py" |wc -l`
+if [[ ${filefound92} > 0 ]]; then echo "$(tput setaf 2)Tamo+ Script Already Found In Runcommand-OnEnd! $(tput sgr0)" > /tmp/exists
+else if ! grep 'pkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; then sed -i -e '$apkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; fi
 fi
 
 filefound41=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "/bin/bash" |wc -l`
