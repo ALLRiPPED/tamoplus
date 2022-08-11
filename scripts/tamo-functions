@@ -2108,14 +2108,15 @@ if [ -f $USER_SETTINGS ]; then
 	if ! grep 'themeset_merryxmas=' "$USER_SETTINGS" > /dev/null 2>&1; then sed -i -e '$athemeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; fi
 fi
 
-if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then sudo rm -f /opt/retropie/configs/all/runcommand-onend.sh; fi
-	cat <<\EOF12345 > "/tmp/templist3"
+if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
+	sudo rm -f /opt/retropie/configs/all/runcommand-onend.sh
+	cat <<\EOF12345 > "/opt/retropie/configs/all/runcommand-onend.sh"
 #!/bin/bash
 #/etc/init.d/start-sound
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 pkill -f -CONT BGM.py
 EOF12345
-	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 fi
 
 if [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]; then mv -f "$MUSIC_DIR/xmas" "$MUSIC_DIR/merryxmas"; fi
