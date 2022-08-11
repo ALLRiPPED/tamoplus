@@ -604,9 +604,10 @@ fi
 filefound72=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/home/pi/RetroPie/videoloadingscreens/carbonite" |wc -l`
 if [[ ${filefound72} > 0 ]]; then echo "$(tput setaf 2) Outo video load fix already added! $(tput sgr0)"
 else
-sed -i 's/\/home\/pi\/RetroPie\/videoloadingscreens\/carbonite/\/home\/pi\/RetroPie\/videoloadingscreens\/default/g' $RUNONSTART
+CUR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
+NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/default"'
+if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 fi
-
 
 # Runcommand On End Edits for TAMO+
 if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
