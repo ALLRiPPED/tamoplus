@@ -819,21 +819,21 @@ else
 	whiptail --clear --title "MUSIC INSTALL MENU" --separate-output \
 		--ok-button Install --cancel-button Back \
 		--checklist "Choose:" 0 0 0 \
-			- "--------------EXTRA-MUSIC--------------" \
+			- "--------------EXTRA-MUSIC--------------" off \
 			"1" "Install Arcade Music" off \
 			"2" "Install Custom Music" off \
 			"3" "Install Nostalgia Trip Music" off \
 			"4" "Install Ultimate Vs Fighter Music" off \
 			"5" "Install Venom Music" off \
-			- "-----------THEMESET-MUSIC--------------" \
-			"6" "Install Christmas Music" \
-			"7" "Install Diablos Arcade Music" \
-			"8" "Install Halloween Music" \
-			"9" "Install Neon IBAD Music" \
-			"10" "Install Pistolero Music" \
-			"11" "Install Pleasure Paradise Music" \
-			"12" "Install Stranger Things Music" \
-			"13" "Install Supreme Ultra Music" \
+			- "-----------THEMESET-MUSIC--------------" off \
+			"6" "Install Christmas Music" off \
+			"7" "Install Diablos Arcade Music" off \
+			"8" "Install Halloween Music" off \
+			"9" "Install Neon IBAD Music" off \
+			"10" "Install Pistolero Music" off \
+			"11" "Install Pleasure Paradise Music" off \
+			"12" "Install Stranger Things Music" off \
+			"13" "Install Supreme Ultra Music" off \
 			2>/tmp/results
 	while read -r choice  
 		do
