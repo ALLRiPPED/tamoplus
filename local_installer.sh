@@ -525,8 +525,6 @@ else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 # Runcommand On Start Edits for TAMO+
 if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
-	echo '' > /opt/retropie/configs/all/runcommand-onstart.sh
-	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
 	cat <<\EOF1234 > "/tmp/templist2"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
@@ -554,6 +552,7 @@ pkill -f -STOP BGM.py
 pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1
 EOF1234
 	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
 	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
 fi
 
