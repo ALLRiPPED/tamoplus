@@ -602,8 +602,8 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
 	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 	cat <<\EOF12345 > "/tmp/templist3"
-#! /bin/bash
-# /etc/init.d/start-sound
+#!/bin/bash
+#/etc/init.d/start-sound
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 pkill -f -CONT BGM.py
 EOF12345
@@ -612,20 +612,16 @@ fi
 
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
-	sed -i '/pkill -CONT mpg123/d' $RUNONEND
-	sed -i '/#pkill -CONT mpg123/d' $RUNONEND
+	sed -i 's/pkill -CONT mpg123/pkill -f -CONT BGM.py/g' $RUNONEND
+	sed -i 's/#pkill -CONT mpg123/pkill -f -CONT BGM.py/g' $RUNONEND
 	sed -i '/#(sleep 2 && \/home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sed -i '/(sleep 2 && \/home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sed -i '/(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sed -i '/#(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
+	sed -i '1i #!/bin/sh' $RUNONEND
+	sed -i '2i #/etc/init.d/start-sound' $RUNONEND
+	sed -i '3i sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
 	sleep 1
-cat <<\EOF12345 > "/tmp/templist4"
-#! /bin/bash
-# /etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
-pkill -f -CONT BGM.py
-EOF12345
-sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist4)
 fi
 
 filefound92=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -f -CONT BGM.py" |wc -l`
