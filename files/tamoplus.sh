@@ -845,12 +845,12 @@ else
 			5) download_bg_music "venom" ;;
 			6) download_theme_music "merryxmas" ;;
 			7) download_theme_music "devilchromey" ;;
-			7) download_theme_music "halloweenspecial" ;;
-			8) download_theme_music "neonibad" ;;
-			9) download_theme_music "pistolero" ;;
-			10) download_theme_music "pleasureparadise" ;;
-			11) download_theme_music "strangerthings" ;;
-			12) download_theme_music "supremeteam" ;;
+			8) download_theme_music "halloweenspecial" ;;
+			9) download_theme_music "neonibad" ;;
+			10) download_theme_music "pistolero" ;;
+			11) download_theme_music "pleasureparadise" ;;
+			12) download_theme_music "strangerthings" ;;
+			13) download_theme_music "supremeteam" ;;
 			-) nono ;;
 			*) ;;
 		esac
