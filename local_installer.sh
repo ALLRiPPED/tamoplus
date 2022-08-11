@@ -523,6 +523,10 @@ if [[ ${filefound21} > 0 ]]; then echo "Shebang already in autostart.sh" > /tmp/
 else sed -i '1i #!/bin/bash' $AUTOSTART; fi
 
 # Runcommand On Start Edits for TAMO+
+if [ ! -s /opt/retropie/configs/all/runcommand-onstart.sh ]; then
+	sudo rm -f /opt/retropie/configs/all/runcommand-onstart.sh
+fi
+	
 if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
 	cat <<\EOF1234 > "/tmp/templist2"
@@ -596,10 +600,20 @@ else
 	if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
 fi
 
+#Fix outo carbonite
+filefound72=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/home/pi/RetroPie/videoloadingscreens/carbonite" |wc -l`
+if [[ ${filefound72} > 0 ]]; then echo "$(tput setaf 2) Outo video load fix already added! $(tput sgr0)"
+else
+sed -i 's/\/home\/pi\/RetroPie\/videoloadingscreens\/carbonite/\/home\/pi\/RetroPie\/videoloadingscreens\/default/g' $RUNONSTART
+fi
+
+
 # Runcommand On End Edits for TAMO+
+if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
+	sudo rm -f /opt/retropie/configs/all/runcommand-onend.sh
+fi	
+
 if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
-	echo '' > /opt/retropie/configs/all/runcommand-onend.sh
-	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 	cat <<\EOF12345 > "/tmp/templist3"
 #!/bin/bash
 #/etc/init.d/start-sound
@@ -607,6 +621,7 @@ sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForP
 pkill -f -CONT BGM.py
 EOF12345
 	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
+	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 fi
 
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
