@@ -244,7 +244,7 @@ fi
 if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
 echo "Setting up Splash, Exit, and Game Launching Screens"
 if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	mv "/home/pi/RetroPie/videoloadingscreens/!(default)" "/home/pi/RetroPie/videoloadingscreens/default/"
+	mv -f /home/pi/RetroPie/videoloadingscreens/* /home/pi/RetroPie/videoloadingscreens/default/ > /dev/null 2>&1
 fi
 
 echo "Installing Needed Packages"
