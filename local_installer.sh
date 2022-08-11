@@ -257,7 +257,7 @@ fi
 sudo apt-get install -y $PSUTIL_PKG # to generate overlays
 sudo pip install requests gdown
 git clone https://github.com/WiringPi/WiringPi
-sh $HOME/WiringPi
+cd $HOME/WiringPi
 sh build
 cd $HOME
 
