@@ -205,10 +205,10 @@ if [ -f "$MUSIC_DIR/custom/3 Inches Of Blood- Deadly Sinners.mp3" ]; then echo "
 fi
 }
 
+prep_work() {
 # Moving Exitscreens To New Location
 move_exitscreens
 
-prep_work() {
 chmod 0755 /home/pi/tamoplus/scripts/*
 chmod 0755 /home/pi/tamoplus/files/*.sh
 chmod 0755 /home/pi/tamoplus/files/pngview
@@ -244,7 +244,7 @@ fi
 if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
 echo "Setting up Splash, Exit, and Game Launching Screens"
 if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	mv /home/pi/RetroPie/videoloadingscreens/!(default) /home/pi/RetroPie/videoloadingscreens/default/
+	mv "/home/pi/RetroPie/videoloadingscreens/!(default)" "/home/pi/RetroPie/videoloadingscreens/default/"
 fi
 
 echo "Installing Needed Packages"
