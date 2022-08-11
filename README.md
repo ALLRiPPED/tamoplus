@@ -1,4 +1,4 @@
-## TAMO+: Themes And Music Overlay Plus v1.45 (formally known as TAMPO)
+## TAMO+: Themes And Music Overlay Plus v1.46 (formally known as TAMPO)
 This can install all the associated themes, background music, videoloadingscreens, and of course the splashscreens and exitscreens<br>
 for two Holiday themes and my own concoction theme set Carbonite, for now, hopefully more to come!<br>
 Also it removes everything from the RetroPie Menu that will be included in TAMO+ (IE: esthemes, audiosettings, & splashscreen.rp for vanilla retropie users)<br>
@@ -115,3 +115,4 @@ Version 1.42 - Added more ultility tools and other helpful scripts thanks to [Su
 Version 1.43 - Added Temperature Control script thanks to [Jeremy Cook](https://github.com/JeremySCook "Jeremy Cook").<br>
 Version 1.44 - Lots of bug fixes to the main script, thanks to [Supreme Team](https://github.com/SupremePi "Supreme Team") for all the troubleshooting help.<br>
 Version 1.45 - Few bug fixes, tweaked Auto-Update to check github for update.<br>
+Version 1.46 - Tons of fixes and tweaks have been done thanks to [Supreme Team](https://github.com/SupremePi "Supreme Team") for the help and troubleshooting.<br>
