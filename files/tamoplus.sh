@@ -819,11 +819,21 @@ else
 	whiptail --clear --title "MUSIC INSTALL MENU" --separate-output \
 		--ok-button Install --cancel-button Back \
 		--checklist "Choose:" 0 0 0 \
+			- "--------------EXTRA-MUSIC--------------" \
 			"1" "Install Arcade Music" off \
 			"2" "Install Custom Music" off \
 			"3" "Install Nostalgia Trip Music" off \
 			"4" "Install Ultimate Vs Fighter Music" off \
 			"5" "Install Venom Music" off \
+			- "-----------THEMESET-MUSIC--------------" \
+			"6" "Install Christmas Music" \
+			"7" "Install Diablos Arcade Music" \
+			"8" "Install Halloween Music" \
+			"9" "Install Neon IBAD Music" \
+			"10" "Install Pistolero Music" \
+			"11" "Install Pleasure Paradise Music" \
+			"12" "Install Stranger Things Music" \
+			"13" "Install Supreme Ultra Music" \
 			2>/tmp/results
 	while read -r choice  
 		do
@@ -833,6 +843,15 @@ else
 			3) download_bg_music "nt" ;;
 			4) download_bg_music "uvt" ;;
 			5) download_bg_music "venom" ;;
+			6) download_theme_music "merryxmas" ;;
+			7) download_theme_music "devilchromey" ;;
+			7) download_theme_music "halloweenspecial" ;;
+			8) download_theme_music "neonibad" ;;
+			9) download_theme_music "pistolero" ;;
+			10) download_theme_music "pleasureparadise" ;;
+			11) download_theme_music "strangerthings" ;;
+			12) download_theme_music "supremeteam" ;;
+			-) nono ;;
 			*) ;;
 		esac
 		done < /tmp/results
