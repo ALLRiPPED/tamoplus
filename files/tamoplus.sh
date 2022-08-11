@@ -819,13 +819,13 @@ else
 	whiptail --clear --title "MUSIC INSTALL MENU" --separate-output \
 		--ok-button Install --cancel-button Back \
 		--checklist "Choose:" 0 0 0 \
-			- "--------------EXTRA-MUSIC--------------" off \
+			"-" "--------------EXTRA-MUSIC--------------" off \
 			"1" "Install Arcade Music" off \
 			"2" "Install Custom Music" off \
 			"3" "Install Nostalgia Trip Music" off \
 			"4" "Install Ultimate Vs Fighter Music" off \
 			"5" "Install Venom Music" off \
-			- "-----------THEMESET-MUSIC--------------" off \
+			"-" "-----------THEMESET-MUSIC--------------" off \
 			"6" "Install Christmas Music" off \
 			"7" "Install Diablos Arcade Music" off \
 			"8" "Install Halloween Music" off \
