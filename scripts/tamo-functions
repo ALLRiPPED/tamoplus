@@ -954,7 +954,15 @@ fi
 # Add clean .rp files
 sudo ~/RetroPie-Setup/retropie_packages.sh retropiemenu
 sudo chown $USER:$USER $MENU_DIR/*
- 
+
+#ULTRA 2.0 Check
+if [ -d /home/pi/.supreme_toolkit/sb_toolkit/retropiemenu ]; then
+. /home/pi/.supreme_toolkit/sb_toolkit/_scripts/supreme-functions
+fix_menu_layout
+cd $HOME
+
+else
+
 #Audio Tools
 if [[ ! -d "/home/pi/RetroPie/retropiemenu/audiotools" ]]; then
 mkdir -p "/home/pi/RetroPie/retropiemenu/audiotools"
@@ -1078,6 +1086,8 @@ EOF152935
 fi
  
 cd $HOME
+
+fi
 }
 
 #-------------------------------------#
