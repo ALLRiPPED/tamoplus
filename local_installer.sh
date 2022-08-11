@@ -600,13 +600,14 @@ else
 	if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
 fi
 
-#Fix outo carbonite
+#Fix autostart.sh carbonite
 filefound72=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/home/pi/RetroPie/videoloadingscreens/carbonite" |wc -l`
-if [[ ${filefound72} > 0 ]]; then echo "$(tput setaf 2) Outo video load fix already added! $(tput sgr0)"
-else
+if [[ ${filefound72} > 0 ]]; then
 CUR_LOD=$(grep "videoloadingscreens=" "$RUNONSTART"|grep -o '".*"')
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/default"'
 if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
+else
+echo "$(tput setaf 2) Autostart video load fix already added! $(tput sgr0)"
 fi
 
 # Runcommand On End Edits for TAMO+
