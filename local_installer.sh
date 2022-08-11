@@ -630,7 +630,8 @@ fi
 
 filefound92=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -f -CONT BGM.py" |wc -l`
 if [[ ${filefound92} > 0 ]]; then echo "$(tput setaf 2)Tamo+ Script Already Found In Runcommand-OnEnd! $(tput sgr0)" > /tmp/exists
-else if ! grep 'pkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; then sed -i -e '$apkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; fi
+else
+	if ! grep 'pkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; then sed -i -e '$apkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; fi
 fi
 
 filefound41=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "/bin/bash" |wc -l`
