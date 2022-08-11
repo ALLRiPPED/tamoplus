@@ -143,11 +143,6 @@ else cd $THEMES_DIR/merryxmas; git reset --hard; git pull; fi
 }
 
 download_videos() {
-if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
-echo "Setting up Splash, Exit, and Game Launching Screens"
-if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
-	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
-fi
 echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 sleep 1
 if [ -f "$SPL_DIR/Pistelero.mp4" ] && [ -f "$SPL_DIR/PleasureParadise.mp4" ] && [ -f "$SPL_DIR/RetroDevilReaper.mp4" ] && [ -f "$SPL_DIR/Supreme.mp4" ]
@@ -244,6 +239,12 @@ else
 	rsync -av $INSTALL_DIR/scripts/icons/ $MENU_DIR/icons/
 	game_list_full
 	rm_menus
+fi
+
+if [ ! -d "$HOME/RetroPie/videoloadingscreens/default" ]; then mkdir $HOME/RetroPie/videoloadingscreens/default/; fi
+echo "Setting up Splash, Exit, and Game Launching Screens"
+if [ -f "$HOME/RetroPie/videoloadingscreens/default.mp4" ]; then echo "Default Launch Screen Found Moving to default folder"
+	mv -f $HOME/RetroPie/videoloadingscreens/* $HOME/RetroPie/videoloadingscreens/default/
 fi
 
 echo "Installing Needed Packages"
@@ -618,14 +619,13 @@ if [[ ${filefound3} > 0 ]]; then
 	sed -i '/(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sed -i '/#(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sleep 1
-		cat <<\EOF12345 > "/tmp/templist3"
+cat <<\EOF12345 > "/tmp/templist4"
 #! /bin/bash
 # /etc/init.d/start-sound
 sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 pkill -f -CONT BGM.py
 EOF12345
-	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
-
+sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist4)
 fi
 
 filefound92=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -f -CONT BGM.py" |wc -l`
