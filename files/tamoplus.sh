@@ -724,14 +724,12 @@ stats_check
     export NEW_LOD
     SELECT=$(echo $SELECTION | sed 's:/*$::')
 	sed -i -E "s|videoloadingscreens=${NEW_LOD}|videoloadingscreens=\"${SELECT}\"|g" $RUNONSTART
-    bgm_check
   elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
     echo "Videoloadingscreens directory is already '$SELECTION'"
   else
     return
   fi
   IFS=$OLDIFS
-bgm_check
 stats_check
 }
 
@@ -782,14 +780,12 @@ stats_check
     export NEW_LOD
     SELECT=$(echo $SELECTION | sed 's:/*$::')
 	sed -i -E "s|videoexitingscreens=${NEW_LOD}|videoexitingscreens=\"${SELECT}\"|g" $RUNONEND
-    bgm_check
   elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
     echo "Exit directory is already '$SELECTION'"
   else
     return
   fi
   IFS=$OLDIFS
-bgm_check
 stats_check
 }
 
