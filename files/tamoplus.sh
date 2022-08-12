@@ -743,7 +743,7 @@ stats_check
   SELECT=""
   IFS=$'\n'
   local SELECTION
-  CUR_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"' | tr -d '"')
+  CUR_LOD=$(grep "videoexitingscreens=" "$RUNONEND"|grep -o '".*"' | tr -d '"')
   export CUR_LOD
   while [ -z $SELECTION ]; do
     [[ "${CUR_LOD}" ]] && CUR_LOD="${CUR_LOD}"/
@@ -778,10 +778,10 @@ stats_check
   [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
   if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
     echo "Videoexitingscreens directory changed to '$SELECTION'"
-    NEW_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"')
+    NEW_LOD=$(grep "videoexitingscreens=" "$RUNONEND"|grep -o '".*"')
     export NEW_LOD
     SELECT=$(echo $SELECTION | sed 's:/*$::')
-	sed -i -E "s|exitvideo=${NEW_LOD}|exitvideo=\"${SELECT}\"|g" $RUNONEND
+	sed -i -E "s|videoexitingscreens=${NEW_LOD}|videoexitingscreens=\"${SELECT}\"|g" $RUNONEND
     bgm_check
   elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
     echo "Exit directory is already '$SELECTION'"

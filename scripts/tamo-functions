@@ -770,7 +770,7 @@ stats_check
 }
 
 video_screens_exit() {
-if grep -q 'enableexitvideo="true"' "$RUNONEND"; then sed -i -E 's|enableexitvideo="true"|eenableexitvideo="false"|g' $RUNONEND
+if grep -q 'enableexitvideo="true"' "$RUNONEND"; then sed -i -E 's|enableexitvideo="true"|enableexitvideo="false"|g' $RUNONEND
 else sed -i -E 's|enableexitvideo="false"|enableexitvideo="true"|g' $RUNONEND; fi
 stats_check
 }
@@ -2131,9 +2131,9 @@ if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
-exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"
-if [[ $enableexitvideo== "true" ]]; then
-sudo omxplayer --vol 250 --amp 250 -b $exitvideo/ThanksForPlaying.mp4 > /dev/null 2>&1
+videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"
+if [[ $enableexitvideo == "true" ]]; then
+sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 fi
 pkill -f -CONT BGM.py
 EOF12345
@@ -2142,8 +2142,8 @@ fi
 
 if ! grep 'enableexitvideo=' "$RUNONEND" > /dev/null 2>&1; then 
 	sed -i '3i enableexitvideo="true"' $RUNONEND
-	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
-	sed -i '5i if \[\[ $enableexitvideo== "true" \]\]; then' $RUNONEND
+	sed -i '4i videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
+	sed -i '5i if \[\[ $enableexitvideo == "true" \]\]; then' $RUNONEND
 	sed -i '7i fi' $RUNONEND
 fi
 

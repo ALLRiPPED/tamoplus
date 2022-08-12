@@ -615,9 +615,9 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
-exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"
-if [[ $enableexitvideo== "true" ]]; then
-sudo omxplayer --vol 250 --amp 250 -b $exitvideo/ThanksForPlaying.mp4 > /dev/null 2>&1
+videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"
+if [[ $enableexitvideo == "true" ]]; then
+sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 fi
 pkill -f -CONT BGM.py
 EOF12345
