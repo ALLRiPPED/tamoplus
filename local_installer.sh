@@ -615,7 +615,7 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
-videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"
+videoexitingscreens="/home/pi/RetroPie/splashscreens"
 if [[ $enableexitvideo == "true" ]]; then
 sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 fi
@@ -636,7 +636,7 @@ if [[ ${filefound3} > 0 ]]; then
 	sed -i '1i #!/bin/sh' $RUNONEND
 	sed -i '2i #/etc/init.d/start-sound' $RUNONEND
 	sed -i '3i enableexitvideo="true"' $RUNONEND
-	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
+	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens"' $RUNONEND
 	sed -i '5i if \[\[ $enableexitvideo== "true" \]\]; then' $RUNONEND
 	sed -i '6i sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
 	sed -i '7i fi' $RUNONEND
