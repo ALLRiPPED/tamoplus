@@ -737,24 +737,24 @@ stats_check
 
 set_video_screens_exit() {
 stats_check
-  CUR_LOD=""
-  NEW_LOD=""
-  SELECTION=""
-  SELECT=""
+  CUR_XLOD=""
+  NEW_XLOD=""
+  SELECTIONX=""
+  SELECTX=""
   IFS=$'\n'
-  local SELECTION
-  CUR_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"' | tr -d '"')
-  export CUR_LOD
-  while [ -z $SELECTION ]; do
-    [[ "${CUR_LOD}" ]] && CUR_LOD="${CUR_LOD}"/
+  local SELECTIONX
+  CUR_XLOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"' | tr -d '"')
+  export CUR_XLOD
+  while [ -z $SELECTIONX ]; do
+    [[ "${CUR_XLOD}" ]] && CUR_XLOD="${CUR_XLOD}"/
     local cmd=(dialog --colors \
-      --backtitle "$BACKTITLE | Current Folder: $CUR_LOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_XLOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
       --title "$TITLE" \
-      --menu "Choose a Exit Video directory" 20 70 20 )
+      --menu "Choose a Video Exit directory" 20 70 20 )
     local iterator=1
     local offset=-1
     local options=()
-    if [ "$(dirname $CUR_LOD)" != "$CUR_LOD" ]; then
+    if [ "$(dirname $CUR_XLOD)" != "$CUR_XLOD" ]; then
       options+=(0)
       options+=("Parent Directory")
       offset=$(($offset+2))
@@ -762,29 +762,29 @@ stats_check
     options+=($iterator)
     options+=("<Use This Directory>")
     iterator=$(($iterator+1))
-    for DIR in $(find "$CUR_LOD" -maxdepth 1 -mindepth 1 -type d | sort); do
+    for DIR in $(find "$CUR_XLOD" -maxdepth 1 -mindepth 1 -type d | sort); do
       options+=($iterator)
       options+=("$(basename $DIR)")
       iterator=$(($iterator+1))
     done
     choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     case $choice in
-      0) CUR_LOD="$(dirname $CUR_LOD)" ;;
-      1) SELECTION="$CUR_LOD" ;;
+      0) CUR_XLOD="$(dirname $CUR_XLOD)" ;;
+      1) SELECTIONX="$CUR_XLOD" ;;
       '') return ;;
-      *) CUR_LOD="$CUR_LOD${options[ $((2*choice + $offset )) ]}" ;;
+      *) CUR_XLOD="$CUR_XLOD${options[ $((2*choice + $offset )) ]}" ;;
     esac
   done
-  [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
-  if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
-    echo "Videoloadingscreens directory changed to '$SELECTION'"
-    NEW_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"')
-    export NEW_LOD
-    SELECT=$(echo $SELECTION | sed 's:/*$::')
-	sed -i -E "s|videoloadingscreens=${NEW_LOD}|videoloadingscreens=\"${SELECT}\"|g" $RUNONEND
+  [[ "${VID_XLOD_SCR}" ]] && VID_XLOD_SCR="${VID_XLOD_SCR}"
+  if [ "$SELECTIONX" != "$VID_XLOD_SCR" ]; then
+    echo "Videoloadingscreens directory changed to '$SELECTIONX'"
+    NEW_XLOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"')
+    export NEW_XLOD
+    SELECTX=$(echo $SELECTIONX | sed 's:/*$::')
+	sed -i -E "s|exitvideo=${NEW_XLOD}|exitvideo=\"${SELECTX}\"|g" $RUNONEND
     bgm_check
-  elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
-    echo "Exit directory is already '$SELECTION'"
+  elif [ "$SELECTIONX" == "$VID_XLOD_SCR" ]; then
+    echo "Exit directory is already '$SELECTIONX'"
   else
     return
   fi
