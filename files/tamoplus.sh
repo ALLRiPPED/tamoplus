@@ -750,7 +750,7 @@ stats_check
     local cmd=(dialog --colors \
       --backtitle "$BACKTITLE | Current Folder: $CUR_LOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
       --title "$TITLE" \
-      --menu "Choose a Video Exit directory" 20 70 20 )
+      --menu "Choose a Videoexitingscreens directory" 20 70 20 )
     local iterator=1
     local offset=-1
     local options=()
@@ -777,7 +777,7 @@ stats_check
   done
   [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
   if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
-    echo "Videoloadingscreens directory changed to '$SELECTION'"
+    echo "Videoexitingscreens directory changed to '$SELECTION'"
     NEW_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"')
     export NEW_LOD
     SELECT=$(echo $SELECTION | sed 's:/*$::')
