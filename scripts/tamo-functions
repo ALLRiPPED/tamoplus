@@ -769,6 +769,12 @@ else sed -i -E 's|enablevideolaunch="false"|enablevideolaunch="true"|g' $RUNONST
 stats_check
 }
 
+video_screens_exit() {
+if grep -q 'enableexitvideo="true"' "$RUNONEND"; then sed -i -E 's|enableexitvideo="true"|eenableexitvideo="false"|g' $RUNONEND
+else sed -i -E 's|enableexitvideo="false"|enableexitvideo="true"|g' $RUNONEND; fi
+stats_check
+}
+
 #--------------------#
 # Ovkeray Selections #
 #--------------------#
@@ -2022,6 +2028,7 @@ volume=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 10
 vol="\Z3$volume%\Zn"
 if [ -d $HOME/RetroPie/splashscreens/exitscreensOff ]; then exs=$disable; else exs=$enable; fi
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=$enable; else vls=$disable; fi
+if grep -q 'enablevideolaunch="true"' "$RUNONEND"; then vxs=$enable; else vxs=$disable; fi
 width=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o '[0-9][0-9][0-9]\+x' | tr -d 'x')
 height=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o 'x[0-9][0-9][0-9]\+' | tr -d 'x')
 if [ "${width}" -ge 3800 ] && [ "${height}" -ge 2100 ]; then
@@ -2123,7 +2130,11 @@ if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	cat <<\EOF12345 > "/opt/retropie/configs/all/runcommand-onend.sh"
 #!/bin/bash
 #/etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+enableexitvideo="true"
+exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"
+if [[ $enableexitvideo== "true" ]]; then
+sudo omxplayer --vol 250 --amp 250 -b $exitvideo/ThanksForPlaying.mp4 > /dev/null 2>&1
+fi
 pkill -f -CONT BGM.py
 EOF12345
 	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
@@ -2158,4 +2169,3 @@ if ! grep '"hypseus.sh","flycast","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; the
 	sed -i -E 's|"hypseus.sh","reicast"|"hypseus.sh","flycast","reicast"|g' $SCRIPT_LOC
 fi
 }
-

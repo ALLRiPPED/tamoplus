@@ -614,7 +614,11 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	cat <<\EOF12345 > "/tmp/templist3"
 #!/bin/bash
 #/etc/init.d/start-sound
-sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
+enableexitvideo="true"
+exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"
+if [[ $enableexitvideo== "true" ]]; then
+sudo omxplayer --vol 250 --amp 250 -b $exitvideo/ThanksForPlaying.mp4 > /dev/null 2>&1
+fi
 pkill -f -CONT BGM.py
 EOF12345
 	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
@@ -631,7 +635,11 @@ if [[ ${filefound3} > 0 ]]; then
 	sed -i '/#(sleep 2 && home\/pi\/BGM_vol_fade.sh.1 -cont) &/d' $RUNONEND
 	sed -i '1i #!/bin/sh' $RUNONEND
 	sed -i '2i #/etc/init.d/start-sound' $RUNONEND
-	sed -i '3i sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
+	sed -i '3i enableexitvideo="true"' $RUNONEND
+	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
+	sed -i '5i if \[\[ $enableexitvideo== "true" \]\]; then' $RUNONEND
+	sed -i '6i sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
+	sed -i '7i fi' $RUNONEND
 	sleep 1
 fi
 

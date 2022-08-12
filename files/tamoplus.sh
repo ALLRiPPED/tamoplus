@@ -186,12 +186,14 @@ stats_check
         choice=$(dialog --colors --backtitle "Loading Media Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading Media Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
-            1 "TAMO+ Loading Videos Menu" \
-            2 "Loading Screens Menu" \
+            1 "TAMO+ Video Loading Screens Menu" \
+            2 "TAMO+ Video Exit Screens Menu" \
+            3 "Loading Screens Menu" \
            2>&1 > /dev/tty)
         case "$choice" in
             1) loading_video ;;
-            2) loading_screens ;;
+            2) loading_video_exit ;;
+            3) loading_screens ;;
             *) break ;;
         esac
     done
@@ -201,17 +203,35 @@ loading_video() {
 stats_check
     local choice
     while true; do
-        choice=$(dialog --colors --backtitle "Loading Video Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading video Menu " \
+        choice=$(dialog --colors --backtitle "Video Loading Screens Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading video Menu " \
             --ok-label OK --cancel-label Exit \
             --menu "Choose An Option Below" 25 85 20 \
             1 "Enable/Disable Videoloadingscreens $vls" \
-            2 "Set Videoloadingscreens Folder" \
-            3 "Enable/Disable Exit Splash $exs" \
+            2 "Enable/Disable Exit Splash $exs" \
+            3 "Set Videoloadingscreens Folder" \
            2>&1 > /dev/tty)
         case "$choice" in
-            1) video_screens  ;;
-            2) set_video_screens  ;;
-            3) exit_splash  ;;
+            1) video_screens ;;
+            2) exit_splash ;;
+            3) set_video_screens ;;
+            *) break ;;
+        esac
+    done
+}
+
+loading_video_exit() {
+stats_check
+    local choice
+    while true; do
+        choice=$(dialog --colors --backtitle "Video Exiting Screens Menu  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay: $vpos$hpos  Resolution: $resolution" --title " Loading Exit video Menu " \
+            --ok-label OK --cancel-label Exit \
+            --menu "Choose An Option Below" 25 85 20 \
+            1 "Enable/Disable Exit Videoexitingscreens $vxs" \
+            2 "Set Exit Videoexitingscreens Folder" \
+           2>&1 > /dev/tty)
+        case "$choice" in
+            1) video_screens_exit ;;
+            2) set_video_screens_exit ;;
             *) break ;;
         esac
     done
@@ -707,6 +727,64 @@ stats_check
     bgm_check
   elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
     echo "Videoloadingscreens directory is already '$SELECTION'"
+  else
+    return
+  fi
+  IFS=$OLDIFS
+bgm_check
+stats_check
+}
+
+set_video_screens_exit() {
+stats_check
+  CUR_LOD=""
+  NEW_LOD=""
+  SELECTION=""
+  SELECT=""
+  IFS=$'\n'
+  local SELECTION
+  CUR_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"' | tr -d '"')
+  export CUR_LOD
+  while [ -z $SELECTION ]; do
+    [[ "${CUR_LOD}" ]] && CUR_LOD="${CUR_LOD}"/
+    local cmd=(dialog --colors \
+      --backtitle "$BACKTITLE | Current Folder: $CUR_LOD  BGM Status $bgms  Volume: $vol  Theme: $ts  Music: $ms  Overlay POS: $vpos$hpos  Resolution: $resolution" \
+      --title "$TITLE" \
+      --menu "Choose a Exit Video directory" 20 70 20 )
+    local iterator=1
+    local offset=-1
+    local options=()
+    if [ "$(dirname $CUR_LOD)" != "$CUR_LOD" ]; then
+      options+=(0)
+      options+=("Parent Directory")
+      offset=$(($offset+2))
+    fi
+    options+=($iterator)
+    options+=("<Use This Directory>")
+    iterator=$(($iterator+1))
+    for DIR in $(find "$CUR_LOD" -maxdepth 1 -mindepth 1 -type d | sort); do
+      options+=($iterator)
+      options+=("$(basename $DIR)")
+      iterator=$(($iterator+1))
+    done
+    choice=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+    case $choice in
+      0) CUR_LOD="$(dirname $CUR_LOD)" ;;
+      1) SELECTION="$CUR_LOD" ;;
+      '') return ;;
+      *) CUR_LOD="$CUR_LOD${options[ $((2*choice + $offset )) ]}" ;;
+    esac
+  done
+  [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
+  if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
+    echo "Videoloadingscreens directory changed to '$SELECTION'"
+    NEW_LOD=$(grep "exitvideo=" "$RUNONEND"|grep -o '".*"')
+    export NEW_LOD
+    SELECT=$(echo $SELECTION | sed 's:/*$::')
+	sed -i -E "s|videoloadingscreens=${NEW_LOD}|videoloadingscreens=\"${SELECT}\"|g" $RUNONEND
+    bgm_check
+  elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
+    echo "Exit directory is already '$SELECTION'"
   else
     return
   fi
