@@ -2140,6 +2140,13 @@ EOF12345
 	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
 fi
 
+if ! grep 'enableexitvideo=' "$RUNONEND" > /dev/null 2>&1; then 
+	sed -i '3i enableexitvideo="true"' $RUNONEND
+	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
+	sed -i '5i if \[\[ $enableexitvideo== "true" \]\]; then' $RUNONEND
+	sed -i '7i fi' $RUNONEND
+fi
+
 if [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]; then mv -f "$MUSIC_DIR/xmas" "$MUSIC_DIR/merryxmas"; fi
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ]; then mv -f "$MUSIC_DIR/halloween" "$MUSIC_DIR/halloweenspecial"; fi
 if [ -f "$MUSIC_DIR/devils/NEFFEX - Rollin' With The Devil.mp3" ]; then mv -f "$MUSIC_DIR/devils" "$MUSIC_DIR/devilchromey"; fi
