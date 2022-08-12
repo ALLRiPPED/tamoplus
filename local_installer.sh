@@ -80,7 +80,7 @@ prep_work
 echo "Prep Work All Done. Downloading Music"
 
 if [ $installset -eq "1" ]; then
-	if [ ! -f "$SPL_DIR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlaying.mp4 -P "$SPL_DIR"; fi
+	if [ ! -f "$VID_EXT_SCR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlaying.mp4 -P "$VID_EXT_SCR"; fi
 	if [ ! -f "$SPL_DIR/JarvisSplash.mp4" ]; then wget"${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
 	if [ ! -f "$EXT_SPL_DIR/JarvisExit.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
 fi
@@ -157,7 +157,7 @@ else
 		unzip -uq $INSTALL_DIR/tamoplus-screens.zip -d $HOME/RetroPie; echo "Splash, Exit, and Game Launching Screens Extracting Complete"
 	fi
 fi
-if [ ! -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$SPL_DIR"; fi
+if [ ! -f "$VID_EXT_SCR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$VID_EXT_SCR"; fi
 move_exitscreens
 }
 
@@ -459,7 +459,7 @@ if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
 pkill -f -CONT BGM.py
 EOF1293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash
@@ -471,7 +471,7 @@ if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/shutdown" ]; then
 #! /bin/bash
 # /etc/init.d/start-sound
 
-omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
+omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/exitscreens/JarvisExit.mp4 > /dev/null 2>&1
 EOF18293
 	sudo chmod +x /opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash
 fi
@@ -615,7 +615,7 @@ if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
-videoexitingscreens="/home/pi/RetroPie/splashscreens"
+videoexitingscreens="/home/pi/RetroPie/videoexitingscreens"
 if [[ $enableexitvideo == "true" ]]; then
 sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 fi

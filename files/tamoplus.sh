@@ -773,14 +773,14 @@ stats_check
       *) CUR_LOD="$CUR_LOD${options[ $((2*choice + $offset )) ]}" ;;
     esac
   done
-  [[ "${VID_LOD_SCR}" ]] && VID_LOD_SCR="${VID_LOD_SCR}"
-  if [ "$SELECTION" != "$VID_LOD_SCR" ]; then
+  [[ "${VID_EXT_SCR}" ]] && VID_EXT_SCR="${VID_EXT_SCR}"
+  if [ "$SELECTION" != "$VID_EXT_SCR" ]; then
     echo "Videoexitingscreens directory changed to '$SELECTION'"
     NEW_LOD=$(grep "videoexitingscreens=" "$RUNONEND"|grep -o '".*"')
     export NEW_LOD
     SELECT=$(echo $SELECTION | sed 's:/*$::')
 	sed -i -E "s|videoexitingscreens=${NEW_LOD}|videoexitingscreens=\"${SELECT}\"|g" $RUNONEND
-  elif [ "$SELECTION" == "$VID_LOD_SCR" ]; then
+  elif [ "$SELECTION" == "$VID_EXT_SCR" ]; then
     echo "Exit directory is already '$SELECTION'"
   else
     return

@@ -339,7 +339,7 @@ NEW_PLY='"/home/pi/.tamoplus"'
 NEW_THM="value=\"carbonite\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/carbonite"'
-NEW_EXS="/home/pi/RetroPie/splashscreens/exitscreens/JarvisExit.mp4"
+NEW_EXS="/home/pi/RetroPie/exitscreens/JarvisExit.mp4"
 if grep 'themeset_carbonite=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Carbonite Themeset is not Installed, would you like to install it?" --backtitle "Install Carbonite Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "carbonite"
 		sed -i "s|themeset_carbonite=0|themeset_carbonite=1|" "$USER_SETTINGS"; fi
@@ -372,7 +372,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/devilchromey"'
 NEW_THM="value=\"devilchromey\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/devilchromey"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/RetroDevilReaperExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/RetroDevilReaperExit.mp4"'
 if grep 'themeset_devilchromey=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Diablos Arcade Themeset is not Installed, would you like to install it?" --backtitle "Install Diablos Arcade Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "devilchromey"
 		sed -i "s|themeset_devilchromey=0|themeset_devilchromey=1|" "$USER_SETTINGS"; fi
@@ -404,7 +404,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/halloweenspecial"'
 NEW_THM="value=\"halloweenspecial\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/halloweenspecial"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/HalloweenExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/HalloweenExit.mp4"'
 if grep 'themeset_halloweenspecial=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Halloween Themeset is not Installed, would you like to install it?" --backtitle "Install Halloween Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "halloweenspecial"
 		sed -i "s|themeset_halloweenspecial=0|themeset_halloweenspecial=1|" "$USER_SETTINGS"; fi
@@ -436,7 +436,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/neonibad"'
 NEW_THM="value=\"neonibad\""
 NEW_VIEW="value=\"grid\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/neonibad"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/NeonIBADExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/NeonIBADExit.mp4"'
 if grep 'themeset_neonibad=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "NEON IBAD Themeset is not Installed, would you like to install it?" --backtitle "Install Neon IBAD Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "neonibad"
 		sed -i "s|themeset_neonibad=0|themeset_neonibad=1|" "$USER_SETTINGS"; fi
@@ -468,7 +468,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/pistolero"'
 NEW_THM="value=\"pistolero\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pistolero"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PistoleroExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/PistoleroExit.mp4"'
 if grep 'themeset_pistolero=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Pistolero Themeset is not Installed, would you like to install it?" --backtitle "Install Pistolero Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pistolero"
 		sed -i "s|themeset_pistolero=0|themeset_pistolero=1|" "$USER_SETTINGS"; fi
@@ -500,7 +500,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/pleasureparadise"'
 NEW_THM="value=\"pleasureparadise\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/pleasureparadise"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/PleasureParadiseExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/PleasureParadiseExit.mp4"'
 if grep 'themeset_pleasureparadise=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Plasure Paradise Themeset is not Installed, would you like to install it?" --backtitle "Install Pleasure Paradise Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "pleasureparadise"
 		sed -i "s|themeset_pleasureparadise=0|themeset_pleasureparadise=1|" "$USER_SETTINGS"; fi
@@ -532,7 +532,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/strangerthings"'
 NEW_THM="value=\"strangerthings\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/strangerthings"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/StrangerExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/StrangerExit.mp4"'
 if grep 'themeset_strangerthings=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Stranger Things Themeset is not Installed, would you like to install it?" --backtitle "Install Stranger Things Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "strangerthings"
 		sed -i "s|themeset_strangerthings=0|themeset_strangerthings=1|" "$USER_SETTINGS"; fi
@@ -564,7 +564,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/supremeteam"'
 NEW_THM="value=\"supremeteam\""
 NEW_VIEW="value=\"automatic\""
 NEW_LOD='"/home/pi/RetroPie/videoloadingscreens/supremeteam"'
-NEW_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/SupremeExit.mp4"'
+NEW_EXS='"/home/pi/RetroPie/exitscreens/SupremeExit.mp4"'
 if grep 'themeset_supremeteam=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Supreme Team Themeset is not Installed, would you like to install it?" --backtitle "Install Supreme Team Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "supremeteam"
 		sed -i "s|themeset_supremeteam=0|themeset_supremeteam=1|" "$USER_SETTINGS"; fi
@@ -596,7 +596,7 @@ NEW_PLY='"/home/pi/RetroPie/roms/music/merryxmas"'
 NEW_THM="value=\"merryxmas\""
 NEW_VIEW="value=\"automatic\""
 NEWX_LOD='"/home/pi/RetroPie/videoloadingscreens/merryxmas"'
-NEWX_EXS='"/home/pi/RetroPie/splashscreens/exitscreens/XmasExit.mp4"'
+NEWX_EXS='"/home/pi/RetroPie/exitscreens/XmasExit.mp4"'
 if grep 'themeset_merryxmas=0' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if dialog --stdout --title "Christmas Themeset is not Installed, would you like to install it?" --backtitle "Install Christmas Themeset?" --yesno "Yes: Install, No: Cancel" 7 60; then download_themesets "merryxmas"
 		sed -i "s|themeset_merryxmas=0|themeset_merryxmas=1|" "$USER_SETTINGS"; fi
@@ -755,10 +755,10 @@ stats_check
 # Screens Selections #
 #--------------------#
 exit_splash() {
-if [ -d "$HOME/RetroPie/splashscreens/exitscreensOff" ]; then
-	sudo mv -f $HOME/RetroPie/splashscreens/exitscreensOff $HOME/RetroPie/splashscreens/exitscreens
+if [ -d "$HOME/RetroPie/exitscreensOff" ]; then
+	sudo mv -f $HOME/RetroPie/exitscreensOff $HOME/RetroPie/exitscreens
 else
-	sudo mv -f $HOME/RetroPie/splashscreens/exitscreens $HOME/RetroPie/splashscreens/exitscreensOff
+	sudo mv -f $HOME/RetroPie/exitscreens $HOME/RetroPie/exitscreensOff
 fi
 stats_check
 }
@@ -1808,32 +1808,32 @@ else
 
 	if [ "${1}" = "carbonite" ]; then
 		if [ -f "$SPL_DIR/JarvisSplash.mp4" ];then wget "${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/JarvisExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "halloweenspecial" ]; then
 		if [ -f "$SPL_DIR/Halloween.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Halloween.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/HalloweenExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/HalloweenExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "devilchromey" ]; then
 		if [ -f "$SPL_DIR/RetroDevilReaper.mp4" ];then wget "${RAW_HOST1}"/splashscreens/RetroDevilReaper.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/RetroDevilReaperExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/RetroDevilReaperExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/RetroDevilReaperExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "neonibad" ]; then
 		if [ -f "$SPL_DIR/NeonIBAD.mp4" ];then wget "${RAW_HOST1}"/splashscreens/NeonIBAD.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/NeonIBADExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/NeonIBADExit.mp4 -P "$EXT_SPL_DIR"; fi
-		if [ -f "$SPL_DIR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/NeonIBADExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/NeonIBADExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$VID_EXT_SCR/ThanksForPlayingiBAD.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlayingiBAD.mp4 -P "$SPL_DIR"; fi
 	elif [ "${1}" = "merryxmas" ]; then
 		if [ -f "$SPL_DIR/CharlieBrown.mp4" ];then wget "${RAW_HOST1}"/splashscreens/CharlieBrown.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/XmasExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/XmasExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "pistolero" ]; then
 		if [ -f "$SPL_DIR/Pistolero.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Pistolero.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/PistoleroExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PistoleroExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "pleasureparadise" ]; then
 		if [ -f "$SPL_DIR/PleasureParadise.mp4" ];then wget "${RAW_HOST1}"/splashscreens/PleasureParadise.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/PleasureParadiseExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/PleasureParadiseExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "strangerthings" ]; then
 		if [ -f "$SPL_DIR/StrangerPi.mp4" ];then wget "${RAW_HOST1}"/splashscreens/StrangerPi.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/StrangerExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/StrangerExit.mp4 -P "$EXT_SPL_DIR"; fi
 	elif [ "${1}" = "supremeteam" ]; then
 		if [ -f "$SPL_DIR/Supreme.mp4" ];then wget "${RAW_HOST1}"/splashscreens/Supreme.mp4 -P "$SPL_DIR"; fi
-		if [ -f "$SPL_DIR/exitscreens/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"; fi
+		if [ -f "$EXT_SPL_DIR/SupremeExit.mp4" ];then wget "${RAW_HOST1}"/splashscreens/exitscreens/SupremeExit.mp4 -P "$EXT_SPL_DIR"; fi
 	fi
 fi
 }
@@ -2026,7 +2026,7 @@ else
 fi
 volume=$(grep "maxvolume =" "$SCRIPT_LOC"|awk '{print $3}' | awk '{print $1 * 100}')
 vol="\Z3$volume%\Zn"
-if [ -d $HOME/RetroPie/splashscreens/exitscreensOff ]; then exs=$disable; else exs=$enable; fi
+if [ -d $HOME/RetroPie/exitscreensOff ]; then exs=$disable; else exs=$enable; fi
 if grep -q 'enablevideolaunch="true"' "$RUNONSTART"; then vls=$enable; else vls=$disable; fi
 if grep -q 'enableexitvideo="true"' "$RUNONEND"; then vxs=$enable; else vxs=$disable; fi
 width=$(fbset -fb /dev/fb0 | grep '\".*\"' | grep -m 1 -o '[0-9][0-9][0-9]\+x' | tr -d 'x')
@@ -2097,7 +2097,6 @@ fi
 
 # Moving Exitscreens To New Location
 move_exitscreens() {
-mkdir $EXT_SPL_DIR
 if [ -f $SPL_DIR/HalloweenExitOff.mp4 ]; then mv -f $SPL_DIR/HalloweenExitOff.mp4 $EXT_SPL_DIR/HalloweenExitOff.mp4; elif [ -f $SPL_DIR/HalloweenExit.mp4 ]; then mv -f $SPL_DIR/HalloweenExit.mp4 $EXT_SPL_DIR/HalloweenExit.mp4; fi
 if [ -f $SPL_DIR/JarvisExitOff.mp4 ]; then mv -f $SPL_DIR/JarvisExitOff.mp4 $EXT_SPL_DIR/JarvisExitOff.mp4; elif [ -f $SPL_DIR/JarvisExit.mp4 ]; then mv -f $SPL_DIR/JarvisExit.mp4 $EXT_SPL_DIR/JarvisExit.mp4; fi
 if [ -f $SPL_DIR/PisteleroExitOff.mp4 ]; then mv -f $SPL_DIR/PisteleroExitOff.mp4 $EXT_SPL_DIR/PisteleroExitOff.mp4; elif [ -f $SPL_DIR/PisteleroExit.mp4 ]; then mv -f $SPL_DIR/PisteleroExit.mp4 $EXT_SPL_DIR/PisteleroExit.mp4; fi
@@ -2106,9 +2105,16 @@ if [ -f $SPL_DIR/RetroDevilReaperExitOff.mp4 ]; then mv -f $SPL_DIR/RetroDevilRe
 if [ -f $SPL_DIR/StrangerExitOff.mp4 ]; then mv -f $SPL_DIR/StrangerExitOff.mp4 $EXT_SPL_DIR/StrangerExitOff.mp4; elif [ -f $SPL_DIR/StrangerExit.mp4 ]; then mv -f $SPL_DIR/StrangerExit.mp4 $EXT_SPL_DIR/StrangerExit.mp4; fi
 if [ -f $SPL_DIR/SupremeExitOff.mp4 ]; then mv -f $SPL_DIR/SupremeExitOff.mp4 $EXT_SPL_DIR/SupremeExitOff.mp4; elif [ -f $SPL_DIR/SupremeExit.mp4 ]; then mv -f $SPL_DIR/SupremeExit.mp4 $EXT_SPL_DIR/SupremeExit.mp4; fi
 if [ -f $SPL_DIR/XmasExitOff.mp4 ]; then mv -f $SPL_DIR/XmasExitOff.mp4 $EXT_SPL_DIR/XmasExitOff.mp4; elif [ -f $SPL_DIR/XmasExit.mp4 ]; then mv -f $SPL_DIR/XmasExit.mp4 $EXT_SPL_DIR/XmasExit.mp4; fi
+sleep 1
+if [ ! -d "$EXT_SPL_DIR" ]; then mkdir $EXT_SPL_DIR; fi
+if [ ! -d "$VID_EXT_SCR" ]; then mkdir $VID_EXT_SCR; fi
+if [ ! -d "$EXT_SPL_DIR" ]; then if [ -d "$SPL_DIR/exitscreens" ]; then mv -f $SPL_DIR/exitscreens $HOME/RetroPie; else mkdir $EXT_SPL_DIR; fi; fi
+if [ -f $SPL_DIR/ThanksForPlaying.mp4 ]; then mv -f $SPL_DIR/ThanksForPlaying.mp4 $VID_EXT_SCR; fi
+if [ -f $SPL_DIR/ThanksForPlayingiBAD.mp4 ]; then mv -f $SPL_DIR/ThanksForPlayingiBAD.mp4 $VID_EXT_SCR; fi
 }
 
 post_update() {
+move_exitscreens
 # Just some user settings checks
 echo -e "$(tput setaf 2)Now Running Post-Update for TAMO+$(tput setaf 0)"
 if [ -f $USER_SETTINGS ]; then
@@ -2131,7 +2137,7 @@ if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
-videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"
+videoexitingscreens="/home/pi/RetroPie/videoexitingscreens"
 if [[ $enableexitvideo == "true" ]]; then
 sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1
 fi
@@ -2142,10 +2148,14 @@ fi
 
 if ! grep 'enableexitvideo=' "$RUNONEND" > /dev/null 2>&1; then 
 	sed -i '3i enableexitvideo="true"' $RUNONEND
-	sed -i '4i videoexitingscreens="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
+	sed -i '4i videoexitingscreens="/home/pi/RetroPie/videoexitingscreens"' $RUNONEND
 	sed -i '5i if \[\[ $enableexitvideo == "true" \]\]; then' $RUNONEND
 	sed -i '7i fi' $RUNONEND
 fi
+
+filefound44=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "RetroPie/splashscreens/exitscreens" |wc -l`
+if [[ ${filefound44} > 0 ]]; then sed -i -e 's/RetroPie\/splashscreens\/exitscreens/RetroPie\/exitscreens/g' $RUNONEND
+else echo "Editing already done in runcommand-onend.sh" > /tmp/exists; fi
 
 if [ -f "$MUSIC_DIR/xmas/Sleigh Ride.mp3" ]; then mv -f "$MUSIC_DIR/xmas" "$MUSIC_DIR/merryxmas"; fi
 if [ -f "$MUSIC_DIR/halloween/1.mp3" ]; then mv -f "$MUSIC_DIR/halloween" "$MUSIC_DIR/halloweenspecial"; fi
@@ -2161,8 +2171,8 @@ if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$
 if ! grep 'pkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; fi
 if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
 
-if ! grep 'pkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; then sed -i -e '$apkill -f -CONT BGM.py' "$RUNONEND" > /dev/null 2>&1; fi
-
+if grep 'RetroPie/splashscreens/exitscreens' "$EXITSPLR" > /dev/null 2>&1; then sed -i -e 's/RetroPie\/splashscreens\/exitscreens/RetroPie\/exitscreens/g' "$EXITSPLR" > /dev/null 2>&1; fi
+if grep 'RetroPie/splashscreens/exitscreens' "$EXITSPLS" > /dev/null 2>&1; then sed -i -e 's/RetroPie\/splashscreens\/exitscreens/RetroPie\/exitscreens/g' "$EXITSPLS" > /dev/null 2>&1; fi
 
 if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ ! -d "$MUSIC_DIR/neonibad" ]; then download_theme_music "neonibad"; fi
