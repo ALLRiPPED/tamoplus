@@ -80,9 +80,9 @@ prep_work
 echo "Prep Work All Done. Downloading Music"
 
 if [ $installset -eq "1" ]; then
-	if [ -f "$SPL_DIR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlaying.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$SPL_DIR/JarvisSplash.mp4" ]; then wget"${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
-	if [ -f "$EXT_SPL_DIR/JarvisExit.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
+	if [ ! -f "$SPL_DIR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/ThanksForPlaying.mp4 -P "$SPL_DIR"; fi
+	if [ ! -f "$SPL_DIR/JarvisSplash.mp4" ]; then wget"${RAW_HOST1}"/splashscreens/JarvisSplash.mp4 -P "$SPL_DIR"; fi
+	if [ ! -f "$EXT_SPL_DIR/JarvisExit.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/exitscreens/JarvisExit.mp4 -P "$EXT_SPL_DIR"; fi
 fi
 
 if [ $installset -le "2" ]; then
@@ -638,7 +638,7 @@ if [[ ${filefound3} > 0 ]]; then
 	sed -i '3i enableexitvideo="true"' $RUNONEND
 	sed -i '4i exitvideo="/home/pi/RetroPie/splashscreens/exitscreens"' $RUNONEND
 	sed -i '5i if \[\[ $enableexitvideo== "true" \]\]; then' $RUNONEND
-	sed -i '6i sudo omxplayer --vol 250 --amp 250 -b /home/pi/RetroPie/splashscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
+	sed -i '6i sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 > /dev/null 2>&1' $RUNONEND
 	sed -i '7i fi' $RUNONEND
 	sleep 1
 fi
