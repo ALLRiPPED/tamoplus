@@ -37,6 +37,4 @@ post_update
 sleep 2
 }
 
-. /home/$currentuser/tamoplus/scripts/tamo-functions
-
 tamo_update
