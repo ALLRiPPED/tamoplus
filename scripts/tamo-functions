@@ -289,7 +289,8 @@ if grep 'themeset_carbonite=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	if [ -f /home/pi/RetroPie/splashscreens/CarboniteSplash.mp4 ]; then sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CarboniteSplash.mp4/" $SPLSCREEN
 	else sudo sed -i -E "s/.*/\/opt\/retropie\/supplementary\/splashscreen\/retropie-default.png/" $SPLSCREEN; fi
-	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlaying.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlaying.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -449,7 +450,8 @@ if grep 'themeset_pleasureparadise=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Pleasure Paradise Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Pleasure Paradise Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/PleasureParadise.mp4/" $SPLSCREEN
-	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlaying.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlaying.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -513,7 +515,8 @@ if grep 'themeset_supremeteam=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Supreme Ultra Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $CUR_LOD == $NEW_LOD ]]; then echo "Supreme Ultra Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${CUR_LOD}|videoloadingscreens=${NEW_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/Supreme.mp4/" $SPLSCREEN
-	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlaying.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlaying.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
@@ -545,7 +548,8 @@ if grep 'themeset_merryxmas=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [[ $CUR_PLY == $NEW_PLY ]]; then echo "Christmas Music already set!"; else sed -i -E "s|musicdir = ${CUR_PLY}|musicdir = ${NEW_PLY}|g" $SCRIPT_LOC; fi 
 	if [[ $XMA_LOD == $NEWX_LOD ]]; then echo "Christmas Videoloadingscreens already set!"; else sed -i -E "s|videoloadingscreens=${XMA_LOD}|videoloadingscreens=${NEWX_LOD}|g" $RUNONSTART; fi
 	sudo sed -i -E "s/.*/\/home\/pi\/RetroPie\/splashscreens\/CharlieBrown.mp4/" $SPLSCREEN
-	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/ThanksForPlaying.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlayingiBAD.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlayingiBAD.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
+	if grep 'ThanksForPlaying.mp4' "$RUNONEND"; then sudo sed -i -E "s/ThanksForPlaying.mp4/SeeYouNextTime.mp4/" $RUNONEND; fi
 	echo "Restarting EmulationStaion..."
 	pgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &
 	pgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &
