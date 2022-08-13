@@ -2046,9 +2046,15 @@ if [ -f "$VID_LOD_SCR/supreme/default.mp4" ]; then mv -f "$VID_LOD_SCR/supreme" 
 if [ -f "$VID_LOD_SCR/jarvis/default.mp4" ]; then mv -f "$VID_LOD_SCR/jarvis" "$VID_LOD_SCR/carbonite"; fi
 if ! grep 'pkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; fi
 if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
+if ! grep 'emulatornames = \["OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then sed -i -E 's|emulatornames = \[|emulatornames = \["OPP.sh",|g' $SCRIPT_LOC; fi
+if ! grep '"hypseus.sh","flycast","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; then sed -i -E 's|"hypseus.sh","reicast"|"hypseus.sh","flycast","reicast"|g' $SCRIPT_LOC; fi
 if grep 'RetroPie/splashscreens/exitscreens' "$EXITSPLR" > /dev/null 2>&1; then sed -i -e 's/RetroPie\/splashscreens\/exitscreens/RetroPie\/exitscreens/g' "$EXITSPLR" > /dev/null 2>&1; fi
 if grep 'RetroPie/splashscreens/exitscreens' "$EXITSPLS" > /dev/null 2>&1; then sed -i -e 's/RetroPie\/splashscreens\/exitscreens/RetroPie\/exitscreens/g' "$EXITSPLS" > /dev/null 2>&1; fi
 if grep 'themeset_neonibad=1' "$USER_SETTINGS" > /dev/null 2>&1; then if [ ! -d "$MUSIC_DIR/neonibad" ]; then download_theme_music "neonibad"; fi; fi
-if ! grep 'emulatornames = \["OPP.sh",' "$SCRIPT_LOC" > /dev/null 2>&1; then sed -i -E 's|emulatornames = \[|emulatornames = \["OPP.sh",|g' $SCRIPT_LOC; fi
-if ! grep '"hypseus.sh","flycast","reicast"' "$SCRIPT_LOC" > /dev/null 2>&1; then sed -i -E 's|"hypseus.sh","reicast"|"hypseus.sh","flycast","reicast"|g' $SCRIPT_LOC; fi
+if grep 'themeset_carbonite=1' "$USER_SETTINGS" > /dev/null 2>&1; then
+	if [ ! -f "$VID_EXT_SCR/ThanksForPlaying.mp4" ]; then wget "${RAW_HOST1}"/videoexitingscreens/ThanksForPlaying.mp4 -P "$VID_EXT_SCR"; fi
+	if [ ! -f "$VID_EXT_SCR/SeeYouNextTime.mp4" ]; then wget "${RAW_HOST1}"/videoexitingscreens/SeeYouNextTime.mp4 -P "$VID_EXT_SCR"; fi
+	if [ ! -f "$SPL_DIR/CarboniteSplash.mp4" ]; then wget"${RAW_HOST1}"/splashscreens/CarboniteSplash.mp4 -P "$SPL_DIR"; fi
+	if [ ! -f "$EXT_SPL_DIR/CarboniteExit.mp4" ]; then wget "${RAW_HOST1}"/exitscreens/CarboniteExit.mp4 -P "$EXT_SPL_DIR"; fi
+fi
 }
