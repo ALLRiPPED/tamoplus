@@ -213,7 +213,7 @@ stats_check
         case "$choice" in
             1) video_screens ;;
             2) exit_splash ;;
-            3) set_video_screens ;;
+            3) set_video_screens_load ;;
             *) break ;;
         esac
     done
@@ -261,60 +261,45 @@ install_screens() {
 
 FILE=""
 DIR="/home/pi/RetroPie/LaunchingScreens"
-	if [ "$(ls -A $DIR)" ]; then
-
-ls /home/pi/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
-
-let i=0 # define counting variable
-W=() # define working array
-while read -r line; do # process file by file
-    let i=$i+1
-    W+=($i "$line")
-done < <(cat /tmp/displays)
-
-CONFDISP=$(dialog --title "RetroPie Launching Screens Utility" --menu "Current available launching screenset.  Chose one to install." 24 80 17 "${W[@]}" 3>&2 2>&1 1>&3)
-
-clear
-
-if [ -z $CONFDISP ]; then
-   return
-
-else
-
-if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
-mkdir -p "/home/pi/RetroPie/LaunchingScreens"
-fi
-
-if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
-rm /opt/retropie/configs/*/launching.png
-fi
- 
-if [[ -f "/opt/retropie/configs/*/launching.jpg" ]]; then
-rm /opt/retropie/configs/*/launching.jpg
-fi
-
-if [[ -f "/tmp/displays" ]]; then
-currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
-cp -r /home/pi/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
-else
-echo -e "$(tput setaf 2)No Themes Installed?. $(tput sgr0)"
-sleep 5
-fi
-fi
-
-echo -e "$(tput setaf 2)Done. $(tput sgr0)"
-sleep 3
-
-else
-
-if (dialog --title "NO THEMES INSTALLED!" --yesno "Would You Like To Install One?" 0 0 )
-then
-        download_screens
+if [ "$(ls -A $DIR)" ]; then
+	ls /home/pi/RetroPie/LaunchingScreens |grep -v README > /tmp/displays
+	let i=0 # define counting variable
+	W=() # define working array
+	while read -r line; do # process file by file
+		let i=$i+1
+		W+=($i "$line")
+	done < <(cat /tmp/displays)
+	CONFDISP=$(dialog --title "RetroPie Launching Screens Utility" --menu "Current available launching screenset.  Chose one to install." 24 80 17 "${W[@]}" 3>&2 2>&1 1>&3)
+	clear
+	if [ -z $CONFDISP ]; then
+		return
 	else
-        echo -e "$(tput setaf 2)Skipping. $(tput sgr0)"
-        sleep 3
-  	fi
-
+		if [[ ! -d "/home/pi/RetroPie/LaunchingScreens" ]]; then
+			mkdir -p "/home/pi/RetroPie/LaunchingScreens"
+		fi
+		if [[ -f "/opt/retropie/configs/*/launching.png" ]]; then
+			rm /opt/retropie/configs/*/launching.png
+		fi
+		if [[ -f "/opt/retropie/configs/*/launching.jpg" ]]; then
+			rm /opt/retropie/configs/*/launching.jpg
+		fi
+		if [[ -f "/tmp/displays" ]]; then
+			currentdisplay=`sed -n ${CONFDISP}p /tmp/displays`
+			cp -r /home/pi/RetroPie/LaunchingScreens/${currentdisplay}/* /opt/retropie/configs
+		else
+			echo -e "$(tput setaf 2)No Themes Installed?. $(tput sgr0)"
+			sleep 5
+		fi
+	fi
+	echo -e "$(tput setaf 2)Done. $(tput sgr0)"
+	sleep 3
+else
+	if (dialog --title "NO THEMES INSTALLED!" --yesno "Would You Like To Install One?" 0 0 ); then
+		download_screens
+	else
+		echo -e "$(tput setaf 2)Skipping. $(tput sgr0)"
+		sleep 3
+	fi
 fi
 }
 
@@ -677,7 +662,7 @@ bgm_check
 stats_check
 }
 
-set_video_screens() {
+set_video_screens_load() {
 stats_check
   CUR_LOD=""
   NEW_LOD=""
