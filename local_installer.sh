@@ -80,10 +80,10 @@ prep_work
 echo "Prep Work All Done. Downloading Music"
 
 if [ $installset -eq "1" ]; then
-	if [ ! -f "$VID_EXT_SCR/ThanksForPlaying.mp4" ]; then mkdir "$VID_EXT_SCR"; wget "${RAW_HOST1}"/videoexitingscreens/ThanksForPlaying.mp4 -P "$VID_EXT_SCR"; fi
-	if [ ! -f "$VID_EXT_SCR/SeeYouNextTime.mp4" ]; then mkdir "$VID_EXT_SCR"; wget "${RAW_HOST1}"/videoexitingscreens/SeeYouNextTime.mp4 -P "$VID_EXT_SCR"; fi
+	if [ ! -f "$VID_EXT_SCR/ThanksForPlaying.mp4" ]; then mkdir -p "$VID_EXT_SCR"; wget "${RAW_HOST1}"/videoexitingscreens/ThanksForPlaying.mp4 -P "$VID_EXT_SCR"; fi
+	if [ ! -f "$VID_EXT_SCR/SeeYouNextTime.mp4" ]; then mkdir -p "$VID_EXT_SCR"; wget "${RAW_HOST1}"/videoexitingscreens/SeeYouNextTime.mp4 -P "$VID_EXT_SCR"; fi
 	if [ ! -f "$SPL_DIR/CarboniteSplash.mp4" ]; then wget "${RAW_HOST1}"/splashscreens/CarboniteSplash.mp4 -P "$SPL_DIR"; fi
-	if [ ! -f "$EXT_SPL_DIR/CarboniteExit.mp4" ]; then mkdir "$EXT_SPL_DIR"; wget "${RAW_HOST1}"/exitscreens/CarboniteExit.mp4 -P "$EXT_SPL_DIR"; fi
+	if [ ! -f "$EXT_SPL_DIR/CarboniteExit.mp4" ]; then mkdir -p "$EXT_SPL_DIR"; wget "${RAW_HOST1}"/exitscreens/CarboniteExit.mp4 -P "$EXT_SPL_DIR"; fi
 fi
 
 if [ $installset -le "2" ]; then
