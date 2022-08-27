@@ -147,30 +147,30 @@ hursty_themes() {
 #Adds Updated Version to tamoplus Folder, One removes menu
 if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
-		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo mv -f $STMENU_VIS_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh; fi
 		chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
 		$INSTALL_DIR/scripts/hurstythemes.sh
 	else
-		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo rm -f -r $MENU_DIR/hurstythemes; fi
-		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes; fi
+		if [ -f "$MENU_DIR/hurstythemes.sh" ]; then sudo rm -f -r $MENU_DIR/hurstythemes.sh; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes.sh" ]; then sudo rm -f -r $STMENU_VIS_DIR/hurstythemes.sh; fi
 		wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
 		chmod +x "$INSTALL_DIR/tmp/install.sh"
 		./$INSTALL_DIR/tmp/install.sh
-		if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir $INSTALL_DIR/scripts; fi
+		if [ ! -d "$INSTALL_DIR/scripts" ]; then mkdir -p $INSTALL_DIR/scripts; fi
 		mv -f $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh
 		$INSTALL_DIR/scripts/hurstythemes.sh
 		rm -fr "$INSTALL_DIR/tmp"
 	fi
 else
 	if [ -f "$INSTALL_DIR/scripts/hurstythemes.sh" ]; then 
-		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$MENU_DIR/hurstythemes.sh" ]; then sudo mv $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes.sh" ]; then sudo mv $STMENU_VIS_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh; fi
 		chmod +x $INSTALL_DIR/scripts/hurstythemes.sh
 		$INSTALL_DIR/scripts/hurstythemes.sh
 	else
-		if [ -f "$MENU_DIR/hurstythemes" ]; then sudo cp $MENU_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
-		if [ -f "$STMENU_VIS_DIR/hurstythemes" ]; then sudo cp $STMENU_VIS_DIR/hurstythemes $INSTALL_DIR/scripts/; fi
+		if [ -f "$MENU_DIR/hurstythemes.sh" ]; then sudo mv $MENU_DIR/hurstythemes.sh $INSTALL_DIR/scripts/; fi
+		if [ -f "$STMENU_VIS_DIR/hurstythemes.sh" ]; then sudo mv $STMENU_VIS_DIR/hurstythemes.sh $INSTALL_DIR/scripts/hurstythemes.sh; fi
 		wget https://raw.githubusercontent.com/RetroHursty69/HurstyThemes/master/install.sh "$INSTALL_DIR/tmp/install.sh"
 		chmod +x "$INSTALL_DIR/tmp/install.sh"
 		./$INSTALL_DIR/tmp/install.sh
