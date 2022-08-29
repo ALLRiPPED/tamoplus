@@ -1437,6 +1437,12 @@ game_list_full() {
     <desc>This script will let quickly let you change video output. Some ex 1080P,720P,480P,240P.</desc>
     <image>./icons/Raspberry-Video-Output.png</image>
   </game>
+    <game>
+    <path>./visualtools/resolution-tool.sh</path>
+    <name>Raspberry Video Output</name>
+    <desc>This script will let quickly let you change video output. Some ex 1080P,720P,480P,240P.</desc>
+    <image>./icons/Raspberry-Video-Output.png</image>
+  </game>
   <game>
     <path>./retropietools/systeminfo.sh</path>
     <name>Basic system info</name>
