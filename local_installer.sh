@@ -560,7 +560,7 @@ filefound31=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "/bin/bas
 if [[ ${filefound31} > 0 ]]; then echo "Shebang already in runcommand-onstart.sh" > /tmp/exists
 else sed -i '1i #!/bin/bash' $RUNONSTART; fi
 filefound91=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep "pkill -f -CONT BGM.py" |wc -l`
-if [[ ${filefound91} > 0 ]]; then echo "$(tput setaf 2)Tamo+ Script Already Found In Runcommand-OnEnd! $(tput sgr0)"
+if [[ ${filefound91} > 0 ]]; then echo "$(tput setaf 2)Tamo+ Script Already Found In Runcommand-OnStart! $(tput sgr0)"
 else
 	if ! grep 'pkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apkill -f -STOP BGM.py' "$RUNONSTART" > /dev/null 2>&1; fi
 	if ! grep 'pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; then sed -i -e '$apgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1' "$RUNONSTART" > /dev/null 2>&1; fi
