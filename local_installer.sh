@@ -432,8 +432,9 @@ else
 	cat /tmp/temp1.xml > $MENU_DIR/gamelist.xml
 	rm -f /tmp/temp1.xml
 fi
-## Detecting Retro-Devils Devils-Box
+## Detecting Retro-Devils Devils-Box and Pi.D.E.I.
 db_detect
+pidei_detect
 if [ ! -d  "/opt/retropie/configs/all/emulationstation/scripts/reboot" ]; then
 	mkdir -p /opt/retropie/configs/all/emulationstation/scripts/reboot
 	cat <<\EOF1293 > "/opt/retropie/configs/all/emulationstation/scripts/reboot/exit-splash"

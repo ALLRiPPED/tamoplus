@@ -796,6 +796,7 @@ if grep 'user_menu_flag=1' "$USER_SETTINGS" > /dev/null 2>&1; then
 	game_list_full
 	rm_menus
 	db_detect
+	pidei_detect
 	echo "$(tput setaf 2)Restarting Emulationstation$(tput setaf 0)"
 	sleep 1
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
@@ -809,6 +810,7 @@ else
 	game_list_full
 	keep_menus
 	db_detect
+	pidei_detect
 	echo "$(tput setaf 2)Restarting Emulationstation$(tput setaf 0)"
 	sleep 1
 	pgrep -f "emulationstation" |xargs sudo kill -9 > /dev/null 2>&1
@@ -1663,6 +1665,15 @@ else
 	sed "/<\/gameList>/ s/.*/${DBC1}\n&/" $HOME/RetroPie/retropiemenu/gamelist.xml > $HOME/temp2.xml
 	cat $HOME/temp2.xml > $HOME/RetroPie/retropiemenu/gamelist.xml
 	rm -f $HOME/temp2.xml
+fi
+}
+
+pidei_detect() {
+if grep -q pidei.sh "$HOME/RetroPie/retropiemenu/gamelist.xml"; then echo "gamelist.xml entry confirmed"
+else
+	sed "/<\/gameList>/ s/.*/${PIDEIC1}\n&/" $HOME/RetroPie/retropiemenu/gamelist.xml > $HOME/temp
+	cat $HOME/temp > $HOME/RetroPie/retropiemenu/gamelist.xml
+	rm -f $HOME/temp
 fi
 }
 
