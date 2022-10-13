@@ -318,7 +318,7 @@ sleep 1
 if [ ! -d "$MUSIC_DIR" ]; then mkdir $MUSIC_DIR; else echo "$MUSIC_DIR Exists!"; fi	
 # Will add Default missing EmulationStation settings
 if [ ! -f  "/opt/retropie/configs/all/emulationstation/es_settings.cfg" ]; then
-cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
+	cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <?xml version="1.0"?>
 <bool name="BackgroundJoystickInput" value="false" />
 <bool name="CaptionsCompatibility" value="true" />
@@ -376,35 +376,37 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="UIMode" value="Full" />
 <string name="UIMode_passkey" value="uuddlrlrba" />
 EOF15293
-sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
-rpi=$(cat /proc/device-tree/model |awk '{print $3$4$5}')
-if [ "$rpi" = "4ModelB" ]; then echo "RaspBerry Pi 4B"
-
-if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
-curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
-cp -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
-chmod 755 $INSTALL_DIR/scripts/sinden-menu.sh
+	sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
 fi
-# Added Supreme Marquee and Script
-cd $HOME
-git clone https://github.com/SupremePi/PieMarquee2.git
-chmod 777 $HOME/PieMarquee2
-sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
-mkdir /opt/retropie/configs/all/PieMarquee2/
-cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
-if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo cp -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
-sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
-chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
-chmod 755 $INSTALL_DIR/scripts/supreme-marquee-tool.sh
-sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
-	#Do Auto Start Edits for marquee#
-	ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
-	if [[ ${ifexist3489} > 0 ]]; then
-		echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
-		echo "already in autostart.sh" > /tmp/exists
-		sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
-	else
-	cat <<\EOF12389 > "/tmp/templist-marquee"
+
+rpi=$(cat /proc/device-tree/model |awk '{print $3}')
+if [ "$rpi" = "Zero" ]; then cat /proc/device-tree/model; echo " Detected Skipping Sinden and PieMarquee2 Installs"
+else
+	if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
+		curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
+		cp -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
+		chmod 755 $INSTALL_DIR/scripts/sinden-menu.sh
+	fi
+	# Added Supreme Marquee and Script
+	cd $HOME
+	git clone https://github.com/SupremePi/PieMarquee2.git
+	chmod 777 $HOME/PieMarquee2
+	sudo rm -rf /opt/retropie/configs/all/PieMarquee2/
+	mkdir /opt/retropie/configs/all/PieMarquee2/
+	cp -f -r $HOME/PieMarquee2/PieMarquee2 /opt/retropie/configs/all/
+	if [ -f "/home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh" ]; then sudo cp -f /home/pi/PieMarquee2/scripts/supreme-marquee-tool.sh $INSTALL_DIR/scripts/; fi
+	sudo cp -f $HOME/PieMarquee2/scripts/asplashscreen.sh /opt/retropie/supplementary/splashscreen/
+	chmod 755 /opt/retropie/configs/all/PieMarquee2/omxiv-marquee
+	chmod 755 $INSTALL_DIR/scripts/supreme-marquee-tool.sh
+	sudo chmod 755 /opt/retropie/supplementary/splashscreen/asplashscreen.sh
+		#Do Auto Start Edits for marquee#
+		ifexist3489=`cat /opt/retropie/configs/all/autostart.sh |grep isdual |wc -l`
+		if [[ ${ifexist3489} > 0 ]]; then
+			echo -e "$(tput setaf 2)Marquee Script Already Found But Will Now Enable! $(tput sgr0)"
+			echo "already in autostart.sh" > /tmp/exists
+			sed -i '/#isdual=`tvservice -l |grep "2 attached device" |wc -l`/c\isdual=`tvservice -l |grep "2 attached device" |wc -l`' /opt/retropie/configs/all/autostart.sh
+		else
+		cat <<\EOF12389 > "/tmp/templist-marquee"
 #!/bin/bash
 isdual=`tvservice -l |grep "2 attached device" |wc -l`
 if [[ $isdual == "1" ]]; then
@@ -414,7 +416,6 @@ fi
 EOF12389
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
 	fi
-fi
 fi
 }
 
