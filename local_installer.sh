@@ -377,6 +377,9 @@ cat <<\EOF15293 > "/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 <string name="UIMode_passkey" value="uuddlrlrba" />
 EOF15293
 sudo chmod +x /opt/retropie/configs/all/emulationstation/es_settings.cfg
+rpi=$(cat /proc/device-tree/model |awk '{print $3$4$5}')
+if [ "$rpi" = "4ModelB" ]; then echo "RaspBerry Pi 4B"
+
 if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
 curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
 cp -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
@@ -411,6 +414,7 @@ fi
 EOF12389
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist-marquee)
 	fi
+fi
 fi
 }
 
