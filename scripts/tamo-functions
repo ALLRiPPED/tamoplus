@@ -1844,6 +1844,33 @@ sleep 1
 (nohup python $SETTINGS_DIR/fan_ctrl.py > /dev/null 2>&1) &
 }
 
+wifi-switch() {
+if grep 'wifi_switch_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then
+	sudo rfkill unblock wifi
+	echo "Wifi enabled..."
+	sleep 5
+else
+	sudo rfkill block wifi
+	echo "Wifi disabled..."
+	sleep 5
+fi
+stats_check
+}
+
+
+bluetooth-switch() {
+if grep 'bluetooth_switch_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then
+	sudo rfkill unblock bluetooth
+	echo "bluetooth enabled..."
+	sleep 5
+else
+	sudo rfkill block bluetooth
+	echo "bluetooth disabled..."
+	sleep 5
+fi
+stats_check
+}
+
 # Stats and BGM Checking
 stats_check() {
 enable="\Z2Enabled\Zn"
@@ -1974,6 +2001,8 @@ if [ -f "$SETTINGS_DIR/fan_ctrl.py" ]; then
 	oldpwmfreq=$(grep "PWM_FREQ =" "$SETTINGS_DIR/fan_ctrl.py"|(awk '{print $3}'))
 	pwmfreq="\Z2$oldpwmfreq\Zn"
 fi
+if grep 'wifi_switch_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then wfsw=$disable; else wfsw=$enable; fi
+if grep 'bluetooth_switch_flag=0' "$USER_SETTINGS" > /dev/null 2>&1; then btsw=$disable; else btsw=$enable; fi
 }
 
 bgm_check() {
