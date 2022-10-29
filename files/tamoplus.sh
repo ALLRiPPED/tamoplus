@@ -114,8 +114,8 @@ stats_check
            15) bash $INSTALL_DIR/scripts/systeminfo.sh ;;
 		   16) bash $INSTALL_DIR/scripts/usb-ext.sh ;;
            17) sudo /home/pi/RetroPie-Setup/retropie_packages.sh wifi gui ;;
-           18) wifi-switch
-           19) bluetooth-switch
+           18) wifi-switch ;;
+           19) bluetooth-switch ;;
 		    -) nono ;;
             *) break ;;
         esac
