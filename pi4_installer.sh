@@ -384,7 +384,9 @@ if [ "$rpi" = "Zero" ]; then cat /proc/device-tree/model; echo " Detected Skippi
 else
 	if [[ $currentuser == "pi" ]]; then #Quick Sinden Lightgun Install
 		curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden/main/install-lightgun-quick.sh | bash
+		if [ -f $MENU_DIR/sinden-menu.sh ]; then
 		cp -f $MENU_DIR/sinden-menu.sh $INSTALL_DIR/scripts/sinden-menu.sh
+		fi
 		chmod 755 $INSTALL_DIR/scripts/sinden-menu.sh
 	fi
 	# Added Supreme Marquee and Script
