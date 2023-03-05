@@ -510,7 +510,8 @@ if [ ! -s /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 fi
 if [ ! -f /opt/retropie/configs/all/runcommand-onstart.sh ]; then
 	echo "$(tput setaf 2)Creating Runcommand On Start $(tput sgr0)" > /tmp/exists
-	cat <<\EOF1234 > "/tmp/templist2"
+	sleep 1
+	cat <<\EOF1234 > "/opt/retropie/configs/all/runcommand-onstart.sh"
 #!/bin/sh
 ### Begin VideoLoading Screens Function
 enablevideolaunch="true"
@@ -536,9 +537,9 @@ fi
 pkill -f -STOP BGM.py
 pgrep -f pngview | xargs sudo kill -9 > /dev/null 2>&1
 EOF1234
-	sed -i -f - /opt/retropie/configs/all/runcommand-onstart.sh < <(sed 's/^/1i/' /tmp/templist2)
 	sudo chmod +x /opt/retropie/configs/all/runcommand-onstart.sh
 	echo  " $(tput sgr2)Runcommand On Start Created! $(tput sgr0)"
+	sleep 1
 fi
 filefound4=`cat /opt/retropie/configs/all/runcommand-onstart.sh |grep videoloadingscreens= |wc -l`
 if [[ ${filefound4} > 0 ]]; then sed -i '/pkill -STOP mpg123/d' $RUNONSTART; fi
@@ -583,7 +584,9 @@ if [ ! -s /opt/retropie/configs/all/runcommand-onend.sh ]; then
 	sudo rm -f /opt/retropie/configs/all/runcommand-onend.sh
 fi	
 if [ ! -f /opt/retropie/configs/all/runcommand-onend.sh ]; then
-	cat <<\EOF12345 > "/tmp/templist3"
+	echo "$(tput setaf 2)Creating Runcommand On End $(tput sgr0)" > /tmp/exists
+	sleep 1
+	cat <<\EOF12345 > "/opt/retropie/configs/all/runcommand-onend.sh"
 #!/bin/bash
 #/etc/init.d/start-sound
 enableexitvideo="true"
@@ -593,8 +596,9 @@ sudo omxplayer --vol 250 --amp 250 -b $videoexitingscreens/ThanksForPlaying.mp4 
 fi
 pkill -f -CONT BGM.py
 EOF12345
-	sed -i -f - /opt/retropie/configs/all/runcommand-onend.sh < <(sed 's/^/1i/' /tmp/templist3)
 	sudo chmod +x /opt/retropie/configs/all/runcommand-onend.sh
+	echo  " $(tput sgr2)Runcommand On End Created! $(tput sgr0)"
+	sleep 1
 fi
 filefound3=`cat /opt/retropie/configs/all/runcommand-onend.sh |grep "pkill -CONT mpg123" |wc -l`
 if [[ ${filefound3} > 0 ]]; then
