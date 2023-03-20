@@ -693,9 +693,13 @@ stats_check
 # Screens Selections
 exit_splash() {
 if [ -d "$HOME/RetroPie/exitscreensOff" ]; then
+    echo -e "$(tput setaf 2)Exit screens are now ON! PLEASE NOTE: This is not supported on Ultra at this time.$(tput sgr0)"
+    sleep 3
     perl -p -i -e 's/#\/opt\/retropie\/configs\/all\/emulationstation\/scripts\/shutdown\/exit-splash/\/opt\/retropie\/configs\/all\/emulationstation\/scripts\/shutdown\/exit-splash/g' /opt/retropie/configs/all/autostart.sh &>/dev/null
 	sudo mv -f $HOME/RetroPie/exitscreensOff $HOME/RetroPie/exitscreens
 else
+    echo -e "$(tput setaf 2)Exit screens are now OFF!$(tput sgr0)"
+    sleep 3
     perl -p -i -e 's/\/opt\/retropie\/configs\/all\/emulationstation\/scripts\/shutdown\/exit-splash/#\/opt\/retropie\/configs\/all\/emulationstation\/scripts\/shutdown\/exit-splash/g' /opt/retropie/configs/all/autostart.sh &>/dev/null
 	sudo mv -f $HOME/RetroPie/exitscreens $HOME/RetroPie/exitscreensOff
 fi
