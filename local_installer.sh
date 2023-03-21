@@ -495,7 +495,7 @@ cat <<\EOF123 > "/tmp/templist"
 (nohup python /home/pi/.tamoplus/BGM.py > /dev/null 2>&1) &
 EOF123
 		sed -i -f - /opt/retropie/configs/all/autostart.sh < <(sed 's/^/1i/' /tmp/templist)
-		sed -i -e '$a/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash\npgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
+		sed -i -e '$a#/opt/retropie/configs/all/emulationstation/scripts/shutdown/exit-splash\npgrep -f "BGM.py" |xargs sudo kill -9 > /dev/null 2>&1 &\npgrep -f pngview|xargs sudo kill -9 > /dev/null 2>&1 &' $AUTOSTART
 		echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 		sleep 3
 		clear
